@@ -1,0 +1,45 @@
+.container {
+  padding: 32px;
+
+  @media (min-width: 768px) {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .login {
+    &__title {
+      font-size: 1.5rem;
+      line-height: 1.5;
+
+      margin: 10px 0 0 0;
+    }
+
+    &__new {
+      padding: 0;
+      margin: 0;
+
+      font-size: 16px;
+
+      a {
+        color: rgb(31 233 168);
+        font-weight: 600;
+      }
+    }
+
+    &__content {
+      margin-top: 20px;
+    }
+  }
+}
+
+.imgBox {
+  position: relative;
+
+  width: 100%;
+  height: 100px;
+}

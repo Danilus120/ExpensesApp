@@ -1,0 +1,28 @@
+.separator {
+  position: relative;
+  text-align: center;
+
+  margin: 15px 0px;
+
+  &::before {
+    content: "";
+    background: rgb(66, 70, 77);
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 13px;
+  }
+
+  &__text {
+    margin: 0px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-family: "DM Sans", sans-serif;
+    color: rgb(173, 176, 187);
+    font-weight: 400;
+    position: relative;
+    padding: 5px 12px;
+    background: rgb(40, 44, 52);
+  }
+}

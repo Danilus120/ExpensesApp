@@ -1,25 +1,28 @@
 import Button from "@/Atoms/Button";
+import Input from "@/Atoms/Input";
 import StyledLink from "@/Atoms/StyledLink";
 
 import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
 
 import { FiSettings, FiMenu } from "react-icons/fi";
+import Modal from "../Modal";
 import ProfileModal from "../ProfileModal";
 
 import styles from "./styles.module.scss";
 
 interface NavigationI {
   toggleSidepanel: () => void;
-  toggleModal: () => void;
 }
 
-export default function DashboardNavigation({
-  toggleSidepanel,
-  toggleModal,
-}: NavigationI) {
+export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const { user } = useAuth();
+
+  const toggleSettingsModal = () => {
+    setIsSettingsModalOpen((prev) => !prev);
+  };
 
   const toggleProfileModal = () => {
     setIsProfileModalOpen((prev) => !prev);
@@ -35,7 +38,12 @@ export default function DashboardNavigation({
       <Button variant="ghost" callbackFn={toggleSidepanel} iconOnly>
         <FiMenu />
       </Button>
-      <Button variant="ghost" callbackFn={toggleModal} margin="left" iconOnly>
+      <Button
+        variant="ghost"
+        callbackFn={toggleSettingsModal}
+        margin="left"
+        iconOnly
+      >
         <FiSettings />
       </Button>
       {user ? (
@@ -54,6 +62,46 @@ export default function DashboardNavigation({
         handleToggle={toggleProfileModal}
         isOpened={isProfileModalOpen}
       />
+
+      <Modal
+        title="Settings"
+        handleToggle={toggleSettingsModal}
+        isOpened={isSettingsModalOpen}
+      >
+        <Input
+          handleChange={() => {}}
+          options={{ title: "Default currency", id: "currency", value: "PLN" }}
+        />
+        <Input
+          handleChange={() => {}}
+          options={{
+            title: "Default Timezone",
+            id: "timezone",
+            value:
+              "(GMT+2:00) Sarajevo, Skopje, Warsaw, Zagreb (Central European Summer Time)",
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            gap: "10px",
+            padding: "10px 0px 0px 0px",
+          }}
+        >
+          <Button type="submit" variant="contained" color="success">
+            Save
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            callbackFn={toggleSettingsModal}
+          >
+            Close
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 }

@@ -17,16 +17,15 @@
   &__card {
     position: absolute;
 
-    top: 50%;
-    left: 50%;
+    top: 75px;
+    right: 16px;
 
-    transform: translate(-50%, -55%);
+    max-width: 340px;
 
     display: flex;
     flex-direction: column;
 
-    min-width: 300px;
-    min-height: 150px;
+    min-width: 250px;
 
     background-color: rgb(40, 44, 52);
 
@@ -34,44 +33,16 @@
 
     transition: all 0.2s ease-in-out;
 
-    &--small {
-      width: 300px;
-
-      @media (min-width: 768px) {
-        width: 400px;
-      }
-
-      @media (min-width: 1200px) {
-        width: 600px;
-      }
+    @media (min-width: 768px) {
+      right: 24px;
     }
 
-    &--medium {
-      width: 300px;
-
-      @media (min-width: 768px) {
-        width: 500px;
-      }
-
-      @media (min-width: 1200px) {
-        width: 800px;
-      }
-    }
-
-    &--large {
-      width: 300px;
-
-      @media (min-width: 768px) {
-        width: 600px;
-      }
-
-      @media (min-width: 1200px) {
-        width: 1000px;
-      }
+    @media (min-width: 1200px) {
+      right: 30px;
     }
 
     &__header {
-      padding: 20px;
+      padding: 20px 20px 0px 20px;
 
       h2 {
         margin: 0;
@@ -79,7 +50,7 @@
     }
 
     &__content {
-      padding: 20px;
+      padding: 0 20px 20px 20px;
     }
 
     &__footer {
@@ -113,8 +84,4 @@
 .show {
   opacity: 1;
   pointer-events: visible;
-
-  .modal__card {
-    transform: translate(-50%, -50%);
-  }
 }

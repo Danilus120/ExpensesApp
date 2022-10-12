@@ -5,6 +5,7 @@ interface ModalI {
   title: string;
   handleToggle: () => void;
   isOpened: boolean;
+  size?: "small" | "medium" | "large";
 }
 
 export default function Modal({
@@ -12,10 +13,13 @@ export default function Modal({
   title,
   handleToggle,
   isOpened,
+  size = "medium",
 }: ModalI) {
   return (
     <div className={`${styles["modal"]} ${isOpened && styles["show"]}`}>
-      <div className={styles["modal__card"]}>
+      <div
+        className={`${styles["modal__card"]} ${styles[`modal__card--${size}`]}`}
+      >
         <div className={styles["modal__card__header"]}>
           <h2>{title}</h2>
         </div>

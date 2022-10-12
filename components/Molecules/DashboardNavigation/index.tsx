@@ -2,8 +2,10 @@ import Button from "@/Atoms/Button";
 import StyledLink from "@/Atoms/StyledLink";
 
 import { useAuth } from "@/context/AuthContext";
+import { useState } from "react";
 
 import { FiSettings, FiMenu } from "react-icons/fi";
+import ProfileModal from "../ProfileModal";
 
 import styles from "./styles.module.scss";
 
@@ -16,7 +18,12 @@ export default function DashboardNavigation({
   toggleSidepanel,
   toggleModal,
 }: NavigationI) {
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const { user } = useAuth();
+
+  const toggleProfileModal = () => {
+    setIsProfileModalOpen((prev) => !prev);
+  };
 
   const firstLetterName =
     user && user.displayName?.length > 0
@@ -32,7 +39,7 @@ export default function DashboardNavigation({
         <FiSettings />
       </Button>
       {user ? (
-        <Button variant="ghost">
+        <Button variant="ghost" callbackFn={toggleProfileModal}>
           <div className="avatar">
             <span>{firstLetterName}</span>
           </div>
@@ -42,6 +49,11 @@ export default function DashboardNavigation({
           <span>Log in</span>
         </StyledLink>
       )}
+
+      <ProfileModal
+        handleToggle={toggleProfileModal}
+        isOpened={isProfileModalOpen}
+      />
     </div>
   );
 }

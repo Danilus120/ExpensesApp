@@ -47,10 +47,14 @@ export default function DashboardLayout({
           toggleModal={toggleModal}
         />
         <div className={styles.content}>{children}</div>
-        <Button>asd</Button>
       </div>
 
-      <Modal title="Modal 1" handleToggle={toggleModal} isOpened={isModalOpen}>
+      <Modal
+        title="Modal 1"
+        size="small"
+        handleToggle={toggleModal}
+        isOpened={isModalOpen}
+      >
         <p>asdasdasd asdasdasd asd asda asdasdas asd asdasds</p>
         <div className="buttons" style={{ display: "flex" }}>
           <Button type="submit" variant="contained" color="success">

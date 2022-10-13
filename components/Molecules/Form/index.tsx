@@ -2,13 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 interface FormI {
   defaultValues?: Record<string, any>;
   children: React.ReactNode;
   onSubmit: (data: any) => void;
-  schema: yup.AnyObjectSchema;
+  schema: any;
 }
 
 export default function Form({
@@ -26,15 +25,6 @@ export default function Form({
     resolver: yupResolver(schema),
   });
 
-  const submitFn = (data: any) => {
-    if (Object.keys(errors).length >= 0) {
-      console.log(errors);
-      return;
-    }
-
-    onSubmit(data);
-  };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {Array.isArray(children)
@@ -44,6 +34,7 @@ export default function Form({
                   ...{
                     ...child.props,
                     register,
+                    errors,
                     key: child.props.name,
                   },
                 })

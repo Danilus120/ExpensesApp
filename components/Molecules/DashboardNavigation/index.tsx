@@ -1,30 +1,25 @@
-import * as yup from "yup";
+import { useState } from "react";
+import router from "next/router";
 
+import Form from "@/Molecules/Form";
+import Modal from "@/Molecules/Modal";
+import ProfileModal from "@/Molecules/ProfileModal";
 import Button from "@/Atoms/Button";
 import Input from "@/Atoms/Input";
-import StyledLink from "@/Atoms/StyledLink";
+import Select from "@/Atoms/Select";
 
 import { useAuth } from "@/context/AuthContext";
-import router from "next/router";
-import { useState } from "react";
 
 import { FiSettings, FiMenu } from "react-icons/fi";
-import Form from "../Form";
-import Modal from "../Modal";
-import ProfileModal from "../ProfileModal";
+
+import { currency_list } from "@/constants/currencyList";
+import { settingsSchema } from "@/constants/validationSchema";
 
 import styles from "./styles.module.scss";
-import { Select } from "@/Atoms/Select";
-import { currency_list } from "@/constants/currencyList";
 
 interface NavigationI {
   toggleSidepanel: () => void;
 }
-
-const settingsSchema = yup.object({
-  currency: yup.string(),
-  timezone: yup.string(),
-});
 
 export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -78,13 +73,11 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
         isOpened={isSettingsModalOpen}
       >
         <Form
-          defaultValues={{ currency: "", timezone: "" }}
           onSubmit={(data) => {
             console.log(data);
           }}
           schema={settingsSchema}
         >
-          {/* TODO: https://react-hook-form.com/advanced-usage/#SmartFormComponent -> Not working | https://codesandbox.io/s/react-hook-form-smart-form-component-forked-iq89z?file=/src/components.js */}
           <Select
             label="Default currency"
             name="currency"

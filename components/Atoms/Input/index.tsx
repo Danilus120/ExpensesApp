@@ -1,3 +1,4 @@
+import { ErrorMessage } from "@hookform/error-message";
 import { FieldValues } from "react-hook-form";
 
 import styles from "./styles.module.scss";
@@ -8,7 +9,14 @@ interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
   type?: "text" | "password" | "email" | "number";
 }
 
-const Input = ({ type = "text", label, name, register, ...rest }: InputI) => {
+const Input = ({
+  type = "text",
+  label,
+  name,
+  errors,
+  register,
+  ...rest
+}: InputI) => {
   return (
     <div className={styles["input-container"]}>
       <label htmlFor={name} className={styles["input-container__label"]}>
@@ -18,9 +26,10 @@ const Input = ({ type = "text", label, name, register, ...rest }: InputI) => {
         type={type}
         id={name}
         className={styles["input-container__input"]}
-        {...register(name)}
+        {...register(name, { required: true, message: "is required" })}
         {...rest}
       />
+      {errors[name] && <p>{errors[name].message}</p>}
     </div>
   );
 };

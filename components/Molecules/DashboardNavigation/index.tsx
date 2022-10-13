@@ -3,6 +3,7 @@ import Input from "@/Atoms/Input";
 import StyledLink from "@/Atoms/StyledLink";
 
 import { useAuth } from "@/context/AuthContext";
+import router from "next/router";
 import { useState } from "react";
 
 import { FiSettings, FiMenu } from "react-icons/fi";
@@ -33,6 +34,10 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
       ? user?.displayName.slice(0, 1).toUpperCase()
       : user?.email.slice(0, 1).toUpperCase();
 
+  if (!user) {
+    router.push("/login");
+  }
+
   return (
     <div className={styles.navigation}>
       <Button variant="ghost" callbackFn={toggleSidepanel} iconOnly>
@@ -46,17 +51,11 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
       >
         <FiSettings />
       </Button>
-      {user ? (
-        <Button variant="ghost" callbackFn={toggleProfileModal}>
-          <div className="avatar">
-            <span>{firstLetterName}</span>
-          </div>
-        </Button>
-      ) : (
-        <StyledLink href="/login">
-          <span>Log in</span>
-        </StyledLink>
-      )}
+      <Button variant="ghost" callbackFn={toggleProfileModal}>
+        <div className="avatar">
+          <span>{firstLetterName}</span>
+        </div>
+      </Button>
 
       <ProfileModal
         handleToggle={toggleProfileModal}

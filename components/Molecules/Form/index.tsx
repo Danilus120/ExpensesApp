@@ -26,19 +26,17 @@ export default function Form({
     resolver: yupResolver(schema),
   });
 
-  console.log(errors);
-
   const submitFn = (data: any) => {
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length >= 0) {
       console.log(errors);
       return;
     }
 
-    onSubmit;
+    onSubmit(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(submitFn)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       {Array.isArray(children)
         ? children.map((child) => {
             return child.props.name

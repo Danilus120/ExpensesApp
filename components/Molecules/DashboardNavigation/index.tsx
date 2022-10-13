@@ -14,6 +14,8 @@ import Modal from "../Modal";
 import ProfileModal from "../ProfileModal";
 
 import styles from "./styles.module.scss";
+import { Select } from "@/Atoms/Select";
+import { currency_list } from "@/constants/currencyList";
 
 interface NavigationI {
   toggleSidepanel: () => void;
@@ -83,7 +85,11 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
           schema={settingsSchema}
         >
           {/* TODO: https://react-hook-form.com/advanced-usage/#SmartFormComponent -> Not working | https://codesandbox.io/s/react-hook-form-smart-form-component-forked-iq89z?file=/src/components.js */}
-          <Input label="Default currency" name="currency" />
+          <Select
+            label="Default currency"
+            name="currency"
+            options={currency_list.map((currency) => currency.code)}
+          />
           <Input label="Default Timezone" name="timezone" />
           <div
             style={{

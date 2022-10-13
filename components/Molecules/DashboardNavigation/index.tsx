@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 import Button from "@/Atoms/Button";
 import Input from "@/Atoms/Input";
 import StyledLink from "@/Atoms/StyledLink";
@@ -7,6 +9,7 @@ import router from "next/router";
 import { useState } from "react";
 
 import { FiSettings, FiMenu } from "react-icons/fi";
+import Form from "../Form";
 import Modal from "../Modal";
 import ProfileModal from "../ProfileModal";
 
@@ -15,6 +18,11 @@ import styles from "./styles.module.scss";
 interface NavigationI {
   toggleSidepanel: () => void;
 }
+
+const settingsSchema = yup.object({
+  currency: yup.string(),
+  timezone: yup.string(),
+});
 
 export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -67,39 +75,37 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
         handleToggle={toggleSettingsModal}
         isOpened={isSettingsModalOpen}
       >
-        <Input
-          handleChange={() => {}}
-          options={{ title: "Default currency", id: "currency", value: "PLN" }}
-        />
-        <Input
-          handleChange={() => {}}
-          options={{
-            title: "Default Timezone",
-            id: "timezone",
-            value:
-              "(GMT+2:00) Sarajevo, Skopje, Warsaw, Zagreb (Central European Summer Time)",
+        <Form
+          defaultValues={{ currency: "", timezone: "" }}
+          onSubmit={(data) => {
+            console.log(data);
           }}
-        />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            gap: "10px",
-            padding: "10px 0px 0px 0px",
-          }}
+          schema={settingsSchema}
         >
-          <Button type="submit" variant="contained" color="success">
-            Save
-          </Button>
-          <Button
-            variant="contained"
-            color="error"
-            callbackFn={toggleSettingsModal}
+          {/* TODO: https://react-hook-form.com/advanced-usage/#SmartFormComponent -> Not working | https://codesandbox.io/s/react-hook-form-smart-form-component-forked-iq89z?file=/src/components.js */}
+          <Input label="Default currency" name="currency" />
+          <Input label="Default Timezone" name="timezone" />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              gap: "10px",
+              padding: "10px 0px 0px 0px",
+            }}
           >
-            Close
-          </Button>
-        </div>
+            <Button type="submit" variant="contained" color="success">
+              Save
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              callbackFn={toggleSettingsModal}
+            >
+              Close
+            </Button>
+          </div>
+        </Form>
       </Modal>
     </div>
   );

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.8",
     "chart.js": "^3.9.1",
     "date-fns": "^2.29.3",
     "firebase": "^9.10.0",
@@ -19,7 +20,8 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.37.0",
     "react-icons": "^4.4.0",
-    "sass": "^1.55.0"
+    "sass": "^1.55.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.186",

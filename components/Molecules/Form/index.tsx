@@ -1,17 +1,44 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
 interface FormI {
   defaultValues?: Record<string, any>;
   children: React.ReactNode;
-  onSubmit: () => void;
+  onSubmit: (data: any) => void;
+  schema: yup.AnyObjectSchema;
 }
 
-export default function Form({ defaultValues, children, onSubmit }: FormI) {
-  const { handleSubmit, register } = useForm({ defaultValues });
+export default function Form({
+  defaultValues,
+  children,
+  onSubmit,
+  schema,
+}: FormI) {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
+
+  console.log(errors);
+
+  const submitFn = (data: any) => {
+    if (Object.keys(errors).length === 0) {
+      console.log(errors);
+      return;
+    }
+
+    onSubmit;
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(submitFn)}>
       {Array.isArray(children)
         ? children.map((child) => {
             return child.props.name

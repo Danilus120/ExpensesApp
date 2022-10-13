@@ -1,34 +1,28 @@
-import { ChangeEvent } from "react";
+import { FieldValues } from "react-hook-form";
+
 import styles from "./styles.module.scss";
 
-interface InputI {
-  options: {
-    title: string;
-    type?: string;
-    id: string;
-    value: string;
-  };
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
+  label: string;
+  name: string;
+  type?: "text" | "password" | "email" | "number";
 }
 
-export default function Input({
-  options: { title, type = "text", id, value },
-  handleChange,
-}: InputI) {
+const Input = ({ type = "text", label, name, register, ...rest }: InputI) => {
   return (
     <div className={styles["input-container"]}>
-      <label htmlFor={id} className={styles["input-container__label"]}>
-        {title}
+      <label htmlFor={name} className={styles["input-container__label"]}>
+        {label}
       </label>
       <input
         type={type}
-        id={id}
-        name={id}
+        id={name}
         className={styles["input-container__input"]}
-        onChange={handleChange}
-        value={value}
-        required
+        {...register(name)}
+        {...rest}
       />
     </div>
   );
-}
+};
+
+export default Input;

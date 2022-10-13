@@ -7,46 +7,28 @@ import Input from "@/Atoms/Input";
 
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "config/firebase.config";
+import Form from "@/Molecules/Form";
+import { forgotPasswordSchema } from "@/constants/validationSchema";
 
 export default function ResetPassword() {
-  const [credentials, setCredentials] = useState({
-    email: "",
-  });
-
   const forgotPassword = async (email: string) => {
     await sendPasswordResetEmail(auth, email);
 
     router.push("/login");
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setCredentials((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
   return (
-    <form
-      action=""
-      onSubmit={(e) => {
-        e.preventDefault();
-        forgotPassword(credentials.email);
+    <Form
+      onSubmit={(data) => {
+        forgotPassword(data);
       }}
+      schema={forgotPasswordSchema}
     >
-      <Input
-        options={{
-          title: "Email Address",
-          id: "email",
-          value: credentials.email,
-        }}
-        handleChange={handleChange}
-      />
+      <Input label="Email Address" name="email" type="email" />
 
-      <Button variant="contained" align="center" fullWidth>
-        <span>Reset Password</span>
+      <Button type="submit" variant="contained" align="center" fullWidth>
+        <span>Register</span>
       </Button>
-    </form>
+    </Form>
   );
 }

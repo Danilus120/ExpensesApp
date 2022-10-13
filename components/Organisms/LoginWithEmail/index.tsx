@@ -10,15 +10,12 @@ import { auth } from "config/firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import styles from "./styles.module.scss";
+import Form from "@/Molecules/Form";
+import { loginFormSchema } from "@/constants/validationSchema";
 
 export default function LoginWithEmail() {
   const [error, setError] = useState();
   const { isLoading, handleChangeLoading } = useAuth();
-
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
 
   const login = (credentials: { email: string; password: string }) => {
     handleChangeLoading(true);
@@ -32,46 +29,26 @@ export default function LoginWithEmail() {
       });
   };
 
-  const handleChange = (e: any) => {
-    e.preventDefault();
-    setCredentials((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  // TODO: notificationContext with errors from form
   return (
-    <form
-      action=""
-      className={styles["form"]}
-      onSubmit={(e) => {
-        e.preventDefault();
-        login(credentials);
+    <Form
+      onSubmit={(data) => {
+        login(data);
       }}
+      schema={loginFormSchema}
     >
-      <Input
-        options={{
-          title: "Email Address",
-          id: "email",
-          value: credentials["email"],
-        }}
-        handleChange={handleChange}
-      />
+      <Input label="Email Address" name="email" type="email" />
 
-      <Input
-        options={{
-          title: "Password",
-          type: "password",
-          id: "password",
-          value: credentials["password"],
-        }}
-        handleChange={handleChange}
-      />
+      <Input label="Password" name="password" type="password" />
 
-      <Button variant="contained" disabled={isLoading} align="center" fullWidth>
+      <Button
+        type="submit"
+        variant="contained"
+        disabled={isLoading}
+        align="center"
+        fullWidth
+      >
         <span>Login</span>
       </Button>
-    </form>
+    </Form>
   );
 }

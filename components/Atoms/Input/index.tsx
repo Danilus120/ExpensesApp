@@ -1,5 +1,5 @@
-import { ErrorMessage } from "@hookform/error-message";
 import { FieldValues } from "react-hook-form";
+import ErrorMessage from "@/Atoms/ErrorMessage";
 
 import styles from "./styles.module.scss";
 
@@ -26,10 +26,10 @@ const Input = ({
         type={type}
         id={name}
         className={styles["input-container__input"]}
-        {...register(name, { required: true, message: "is required" })}
+        {...register(name, { required: true })}
         {...rest}
       />
-      {errors[name] && <p>{errors[name].message}</p>}
+      {errors[name] && <ErrorMessage text={errors[name].message} />}
     </div>
   );
 };

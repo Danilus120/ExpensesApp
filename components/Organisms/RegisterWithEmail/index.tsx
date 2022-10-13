@@ -13,16 +13,12 @@ import {
 } from "firebase/auth";
 
 import styles from "./styles.module.scss";
+import { registerFormSchema } from "@/constants/validationSchema";
+import Form from "@/Molecules/Form";
 
 export default function RegisterWithEmail() {
   const [error, setError] = useState();
   const { isLoading, handleChangeLoading, getUser } = useAuth();
-
-  const [credentials, setCredentials] = useState({
-    displayName: "",
-    email: "",
-    password: "",
-  });
 
   const register = async (credentials: {
     displayName: string;
@@ -61,55 +57,28 @@ export default function RegisterWithEmail() {
     router.push("/dashboard");
   };
 
-  const handleChange = (e: any) => {
-    e.preventDefault();
-    setCredentials((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  // TODO: notificationContext with errors from form
   return (
-    <form
-      action=""
-      className={styles["form"]}
-      onSubmit={(e) => {
-        e.preventDefault();
-        register(credentials);
+    <Form
+      onSubmit={(data) => {
+        register(data);
       }}
+      schema={registerFormSchema}
     >
-      <Input
-        options={{
-          title: "Nickname",
-          id: "displayName",
-          value: credentials["displayName"],
-        }}
-        handleChange={handleChange}
-      />
+      <Input label="Display name" name="displayName" type="text" />
 
-      <Input
-        options={{
-          title: "Email Address",
-          id: "email",
-          value: credentials["email"],
-        }}
-        handleChange={handleChange}
-      />
+      <Input label="Email Address" name="email" type="email" />
 
-      <Input
-        options={{
-          title: "Password",
-          type: "password",
-          id: "password",
-          value: credentials["password"],
-        }}
-        handleChange={handleChange}
-      />
+      <Input label="Password" name="password" type="password" />
 
-      <Button variant="contained" disabled={isLoading} align="center" fullWidth>
+      <Button
+        type="submit"
+        variant="contained"
+        disabled={isLoading}
+        align="center"
+        fullWidth
+      >
         <span>Register</span>
       </Button>
-    </form>
+    </Form>
   );
 }

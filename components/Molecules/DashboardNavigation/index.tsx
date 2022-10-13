@@ -16,6 +16,7 @@ import { currency_list } from "@/constants/currencyList";
 import { settingsSchema } from "@/constants/validationSchema";
 
 import styles from "./styles.module.scss";
+import { tzInts } from "@/constants/timezoneList";
 
 interface NavigationI {
   toggleSidepanel: () => void;
@@ -81,9 +82,23 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
           <Select
             label="Default currency"
             name="currency"
-            options={currency_list.map((currency) => currency.code)}
+            options={currency_list.map((currency) => {
+              return {
+                label: `${currency.name} (${currency.code})`,
+                value: currency.code,
+              };
+            })}
           />
-          <Input label="Default Timezone" name="timezone" />
+          <Select
+            label="Default timezone"
+            name="timezone"
+            options={tzInts.map((timezone) => {
+              return {
+                label: timezone.label,
+                value: timezone.value,
+              };
+            })}
+          />
           <div
             style={{
               display: "flex",

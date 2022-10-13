@@ -21,7 +21,8 @@
     "react-hook-form": "^7.37.0",
     "react-icons": "^4.4.0",
     "sass": "^1.55.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "yup-password": "^0.2.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.186",

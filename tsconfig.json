@@ -7,7 +7,7 @@
       "@/Organisms/*": ["components/Organisms/*"],
       "@/Templates/*": ["components/Templates/*"],
 
-      "@/layouts/*": ["layouts/*"],
+      "@/config/*": ["config/*"],
       "@/constants/*": ["constants/*"],
       "@/context/*": ["context/*"],
       "@/hooks/*": ["hooks/*"]

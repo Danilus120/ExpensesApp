@@ -40,7 +40,6 @@ export default function LoginTemplate({
 
         <div className={styles["login__content"]}>
           <LoginWithEmail />
-          {/* TODO: Jak zrobić, by był margines pomiędzy przyciskami? */}
           <StyledLink variant="ghost" href="/reset-password" align="center">
             <span>Forgot Password?</span>
           </StyledLink>

@@ -37,7 +37,6 @@ export default function ResetPasswordLayout({
 
         <div className={styles["login__content"]}>
           <ResetPassword />
-          {/* TODO: Jak zrobić, by był margines pomiędzy przyciskami? */}
           <StyledLink
             variant="ghost"
             href="/login"

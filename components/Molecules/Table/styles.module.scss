@@ -1,0 +1,54 @@
+.container {
+  width: 100%;
+  padding: 20px;
+  margin: 20px 0;
+
+  background: #2b2e3b;
+
+  border-radius: 10px;
+
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse;
+
+  width: 100%;
+  .thead {
+  }
+
+  .tbody {
+  }
+
+  .tr {
+    font-size: 12px;
+
+    text-align: center;
+
+    .th {
+      padding: 0.4rem;
+      border: 1px solid #3d4052;
+    }
+
+    .td {
+      padding: 0.4rem;
+      border: 1px solid #3d4052;
+
+      height: 50px;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &__buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+}

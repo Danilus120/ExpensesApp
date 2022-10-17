@@ -1,6 +1,8 @@
 import type { NextPage } from "next";
 
 import DashboardLayout from "@/Templates/DashboardTemplate";
+import Table from "@/Molecules/Table";
+import { fakeExpensesData } from "@/constants/fakeDataForExpensesTable";
 
 const Dashboard: NextPage = () => {
   return (
@@ -10,7 +12,7 @@ const Dashboard: NextPage = () => {
         description: "Dashboard of expenses app",
       }}
     >
-      <p>asdasdas</p>
+      <Table data={fakeExpensesData} />
     </DashboardLayout>
   );
 };

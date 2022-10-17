@@ -8,6 +8,7 @@ import { AiFillDelete } from "react-icons/ai";
 
 import styles from "./styles.module.scss";
 
+// TODO: Refactor to v8
 function Table({ data }: any) {
   const columns = useMemo(() => getDataHeaders(data), [data]);
 
@@ -49,13 +50,9 @@ function Table({ data }: any) {
                 {row.cells.map((cell) => {
                   const { key, ...restCellProps } = cell.getCellProps();
 
-                  const content =
-                    cell.column.id !== "date"
-                      ? cell.render("Cell")
-                      : new Date(cell.render("Cell")).toLocaleDateString("pl");
                   return (
                     <td key={key} {...restCellProps} className={styles["td"]}>
-                      {content}
+                      {cell.render("Cell")}
                     </td>
                   );
                 })}

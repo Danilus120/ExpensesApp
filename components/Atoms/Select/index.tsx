@@ -1,5 +1,7 @@
 import ErrorMessage from "@/Atoms/ErrorMessage";
-import { FieldValues } from "react-hook-form";
+import { Controller, FieldValues } from "react-hook-form";
+
+import AutoSelect from "react-select";
 
 import styles from "./styles.module.scss";
 
@@ -8,7 +10,7 @@ interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
   name: string;
   options: {
     label: string;
-    value: string | number;
+    value: string;
   }[];
   type?: "text" | "password" | "email" | "number";
 }
@@ -26,7 +28,7 @@ export default function Select({
       <label htmlFor={name} className={styles["input-container__label"]}>
         {label}{" "}
       </label>
-      <select
+      {/* <select
         id={name}
         {...register(name, { required: true })}
         {...rest}
@@ -37,7 +39,23 @@ export default function Select({
             {label}
           </option>
         ))}
-      </select>
+      </select> */}
+      <Controller
+        control={}
+        default_value={}
+        name={}
+        render={({ onChange, value, name, ref }) => (
+          <AutoSelect
+            inputRef={ref}
+            options={options}
+            id={name}
+            className={styles["input-container__input"]}
+            value={options.find((c) => c.value === value)}
+            onChange={(val) => onChange(val?.value)}
+          />
+        )}
+      />
+
       {errors[name] && <ErrorMessage text={errors[name].message} />}
     </div>
   );

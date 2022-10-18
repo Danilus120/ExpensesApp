@@ -83,93 +83,93 @@ const fakeExpensesData = [
       "augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia",
     shopName: "Lidl",
   },
-  // {
-  //   date: 1640324764000,
-  //   category: "jedzenie",
-  //   price: 934.06,
-  //   currency: "Peso",
-  //   description:
-  //     "odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla",
-  //   shopName: "Action",
-  // },
-  // {
-  //   date: 1660327179000,
-  //   category: "gry",
-  //   price: 839.41,
-  //   currency: "Peso",
-  //   description:
-  //     "non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum",
-  //   shopName: "Auchan",
-  // },
-  // {
-  //   date: 1643354269000,
-  //   category: "jedzenie",
-  //   price: 82.03,
-  //   currency: "Afghani",
-  //   description:
-  //     "erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin",
-  //   shopName: "Lidl",
-  // },
-  // {
-  //   date: 1660728115000,
-  //   category: "dom",
-  //   price: 456.11,
-  //   currency: "Rupee",
-  //   description:
-  //     "penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien",
-  //   shopName: "Auchan",
-  // },
-  // {
-  //   date: 1651973892000,
-  //   category: "rozrywka",
-  //   price: 951.4,
-  //   currency: "Peso",
-  //   description:
-  //     "est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis",
-  //   shopName: "Auchan",
-  // },
-  // {
-  //   date: 1661735881000,
-  //   category: "gry",
-  //   price: 891.5,
-  //   currency: "Euro",
-  //   description:
-  //     "cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec",
-  //   shopName: "Biedronka",
-  // },
-  // {
-  //   date: 1639963274000,
-  //   category: "jedzenie",
-  //   price: 841.6,
-  //   currency: "Krona",
-  //   description: "odio in hac habitasse platea dictumst maecenas ut massa",
-  //   shopName: "Auchan",
-  // },
-  // {
-  //   date: 1636601782000,
-  //   category: "samochód",
-  //   price: 780.02,
-  //   currency: "Kwacha",
-  //   description: "quam suspendisse potenti nullam porttitor lacus at",
-  //   shopName: "Action",
-  // },
-  // {
-  //   date: 1633627667000,
-  //   category: "dom",
-  //   price: 997.15,
-  //   currency: "Yuan Renminbi",
-  //   description: "justo etiam pretium iaculis justo in",
-  //   shopName: "Lidl",
-  // },
-  // {
-  //   date: 1645113315000,
-  //   category: "samochód",
-  //   price: 864.66,
-  //   currency: "Yuan Renminbi",
-  //   description:
-  //     "mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec",
-  //   shopName: "Auchan",
-  // },
+  {
+    date: 1640324764000,
+    category: "jedzenie",
+    price: 934.06,
+    currency: "Peso",
+    description:
+      "odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla",
+    shopName: "Action",
+  },
+  {
+    date: 1660327179000,
+    category: "gry",
+    price: 839.41,
+    currency: "Peso",
+    description:
+      "non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum",
+    shopName: "Auchan",
+  },
+  {
+    date: 1643354269000,
+    category: "jedzenie",
+    price: 82.03,
+    currency: "Afghani",
+    description:
+      "erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin",
+    shopName: "Lidl",
+  },
+  {
+    date: 1660728115000,
+    category: "dom",
+    price: 456.11,
+    currency: "Rupee",
+    description:
+      "penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien",
+    shopName: "Auchan",
+  },
+  {
+    date: 1651973892000,
+    category: "rozrywka",
+    price: 951.4,
+    currency: "Peso",
+    description:
+      "est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis",
+    shopName: "Auchan",
+  },
+  {
+    date: 1661735881000,
+    category: "gry",
+    price: 891.5,
+    currency: "Euro",
+    description:
+      "cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec",
+    shopName: "Biedronka",
+  },
+  {
+    date: 1639963274000,
+    category: "jedzenie",
+    price: 841.6,
+    currency: "Krona",
+    description: "odio in hac habitasse platea dictumst maecenas ut massa",
+    shopName: "Auchan",
+  },
+  {
+    date: 1636601782000,
+    category: "samochód",
+    price: 780.02,
+    currency: "Kwacha",
+    description: "quam suspendisse potenti nullam porttitor lacus at",
+    shopName: "Action",
+  },
+  {
+    date: 1633627667000,
+    category: "dom",
+    price: 997.15,
+    currency: "Yuan Renminbi",
+    description: "justo etiam pretium iaculis justo in",
+    shopName: "Lidl",
+  },
+  {
+    date: 1645113315000,
+    category: "samochód",
+    price: 864.66,
+    currency: "Yuan Renminbi",
+    description:
+      "mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec",
+    shopName: "Auchan",
+  },
 ];
 
 export { fakeExpensesData };

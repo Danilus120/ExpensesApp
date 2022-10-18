@@ -1,0 +1,71 @@
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+
+  margin: 10px 0;
+
+  gap: 20px;
+
+  &__pageCount {
+    font-weight: 600;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      padding: 0.5rem;
+
+      min-width: 20px;
+
+      width: 2.5rem;
+      min-width: 2.5rem;
+      height: 2.5rem;
+      min-height: 2.5rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__page-select {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .label {
+      margin-right: 10px;
+    }
+  }
+
+  &__rows-per-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    .label {
+      margin-right: 10px;
+    }
+  }
+
+  select {
+    background-color: transparent;
+
+    border: none;
+
+    cursor: pointer;
+
+    outline: none;
+  }
+
+  option {
+    background-color: rgb(52, 57, 66);
+
+    cursor: pointer;
+  }
+}

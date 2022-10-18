@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useTable } from "react-table";
+import { usePagination, useTable } from "react-table";
 
 import { FiEdit } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
@@ -9,16 +9,54 @@ import Button from "@/Atoms/Button";
 import { getDataHeaders } from "utils/utils";
 
 import styles from "./styles.module.scss";
+import Pagination from "../Pagination";
 
-// TODO: Refactor to v8
-function Table({ data }: any) {
+interface TableI {
+  data: any;
+  options: {
+    myPageOptions: number[];
+  };
+}
+
+function Table({ data, options }: TableI) {
   const columns = useMemo(() => getDataHeaders(data), [data]);
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({
+  const tableInstance = useTable(
+    {
       columns,
       data,
-    });
+      initialState: {
+        pageIndex: 0,
+        pageSize: 10,
+      },
+    },
+    usePagination
+  );
+  if (!options) {
+    options = {
+      myPageOptions: [10, 20, 30, 40, 50],
+    };
+  }
+  let { myPageOptions } = options;
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    prepareRow,
+
+    page,
+
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize },
+  } = tableInstance;
 
   return (
     <div className={styles["container"]}>
@@ -44,7 +82,7 @@ function Table({ data }: any) {
           })}
         </thead>
         <tbody {...getTableBodyProps()} className={styles["tbody"]}>
-          {rows.map((row, i) => {
+          {page.map((row, i) => {
             prepareRow(row);
             const { key, ...restRowProps } = row.getRowProps();
             return (
@@ -73,6 +111,7 @@ function Table({ data }: any) {
           })}
         </tbody>
       </table>
+      <Pagination tableInstance={tableInstance} options={options} />
     </div>
   );
 }

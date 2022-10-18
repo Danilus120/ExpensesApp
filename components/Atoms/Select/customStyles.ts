@@ -1,3 +1,5 @@
+// TODO: Repair errors
+
 const customStyles = {
   option: (provided, state) => ({
     ...provided,
@@ -22,7 +24,7 @@ const customStyles = {
   menu: (provided) => ({
     ...provided,
     margin: "0",
-    backgroundColor: "rgb(52, 57, 66);",
+    backgroundColor: "rgb(52, 57, 66)",
   }),
   singleValue: (provided) => ({
     ...provided,

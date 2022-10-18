@@ -1,6 +1,7 @@
 import { useState } from "react";
-
 import router from "next/router";
+
+import { BsGithub, BsGoogle } from "react-icons/bs";
 
 import Button from "@/Atoms/Button";
 
@@ -11,8 +12,6 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "config/firebase.config";
-
-import { BsGithub, BsGoogle } from "react-icons/bs";
 
 import styles from "./styles.module.scss";
 

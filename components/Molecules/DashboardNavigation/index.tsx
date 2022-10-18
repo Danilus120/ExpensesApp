@@ -1,22 +1,21 @@
 import { useState } from "react";
 import router from "next/router";
 
+import { FiSettings, FiMenu } from "react-icons/fi";
+
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
 import ProfileModal from "@/Molecules/ProfileModal";
 import Button from "@/Atoms/Button";
-import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
 
 import { useAuth } from "@/context/AuthContext";
 
-import { FiSettings, FiMenu } from "react-icons/fi";
-
 import { currency_list } from "@/constants/currencyList";
 import { settingsSchema } from "@/constants/validationSchema";
+import { tzInts } from "@/constants/timezoneList";
 
 import styles from "./styles.module.scss";
-import { tzInts } from "@/constants/timezoneList";
 
 interface NavigationI {
   toggleSidepanel: () => void;

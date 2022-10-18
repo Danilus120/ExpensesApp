@@ -1,7 +1,10 @@
+import router from "next/router";
+
 import Button from "@/Atoms/Button";
+
 import { auth } from "config/firebase.config";
 import { signOut } from "firebase/auth";
-import router from "next/router";
+
 import styles from "./styles.module.scss";
 
 interface ProfileModalI {

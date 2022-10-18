@@ -1,10 +1,12 @@
-import Button from "@/Atoms/Button";
 import { useMemo } from "react";
 import { useTable } from "react-table";
-import { getDataHeaders } from "utils/utils";
 
 import { FiEdit } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
+
+import Button from "@/Atoms/Button";
+
+import { getDataHeaders } from "utils/utils";
 
 import styles from "./styles.module.scss";
 

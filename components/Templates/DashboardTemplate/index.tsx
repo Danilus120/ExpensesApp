@@ -2,13 +2,10 @@ import Head from "next/head";
 
 import DashboardNavigation from "@/Molecules/DashboardNavigation";
 import DashboardSidePanel from "@/Molecules/DashboardSidePanel";
-import Button from "@/Atoms/Button";
 
 import useSidepanel from "@/hooks/useSidepanel";
 
 import styles from "./styles.module.scss";
-import Modal from "@/Molecules/Modal";
-import { useState } from "react";
 
 interface DashboardLayoutI {
   children: React.ReactNode;

@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { createButtonClass } from "./util";
 
 export interface ButtonI {

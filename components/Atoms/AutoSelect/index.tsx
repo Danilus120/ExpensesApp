@@ -1,5 +1,3 @@
-import React from "react";
-
 import Select from "react-select";
 
 import styles from "./styles.module.scss";

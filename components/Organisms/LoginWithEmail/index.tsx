@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import router from "next/router";
 
+import Form from "@/Molecules/Form";
 import Input from "@/Atoms/Input";
 import Button from "@/Atoms/Button";
 
@@ -9,8 +10,6 @@ import { useAuth } from "@/context/AuthContext";
 import { auth } from "config/firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-import styles from "./styles.module.scss";
-import Form from "@/Molecules/Form";
 import { loginFormSchema } from "@/constants/validationSchema";
 
 export default function LoginWithEmail() {

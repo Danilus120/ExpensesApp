@@ -1,16 +1,16 @@
-import ErrorMessage from "@/Atoms/ErrorMessage";
+import AutoSelect from "react-select";
 import { Control, Controller, FieldValues } from "react-hook-form";
 
-import AutoSelect from "react-select";
-import { customStyles } from "./customStyles";
+import ErrorMessage from "@/Atoms/ErrorMessage";
 
+import { customStyles } from "./customStyles";
 import styles from "./styles.module.scss";
 
-interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
+interface InputI
+  extends Partial<Pick<FieldValues, "register" | "errors" | "control">> {
   label: string;
   name: string;
   defaultValue?: string;
-  control: Control<Record<string, any>, any>;
   options: {
     label: string;
     value: string;

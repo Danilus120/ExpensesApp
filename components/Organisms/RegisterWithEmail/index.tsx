@@ -1,6 +1,7 @@
 import { useState } from "react";
 import router from "next/router";
 
+import Form from "@/Molecules/Form";
 import Input from "@/Atoms/Input";
 import Button from "@/Atoms/Button";
 
@@ -12,9 +13,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 
-import styles from "./styles.module.scss";
 import { registerFormSchema } from "@/constants/validationSchema";
-import Form from "@/Molecules/Form";
 
 export default function RegisterWithEmail() {
   const [error, setError] = useState();

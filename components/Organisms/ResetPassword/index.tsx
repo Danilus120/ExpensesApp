@@ -1,13 +1,12 @@
-import { useState, ChangeEvent } from "react";
-
 import router from "next/router";
 
+import Form from "@/Molecules/Form";
 import Button from "@/Atoms/Button";
 import Input from "@/Atoms/Input";
 
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "config/firebase.config";
-import Form from "@/Molecules/Form";
+
 import { forgotPasswordSchema } from "@/constants/validationSchema";
 
 export default function ResetPassword() {

@@ -20,6 +20,7 @@ export default function Form({
     handleSubmit,
     register,
     formState: { errors },
+    control,
   } = useForm({
     defaultValues,
     resolver: yupResolver(schema),
@@ -35,6 +36,7 @@ export default function Form({
                     ...child.props,
                     register,
                     errors,
+                    control,
                     key: child.props.name,
                   },
                 })

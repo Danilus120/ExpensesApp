@@ -1,13 +1,16 @@
 import ErrorMessage from "@/Atoms/ErrorMessage";
-import { Controller, FieldValues } from "react-hook-form";
+import { Control, Controller, FieldValues } from "react-hook-form";
 
 import AutoSelect from "react-select";
+import { customStyles } from "./customStyles";
 
 import styles from "./styles.module.scss";
 
 interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
   label: string;
   name: string;
+  defaultValue?: string;
+  control: Control<Record<string, any>, any>;
   options: {
     label: string;
     value: string;
@@ -16,12 +19,12 @@ interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
 }
 
 export default function Select({
-  register,
   options,
   errors,
+  defaultValue = "",
   label,
+  control,
   name,
-  ...rest
 }: InputI) {
   return (
     <div className={styles["input-container"]}>
@@ -41,15 +44,17 @@ export default function Select({
         ))}
       </select> */}
       <Controller
-        control={}
-        default_value={}
-        name={}
-        render={({ onChange, value, name, ref }) => (
+        control={control}
+        defaultValue={defaultValue}
+        name={name}
+        render={({ field: { onChange, value, name, ref } }) => (
+          // TODO: Repair Error
           <AutoSelect
             inputRef={ref}
             options={options}
             id={name}
-            className={styles["input-container__input"]}
+            styles={customStyles}
+            // className={styles["input-container__input"]}
             value={options.find((c) => c.value === value)}
             onChange={(val) => onChange(val?.value)}
           />

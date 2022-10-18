@@ -15,7 +15,6 @@ interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
     label: string;
     value: string;
   }[];
-  type?: "text" | "password" | "email" | "number";
 }
 
 export default function Select({

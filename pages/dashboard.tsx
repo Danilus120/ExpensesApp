@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 import DashboardLayout from "@/Templates/DashboardTemplate";
 import Table from "@/Molecules/Table";
 import { fakeExpensesData } from "@/constants/fakeDataForExpensesTable";
-import { emit } from "process";
 
 const Dashboard: NextPage = () => {
   return (

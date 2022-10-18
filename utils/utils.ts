@@ -8,7 +8,7 @@ interface ExpensesI {
 }
 
 const getDataHeaders = (data: Array<ExpensesI>) => {
-  const headers = uniqueHeaders(data);
+  const headers = getUniqueHeaders(data);
 
   return headers.map((header) => {
     return {
@@ -18,7 +18,7 @@ const getDataHeaders = (data: Array<ExpensesI>) => {
   });
 };
 
-const uniqueHeaders = (data: Array<ExpensesI>) => {
+const getUniqueHeaders = (data: Array<ExpensesI>) => {
   const allHeaders = data.reduce((acc: string[], currItem) => {
     Object.keys(currItem).forEach((item) => {
       acc.push(item);

@@ -1,5 +1,12 @@
 import { useMemo } from "react";
-import { usePagination, useTable } from "react-table";
+import {
+  HeaderGroup,
+  Row,
+  TableBodyPropGetter,
+  TableBodyProps,
+  usePagination,
+  useTable,
+} from "react-table";
 
 import { FiEdit } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
@@ -13,13 +20,15 @@ import Pagination from "../Pagination";
 
 interface TableI {
   data: any;
-  options: {
-    myPageOptions: number[];
+  options?: {
+    rowsPerPageArray: Array<number>;
   };
 }
 
+// TODO: Add button with position fixed in right bottom corner to add new expense
+
 function Table({ data, options }: TableI) {
-  const columns = useMemo(() => getDataHeaders(data), [data]);
+  const columns = useMemo(() => getDataHeaders(data), []);
 
   const tableInstance = useTable(
     {
@@ -34,10 +43,9 @@ function Table({ data, options }: TableI) {
   );
   if (!options) {
     options = {
-      myPageOptions: [10, 20, 30, 40, 50],
+      rowsPerPageArray: [10, 20, 30, 40, 50],
     };
   }
-  let { myPageOptions } = options;
 
   const {
     getTableProps,
@@ -46,73 +54,100 @@ function Table({ data, options }: TableI) {
     prepareRow,
 
     page,
-
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-    state: { pageIndex, pageSize },
   } = tableInstance;
 
   return (
     <div className={styles["container"]}>
       <table {...getTableProps()} className={styles["table"]}>
-        <thead className={styles["thead"]}>
-          {headerGroups.map((headerGroup) => {
-            const { key, ...restHeaderProps } =
-              headerGroup.getHeaderGroupProps();
-
-            return (
-              <tr key={key} {...restHeaderProps} className={styles["tr"]}>
-                {headerGroup.headers.map((column) => {
-                  const { key, ...restColumnProps } = column.getHeaderProps();
-                  return (
-                    <th key={key} {...restColumnProps} className={styles["th"]}>
-                      {column.render("Header")}
-                    </th>
-                  );
-                })}
-                <th className={styles["th"]}>Edit</th>
-              </tr>
-            );
-          })}
-        </thead>
-        <tbody {...getTableBodyProps()} className={styles["tbody"]}>
-          {page.map((row, i) => {
-            prepareRow(row);
-            const { key, ...restRowProps } = row.getRowProps();
-            return (
-              <tr key={key} {...restRowProps} className={styles["tr"]}>
-                {row.cells.map((cell) => {
-                  const { key, ...restCellProps } = cell.getCellProps();
-
-                  return (
-                    <td key={key} {...restCellProps} className={styles["td"]}>
-                      {cell.render("Cell")}
-                    </td>
-                  );
-                })}
-                <td className={styles["td"]}>
-                  <div className={styles["td__buttons"]}>
-                    <Button variant="ghost" iconOnly>
-                      <FiEdit />
-                    </Button>
-                    <Button variant="ghost" iconOnly>
-                      <AiFillDelete />
-                    </Button>
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
+        <TableHead headerGroups={headerGroups} />
+        <TableBody
+          getTableBodyProps={getTableBodyProps}
+          page={page}
+          prepareRow={prepareRow}
+        />
       </table>
       <Pagination tableInstance={tableInstance} options={options} />
     </div>
+  );
+}
+
+interface TableHeadI {
+  headerGroups: HeaderGroup<object>[];
+}
+
+function TableHead({ headerGroups }: TableHeadI) {
+  return (
+    <thead className={styles["thead"]}>
+      {headerGroups.map((headerGroup) => {
+        const { key: headerGroupRowKey, ...restHeaderProps } =
+          headerGroup.getHeaderGroupProps();
+
+        return (
+          <tr
+            key={headerGroupRowKey}
+            {...restHeaderProps}
+            className={styles["tr"]}
+          >
+            {headerGroup.headers.map((column) => {
+              const { key: headerGroupColKey, ...restColumnProps } =
+                column.getHeaderProps();
+              return (
+                <th
+                  key={headerGroupColKey}
+                  {...restColumnProps}
+                  className={styles["th"]}
+                >
+                  {column.render("Header")}
+                </th>
+              );
+            })}
+            <th className={styles["th"]}>Action</th>
+          </tr>
+        );
+      })}
+    </thead>
+  );
+}
+
+interface TableBodyI {
+  getTableBodyProps: (
+    propGetter?: TableBodyPropGetter<object> | undefined
+  ) => TableBodyProps;
+  page: Row<object>[];
+  prepareRow: (row: Row<object>) => void;
+}
+
+function TableBody({ getTableBodyProps, page, prepareRow }: TableBodyI) {
+  return (
+    <tbody {...getTableBodyProps()} className={styles["tbody"]}>
+      {page.map((row, i) => {
+        prepareRow(row);
+        const { key: rowKey, ...restRowProps } = row.getRowProps();
+        return (
+          <tr key={rowKey} {...restRowProps} className={styles["tr"]}>
+            {row.cells.map((cell) => {
+              const { key: cellKey, ...restCellProps } = cell.getCellProps();
+
+              return (
+                <td key={cellKey} {...restCellProps} className={styles["td"]}>
+                  {cell.render("Cell")}
+                </td>
+              );
+            })}
+            <td className={styles["td"]}>
+              <div className={styles["td__buttons"]}>
+                <Button variant="ghost" iconOnly>
+                  <FiEdit />
+                </Button>
+                <Button variant="ghost" iconOnly>
+                  <AiFillDelete />
+                </Button>
+              </div>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
   );
 }
 

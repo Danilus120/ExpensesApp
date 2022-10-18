@@ -28,38 +28,23 @@ export default function Select({
   return (
     <div className={styles["input-container"]}>
       <label htmlFor={name} className={styles["input-container__label"]}>
-        {label}{" "}
+        {label}
       </label>
-      {/* <select
-        id={name}
-        {...register(name, { required: true })}
-        {...rest}
-        className={styles["input-container__input"]}
-      >
-        {options.map(({ label, value }) => (
-          <option key={label} value={value}>
-            {label}
-          </option>
-        ))}
-      </select> */}
       <Controller
         control={control}
         defaultValue={defaultValue}
         name={name}
         render={({ field: { onChange, value, name, ref } }) => (
-          // TODO: Repair Error
           <AutoSelect
-            inputRef={ref}
+            ref={ref}
             options={options}
             id={name}
             styles={customStyles}
-            // className={styles["input-container__input"]}
             value={options.find((c) => c.value === value)}
             onChange={(val) => onChange(val?.value)}
           />
         )}
       />
-
       {errors[name] && <ErrorMessage text={errors[name].message} />}
     </div>
   );

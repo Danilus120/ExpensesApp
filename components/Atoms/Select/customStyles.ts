@@ -1,12 +1,12 @@
-// TODO: Repair errors
+type providedType = Record<string, any>;
 
 const customStyles = {
-  option: (provided, state) => ({
+  option: (provided: providedType) => ({
     ...provided,
     backgroundColor: "rgb(52, 57, 66);",
     cursor: "pointer",
   }),
-  control: (provided) => ({
+  control: (provided: providedType) => ({
     ...provided,
     width: "100%",
     margin: "5px 0px",
@@ -16,21 +16,21 @@ const customStyles = {
       border: "3px solid rgb(42, 252, 164)",
     },
   }),
-  container: (provided) => ({
+  container: (provided: providedType) => ({
     ...provided,
     width: "100%",
     margin: "0",
   }),
-  menu: (provided) => ({
+  menu: (provided: providedType) => ({
     ...provided,
     margin: "0",
     backgroundColor: "rgb(52, 57, 66)",
   }),
-  singleValue: (provided) => ({
+  singleValue: (provided: providedType) => ({
     ...provided,
     color: "white",
   }),
-  input: (provided) => ({
+  input: (provided: providedType) => ({
     ...provided,
     color: "white",
   }),

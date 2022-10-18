@@ -12,7 +12,7 @@ import styles from "./styles.module.scss";
 interface TableI {
   tableInstance: TableInstance<object>;
   options: {
-    myPageOptions: number[];
+    rowsPerPageArray: number[];
   };
 }
 
@@ -29,7 +29,7 @@ function Pagination({ tableInstance, options }: TableI) {
     state: { pageIndex, pageSize },
   } = tableInstance;
 
-  const { myPageOptions } = options;
+  const { rowsPerPageArray } = options;
 
   const arrayOfPageNumbers = Array.from(Array(pageOptions.length).keys());
 
@@ -59,7 +59,7 @@ function Pagination({ tableInstance, options }: TableI) {
             setPageSize(Number(e.target.value));
           }}
         >
-          {myPageOptions.map((pageSize: number) => (
+          {rowsPerPageArray.map((pageSize: number) => (
             <option key={pageSize} value={pageSize}>
               {pageSize}
             </option>

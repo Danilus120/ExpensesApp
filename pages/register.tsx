@@ -1,6 +1,5 @@
 import RegisterTemplate from "@/Templates/auth/RegisterTemplate";
 
-// TODO: Handle Errors
 export default function register() {
   return (
     <RegisterTemplate

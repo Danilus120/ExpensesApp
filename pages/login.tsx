@@ -1,6 +1,5 @@
 import LoginTemplate from "@/Templates/auth/LoginTemplate";
 
-// TODO: Handle Errors
 export default function login() {
   return (
     <LoginTemplate

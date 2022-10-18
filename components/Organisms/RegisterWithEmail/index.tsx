@@ -18,7 +18,7 @@ import Form from "@/Molecules/Form";
 
 export default function RegisterWithEmail() {
   const [error, setError] = useState();
-  const { isLoading, handleChangeLoading, getUser } = useAuth();
+  const { isLoading, handleChangeLoading, updateUser } = useAuth();
 
   const register = async (credentials: {
     displayName: string;
@@ -48,8 +48,8 @@ export default function RegisterWithEmail() {
         }).catch((err) => setError(err.code));
       }
 
-      // TODO - komentarz dlaczego - updateUser()
-      getUser();
+      // Update user after register to get more informations about user (for example: displayName)
+      updateUser();
     } catch (err) {
       console.log(err);
     }

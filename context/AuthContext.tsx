@@ -24,7 +24,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderI) => {
   const [user, setUser] = useState<UserI | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getUser = () => {
+  const updateUser = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (auth.currentUser) {
         setUser({
@@ -42,7 +42,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderI) => {
   };
 
   useEffect(() => {
-    getUser();
+    updateUser();
   }, []);
 
   const handleChangeLoading = (value: boolean) => {
@@ -53,7 +53,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderI) => {
     user,
     isLoading,
     handleChangeLoading,
-    getUser,
+    updateUser,
   };
 
   return (

@@ -8,7 +8,7 @@ interface ContextI {
   user: UserI | null;
   isLoading: boolean;
   handleChangeLoading: (value: boolean) => void;
-  getUser: () => void;
+  updateUser: () => void;
 }
 
 export type { ContextI };

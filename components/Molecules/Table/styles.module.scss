@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   padding: 20px;
-  margin: 20px 0;
+  margin: 5px 0;
 
   background: #2b2e3b;
 
@@ -43,6 +43,7 @@
       border: 1px solid #3d4052;
 
       height: 50px;
+      max-width: 140px;
 
       white-space: nowrap;
       overflow: hidden;

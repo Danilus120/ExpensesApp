@@ -1,76 +1,79 @@
-import { uuidv4 } from "@firebase/util";
-import { deleteDoc, doc, getDocs } from "firebase/firestore";
-import {
-  getDownloadURL,
-  ref,
-  StorageReference,
-  uploadBytes,
-} from "firebase/storage";
-import router from "next/router";
+import { doc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 
-// import { HouseI } from "../types/house.interface";
-// import { databaseRef, db, storage } from "@/config/firebase.config";
+import { isUserInDB } from "utils/utils";
 
-// const getData = async () => {
-//   try {
-//     const response = await getDocs(databaseRef);
+import { databaseUserRef, db } from "@/config/firebase.config";
 
-//     const houses = response.docs.map((data) => {
-//       const houseList = data.data();
-//       const identificator = data.id;
+import { ExpenseI, IncomeI, UserFirebaseI } from "../types/user.interface";
 
-//       return { collectionId: identificator, ...houseList } as HouseI;
-//     });
+const createUserDoc = async (uid: string) => {
+  const isInDB = await isUserInDB(uid);
 
-//     const sortedHouses = houses.sort((a, b) => {
-//       return b.createdAt - a.createdAt;
-//     });
+  if (!isInDB) {
+    await setDoc(doc(db, "users", uid), {
+      default_Currency: "PLN",
+      default_Timezone: "+1",
+      expenses: [],
+      income: [],
+      investments: [],
+    });
+  }
+};
 
-//     return sortedHouses;
-//   } catch (err) {
-//     console.error(err);
-//     return [];
-//   }
-// };
+const getUsers = async () => {
+  try {
+    const response = await getDocs(databaseUserRef);
 
-// const deleteData = async (collectionId: string) => {
-//   try {
-//     await deleteDoc(doc(db, "houses", collectionId));
-//     alert("Your offer is deleted");
-//     router.push("/profile");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    const users = response.docs.map(async (data) => {
+      const userList = data.data();
+      const id = data.id;
 
-// const uploadPhotoToStorage = async (photo: any) => {
-//   if (photo.length === 0) return;
+      return {
+        id: id,
+        ...userList,
+      } as UserFirebaseI;
+    });
 
-//   const photoSource = `images/${photo.name + uuidv4()}`;
+    return users;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
 
-//   const imageRef = ref(storage, photoSource);
+const updateSettings = async (
+  uid: string,
+  { currency, timezone }: { currency: string; timezone: string }
+) => {
+  await updateDoc(doc(db, "users", uid), {
+    default_Currency: currency,
+    default_Timezone: timezone,
+  });
+};
 
-//   await uploadBytes(imageRef, photo);
+const updateExpenses = async (uid: string, expenses: ExpenseI[]) => {
+  await updateDoc(doc(db, "users", uid), {
+    expenses,
+  });
+};
 
-//   return imageRef;
-// };
+const updateIncome = async (docID: string, income: IncomeI[]) => {
+  await updateDoc(doc(db, "user", docID), {
+    income,
+  });
+};
 
-// const getUrlFromImageRef = async (imageRef: StorageReference) => {
-//   const url = await getDownloadURL(imageRef);
+const updateInvestments = async (docID: string, investments: any[]) => {
+  await updateDoc(doc(db, "user", docID), {
+    investments,
+  });
+};
 
-//   return url;
-// };
-
-// const uploadPhotoAndGetLink = async (photo: any) => {
-//   let url = "";
-
-//   const imageRef = await uploadPhotoToStorage(photo);
-
-//   if (imageRef) {
-//     url = await getUrlFromImageRef(imageRef);
-//   }
-
-//   return url;
-// };
-
-// export { getData, deleteData, uploadPhotoAndGetLink };
+export {
+  createUserDoc,
+  getUsers,
+  updateSettings,
+  updateExpenses,
+  updateIncome,
+  updateInvestments,
+};

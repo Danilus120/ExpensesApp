@@ -16,6 +16,7 @@ import { settingsSchema } from "@/constants/validationSchema";
 import { tzInts } from "@/constants/timezoneList";
 
 import styles from "./styles.module.scss";
+import { updateSettings } from "lib/firebaseMethods";
 
 interface NavigationI {
   toggleSidepanel: () => void;
@@ -74,7 +75,7 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
       >
         <Form
           onSubmit={(data) => {
-            console.log(data);
+            user && updateSettings(user.uid, data);
           }}
           schema={settingsSchema}
         >

@@ -14,6 +14,7 @@ import {
 } from "firebase/auth";
 
 import { registerFormSchema } from "@/constants/validationSchema";
+import { createUserDoc } from "lib/firebaseMethods";
 
 export default function RegisterWithEmail() {
   const [error, setError] = useState();
@@ -32,6 +33,9 @@ export default function RegisterWithEmail() {
         credentials.email,
         credentials.password
       )
+        .then((res) => {
+          createUserDoc(res.user.uid);
+        })
         .catch((err) => setError(err.code))
         .finally(() => {
           handleChangeLoading(false);

@@ -14,6 +14,7 @@ import {
 import { auth } from "config/firebase.config";
 
 import styles from "./styles.module.scss";
+import { createUserDoc } from "lib/firebaseMethods";
 
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
@@ -31,6 +32,7 @@ export default function SignInSocials() {
     handleChangeLoading(true);
     signInWithPopup(auth, signUpWithSocials[social])
       .then((res) => {
+        createUserDoc(res.user.uid);
         router.push("/dashboard");
       })
       .catch((err) => setError(err.code))

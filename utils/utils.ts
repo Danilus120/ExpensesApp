@@ -1,3 +1,5 @@
+import { getUsers } from "lib/firebaseMethods";
+
 interface ExpensesI {
   date: number;
   category: string;
@@ -45,4 +47,24 @@ const toCapital = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export { getDataHeaders };
+const isUserInDB = async (uid: string) => {
+  const userData = await getUsers();
+
+  const res = await Promise.all(userData);
+
+  const haveUserDoc = res.some((el) => el.id === uid);
+
+  return haveUserDoc;
+};
+
+const getUser = async (uid: string) => {
+  const userData = await getUsers();
+
+  const res = await Promise.all(userData);
+
+  const user = res.find((el) => el.id === uid);
+
+  return user;
+};
+
+export { getDataHeaders, isUserInDB, getUser };

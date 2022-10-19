@@ -19,7 +19,7 @@ export default function LoginWithEmail() {
   const login = (credentials: { email: string; password: string }) => {
     handleChangeLoading(true);
     signInWithEmailAndPassword(auth, credentials.email, credentials.password)
-      .then(() => {
+      .then((res) => {
         router.push("/dashboard");
       })
       .catch((err) => setError(err.code))

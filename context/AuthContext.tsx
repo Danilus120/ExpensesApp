@@ -11,6 +11,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase.config";
 
 import { ContextI, UserI } from "./AuthTypes";
+import LoadingComponent from "@/Atoms/Loading";
 
 const AuthContext = createContext<ContextI>({} as ContextI);
 
@@ -58,7 +59,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderI) => {
 
   return (
     <AuthContext.Provider value={values}>
-      {isLoading ? null : children}
+      {isLoading ? <LoadingComponent color="#4E739E" /> : children}
     </AuthContext.Provider>
   );
 };

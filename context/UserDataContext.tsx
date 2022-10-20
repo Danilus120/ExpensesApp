@@ -1,3 +1,4 @@
+import LoadingComponent from "@/Atoms/Loading";
 import {
   createContext,
   ReactNode,
@@ -64,7 +65,7 @@ export const UserDataContextProvider = ({
 
   return (
     <UserDataContext.Provider value={values}>
-      {isLoading ? null : children}
+      {isLoading ? <LoadingComponent color="#4E739E" /> : children}
     </UserDataContext.Provider>
   );
 };

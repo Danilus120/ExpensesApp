@@ -33,8 +33,8 @@ export default function SignInSocials() {
     signInWithPopup(auth, signUpWithSocials[social])
       .then((res) => {
         createUserDoc(res.user.uid);
-        router.push("/dashboard");
       })
+      .then(() => router.push("/dashboard"))
       .catch((err) => setError(err.code))
       .finally(() => {
         handleChangeLoading(false);

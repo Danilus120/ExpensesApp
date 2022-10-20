@@ -10,7 +10,7 @@ interface InputI
   extends Partial<Pick<FieldValues, "register" | "errors" | "control">> {
   label: string;
   name: string;
-  defaultValue?: string;
+  defaultValue?: any;
   options: {
     label: string;
     value: string;
@@ -25,6 +25,7 @@ export default function Select({
   control,
   name,
 }: InputI) {
+  console.log(errors);
   return (
     <div className={styles["input-container"]}>
       <label htmlFor={name} className={styles["input-container__label"]}>

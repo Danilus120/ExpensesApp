@@ -4,7 +4,7 @@ interface UserFirebaseI {
   default_Timezone: string;
   expenses: ExpenseI[];
   income: IncomeI[];
-  investmenst: any;
+  investments: any;
 }
 
 interface ExpenseI {

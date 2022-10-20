@@ -11,7 +11,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase.config";
 
 import { ContextI, UserI } from "./AuthTypes";
-import { getUserData } from "lib/firebaseMethods";
 
 const AuthContext = createContext<ContextI>({} as ContextI);
 

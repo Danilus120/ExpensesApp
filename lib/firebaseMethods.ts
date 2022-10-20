@@ -9,15 +9,15 @@ import { ExpenseI, IncomeI, UserFirebaseI } from "../types/user.interface";
 const createUserDoc = async (uid: string) => {
   const isInDB = await isUserInDB(uid);
 
-  if (!isInDB) {
-    await setDoc(doc(db, "users", uid), {
-      default_Currency: "PLN",
-      default_Timezone: "+1",
-      expenses: [],
-      income: [],
-      investments: [],
-    });
-  }
+  if (isInDB) return;
+
+  await setDoc(doc(db, "users", uid), {
+    default_Currency: "PLN",
+    default_Timezone: "+1",
+    expenses: [],
+    income: [],
+    investments: [],
+  });
 };
 
 const getUsers = async () => {
@@ -43,11 +43,14 @@ const getUsers = async () => {
 
 const updateSettings = async (
   uid: string,
-  { currency, timezone }: { currency: string; timezone: string }
+  {
+    default_Currency,
+    default_Timezone,
+  }: { default_Currency: string; default_Timezone: string }
 ) => {
   await updateDoc(doc(db, "users", uid), {
-    default_Currency: currency,
-    default_Timezone: timezone,
+    default_Currency,
+    default_Timezone,
   });
 };
 

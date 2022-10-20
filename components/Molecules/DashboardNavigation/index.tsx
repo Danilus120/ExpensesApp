@@ -17,6 +17,7 @@ import { tzInts } from "@/constants/timezoneList";
 
 import styles from "./styles.module.scss";
 import { updateSettings } from "lib/firebaseMethods";
+import { useData } from "@/context/UserDataContext";
 
 interface NavigationI {
   toggleSidepanel: () => void;
@@ -26,6 +27,8 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const { user } = useAuth();
+  const { defaultSettings } = useData();
+  // console.log(defaultSettings);
 
   const toggleSettingsModal = () => {
     setIsSettingsModalOpen((prev) => !prev);
@@ -74,14 +77,16 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
         isOpened={isSettingsModalOpen}
       >
         <Form
+          defaultValues={defaultSettings}
           onSubmit={(data) => {
-            user && updateSettings(user.uid, data);
+            console.log(data);
+            // user && updateSettings(user.uid, data);
           }}
           schema={settingsSchema}
         >
           <Select
             label="Default currency"
-            name="currency"
+            name="default_Currency"
             options={currency_list.map((currency) => {
               return {
                 label: `${currency.name} (${currency.code})`,
@@ -91,7 +96,7 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
           />
           <Select
             label="Default timezone"
-            name="timezone"
+            name="default_Timezone"
             options={tzInts.map((timezone) => {
               return {
                 label: timezone.label,

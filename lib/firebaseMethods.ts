@@ -6,25 +6,26 @@ import { databaseUserRef, db } from "@/config/firebase.config";
 
 import { ExpenseI, IncomeI, UserFirebaseI } from "../types/user.interface";
 
+import { initialUserValues } from "@/constants/initialUserValues";
+
 const createUserDoc = async (uid: string) => {
-  const isInDB = await isUserInDB(uid);
+  try {
+    const isInDB = await isUserInDB(uid);
 
-  if (isInDB) return;
+    if (isInDB) return;
 
-  await setDoc(doc(db, "users", uid), {
-    default_Currency: "PLN",
-    default_Timezone: "+1",
-    expenses: [],
-    income: [],
-    investments: [],
-  });
+    await setDoc(doc(db, "users", uid), initialUserValues);
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
 };
 
 const getUsers = async () => {
   try {
     const response = await getDocs(databaseUserRef);
 
-    const users = response.docs.map(async (data) => {
+    const users = response.docs.map((data) => {
       const userList = data.data();
       const id = data.id;
 
@@ -58,13 +59,13 @@ const updateExpenses = async (uid: string, expenses: ExpenseI[]) => {
 };
 
 const updateIncome = async (docID: string, income: IncomeI[]) => {
-  await updateDoc(doc(db, "user", docID), {
+  await updateDoc(doc(db, "users", docID), {
     income,
   });
 };
 
 const updateInvestments = async (docID: string, investments: any[]) => {
-  await updateDoc(doc(db, "user", docID), {
+  await updateDoc(doc(db, "users", docID), {
     investments,
   });
 };

@@ -3,21 +3,13 @@ import router from "next/router";
 
 import { FiSettings, FiMenu } from "react-icons/fi";
 
-import Form from "@/Molecules/Form";
-import Modal from "@/Molecules/Modal";
 import ProfileModal from "@/Molecules/ProfileModal";
 import Button from "@/Atoms/Button";
-import Select from "@/Atoms/Select";
+import SettingsModalForm from "./components/SettingsModalForm";
 
 import { useAuth } from "@/context/AuthContext";
 
-import { currency_list } from "@/constants/currencyList";
-import { settingsSchema } from "@/constants/validationSchema";
-import { tzInts } from "@/constants/timezoneList";
-
 import styles from "./styles.module.scss";
-import { updateSettings } from "lib/firebaseMethods";
-import { useData } from "@/context/UserDataContext";
 
 interface NavigationI {
   toggleSidepanel: () => void;
@@ -27,8 +19,6 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const { user } = useAuth();
-  const { defaultSettings } = useData();
-  // console.log(defaultSettings);
 
   const toggleSettingsModal = () => {
     setIsSettingsModalOpen((prev) => !prev);
@@ -71,61 +61,10 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
         isOpened={isProfileModalOpen}
       />
 
-      <Modal
-        title="Settings"
-        handleToggle={toggleSettingsModal}
-        isOpened={isSettingsModalOpen}
-      >
-        <Form
-          onSubmit={(data) => {
-            user && updateSettings(user.uid, data);
-          }}
-          schema={settingsSchema}
-        >
-          <Select
-            label="Default currency"
-            name="currency"
-            options={currency_list.map((currency) => {
-              return {
-                label: `${currency.name} (${currency.code})`,
-                value: currency.code,
-              };
-            })}
-            defaultValue={defaultSettings.default_Currency}
-          />
-          <Select
-            label="Default timezone"
-            name="timezone"
-            options={tzInts.map((timezone) => {
-              return {
-                label: timezone.label,
-                value: timezone.value,
-              };
-            })}
-            defaultValue={defaultSettings.default_Timezone}
-          />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              gap: "10px",
-              padding: "10px 0px 0px 0px",
-            }}
-          >
-            <Button type="submit" variant="contained" color="success">
-              Save
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              callbackFn={toggleSettingsModal}
-            >
-              Close
-            </Button>
-          </div>
-        </Form>
-      </Modal>
+      <SettingsModalForm
+        toggleSettingsModal={toggleSettingsModal}
+        isSettingsModalOpen={isSettingsModalOpen}
+      />
     </div>
   );
 }

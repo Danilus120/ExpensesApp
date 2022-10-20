@@ -1,4 +1,5 @@
 import { getUsers } from "lib/firebaseMethods";
+import { UserFirebaseI } from "types/user.interface";
 
 interface ExpensesI {
   date: number;
@@ -64,7 +65,7 @@ const getUser = async (uid: string) => {
 
   const user = res.find((el) => el.id === uid);
 
-  return user;
+  return user as UserFirebaseI;
 };
 
 export { getDataHeaders, isUserInDB, getUser };

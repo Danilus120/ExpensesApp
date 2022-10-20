@@ -8,6 +8,8 @@ interface ModalI {
   size?: "small" | "medium" | "large";
 }
 
+// TODO: React Portal
+
 export default function Modal({
   children,
   title,

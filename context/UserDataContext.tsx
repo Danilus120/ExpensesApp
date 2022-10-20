@@ -27,6 +27,7 @@ export const UserDataContextProvider = ({
   const { user } = useAuth();
 
   const [isLoading, setIsLoading] = useState(true);
+  // TODO: Reducer
   const [defaultSettings, setDefaultSettings] = useState({
     default_Currency: "",
     default_Timezone: "",
@@ -36,15 +37,13 @@ export const UserDataContextProvider = ({
   const [investments, setInvestments] = useState<Array<any>>([]);
 
   useEffect(() => {
+    if (!user) return;
     updateDataFromUser(user);
   }, [user]);
 
-  const updateDataFromUser = async (authUser: UserI | null) => {
-    if (!authUser) return;
-
+  const updateDataFromUser = async (authUser: UserI) => {
     const user = await getUser(authUser.uid);
 
-    if (!user) return;
     setDefaultSettings({
       default_Currency: user.default_Currency,
       default_Timezone: user.default_Timezone,

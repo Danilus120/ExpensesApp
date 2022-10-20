@@ -77,32 +77,32 @@ export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
         isOpened={isSettingsModalOpen}
       >
         <Form
-          defaultValues={defaultSettings}
           onSubmit={(data) => {
-            console.log(data);
-            // user && updateSettings(user.uid, data);
+            user && updateSettings(user.uid, data);
           }}
           schema={settingsSchema}
         >
           <Select
             label="Default currency"
-            name="default_Currency"
+            name="currency"
             options={currency_list.map((currency) => {
               return {
                 label: `${currency.name} (${currency.code})`,
                 value: currency.code,
               };
             })}
+            defaultValue={defaultSettings.default_Currency}
           />
           <Select
             label="Default timezone"
-            name="default_Timezone"
+            name="timezone"
             options={tzInts.map((timezone) => {
               return {
                 label: timezone.label,
                 value: timezone.value,
               };
             })}
+            defaultValue={defaultSettings.default_Timezone}
           />
           <div
             style={{

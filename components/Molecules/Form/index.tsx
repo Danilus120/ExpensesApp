@@ -27,8 +27,6 @@ export default function Form({
     resolver: yupResolver(schema),
   });
 
-  console.log(defaultValues);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {Array.isArray(children)

@@ -43,14 +43,11 @@ const getUsers = async () => {
 
 const updateSettings = async (
   uid: string,
-  {
-    default_Currency,
-    default_Timezone,
-  }: { default_Currency: string; default_Timezone: string }
+  { currency, timezone }: { currency: string; timezone: string }
 ) => {
   await updateDoc(doc(db, "users", uid), {
-    default_Currency,
-    default_Timezone,
+    default_Currency: currency,
+    default_Timezone: timezone,
   });
 };
 

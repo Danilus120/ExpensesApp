@@ -35,10 +35,10 @@ export const UserDataContextProvider = ({
   const [investments, setInvestments] = useState<Array<any>>([]);
 
   useEffect(() => {
-    setDataFromUser(user);
+    updateDataFromUser(user);
   }, [user]);
 
-  const setDataFromUser = async (authUser: UserI | null) => {
+  const updateDataFromUser = async (authUser: UserI | null) => {
     if (!authUser) return;
 
     const user = await getUser(authUser.uid);

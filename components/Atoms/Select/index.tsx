@@ -1,5 +1,5 @@
 import AutoSelect from "react-select";
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Controller, FieldValues } from "react-hook-form";
 
 import ErrorMessage from "@/Atoms/ErrorMessage";
 
@@ -10,7 +10,7 @@ interface InputI
   extends Partial<Pick<FieldValues, "register" | "errors" | "control">> {
   label: string;
   name: string;
-  defaultValue?: any;
+  defaultValue?: string;
   options: {
     label: string;
     value: string;
@@ -25,7 +25,6 @@ export default function Select({
   control,
   name,
 }: InputI) {
-  console.log(errors);
   return (
     <div className={styles["input-container"]}>
       <label htmlFor={name} className={styles["input-container__label"]}>
@@ -38,6 +37,9 @@ export default function Select({
         render={({ field: { onChange, value, name, ref } }) => (
           <AutoSelect
             ref={ref}
+            defaultValue={options.find(
+              (option) => option.value === defaultValue
+            )}
             options={options}
             id={name}
             styles={customStyles}

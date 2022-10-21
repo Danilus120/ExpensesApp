@@ -1,4 +1,6 @@
-import { ExpenseI, IncomeI } from "types/user.interface";
+import { Dispatch } from "react";
+import { DataActionType } from "types/dataReducer.interface";
+import { UserFirebaseI } from "types/user.interface";
 
 export interface UserI {
   uid: string;
@@ -7,13 +9,8 @@ export interface UserI {
 }
 
 interface UserDataContextI {
-  defaultSettings: {
-    default_Currency: string;
-    default_Timezone: string;
-  };
-  expenses: ExpenseI[];
-  income: IncomeI[];
-  investments: any;
+  userData: UserFirebaseI;
+  dispatch: Dispatch<DataActionType>;
 }
 
 export type { UserDataContextI };

@@ -42,6 +42,10 @@ const getUsers = async () => {
   }
 };
 
+const updateUserDB = async (uid: string, userData: UserFirebaseI) => {
+  await updateDoc(doc(db, "users", uid), { ...userData });
+};
+
 const updateSettings = async (
   uid: string,
   { currency, timezone }: { currency: string; timezone: string }
@@ -70,11 +74,4 @@ const updateInvestments = async (docID: string, investments: any[]) => {
   });
 };
 
-export {
-  createUserDoc,
-  getUsers,
-  updateSettings,
-  updateExpenses,
-  updateIncome,
-  updateInvestments,
-};
+export { createUserDoc, getUsers, updateUserDB };

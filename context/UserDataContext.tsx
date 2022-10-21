@@ -1,11 +1,16 @@
 import LoadingComponent from "@/Atoms/Loading";
+import { initialUserValues } from "@/constants/initialUserValues";
+import { dataReducer } from "@/hooks/dataReducer";
+import { updateUserDB } from "lib/firebaseMethods";
 import {
   createContext,
   ReactNode,
   useContext,
   useEffect,
+  useReducer,
   useState,
 } from "react";
+import { DataActionTypes } from "types/dataReducer.interface";
 import { ExpenseI, IncomeI } from "types/user.interface";
 
 import { getUser } from "utils/utils";
@@ -27,39 +32,43 @@ export const UserDataContextProvider = ({
   const { user } = useAuth();
 
   const [isLoading, setIsLoading] = useState(true);
-  // TODO: Reducer
-  const [defaultSettings, setDefaultSettings] = useState({
-    default_Currency: "",
-    default_Timezone: "",
-  });
-  const [expenses, setExpenses] = useState<Array<ExpenseI>>([]);
-  const [income, setIncome] = useState<Array<IncomeI>>([]);
-  const [investments, setInvestments] = useState<Array<any>>([]);
+  const [userData, dispatch] = useReducer(dataReducer, initialUserValues);
 
   useEffect(() => {
     if (!user) return;
     updateDataFromUser(user);
   }, [user]);
 
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
+
   const updateDataFromUser = async (authUser: UserI) => {
     const user = await getUser(authUser.uid);
+    console.log(user);
 
-    setDefaultSettings({
-      default_Currency: user.default_Currency,
-      default_Timezone: user.default_Timezone,
+    dispatch({
+      type: DataActionTypes.updateUser,
+      payload: {
+        id: user.id,
+        default_Currency: user.default_Currency,
+        default_Timezone: user.default_Timezone,
+        expenses: user.expenses,
+        income: user.income,
+        investments: user.investments,
+      },
     });
-    setExpenses(user.expenses);
-    setIncome(user.income);
-    setInvestments(user.investments);
 
     setIsLoading(false);
   };
 
   const values = {
-    defaultSettings,
-    expenses,
-    income,
-    investments,
+    userData,
+    dispatch,
+    // defaultSettings,
+    // expenses,
+    // income,
+    // investments,
   };
 
   return (

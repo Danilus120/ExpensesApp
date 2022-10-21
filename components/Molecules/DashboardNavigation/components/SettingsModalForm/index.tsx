@@ -7,8 +7,8 @@ import { useAuth } from "@/context/AuthContext";
 import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
-import { updateSettings } from "lib/firebaseMethods";
 import React from "react";
+import { DataActionTypes } from "types/dataReducer.interface";
 
 interface SettingsModalFormProps {
   toggleSettingsModal: () => void;
@@ -20,7 +20,7 @@ function SettingsModalForm({
   isSettingsModalOpen,
 }: SettingsModalFormProps) {
   const { user } = useAuth();
-  const { defaultSettings } = useData();
+  const { userData, dispatch } = useData();
   return (
     <Modal
       title="Settings"
@@ -29,7 +29,13 @@ function SettingsModalForm({
     >
       <Form
         onSubmit={(data) => {
-          user && updateSettings(user.uid, data);
+          dispatch({
+            type: DataActionTypes.updateSettings,
+            payload: {
+              default_Currency: data.currency,
+              default_Timezone: data.timezone,
+            },
+          });
         }}
         schema={settingsSchema}
       >
@@ -42,7 +48,7 @@ function SettingsModalForm({
               value: currency.code,
             };
           })}
-          defaultValue={defaultSettings.default_Currency}
+          defaultValue={userData.default_Currency}
         />
         <Select
           label="Default timezone"
@@ -53,7 +59,7 @@ function SettingsModalForm({
               value: timezone.value,
             };
           })}
-          defaultValue={defaultSettings.default_Timezone}
+          defaultValue={userData.default_Timezone}
         />
         <div
           style={{

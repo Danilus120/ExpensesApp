@@ -4,7 +4,7 @@ interface UserFirebaseI {
   default_Timezone: string;
   expenses: ExpenseI[];
   income: IncomeI[];
-  investments: any;
+  investments: InvestmentI[];
 }
 
 interface ExpenseI {
@@ -26,4 +26,13 @@ interface IncomeI {
   description: string;
 }
 
-export type { UserFirebaseI, ExpenseI, IncomeI };
+interface InvestmentI {
+  id: string;
+  date: number;
+  title: string;
+  value: number;
+  currency: string;
+  description: string;
+}
+
+export type { UserFirebaseI, ExpenseI, IncomeI, InvestmentI };

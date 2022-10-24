@@ -23,7 +23,6 @@ import {
   UserFirebaseI,
 } from "types/user.interface";
 
-// import { getUser } from "utils/utils";
 import { useAuth } from "./AuthContext";
 import { UserDataContextI } from "./UserDataCtxTypes";
 
@@ -40,16 +39,6 @@ export const UserDataContextProvider = ({
 }: UserDataContextProviderI) => {
   const { user } = useAuth();
 
-  // TODO: How to get initial data from DB for useReducer / How to not update DB with const initialValues
-  // const initialValues = {
-  //   id: user?.uid!,
-  //   default_Currency: "PLN",
-  //   default_Timezone: "1",
-  //   expenses: [],
-  //   income: [],
-  //   investments: [],
-  // };
-
   const [isLoading, setIsLoading] = useState(true);
   const [userData, dispatch] = useReducer(dataReducer, {} as UserFirebaseI);
 
@@ -61,32 +50,39 @@ export const UserDataContextProvider = ({
   }, [userData]);
 
   useEffect(() => {
+    console.log("USER", user);
     if (!user) return;
 
     updateDataFromUser(user.uid);
   }, []);
 
   const updateDataFromUser = async (uid: string) => {
-    const userDataFromFirebase = await getUserFromFirebase(uid);
+    try {
+      const userDataFromFirebase = await getUserFromFirebase(uid);
 
-    if (!userDataFromFirebase) {
+      if (!userDataFromFirebase) {
+        setIsLoading(false);
+        return;
+      }
+
+      dispatch({
+        type: DataActionTypes.updateUser,
+        payload: {
+          ...userDataFromFirebase,
+          id: uid,
+          // default_Currency: userDataFromFirebase.default_Currency,
+          // default_Timezone: userDataFromFirebase.default_Timezone,
+          // expenses: userDataFromFirebase.expenses,
+          // income: userDataFromFirebase.income,
+          // investments: userDataFromFirebase.investments,
+        },
+      });
+
       setIsLoading(false);
-      return;
+    } catch (err) {
+      console.log("firebaseErr", err);
+      setIsLoading(false);
     }
-
-    dispatch({
-      type: DataActionTypes.updateUser,
-      payload: {
-        id: uid,
-        default_Currency: userDataFromFirebase.default_Currency,
-        default_Timezone: userDataFromFirebase.default_Timezone,
-        expenses: userDataFromFirebase.expenses,
-        income: userDataFromFirebase.income,
-        investments: userDataFromFirebase.investments,
-      },
-    });
-
-    setIsLoading(false);
   };
 
   const updateSettings = (options: { currency: string; timezone: string }) => {
@@ -140,6 +136,10 @@ export const UserDataContextProvider = ({
 
     if (!expenseFromState) return;
 
+    // .reduce
+    // expenseFromState.id !== id / return [...acc, userData]
+    // return [...acc, newExpense]
+
     deleteExpense(id);
     addExpense({ id, ...newExpense });
   };
@@ -154,7 +154,7 @@ export const UserDataContextProvider = ({
 
   const values = {
     userData,
-    dispatch,
+    dispatch, // X
     actions,
   };
 
@@ -164,6 +164,3 @@ export const UserDataContextProvider = ({
     </UserDataContext.Provider>
   );
 };
-function uuidv4(): string {
-  throw new Error("Function not implemented.");
-}

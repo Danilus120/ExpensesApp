@@ -26,20 +26,13 @@ export default function RegisterWithEmail() {
     password: string;
   }) => {
     handleChangeLoading(true);
-
     try {
-      await createUserWithEmailAndPassword(
+      const res = await createUserWithEmailAndPassword(
         auth,
         credentials.email,
         credentials.password
-      )
-        .then((res) => {
-          createUserDoc(res.user.uid);
-        })
-        .catch((err) => setError(err.code))
-        .finally(() => {
-          handleChangeLoading(false);
-        });
+      );
+      await createUserDoc(res.user.uid);
 
       if (auth.currentUser) {
         await sendEmailVerification(auth.currentUser).catch((err) =>
@@ -51,13 +44,13 @@ export default function RegisterWithEmail() {
         }).catch((err) => setError(err.code));
       }
 
-      // Update user after register to get more informations about user (for example: displayName)
-      updateUser();
-    } catch (err) {
-      console.log(err);
-    }
+      await router.push("/dashboard");
+      handleChangeLoading(false);
 
-    router.push("/dashboard");
+      updateUser();
+    } catch (err: any) {
+      setError(err.code);
+    }
   };
 
   return (

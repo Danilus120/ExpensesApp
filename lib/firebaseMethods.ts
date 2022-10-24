@@ -14,7 +14,12 @@ const createUserDoc = async (uid: string) => {
 
     if (isInDB) return;
 
-    await setDoc(doc(db, "users", uid), { ...initialUserValues, id: uid });
+    const res = await setDoc(doc(db, "users", uid), {
+      ...initialUserValues,
+      id: uid,
+    });
+
+    return res;
   } catch (err) {
     console.log(err);
     return [];
@@ -44,6 +49,7 @@ const getUsers = async () => {
 
 const getUserFromFirebase = async (uid: string) => {
   try {
+    // const isInDB = await isUserInDB(uid);
     const response = await getDoc(doc(db, "users", uid));
 
     const data = response.data();

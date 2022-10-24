@@ -41,6 +41,11 @@ export const dataReducer = (
         ...state,
         expenses: newExpensesDeleteProduct,
       };
+    // case DataActionTypes.updateExpense:
+    //   return {
+    //     ...state,
+    //     expenses: state.expenses.reduce((el) => {}, []),
+    //   };
     case DataActionTypes.addIncome:
       const newIncomeAddProduct = [...state.income, action.payload];
 

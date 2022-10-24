@@ -12,7 +12,11 @@ interface FormI {
   children: React.ReactNode;
   onSubmit: (data: any) => void;
   schema: any;
-  handleToggle: () => void;
+  handleToggle?: () => void;
+  options?: {
+    haveClearButton: boolean;
+    haveButtons: boolean;
+  };
 }
 
 export default function Form({
@@ -21,6 +25,7 @@ export default function Form({
   onSubmit,
   schema,
   handleToggle,
+  options,
 }: FormI) {
   const {
     handleSubmit,
@@ -56,20 +61,27 @@ export default function Form({
               : child;
           })
         : children}
-      <div className={styles["button-wrapper"]}>
-        <Button variant="contained" color="success" type="submit">
-          Submit
-        </Button>
+      {options?.haveButtons && (
+        <div className={styles["button-wrapper"]}>
+          <Button variant="contained" color="success" type="submit">
+            Submit
+          </Button>
 
-        {/* TODO: Czy warto resetować formularz gdy nie wszystki inputy są resetowane (np. komponent Select) */}
-        <Button variant="contained" color="warning" callbackFn={() => reset()}>
-          Clear
-        </Button>
+          {options?.haveClearButton && (
+            <Button
+              variant="contained"
+              color="warning"
+              callbackFn={() => reset()}
+            >
+              Clear
+            </Button>
+          )}
 
-        <Button variant="contained" color="error" callbackFn={handleToggle}>
-          Close
-        </Button>
-      </div>
+          <Button variant="contained" color="error" callbackFn={handleToggle}>
+            Close
+          </Button>
+        </div>
+      )}
     </form>
   );
 }

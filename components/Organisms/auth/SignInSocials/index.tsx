@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import router from "next/router";
 
 import { BsGithub, BsGoogle } from "react-icons/bs";
@@ -28,17 +28,16 @@ export default function SignInSocials() {
   const [error, setError] = useState();
   const { handleChangeLoading } = useAuth();
 
-  const signInWithSocials = (social: "google" | "github") => {
+  const signInWithSocials = async (social: "google" | "github") => {
     handleChangeLoading(true);
-    signInWithPopup(auth, signUpWithSocials[social])
-      .then((res) => {
-        createUserDoc(res.user.uid);
-      })
-      .then(() => router.push("/dashboard"))
-      .catch((err) => setError(err.code))
-      .finally(() => {
-        handleChangeLoading(false);
-      });
+    try {
+      const res = await signInWithPopup(auth, signUpWithSocials[social]);
+      await createUserDoc(res.user.uid);
+      await router.push("/dashboard");
+      handleChangeLoading(false);
+    } catch (err: any) {
+      setError(err.code);
+    }
   };
 
   return (

@@ -40,24 +40,30 @@ export const UserDataContextProvider = ({
   }, [user]);
 
   useEffect(() => {
+    if (!user) return;
+
     console.log(userData);
-  }, [userData]);
+
+    // TODO: Is that properly? -> Update whole user in DB after update state
+    updateUserDB(user.uid, userData);
+  }, [user, userData]);
 
   const updateDataFromUser = async (authUser: UserI) => {
     const user = await getUser(authUser.uid);
-    console.log(user);
 
-    dispatch({
-      type: DataActionTypes.updateUser,
-      payload: {
-        id: user.id,
-        default_Currency: user.default_Currency,
-        default_Timezone: user.default_Timezone,
-        expenses: user.expenses,
-        income: user.income,
-        investments: user.investments,
-      },
-    });
+    if (user) {
+      dispatch({
+        type: DataActionTypes.updateUser,
+        payload: {
+          id: user.id,
+          default_Currency: user.default_Currency,
+          default_Timezone: user.default_Timezone,
+          expenses: user.expenses,
+          income: user.income,
+          investments: user.investments,
+        },
+      });
+    }
 
     setIsLoading(false);
   };

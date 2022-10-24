@@ -1,3 +1,4 @@
+import { UserFirebaseI } from "types/user.interface";
 export interface UserI {
   uid: string;
   email: string;

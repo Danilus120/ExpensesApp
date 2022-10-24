@@ -1,6 +1,10 @@
 import { Dispatch } from "react";
 import { DataActionType } from "types/dataReducer.interface";
-import { UserFirebaseI } from "types/user.interface";
+import {
+  ExpenseFormDataI,
+  ExpenseI,
+  UserFirebaseI,
+} from "types/user.interface";
 
 export interface UserI {
   uid: string;
@@ -11,6 +15,12 @@ export interface UserI {
 interface UserDataContextI {
   userData: UserFirebaseI;
   dispatch: Dispatch<DataActionType>;
+  actions: {
+    updateSettings: (options: { currency: string; timezone: string }) => void;
+    addExpense: (expense: ExpenseI) => void;
+    deleteExpense: (id: string) => void;
+    updateExpense: (id: string, newExpense: ExpenseFormDataI) => void;
+  };
 }
 
 export type { UserDataContextI };

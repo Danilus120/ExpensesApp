@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 
-import LoginWithEmail from "@/Organisms/LoginWithEmail";
-import SignInSocials from "@/Organisms/SignInSocials";
+import LoginWithEmail from "@/Organisms/auth/LoginWithEmail";
+import SignInSocials from "@/Organisms/auth/SignInSocials";
 import LogoLink from "@/Atoms/LogoLink";
 import Separator from "@/Atoms/Separator";
 import StyledLink from "@/Atoms/StyledLink";

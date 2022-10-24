@@ -58,14 +58,19 @@ const isUserInDB = async (uid: string) => {
   return haveUserDoc;
 };
 
-const getUser = async (uid: string) => {
-  const userData = await getUsers();
+// const getUser = async (uid: string) => {
+//   const userData = await getUsers();
 
-  const res = await Promise.all(userData);
+//   const res = await Promise.all(userData);
 
-  const user = res.find((el) => el.id === uid);
+//   const user = res.find((el) => {
+//     console.log(el, uid);
+//     return el.id === uid;
+//   });
 
-  return user as UserFirebaseI;
-};
+//   console.log(user, uid);
 
-export { getDataHeaders, isUserInDB, getUser };
+//   return user as UserFirebaseI;
+// };
+
+export { getDataHeaders, isUserInDB };

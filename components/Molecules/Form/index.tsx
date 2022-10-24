@@ -22,6 +22,7 @@ export default function Form({
     register,
     formState: { errors },
     control,
+    reset,
   } = useForm({
     defaultValues,
     resolver: yupResolver(schema),

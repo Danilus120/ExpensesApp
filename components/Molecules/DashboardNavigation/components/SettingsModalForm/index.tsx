@@ -20,7 +20,7 @@ function SettingsModalForm({
   isSettingsModalOpen,
 }: SettingsModalFormProps) {
   const { user } = useAuth();
-  const { userData, dispatch } = useData();
+  const { userData, dispatch, updateSettings } = useData();
   return (
     <Modal
       title="Settings"
@@ -29,13 +29,8 @@ function SettingsModalForm({
     >
       <Form
         onSubmit={(data) => {
-          dispatch({
-            type: DataActionTypes.updateSettings,
-            payload: {
-              default_Currency: data.currency,
-              default_Timezone: data.timezone,
-            },
-          });
+          console.log(data);
+          updateSettings(data);
         }}
         schema={settingsSchema}
       >

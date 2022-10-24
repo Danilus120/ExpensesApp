@@ -1,3 +1,4 @@
+import { useAuth } from "@/context/AuthContext";
 import { initialUserValues } from "@/constants/initialUserValues";
 import { DataActionType, DataActionTypes } from "types/dataReducer.interface";
 import { UserFirebaseI } from "types/user.interface";

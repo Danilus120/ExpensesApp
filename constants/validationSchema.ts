@@ -25,6 +25,17 @@ const settingsSchema = yup
   })
   .required();
 
+const expenseSchema = yup
+  .object({
+    date: yup.date().required(),
+    category: yup.string().required(),
+    price: yup.string().required(),
+    currency: yup.string().required(),
+    descrtiption: yup.string(),
+    shopName: yup.string().required(),
+  })
+  .required();
+
 const loginFormSchema = yup
   .object({
     email: validationObject.email,
@@ -48,6 +59,7 @@ const forgotPasswordSchema = yup
 
 export {
   settingsSchema,
+  expenseSchema,
   loginFormSchema,
   registerFormSchema,
   forgotPasswordSchema,

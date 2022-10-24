@@ -6,12 +6,13 @@ import {
   useState,
 } from "react";
 
+import LoadingComponent from "@/Atoms/Loading";
+
 import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from "../config/firebase.config";
 
 import { ContextI, UserI } from "./AuthTypes";
-import LoadingComponent from "@/Atoms/Loading";
 
 const AuthContext = createContext<ContextI>({} as ContextI);
 

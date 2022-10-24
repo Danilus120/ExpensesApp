@@ -12,7 +12,16 @@ interface ExpenseI {
   date: number;
   category: string;
   shopName: string;
-  price: number;
+  price: string;
+  currency: string;
+  description: string;
+}
+
+interface ExpenseFormDataI {
+  date: number;
+  category: string;
+  shopName: string;
+  price: string;
   currency: string;
   description: string;
 }
@@ -35,4 +44,4 @@ interface InvestmentI {
   description: string;
 }
 
-export type { UserFirebaseI, ExpenseI, IncomeI, InvestmentI };
+export type { UserFirebaseI, ExpenseI, IncomeI, InvestmentI, ExpenseFormDataI };

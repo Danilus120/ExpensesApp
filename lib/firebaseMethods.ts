@@ -1,4 +1,4 @@
-import { doc, getDocs, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 
 import { isUserInDB } from "utils/utils";
 
@@ -14,7 +14,7 @@ const createUserDoc = async (uid: string) => {
 
     if (isInDB) return;
 
-    await setDoc(doc(db, "users", uid), initialUserValues);
+    await setDoc(doc(db, "users", uid), { ...initialUserValues, id: uid });
   } catch (err) {
     console.log(err);
     return [];
@@ -32,13 +32,25 @@ const getUsers = async () => {
       return {
         id: id,
         ...userList,
-      } as UserFirebaseI;
+      };
     });
 
-    return users;
+    return users as UserFirebaseI[];
   } catch (err) {
     console.error(err);
     return [];
+  }
+};
+
+const getUserFromFirebase = async (uid: string) => {
+  try {
+    const response = await getDoc(doc(db, "users", uid));
+
+    const data = response.data();
+
+    return data as UserFirebaseI;
+  } catch (err) {
+    console.error(err);
   }
 };
 
@@ -74,4 +86,4 @@ const updateInvestments = async (docID: string, investments: any[]) => {
   });
 };
 
-export { createUserDoc, getUsers, updateUserDB };
+export { createUserDoc, getUsers, getUserFromFirebase, updateUserDB };

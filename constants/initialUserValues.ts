@@ -1,5 +1,5 @@
 const initialUserValues = {
-  id: "",
+  id: "asd",
   default_Currency: "PLN",
   default_Timezone: "+1",
   expenses: [],

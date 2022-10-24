@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import ResetPassword from "@/Organisms/ResetPassword";
+import ResetPassword from "@/Organisms/auth/ResetPassword";
 import StyledLink from "@/Atoms/StyledLink";
 import LogoLink from "@/Atoms/LogoLink";
 

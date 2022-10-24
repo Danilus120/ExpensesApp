@@ -4,6 +4,7 @@ import DashboardLayout from "@/Templates/DashboardTemplate";
 import Table from "@/Molecules/Table";
 
 import { fakeExpensesData } from "@/constants/fakeDataForExpensesTable";
+import DashboardExpenses from "@/Organisms/DashboardExpenses";
 
 const Dashboard: NextPage = () => {
   return (
@@ -13,11 +14,7 @@ const Dashboard: NextPage = () => {
         description: "Dashboard of expenses app",
       }}
     >
-      <Table
-        data={fakeExpensesData.map((el) => {
-          return { ...el, date: new Date(el.date).toLocaleDateString("pl") };
-        })}
-      />
+      <DashboardExpenses data={fakeExpensesData} />
     </DashboardLayout>
   );
 };

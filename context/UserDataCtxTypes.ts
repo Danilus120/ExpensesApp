@@ -18,6 +18,14 @@ interface UserDataContextI {
   actions: {
     updateSettings: (options: { currency: string; timezone: string }) => void;
     addExpense: (expense: ExpenseI) => void;
+    addNewExpense: (expense: {
+      category: string;
+      currency: string;
+      date: Date;
+      description: string;
+      price: string;
+      shopName: string;
+    }) => void;
     deleteExpense: (id: string) => void;
     updateExpense: (id: string, newExpense: ExpenseFormDataI) => void;
   };

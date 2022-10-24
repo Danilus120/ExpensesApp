@@ -1,4 +1,3 @@
-import AutoSelect from "@/Atoms/AutoSelect";
 import Button from "@/Atoms/Button";
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
@@ -20,7 +19,7 @@ interface AddExpenseModalProps {
 }
 
 function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
-  const { userData, dispatch } = useData();
+  const { userData, actions } = useData();
 
   return (
     <>
@@ -32,20 +31,20 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
       >
         <Form
           onSubmit={(data) => {
-            dispatch({
-              type: DataActionTypes.addExpense,
-              payload: {
-                ...data,
-                id: uuidv4(),
-                date: data.date.getTime(),
-              },
-            });
+            actions.addNewExpense(data);
+            handleToggle();
           }}
           schema={expenseSchema}
+          handleToggle={handleToggle}
         >
           <Input type="date" label="Date" name="date" />
 
-          <Select label="Category" name="category" options={categories} />
+          <Select
+            label="Category"
+            name="category"
+            options={categories}
+            defaultValue={categories[0].value}
+          />
 
           <Input label="Shop Name" name="shopName" />
 
@@ -65,20 +64,19 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
 
           <Input label="Description" name="description" />
 
-          <div className={styles["button-wrapper"]}>
-            <Button
-              variant="contained"
-              color="success"
-              type="submit"
-              callbackFn={handleToggle}
-            >
+          {/* <div className={styles["button-wrapper"]}>
+            <Button variant="contained" color="success" type="submit">
               Submit
+            </Button>
+
+            <Button variant="contained" color="warning">
+              Clear
             </Button>
 
             <Button variant="contained" color="error" callbackFn={handleToggle}>
               Close
             </Button>
-          </div>
+          </div> */}
         </Form>
       </Modal>
     </>

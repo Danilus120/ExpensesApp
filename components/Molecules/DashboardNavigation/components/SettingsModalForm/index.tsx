@@ -20,7 +20,7 @@ function SettingsModalForm({
   isSettingsModalOpen,
 }: SettingsModalFormProps) {
   const { user } = useAuth();
-  const { userData, dispatch, updateSettings } = useData();
+  const { userData, dispatch, actions } = useData();
   return (
     <Modal
       title="Settings"
@@ -30,9 +30,10 @@ function SettingsModalForm({
       <Form
         onSubmit={(data) => {
           console.log(data);
-          updateSettings(data);
+          actions.updateSettings(data);
         }}
         schema={settingsSchema}
+        handleToggle={toggleSettingsModal}
       >
         <Select
           label="Default currency"
@@ -56,26 +57,6 @@ function SettingsModalForm({
           })}
           defaultValue={userData.default_Timezone}
         />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            gap: "10px",
-            padding: "10px 0px 0px 0px",
-          }}
-        >
-          <Button type="submit" variant="contained" color="success">
-            Save
-          </Button>
-          <Button
-            variant="contained"
-            color="error"
-            callbackFn={toggleSettingsModal}
-          >
-            Close
-          </Button>
-        </div>
       </Form>
     </Modal>
   );

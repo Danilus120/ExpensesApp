@@ -106,6 +106,24 @@ export const UserDataContextProvider = ({
     });
   };
 
+  const addNewExpense = (expense: {
+    category: string;
+    currency: string;
+    date: Date;
+    description: string;
+    price: string;
+    shopName: string;
+  }) => {
+    dispatch({
+      type: DataActionTypes.addExpense,
+      payload: {
+        ...expense,
+        id: uuidv4(),
+        date: expense.date.getTime(),
+      },
+    });
+  };
+
   const deleteExpense = (id: string) => {
     dispatch({
       type: DataActionTypes.deleteExpense,
@@ -129,6 +147,7 @@ export const UserDataContextProvider = ({
   const actions = {
     updateSettings,
     addExpense,
+    addNewExpense,
     deleteExpense,
     updateExpense,
   };
@@ -145,3 +164,6 @@ export const UserDataContextProvider = ({
     </UserDataContext.Provider>
   );
 };
+function uuidv4(): string {
+  throw new Error("Function not implemented.");
+}

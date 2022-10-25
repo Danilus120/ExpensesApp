@@ -30,11 +30,12 @@ interface TableI {
   options?: {
     rowsPerPageArray: Array<number>;
   };
+  deleteRecordFn: (id: string) => void;
 }
 
 // TODO: Add button with position fixed in right bottom corner to add new expense
 
-function Table({ data, columns, options }: TableI) {
+function Table({ data, columns, options, deleteRecordFn }: TableI) {
   const memoColumns = useMemo(() => columns, []);
 
   const tableInstance = useTable(
@@ -71,6 +72,7 @@ function Table({ data, columns, options }: TableI) {
           getTableBodyProps={getTableBodyProps}
           page={page}
           prepareRow={prepareRow}
+          deleteRecordFn={deleteRecordFn}
         />
       </table>
       <Pagination tableInstance={tableInstance} options={options} />
@@ -122,9 +124,15 @@ interface TableBodyI {
   ) => TableBodyProps;
   page: Row<object>[];
   prepareRow: (row: Row<object>) => void;
+  deleteRecordFn: (id: string) => void;
 }
 
-function TableBody({ getTableBodyProps, page, prepareRow }: TableBodyI) {
+function TableBody({
+  getTableBodyProps,
+  page,
+  prepareRow,
+  deleteRecordFn,
+}: TableBodyI) {
   const { actions } = useData();
   return (
     <tbody {...getTableBodyProps()} className={styles["tbody"]}>
@@ -147,13 +155,19 @@ function TableBody({ getTableBodyProps, page, prepareRow }: TableBodyI) {
             })}
             <td className={styles["td"]}>
               <div className={styles["td__buttons"]}>
-                <Button variant="ghost" iconOnly>
+                <Button
+                  variant="ghost"
+                  iconOnly
+                  callbackFn={() => {
+                    /* editRecord(id) - opening modal with data inside */
+                  }}
+                >
                   <FiEdit />
                 </Button>
                 <Button
                   variant="ghost"
                   iconOnly
-                  callbackFn={() => actions.deleteExpense(id)}
+                  callbackFn={() => deleteRecordFn(id)}
                 >
                   <AiFillDelete />
                 </Button>

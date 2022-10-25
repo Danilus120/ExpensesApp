@@ -23,7 +23,7 @@ interface DashboardExpensesProps {
 
 function DashboardExpenses({ data }: DashboardExpensesProps) {
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState(false);
-  const { userData } = useData();
+  const { userData, actions } = useData();
   const { isModalOpened, toggleModal } = useModal();
 
   const toggleAddExpenseModal = () => {
@@ -44,7 +44,11 @@ function DashboardExpenses({ data }: DashboardExpensesProps) {
       <Button variant="ghost" iconOnly callbackFn={toggleAddExpenseModal}>
         <FiPlus />
       </Button>
-      <Table data={formatedData} columns={expensesTableColumns} />
+      <Table
+        data={formatedData}
+        columns={expensesTableColumns}
+        deleteRecordFn={actions.deleteExpense}
+      />
 
       <AddExpenseModal
         handleToggle={toggleAddExpenseModal}

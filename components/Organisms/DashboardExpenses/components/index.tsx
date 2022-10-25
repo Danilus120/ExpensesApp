@@ -9,7 +9,7 @@ import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
 import { uuidv4 } from "@firebase/util";
 import React from "react";
-import { DataActionTypes } from "types/dataReducer.interface";
+import { DataActionTypes } from "@/context/userData/reducer/dataReducer.interface";
 
 import styles from "./styles.module.scss";
 

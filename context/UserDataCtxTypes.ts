@@ -1,5 +1,3 @@
-import { Dispatch } from "react";
-import { DataActionType } from "types/dataReducer.interface";
 import {
   ExpenseFormDataI,
   ExpenseI,
@@ -14,11 +12,9 @@ export interface UserI {
 
 interface UserDataContextI {
   userData: UserFirebaseI;
-  dispatch: Dispatch<DataActionType>;
   actions: {
     updateSettings: (options: { currency: string; timezone: string }) => void;
-    addExpense: (expense: ExpenseI) => void;
-    addNewExpense: (expense: {
+    addExpense: (expense: {
       category: string;
       currency: string;
       date: Date;
@@ -28,6 +24,12 @@ interface UserDataContextI {
     }) => void;
     deleteExpense: (id: string) => void;
     updateExpense: (id: string, newExpense: ExpenseFormDataI) => void;
+    addIncome: () => void;
+    deleteIncome: (id: string) => void;
+    updateIncome: () => void;
+    addInvestment: () => void;
+    deleteInvestment: (id: string) => void;
+    updateInvestment: () => void;
   };
 }
 

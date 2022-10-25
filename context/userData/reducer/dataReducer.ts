@@ -1,7 +1,13 @@
-import { useAuth } from "@/context/AuthContext";
 import { initialUserValues } from "@/constants/initialUserValues";
-import { DataActionType, DataActionTypes } from "types/dataReducer.interface";
-import { UserFirebaseI } from "types/user.interface";
+import {
+  DataActionType,
+  DataActionTypes,
+} from "@/context/userData/reducer/dataReducer.interface";
+import {
+  ExpenseFormDataI,
+  ExpenseI,
+  UserFirebaseI,
+} from "types/user.interface";
 
 export const dataReducer = (
   state: UserFirebaseI = initialUserValues,
@@ -41,11 +47,20 @@ export const dataReducer = (
         ...state,
         expenses: newExpensesDeleteProduct,
       };
-    // case DataActionTypes.updateExpense:
-    //   return {
-    //     ...state,
-    //     expenses: state.expenses.reduce((el) => {}, []),
-    //   };
+    case DataActionTypes.updateExpense:
+      const newExpense = {
+        ...action.payload.expense,
+        date: action.payload.expense.date.getTime(),
+      };
+      return {
+        ...state,
+        expenses: state.expenses.reduce((acc, currEl) => {
+          currEl.id !== action.payload.id
+            ? acc.push(currEl)
+            : acc.push({ id: currEl.id, ...newExpense });
+          return acc;
+        }, [] as ExpenseI[]),
+      };
     case DataActionTypes.addIncome:
       const newIncomeAddProduct = [...state.income, action.payload];
 

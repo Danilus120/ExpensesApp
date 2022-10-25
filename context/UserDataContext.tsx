@@ -1,12 +1,6 @@
 import LoadingComponent from "@/Atoms/Loading";
-import { initialUserValues } from "@/constants/initialUserValues";
-import { dataReducer } from "@/hooks/dataReducer";
-import {
-  getUsers,
-  getUserFromFirebase,
-  updateUserDB,
-} from "lib/firebaseMethods";
-import { useLayoutEffect, useRef } from "react";
+import { dataReducer } from "@/context/userData/reducer/dataReducer";
+import { getUserFromFirebase, updateUserDB } from "lib/firebaseMethods";
 import {
   createContext,
   ReactNode,
@@ -15,15 +9,16 @@ import {
   useReducer,
   useState,
 } from "react";
-import { DataActionTypes } from "types/dataReducer.interface";
+import { DataActionTypes } from "@/context/userData/reducer/dataReducer.interface";
 import {
   ExpenseFormDataI,
   ExpenseI,
   IncomeI,
   UserFirebaseI,
 } from "types/user.interface";
+import { uuid } from "uuidv4";
 
-import { useAuth } from "./AuthContext";
+import { useAuth } from "@/context/auth/AuthContext";
 import { UserDataContextI } from "./UserDataCtxTypes";
 
 const UserDataContext = createContext<UserDataContextI>({} as UserDataContextI);
@@ -70,11 +65,6 @@ export const UserDataContextProvider = ({
         payload: {
           ...userDataFromFirebase,
           id: uid,
-          // default_Currency: userDataFromFirebase.default_Currency,
-          // default_Timezone: userDataFromFirebase.default_Timezone,
-          // expenses: userDataFromFirebase.expenses,
-          // income: userDataFromFirebase.income,
-          // investments: userDataFromFirebase.investments,
         },
       });
 
@@ -95,14 +85,7 @@ export const UserDataContextProvider = ({
     });
   };
 
-  const addExpense = (expense: ExpenseI) => {
-    dispatch({
-      type: DataActionTypes.addExpense,
-      payload: expense,
-    });
-  };
-
-  const addNewExpense = (expense: {
+  const addExpense = (expense: {
     category: string;
     currency: string;
     date: Date;
@@ -114,7 +97,7 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.addExpense,
       payload: {
         ...expense,
-        id: uuidv4(),
+        id: uuid(),
         date: expense.date.getTime(),
       },
     });
@@ -127,34 +110,49 @@ export const UserDataContextProvider = ({
     });
   };
 
-  const updateExpense = (id: string, newExpense: ExpenseFormDataI) => {
-    // Delete expense -> add new Expense
-
+  const updateExpense = (id: string, expense: ExpenseFormDataI) => {
     const expenseFromState = userData.expenses.find(
       (expenseFromState) => expenseFromState.id === id
     );
 
     if (!expenseFromState) return;
 
-    // .reduce
-    // expenseFromState.id !== id / return [...acc, userData]
-    // return [...acc, newExpense]
-
-    deleteExpense(id);
-    addExpense({ id, ...newExpense });
+    dispatch({
+      type: DataActionTypes.updateExpense,
+      payload: {
+        id,
+        expense,
+      },
+    });
   };
+
+  const addIncome = () => {};
+
+  const deleteIncome = (id: string) => {};
+
+  const updateIncome = () => {};
+
+  const addInvestment = () => {};
+
+  const deleteInvestment = (id: string) => {};
+
+  const updateInvestment = () => {};
 
   const actions = {
     updateSettings,
     addExpense,
-    addNewExpense,
     deleteExpense,
     updateExpense,
+    addIncome,
+    deleteIncome,
+    updateIncome,
+    addInvestment,
+    deleteInvestment,
+    updateInvestment,
   };
 
   const values = {
     userData,
-    dispatch, // X
     actions,
   };
 

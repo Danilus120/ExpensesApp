@@ -3,12 +3,12 @@ import Select from "@/Atoms/Select";
 import { currency_list } from "@/constants/currencyList";
 import { tzInts } from "@/constants/timezoneList";
 import { settingsSchema } from "@/constants/validationSchema";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/context/auth/AuthContext";
 import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
 import React from "react";
-import { DataActionTypes } from "types/dataReducer.interface";
+import { DataActionTypes } from "@/context/userData/reducer/dataReducer.interface";
 
 interface SettingsModalFormProps {
   toggleSettingsModal: () => void;

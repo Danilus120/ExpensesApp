@@ -18,7 +18,7 @@ interface ExpenseI {
 }
 
 interface ExpenseFormDataI {
-  date: number;
+  date: Date;
   category: string;
   shopName: string;
   price: string;

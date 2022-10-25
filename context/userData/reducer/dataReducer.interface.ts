@@ -1,10 +1,16 @@
-import { ExpenseI, IncomeI, InvestmentI } from "./user.interface";
+import {
+  ExpenseFormDataI,
+  ExpenseI,
+  IncomeI,
+  InvestmentI,
+} from "../../../types/user.interface";
 
 export enum DataActionTypes {
   updateUser = "UPDATE_USER",
   updateSettings = "UPDATE_SETTINGS",
   addExpense = "ADD_EXPENSE",
   deleteExpense = "DELETE_EXPENSE",
+  updateExpense = "UPDATE_EXPENSE",
   addIncome = "ADD_INCOME",
   deleteIncome = "DELETE_INCOME",
   addInvestment = "ADD_INVESTMENT",
@@ -34,6 +40,13 @@ export type DataActionType =
   | {
       type: DataActionTypes.deleteExpense;
       payload: string;
+    }
+  | {
+      type: DataActionTypes.updateExpense;
+      payload: {
+        id: string;
+        expense: ExpenseFormDataI;
+      };
     }
   | {
       type: DataActionTypes.addIncome;

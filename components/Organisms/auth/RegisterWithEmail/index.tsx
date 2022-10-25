@@ -5,7 +5,7 @@ import Form from "@/Molecules/Form";
 import Input from "@/Atoms/Input";
 import Button from "@/Atoms/Button";
 
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/context/auth/AuthContext";
 import { auth } from "config/firebase.config";
 import {
   createUserWithEmailAndPassword,

@@ -5,7 +5,7 @@ import { BsGithub, BsGoogle } from "react-icons/bs";
 
 import Button from "@/Atoms/Button";
 
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/context/auth/AuthContext";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,

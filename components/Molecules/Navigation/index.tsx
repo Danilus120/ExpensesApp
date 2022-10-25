@@ -9,7 +9,7 @@ import { FiMenu, FiHome, FiStar, FiLogIn, FiLogOut } from "react-icons/fi";
 import Button from "@/Atoms/Button";
 import StyledLink from "@/Atoms/StyledLink";
 
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/context/auth/AuthContext";
 
 import { signOut } from "firebase/auth";
 import { auth } from "config/firebase.config";

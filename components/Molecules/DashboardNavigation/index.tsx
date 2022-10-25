@@ -7,7 +7,7 @@ import ProfileModal from "@/Molecules/ProfileModal";
 import Button from "@/Atoms/Button";
 import SettingsModalForm from "./components/SettingsModalForm";
 
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/context/auth/AuthContext";
 
 import styles from "./styles.module.scss";
 

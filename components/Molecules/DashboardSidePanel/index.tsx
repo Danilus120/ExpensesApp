@@ -24,7 +24,7 @@ export default function DashboardSidePanel({
         <div className={styles["sidepanel__logo"]}>
           <LogoLink />
         </div>
-        <div className={styles["sidepanel__nav"]}>
+        <nav className={styles["sidepanel__nav"]}>
           <ul>
             {accordionItems.map((item) => (
               <li key={item[0].name}>
@@ -32,7 +32,7 @@ export default function DashboardSidePanel({
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
       </div>
       <div
         className={styles["sidepanel__background"]}

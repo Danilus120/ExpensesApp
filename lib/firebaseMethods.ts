@@ -32,10 +32,10 @@ const getUsers = async () => {
 
     const users = response.docs.map((data) => {
       const userList = data.data();
-      const id = data.id;
+      const { id } = data;
 
       return {
-        id: id,
+        id,
         ...userList,
       };
     });

@@ -139,6 +139,7 @@ function TableBody({
       {page.map((row, i) => {
         const rowData = row.original as any;
         const { id } = rowData;
+        console.log(id);
 
         prepareRow(row);
         const { key: rowKey, ...restRowProps } = row.getRowProps();

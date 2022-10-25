@@ -24,23 +24,24 @@ export default function DashboardLayout({
   const { isSidepanelOpen, toggleSidepanel } = useSidepanel();
 
   return (
-    <UserDataContextProvider>
-      <main className={styles.main}>
-        <Head>
-          <title>{metaOptions.title}</title>
-          <meta name="description" content={metaOptions.description} />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-
-        <DashboardSidePanel
-          isOpen={isSidepanelOpen}
-          toggleSidepanel={toggleSidepanel}
-        />
-        <div className={styles.container}>
-          <DashboardNavigation toggleSidepanel={toggleSidepanel} />
-          <div className={styles.content}>{children}</div>
+    <>
+      <Head>
+        <title>{metaOptions.title}</title>
+        <meta name="description" content={metaOptions.description} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <UserDataContextProvider>
+        <div className={styles.main}>
+          <DashboardSidePanel
+            isOpen={isSidepanelOpen}
+            toggleSidepanel={toggleSidepanel}
+          />
+          <div className={styles.container}>
+            <DashboardNavigation toggleSidepanel={toggleSidepanel} />
+            <main className={styles.content}>{children}</main>
+          </div>
         </div>
-      </main>
-    </UserDataContextProvider>
+      </UserDataContextProvider>
+    </>
   );
 }

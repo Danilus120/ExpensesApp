@@ -13,26 +13,26 @@ export const dataReducer = (
   state: UserFirebaseI = initialUserValues,
   action: DataActionType
 ) => {
-  const { type } = action;
+  const { type, payload } = action;
 
   switch (type) {
     case DataActionTypes.updateUser:
       return {
         ...state,
-        default_Currency: action.payload.default_Currency,
-        default_Timezone: action.payload.default_Timezone,
-        expenses: action.payload.expenses,
-        income: action.payload.income,
-        investments: action.payload.investments,
+        default_Currency: payload.default_Currency,
+        default_Timezone: payload.default_Timezone,
+        expenses: payload.expenses,
+        income: payload.income,
+        investments: payload.investments,
       };
     case DataActionTypes.updateSettings:
       return {
         ...state,
-        default_Currency: action.payload.default_Currency,
-        default_Timezone: action.payload.default_Timezone,
+        default_Currency: payload.default_Currency,
+        default_Timezone: payload.default_Timezone,
       };
     case DataActionTypes.addExpense:
-      const newExpensesAddProduct = [...state.expenses, action.payload];
+      const newExpensesAddProduct = [...state.expenses, payload];
 
       return {
         ...state,
@@ -40,7 +40,7 @@ export const dataReducer = (
       };
     case DataActionTypes.deleteExpense:
       const newExpensesDeleteProduct = state.expenses.filter(
-        (expense) => expense.id !== action.payload
+        (expense) => expense.id !== payload
       );
 
       return {
@@ -49,20 +49,20 @@ export const dataReducer = (
       };
     case DataActionTypes.updateExpense:
       const newExpense = {
-        ...action.payload.expense,
-        date: action.payload.expense.date.getTime(),
+        ...payload.expense,
+        date: payload.expense.date.getTime(),
       };
       return {
         ...state,
         expenses: state.expenses.reduce((acc, currEl) => {
-          currEl.id !== action.payload.id
+          currEl.id !== payload.id
             ? acc.push(currEl)
             : acc.push({ id: currEl.id, ...newExpense });
           return acc;
         }, [] as ExpenseI[]),
       };
     case DataActionTypes.addIncome:
-      const newIncomeAddProduct = [...state.income, action.payload];
+      const newIncomeAddProduct = [...state.income, payload];
 
       return {
         ...state,
@@ -70,7 +70,7 @@ export const dataReducer = (
       };
     case DataActionTypes.deleteIncome:
       const newIncomeDeleteProduct = state.income.filter(
-        (income) => income.id !== action.payload
+        (income) => income.id !== payload
       );
 
       return {
@@ -78,7 +78,7 @@ export const dataReducer = (
         income: newIncomeDeleteProduct,
       };
     case DataActionTypes.addInvestment:
-      const newInvestmentsAddProduct = [...state.investments, action.payload];
+      const newInvestmentsAddProduct = [...state.investments, payload];
 
       return {
         ...state,
@@ -86,7 +86,7 @@ export const dataReducer = (
       };
     case DataActionTypes.deleteInvestment:
       const newInvestmentsDeleteProduct = state.investments.filter(
-        (investment) => investment.id !== action.payload
+        (investment) => investment.id !== payload
       );
 
       return {

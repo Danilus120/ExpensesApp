@@ -1,10 +1,9 @@
 import type { NextPage } from "next";
 
 import DashboardLayout from "@/Templates/DashboardTemplate";
-import Table from "@/Molecules/Table";
+import DashboardExpenses from "@/Organisms/DashboardExpenses";
 
 import { fakeExpensesData } from "@/constants/fakeDataForExpensesTable";
-import DashboardExpenses from "@/Organisms/DashboardExpenses";
 
 const Dashboard: NextPage = () => {
   return (

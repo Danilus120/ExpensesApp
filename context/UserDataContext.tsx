@@ -41,11 +41,9 @@ export const UserDataContextProvider = ({
     if (Object.keys(userData).length < 0) return;
 
     updateUserDB(user?.uid!, userData);
-    console.log(userData);
   }, [userData]);
 
   useEffect(() => {
-    console.log("USER", user);
     if (!user) return;
 
     updateDataFromUser(user.uid);
@@ -70,7 +68,6 @@ export const UserDataContextProvider = ({
 
       setIsLoading(false);
     } catch (err) {
-      console.log("firebaseErr", err);
       setIsLoading(false);
     }
   };

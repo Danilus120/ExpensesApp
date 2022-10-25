@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   HeaderGroup,
   Row,
@@ -17,9 +17,16 @@ import { getDataHeaders } from "utils/utils";
 
 import styles from "./styles.module.scss";
 import Pagination from "../Pagination";
+import { el } from "date-fns/locale";
+import Modal from "../Modal";
+import { useData } from "@/context/UserDataContext";
 
 interface TableI {
   data: any;
+  columns: {
+    Header: string;
+    accessor: string;
+  }[];
   options?: {
     rowsPerPageArray: Array<number>;
   };
@@ -27,12 +34,12 @@ interface TableI {
 
 // TODO: Add button with position fixed in right bottom corner to add new expense
 
-function Table({ data, options }: TableI) {
-  const columns = useMemo(() => getDataHeaders(data), []);
+function Table({ data, columns, options }: TableI) {
+  const memoColumns = useMemo(() => columns, []);
 
   const tableInstance = useTable(
     {
-      columns,
+      columns: memoColumns,
       data,
       initialState: {
         pageIndex: 0,
@@ -118,9 +125,13 @@ interface TableBodyI {
 }
 
 function TableBody({ getTableBodyProps, page, prepareRow }: TableBodyI) {
+  const { actions } = useData();
   return (
     <tbody {...getTableBodyProps()} className={styles["tbody"]}>
       {page.map((row, i) => {
+        const rowData = row.original as any;
+        const { id } = rowData;
+
         prepareRow(row);
         const { key: rowKey, ...restRowProps } = row.getRowProps();
         return (
@@ -139,7 +150,11 @@ function TableBody({ getTableBodyProps, page, prepareRow }: TableBodyI) {
                 <Button variant="ghost" iconOnly>
                   <FiEdit />
                 </Button>
-                <Button variant="ghost" iconOnly>
+                <Button
+                  variant="ghost"
+                  iconOnly
+                  callbackFn={() => actions.deleteExpense(id)}
+                >
                   <AiFillDelete />
                 </Button>
               </div>

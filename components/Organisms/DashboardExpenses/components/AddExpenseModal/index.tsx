@@ -31,7 +31,7 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
       >
         <Form
           onSubmit={(data) => {
-            actions.addNewExpense(data);
+            actions.addExpense(data);
             handleToggle();
           }}
           options={{ haveButtons: true, haveClearButton: true }}

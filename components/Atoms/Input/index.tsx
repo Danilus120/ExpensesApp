@@ -3,11 +3,13 @@ import { FieldValues } from "react-hook-form";
 import ErrorMessage from "@/Atoms/ErrorMessage";
 
 import styles from "./styles.module.scss";
+import { ChangeEvent, useEffect, useState } from "react";
 
 interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
   label: string;
   name: string;
   type?: "text" | "password" | "email" | "number" | "date";
+  defaultValue?: string | number;
 }
 
 const Input = ({
@@ -15,6 +17,7 @@ const Input = ({
   label,
   name,
   errors,
+  defaultValue = "",
   register,
   ...rest
 }: InputI) => {

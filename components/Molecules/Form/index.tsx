@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useForm } from "react-hook-form";
 
@@ -21,7 +21,7 @@ interface FormI {
 }
 
 export default function Form({
-  defaultValues,
+  defaultValues = {},
   children,
   onSubmit,
   schema,
@@ -45,7 +45,10 @@ export default function Form({
 
   const handleFn = (data: any) => {
     onSubmit(data);
-    options?.resetAfterSubmit && reset();
+
+    if (options.resetAfterSubmit) {
+      reset();
+    }
   };
 
   return (

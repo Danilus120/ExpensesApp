@@ -58,6 +58,18 @@ const isUserInDB = async (uid: string) => {
   return haveUserDoc;
 };
 
+function formatDate(date: string | number) {
+  var d = new Date(date),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [year, month, day].join("-");
+}
+
 // const getUser = async (uid: string) => {
 //   const userData = await getUsers();
 
@@ -73,4 +85,4 @@ const isUserInDB = async (uid: string) => {
 //   return user as UserFirebaseI;
 // };
 
-export { getDataHeaders, isUserInDB };
+export { getDataHeaders, isUserInDB, formatDate };

@@ -9,6 +9,7 @@ import { useState } from "react";
 
 import { FiPlus } from "react-icons/fi";
 import AddExpenseModal from "./components/AddExpenseModal";
+import EditExpenseModal from "./components/EditExpenseModal";
 
 interface DashboardExpensesProps {
   data: {
@@ -24,7 +25,12 @@ interface DashboardExpensesProps {
 function DashboardExpenses({ data }: DashboardExpensesProps) {
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState(false);
   const { userData, actions } = useData();
-  const { isModalOpened, toggleModal } = useModal();
+  const {
+    isModalOpened: isEditExpenseModalOpened,
+    toggleModal: toggleEditExpenseModal,
+    modalRecordID,
+    setRecordID,
+  } = useModal();
 
   const toggleAddExpenseModal = () => {
     setIsAddExpenseModalOpen((prev) => !prev);
@@ -48,11 +54,18 @@ function DashboardExpenses({ data }: DashboardExpensesProps) {
         data={formatedData}
         columns={expensesTableColumns}
         deleteRecordFn={actions.deleteExpense}
+        editRecordFn={setRecordID}
       />
 
       <AddExpenseModal
         handleToggle={toggleAddExpenseModal}
         isOpen={isAddExpenseModalOpen}
+      />
+
+      <EditExpenseModal
+        handleToggle={toggleEditExpenseModal}
+        isOpen={isEditExpenseModalOpened}
+        id={modalRecordID}
       />
     </>
   );

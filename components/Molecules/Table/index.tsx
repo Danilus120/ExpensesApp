@@ -31,11 +31,18 @@ interface TableI {
     rowsPerPageArray: Array<number>;
   };
   deleteRecordFn: (id: string) => void;
+  editRecordFn: (id: string) => void;
 }
 
 // TODO: Add button with position fixed in right bottom corner to add new expense
 
-function Table({ data, columns, options, deleteRecordFn }: TableI) {
+function Table({
+  data,
+  columns,
+  options,
+  deleteRecordFn,
+  editRecordFn,
+}: TableI) {
   const memoColumns = useMemo(() => columns, []);
 
   const tableInstance = useTable(
@@ -73,6 +80,7 @@ function Table({ data, columns, options, deleteRecordFn }: TableI) {
             getTableBodyProps={getTableBodyProps}
             page={page}
             prepareRow={prepareRow}
+            editRecordFn={editRecordFn}
             deleteRecordFn={deleteRecordFn}
           />
         </table>
@@ -127,6 +135,7 @@ interface TableBodyI {
   page: Row<object>[];
   prepareRow: (row: Row<object>) => void;
   deleteRecordFn: (id: string) => void;
+  editRecordFn: (id: string) => void;
 }
 
 function TableBody({
@@ -134,8 +143,8 @@ function TableBody({
   page,
   prepareRow,
   deleteRecordFn,
+  editRecordFn,
 }: TableBodyI) {
-  const { actions } = useData();
   return (
     <tbody {...getTableBodyProps()} className={styles["tbody"]}>
       {page.map((row, i) => {
@@ -160,9 +169,7 @@ function TableBody({
                 <Button
                   variant="ghost"
                   iconOnly
-                  callbackFn={() => {
-                    /* editRecord(id) - opening modal with data inside */
-                  }}
+                  callbackFn={() => editRecordFn(id)}
                 >
                   <FiEdit />
                 </Button>

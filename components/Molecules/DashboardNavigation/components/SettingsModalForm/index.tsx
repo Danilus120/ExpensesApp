@@ -2,7 +2,6 @@ import Select from "@/Atoms/Select";
 import { currency_list } from "@/constants/currencyList";
 import { tzInts } from "@/constants/timezoneList";
 import { settingsSchema } from "@/constants/validationSchema";
-import { useAuth } from "@/context/auth/AuthContext";
 import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
@@ -17,9 +16,7 @@ function SettingsModalForm({
   toggleSettingsModal,
   isSettingsModalOpen,
 }: SettingsModalFormProps) {
-  const { user } = useAuth();
   const { userData, actions } = useData();
-  console.log(userData);
   return (
     <Modal
       title="Settings"

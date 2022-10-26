@@ -1,4 +1,3 @@
-import Button from "@/Atoms/Button";
 import Select from "@/Atoms/Select";
 import { currency_list } from "@/constants/currencyList";
 import { tzInts } from "@/constants/timezoneList";
@@ -8,7 +7,6 @@ import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
 import React from "react";
-import { DataActionTypes } from "@/context/userData/reducer/dataReducer.interface";
 
 interface SettingsModalFormProps {
   toggleSettingsModal: () => void;
@@ -20,7 +18,8 @@ function SettingsModalForm({
   isSettingsModalOpen,
 }: SettingsModalFormProps) {
   const { user } = useAuth();
-  const { userData, dispatch, actions } = useData();
+  const { userData, actions } = useData();
+  console.log(userData);
   return (
     <Modal
       title="Settings"
@@ -34,6 +33,10 @@ function SettingsModalForm({
         }}
         schema={settingsSchema}
         handleToggle={toggleSettingsModal}
+        options={{
+          haveButtons: true,
+          resetAfterSubmit: false,
+        }}
       >
         <Select
           label="Default currency"

@@ -14,8 +14,9 @@ interface FormI {
   schema: any;
   handleToggle?: () => void;
   options?: {
-    haveClearButton: boolean;
-    haveButtons: boolean;
+    haveClearButton?: boolean;
+    haveButtons?: boolean;
+    resetAfterSubmit?: boolean;
   };
 }
 
@@ -25,7 +26,11 @@ export default function Form({
   onSubmit,
   schema,
   handleToggle,
-  options,
+  options = {
+    haveButtons: true,
+    haveClearButton: false,
+    resetAfterSubmit: true,
+  },
 }: FormI) {
   const {
     handleSubmit,
@@ -40,7 +45,7 @@ export default function Form({
 
   const handleFn = (data: any) => {
     onSubmit(data);
-    reset();
+    options?.resetAfterSubmit && reset();
   };
 
   return (
@@ -54,7 +59,6 @@ export default function Form({
                     register,
                     errors,
                     control,
-                    reset,
                     key: child.props.name,
                   },
                 })

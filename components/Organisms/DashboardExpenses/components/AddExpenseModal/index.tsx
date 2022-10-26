@@ -12,6 +12,7 @@ import React from "react";
 import { DataActionTypes } from "@/context/userData/reducer/dataReducer.interface";
 
 import styles from "./styles.module.scss";
+import { formatDate } from "utils/utils";
 
 interface AddExpenseModalProps {
   isOpen: boolean;
@@ -38,7 +39,12 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
           schema={expenseSchema}
           handleToggle={handleToggle}
         >
-          <Input type="date" label="Date" name="date" />
+          <Input
+            type="date"
+            label="Date"
+            name="date"
+            defaultValue={formatDate(new Date().getTime())}
+          />
 
           <Select
             label="Category"

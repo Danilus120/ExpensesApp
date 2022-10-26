@@ -21,6 +21,16 @@ const Input = ({
   register,
   ...rest
 }: InputI) => {
+  const [value, setValue] = useState(defaultValue);
+
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   return (
     <div className={styles["input-container"]}>
       <label htmlFor={name} className={styles["input-container__label"]}>
@@ -32,6 +42,8 @@ const Input = ({
         className={styles["input-container__input"]}
         {...register(name, { required: true })}
         {...rest}
+        value={value}
+        onChange={handleChange}
       />
       {errors[name] && <ErrorMessage text={errors[name].message} />}
     </div>

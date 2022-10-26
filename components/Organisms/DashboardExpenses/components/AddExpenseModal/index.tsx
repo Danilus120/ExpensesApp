@@ -1,18 +1,19 @@
-import Button from "@/Atoms/Button";
+import React from "react";
+
+import Form from "@/Molecules/Form";
+import Modal from "@/Molecules/Modal";
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
+
 import { categories } from "@/constants/categories";
 import { currency_list } from "@/constants/currencyList";
 import { expenseSchema } from "@/constants/validationSchema";
-import { useData } from "@/context/UserDataContext";
-import Form from "@/Molecules/Form";
-import Modal from "@/Molecules/Modal";
-import { uuidv4 } from "@firebase/util";
-import React from "react";
-import { DataActionTypes } from "@/context/userData/reducer/dataReducer.interface";
 
-import styles from "./styles.module.scss";
+import { useData } from "@/context/UserDataContext";
+
 import { formatDate } from "utils/utils";
+
+import { uuidv4 } from "@firebase/util";
 
 interface AddExpenseModalProps {
   isOpen: boolean;
@@ -70,20 +71,6 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
           />
 
           <Input label="Description" name="description" />
-
-          {/* <div className={styles["button-wrapper"]}>
-            <Button variant="contained" color="success" type="submit">
-              Submit
-            </Button>
-
-            <Button variant="contained" color="warning">
-              Clear
-            </Button>
-
-            <Button variant="contained" color="error" callbackFn={handleToggle}>
-              Close
-            </Button>
-          </div> */}
         </Form>
       </Modal>
     </>

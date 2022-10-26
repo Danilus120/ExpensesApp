@@ -66,15 +66,17 @@ function Table({ data, columns, options, deleteRecordFn }: TableI) {
 
   return (
     <div className={styles["container"]}>
-      <table {...getTableProps()} className={styles["table"]}>
-        <TableHead headerGroups={headerGroups} />
-        <TableBody
-          getTableBodyProps={getTableBodyProps}
-          page={page}
-          prepareRow={prepareRow}
-          deleteRecordFn={deleteRecordFn}
-        />
-      </table>
+      <div className={styles["table__wrapper"]}>
+        <table {...getTableProps()} className={styles["table"]}>
+          <TableHead headerGroups={headerGroups} />
+          <TableBody
+            getTableBodyProps={getTableBodyProps}
+            page={page}
+            prepareRow={prepareRow}
+            deleteRecordFn={deleteRecordFn}
+          />
+        </table>
+      </div>
       <Pagination tableInstance={tableInstance} options={options} />
     </div>
   );

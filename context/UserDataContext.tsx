@@ -65,9 +65,9 @@ export const UserDataContextProvider = ({
           id: uid,
         },
       });
-
-      setIsLoading(false);
     } catch (err) {
+      console.log(err);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -94,6 +94,7 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.addExpense,
       payload: {
         ...expense,
+        // TODO: To reducer below
         id: uuid(),
         date: expense.date.getTime(),
       },

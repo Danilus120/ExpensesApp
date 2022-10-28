@@ -54,6 +54,7 @@ export const dataReducer = (
       };
       return {
         ...state,
+        // TODO: redute remove / add MAP
         expenses: state.expenses.reduce((acc, currEl) => {
           currEl.id !== payload.id
             ? acc.push(currEl)

@@ -5,6 +5,7 @@ import ErrorMessage from "@/Atoms/ErrorMessage";
 
 import { customStyles } from "./customStyles";
 import styles from "./styles.module.scss";
+import { useEffect } from "react";
 
 interface InputI
   extends Partial<Pick<FieldValues, "register" | "errors" | "control">> {
@@ -15,6 +16,7 @@ interface InputI
     label: string;
     value: string;
   }[];
+  setValue?: any;
 }
 
 export default function Select({
@@ -24,7 +26,12 @@ export default function Select({
   label,
   control,
   name,
+  setValue,
 }: InputI) {
+  useEffect(() => {
+    setValue(name, defaultValue);
+  }, [defaultValue]);
+
   return (
     <div className={styles["input-container"]}>
       <label htmlFor={name} className={styles["input-container__label"]}>

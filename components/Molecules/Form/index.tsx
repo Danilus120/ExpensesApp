@@ -38,6 +38,7 @@ export default function Form({
     formState: { errors },
     control,
     reset,
+    setValue,
   } = useForm({
     defaultValues,
     resolver: yupResolver(schema),
@@ -63,6 +64,7 @@ export default function Form({
                     errors,
                     control,
                     key: child.props.name,
+                    setValue,
                   },
                 })
               : child;

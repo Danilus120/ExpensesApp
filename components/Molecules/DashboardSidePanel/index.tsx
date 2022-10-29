@@ -1,9 +1,10 @@
 import Accordion from "@/Molecules/Accordion";
 import LogoLink from "@/Atoms/LogoLink";
 
-import { accordionItems } from "@/constants/menu";
+import { accordionItems, expensesItems } from "@/constants/menu";
 
 import styles from "./styles.module.scss";
+import StyledLink from "@/Atoms/StyledLink";
 
 interface SidePanelI {
   isOpen: boolean;
@@ -26,9 +27,16 @@ export default function DashboardSidePanel({
         </div>
         <nav className={styles["sidepanel__nav"]}>
           <ul>
-            {accordionItems.map((item) => (
+            {/* {accordionItems.map((item) => (
               <li key={item[0].name}>
                 <Accordion title={item[0].name} options={item} />
+              </li>
+            ))} */}
+            {expensesItems.map((item) => (
+              <li key={item.name}>
+                <StyledLink variant="ghost" href={item.link}>
+                  {item.name}
+                </StyledLink>
               </li>
             ))}
           </ul>

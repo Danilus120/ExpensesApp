@@ -30,4 +30,4 @@ const expensesItems = [
 
 const accordionItems = [expensesItems];
 
-export { accordionItems };
+export { accordionItems, expensesItems };

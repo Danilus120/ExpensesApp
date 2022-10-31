@@ -38,7 +38,7 @@ interface IncomeI {
 interface IncomeFormDataI {
   date: Date;
   title: string;
-  income: number;
+  income: string;
   currency: string;
   description: string;
 }

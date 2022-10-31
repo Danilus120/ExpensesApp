@@ -36,6 +36,16 @@ const expenseSchema = yup
   })
   .required();
 
+const incomeSchema = yup
+  .object({
+    date: yup.date().required(),
+    title: yup.string().required(),
+    income: yup.string().required(),
+    currency: yup.string().required(),
+    descrtiption: yup.string(),
+  })
+  .required();
+
 const loginFormSchema = yup
   .object({
     email: validationObject.email,
@@ -60,6 +70,7 @@ const forgotPasswordSchema = yup
 export {
   settingsSchema,
   expenseSchema,
+  incomeSchema,
   loginFormSchema,
   registerFormSchema,
   forgotPasswordSchema,

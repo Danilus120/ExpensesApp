@@ -1,8 +1,7 @@
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
-import { categories } from "@/constants/categories";
 import { currency_list } from "@/constants/currencyList";
-import { expenseSchema } from "@/constants/validationSchema";
+import { incomeSchema } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
@@ -11,21 +10,21 @@ import React from "react";
 
 import { formatDate } from "utils/utils";
 
-interface EditExpenseModalProps {
+interface EditIncomeModalProps {
   isOpen: boolean;
   handleToggle: () => void;
   id: string;
 }
 
-function EditExpenseModal({
+function EditIncomeModal({
   isOpen,
   handleToggle,
   id: recordID,
-}: EditExpenseModalProps) {
+}: EditIncomeModalProps) {
   const { actions, userData } = useData();
 
-  const dataFromRecord = userData.expenses.find(
-    (expense) => expense.id === recordID
+  const dataFromRecord = userData.income.find(
+    (income) => income.id === recordID
   );
 
   if (!dataFromRecord) return <></>;
@@ -42,7 +41,7 @@ function EditExpenseModal({
       >
         <Form
           onSubmit={(data) => {
-            actions.updateExpense(data.id, data);
+            actions.updateIncome(data.id, data);
             handleToggle();
           }}
           options={{
@@ -50,22 +49,15 @@ function EditExpenseModal({
             haveClearButton: true,
             resetAfterSubmit: true,
           }}
-          schema={expenseSchema}
+          schema={incomeSchema}
           handleToggle={handleToggle}
           defaultValues={data}
         >
           <Input type="date" label="Date" name="date" />
 
-          <Select
-            label="Category"
-            name="category"
-            options={categories}
-            defaultValue={data.category}
-          />
+          <Input label="Title" name="title" />
 
-          <Input label="Shop Name" name="shopName" />
-
-          <Input type="text" label="Price" name="price" />
+          <Input type="text" label="Income Value" name="income" />
 
           <Select
             label="Currency"
@@ -86,4 +78,4 @@ function EditExpenseModal({
   );
 }
 
-export default EditExpenseModal;
+export default EditIncomeModal;

@@ -5,9 +5,8 @@ import Modal from "@/Molecules/Modal";
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
 
-import { categories } from "@/constants/categories";
 import { currency_list } from "@/constants/currencyList";
-import { expenseSchema } from "@/constants/validationSchema";
+import { incomeSchema } from "@/constants/validationSchema";
 
 import { useData } from "@/context/UserDataContext";
 
@@ -15,18 +14,18 @@ import { formatDate } from "utils/utils";
 
 import { uuidv4 } from "@firebase/util";
 
-interface AddExpenseModalProps {
+interface AddIncomeModalProps {
   isOpen: boolean;
   handleToggle: () => void;
 }
 
-function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
+function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
   const { userData, actions } = useData();
 
   return (
     <>
       <Modal
-        title="Add Expense"
+        title="Add Income"
         isOpened={isOpen}
         handleToggle={handleToggle}
         size="large"
@@ -37,7 +36,7 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
             handleToggle();
           }}
           options={{ haveButtons: true, haveClearButton: true }}
-          schema={expenseSchema}
+          schema={incomeSchema}
           handleToggle={handleToggle}
         >
           <Input
@@ -47,16 +46,9 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
             defaultValue={formatDate(new Date().getTime())}
           />
 
-          <Select
-            label="Category"
-            name="category"
-            options={categories}
-            defaultValue={categories[0].value}
-          />
+          <Input label="Title" name="title" />
 
-          <Input label="Shop Name" name="shopName" />
-
-          <Input type="text" label="Price" name="price" />
+          <Input type="text" label="Income Value" name="income" />
 
           <Select
             label="Currency"
@@ -77,4 +69,4 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
   );
 }
 
-export default AddExpenseModal;
+export default AddIncomeModal;

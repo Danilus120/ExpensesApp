@@ -4,14 +4,14 @@ import { FiPlus } from "react-icons/fi";
 import Table from "@/Molecules/Table";
 import Button from "@/Atoms/Button";
 
-import AddExpenseModal from "./components/AddIncomeModal";
-import EditExpenseModal from "./components/EditIncomeModal";
+import AddIncomeModal from "./components/AddIncomeModal";
+import EditIncomeModal from "./components/EditIncomeModal";
 
 import { useData } from "@/context/UserDataContext";
 
 import { useModal } from "@/hooks/useModal";
 
-import { expensesTableColumns } from "@/constants/tableColumns";
+import { incomeTableColumns } from "@/constants/tableColumns";
 
 function DashboardIncome() {
   const [isAddIncomeModalOpen, setIsAddIncomeModalOpen] = useState(false);
@@ -43,17 +43,17 @@ function DashboardIncome() {
       </Button>
       <Table
         data={formatedData}
-        columns={expensesTableColumns}
+        columns={incomeTableColumns}
         deleteRecordFn={actions.deleteIncome}
         editRecordFn={setRecordID}
       />
 
-      <AddExpenseModal
+      <AddIncomeModal
         handleToggle={toggleAddIncomeModal}
         isOpen={isAddIncomeModalOpen}
       />
 
-      <EditExpenseModal
+      <EditIncomeModal
         handleToggle={toggleEditIncomeModal}
         isOpen={isEditIncomeModalOpened}
         id={modalRecordID}

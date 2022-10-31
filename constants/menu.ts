@@ -1,19 +1,19 @@
 const expensesItems = [
   {
     name: "Expenses",
-    link: "/expenses",
+    link: "/dashboard/expenses",
   },
   {
     name: "Income",
-    link: "/income",
+    link: "/dashboard/income",
   },
   {
     name: "Investments",
-    link: "/investments",
+    link: "/dashboard/investments",
   },
   {
     name: "Statistics",
-    link: "/statistics",
+    link: "/dashboard/statistics",
   },
 ];
 

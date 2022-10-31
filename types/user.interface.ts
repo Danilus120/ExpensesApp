@@ -35,6 +35,14 @@ interface IncomeI {
   description: string;
 }
 
+interface IncomeFormDataI {
+  date: Date;
+  title: string;
+  income: number;
+  currency: string;
+  description: string;
+}
+
 interface InvestmentI {
   id: string;
   date: number;
@@ -44,4 +52,20 @@ interface InvestmentI {
   description: string;
 }
 
-export type { UserFirebaseI, ExpenseI, IncomeI, InvestmentI, ExpenseFormDataI };
+interface InvestmentFormDataI {
+  date: Date;
+  title: string;
+  value: number;
+  currency: string;
+  description: string;
+}
+
+export type {
+  UserFirebaseI,
+  ExpenseI,
+  IncomeI,
+  InvestmentI,
+  ExpenseFormDataI,
+  IncomeFormDataI,
+  InvestmentFormDataI,
+};

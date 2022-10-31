@@ -1,6 +1,8 @@
 import {
   ExpenseFormDataI,
   ExpenseI,
+  IncomeFormDataI,
+  InvestmentFormDataI,
   UserFirebaseI,
 } from "types/user.interface";
 
@@ -14,22 +16,15 @@ interface UserDataContextI {
   userData: UserFirebaseI;
   actions: {
     updateSettings: (options: { currency: string; timezone: string }) => void;
-    addExpense: (expense: {
-      category: string;
-      currency: string;
-      date: Date;
-      description: string;
-      price: string;
-      shopName: string;
-    }) => void;
+    addExpense: (expense: ExpenseFormDataI) => void;
     deleteExpense: (id: string) => void;
     updateExpense: (id: string, newExpense: ExpenseFormDataI) => void;
-    addIncome: () => void;
+    addIncome: (income: IncomeFormDataI) => void;
     deleteIncome: (id: string) => void;
-    updateIncome: () => void;
-    addInvestment: () => void;
+    updateIncome: (id: string, newIncome: IncomeFormDataI) => void;
+    addInvestment: (investment: InvestmentFormDataI) => void;
     deleteInvestment: (id: string) => void;
-    updateInvestment: () => void;
+    updateInvestment: (id: string, newInvestment: InvestmentFormDataI) => void;
   };
 }
 

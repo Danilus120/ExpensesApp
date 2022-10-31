@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 
 import DashboardLayout from "@/Templates/DashboardTemplate";
+import DashboardIncome from "@/Organisms/DashboardIncome";
 
 const Income: NextPage = () => {
   return (
@@ -9,7 +10,9 @@ const Income: NextPage = () => {
         title: "Income",
         description: "Dashboard of income",
       }}
-    ></DashboardLayout>
+    >
+      <DashboardIncome />
+    </DashboardLayout>
   );
 };
 

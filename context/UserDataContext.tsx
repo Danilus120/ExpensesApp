@@ -13,7 +13,9 @@ import { DataActionTypes } from "@/context/userData/reducer/dataReducer.interfac
 import {
   ExpenseFormDataI,
   ExpenseI,
+  IncomeFormDataI,
   IncomeI,
+  InvestmentFormDataI,
   UserFirebaseI,
 } from "types/user.interface";
 import { uuid } from "uuidv4";
@@ -82,14 +84,7 @@ export const UserDataContextProvider = ({
     });
   };
 
-  const addExpense = (expense: {
-    category: string;
-    currency: string;
-    date: Date;
-    description: string;
-    price: string;
-    shopName: string;
-  }) => {
+  const addExpense = (expense: ExpenseFormDataI) => {
     dispatch({
       type: DataActionTypes.addExpense,
       payload: {
@@ -124,17 +119,73 @@ export const UserDataContextProvider = ({
     });
   };
 
-  const addIncome = () => {};
+  const addIncome = (income: IncomeFormDataI) => {
+    dispatch({
+      type: DataActionTypes.addIncome,
+      payload: {
+        ...income,
+        id: uuid(),
+        date: income.date.getTime(),
+      },
+    });
+  };
 
-  const deleteIncome = (id: string) => {};
+  const deleteIncome = (id: string) => {
+    dispatch({
+      type: DataActionTypes.deleteIncome,
+      payload: id,
+    });
+  };
 
-  const updateIncome = () => {};
+  const updateIncome = (id: string, income: IncomeFormDataI) => {
+    const incomeFromState = userData.income.find(
+      (incomeFromState) => incomeFromState.id === id
+    );
 
-  const addInvestment = () => {};
+    if (!incomeFromState) return;
 
-  const deleteInvestment = (id: string) => {};
+    dispatch({
+      type: DataActionTypes.updateIncome,
+      payload: {
+        id,
+        income,
+      },
+    });
+  };
 
-  const updateInvestment = () => {};
+  const addInvestment = (investment: InvestmentFormDataI) => {
+    dispatch({
+      type: DataActionTypes.addInvestment,
+      payload: {
+        ...investment,
+        id: uuid(),
+        date: investment.date.getTime(),
+      },
+    });
+  };
+
+  const deleteInvestment = (id: string) => {
+    dispatch({
+      type: DataActionTypes.deleteInvestment,
+      payload: id,
+    });
+  };
+
+  const updateInvestment = (id: string, investment: InvestmentFormDataI) => {
+    const investmentFromState = userData.investments.find(
+      (investmentFromState) => investmentFromState.id === id
+    );
+
+    if (!investmentFromState) return;
+
+    dispatch({
+      type: DataActionTypes.updateInvestment,
+      payload: {
+        id,
+        investment,
+      },
+    });
+  };
 
   const actions = {
     updateSettings,

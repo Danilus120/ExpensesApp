@@ -6,6 +6,8 @@ import {
 import {
   ExpenseFormDataI,
   ExpenseI,
+  IncomeI,
+  InvestmentI,
   UserFirebaseI,
 } from "types/user.interface";
 
@@ -78,6 +80,20 @@ export const dataReducer = (
         ...state,
         income: newIncomeDeleteProduct,
       };
+    case DataActionTypes.updateIncome:
+      const newIncome = {
+        ...payload.income,
+        date: payload.income.date.getTime(),
+      };
+      return {
+        ...state,
+        income: state.income.reduce((acc, currEl) => {
+          currEl.id !== payload.id
+            ? acc.push(currEl)
+            : acc.push({ id: currEl.id, ...newIncome });
+          return acc;
+        }, [] as IncomeI[]),
+      };
     case DataActionTypes.addInvestment:
       const newInvestmentsAddProduct = [...state.investments, payload];
 
@@ -93,6 +109,20 @@ export const dataReducer = (
       return {
         ...state,
         investments: newInvestmentsDeleteProduct,
+      };
+    case DataActionTypes.updateInvestment:
+      const newInvestment = {
+        ...payload.investment,
+        date: payload.investment.date.getTime(),
+      };
+      return {
+        ...state,
+        investment: state.investments.reduce((acc, currEl) => {
+          currEl.id !== payload.id
+            ? acc.push(currEl)
+            : acc.push({ id: currEl.id, ...newInvestment });
+          return acc;
+        }, [] as InvestmentI[]),
       };
     default:
       return {

@@ -1,7 +1,9 @@
 import {
   ExpenseFormDataI,
   ExpenseI,
+  IncomeFormDataI,
   IncomeI,
+  InvestmentFormDataI,
   InvestmentI,
 } from "../../../types/user.interface";
 
@@ -13,8 +15,10 @@ export enum DataActionTypes {
   updateExpense = "UPDATE_EXPENSE",
   addIncome = "ADD_INCOME",
   deleteIncome = "DELETE_INCOME",
+  updateIncome = "UPDATE_INCOME",
   addInvestment = "ADD_INVESTMENT",
   deleteInvestment = "DELETE_INVESTMENT",
+  updateInvestment = "UPDATE_INVESTMENT",
 }
 
 export type DataActionType =
@@ -57,10 +61,24 @@ export type DataActionType =
       payload: string;
     }
   | {
+      type: DataActionTypes.updateIncome;
+      payload: {
+        id: string;
+        income: IncomeFormDataI;
+      };
+    }
+  | {
       type: DataActionTypes.addInvestment;
       payload: InvestmentI;
     }
   | {
       type: DataActionTypes.deleteInvestment;
       payload: string;
+    }
+  | {
+      type: DataActionTypes.updateInvestment;
+      payload: {
+        id: string;
+        investment: InvestmentFormDataI;
+      };
     };

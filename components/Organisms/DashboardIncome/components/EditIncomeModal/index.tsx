@@ -1,4 +1,3 @@
-import Button from "@/Atoms/Button";
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
 import { categories } from "@/constants/categories";
@@ -7,11 +6,9 @@ import { expenseSchema } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
-import { uuidv4 } from "@firebase/util";
-import React from "react";
-import { DataActionTypes } from "@/context/userData/reducer/dataReducer.interface";
 
-import styles from "./styles.module.scss";
+import React from "react";
+
 import { formatDate } from "utils/utils";
 
 interface EditExpenseModalProps {

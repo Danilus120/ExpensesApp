@@ -4,8 +4,8 @@ import { FiPlus } from "react-icons/fi";
 import Table from "@/Molecules/Table";
 import Button from "@/Atoms/Button";
 
-import AddExpenseModal from "./components/AddExpenseModal";
-import EditExpenseModal from "./components/EditExpenseModal";
+import AddExpenseModal from "./components/AddIncomeModal";
+import EditExpenseModal from "./components/EditIncomeModal";
 
 import { useData } from "@/context/UserDataContext";
 

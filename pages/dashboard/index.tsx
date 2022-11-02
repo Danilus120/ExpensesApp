@@ -11,6 +11,7 @@ const Dashboard: NextPage = () => {
         description: "Dashboard of expenses app",
       }}
     >
+      {/* TODO: Component must load without reloading page with only route history */}
       <DashboardExpenses />
     </DashboardLayout>
   );

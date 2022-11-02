@@ -30,7 +30,7 @@ interface IncomeI {
   id: string;
   date: number;
   title: string;
-  income: number;
+  income: string;
   currency: string;
   description: string;
 }

@@ -1,5 +1,6 @@
+import { isSameMonth } from "date-fns";
 import { getUsers } from "lib/firebaseMethods";
-import { UserFirebaseI } from "types/user.interface";
+import { ExpenseI, IncomeI } from "types/user.interface";
 
 interface ExpensesI {
   date: number;
@@ -85,4 +86,48 @@ function formatDate(date: string | number) {
 //   return user as UserFirebaseI;
 // };
 
-export { getDataHeaders, isUserInDB, formatDate };
+const getValueOfExpensesInActualMonth = (expenses: ExpenseI[]) => {
+  const expensesFromMonth = getAllExpensesFromActualMonth(expenses);
+
+  const value = expensesFromMonth.reduce((acc, expense) => {
+    acc += Number(expense.price);
+    return acc;
+  }, 0);
+
+  return value;
+};
+
+const getAllExpensesFromActualMonth = (expenses: ExpenseI[]) => {
+  const expensesFromMonth = expenses.filter((expense) =>
+    isSameMonth(expense.date, new Date())
+  );
+
+  return expensesFromMonth;
+};
+
+const getValueOfIncomesInActualMonth = (incomes: IncomeI[]) => {
+  const incomesFromMonth = getAllIncomeFromActualMonth(incomes);
+
+  const value = incomesFromMonth.reduce((acc, income) => {
+    acc += Number(income.income);
+    return acc;
+  }, 0);
+
+  return value;
+};
+
+const getAllIncomeFromActualMonth = (incomes: IncomeI[]) => {
+  const incomesFromMonth = incomes.filter((income) =>
+    isSameMonth(income.date, new Date())
+  );
+
+  return incomesFromMonth;
+};
+
+export {
+  getDataHeaders,
+  isUserInDB,
+  formatDate,
+  getValueOfExpensesInActualMonth,
+  getValueOfIncomesInActualMonth,
+};

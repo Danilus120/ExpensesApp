@@ -1,23 +1,35 @@
 import { useData } from "@/context/UserDataContext";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getChartsDataFromExpenses } from "utils/utils";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import Card from "@/Atoms/Card";
+
+import styles from "./styles.module.scss";
+import { isSameMonth } from "date-fns/esm";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.defaults.color = "#fff";
 
 function DashboardStatistics() {
   const { userData } = useData();
 
-  const chartData = getChartsDataFromExpenses(userData.expenses);
+  const expensesFromCurrMonth = userData.expenses.filter((expense) =>
+    isSameMonth(expense.date, new Date())
+  );
+
+  const chartsData = {
+    monthlyExpenses: getChartsDataFromExpenses(expensesFromCurrMonth),
+  };
 
   const data = {
-    labels: chartData.map((data) => data.name),
+    labels: chartsData.monthlyExpenses.map((data) => data.name),
     datasets: [
       {
         label: "Categories",
-        data: chartData.map((data) => data.value),
+        data: chartsData.monthlyExpenses.map((data) => data.value),
+        color: "#fff",
         backgroundColor: [
           "rgba(255, 99, 132, 1)",
           "rgba(54, 162, 235, 1)",
@@ -41,7 +53,23 @@ function DashboardStatistics() {
 
   return (
     <>
-      <Pie data={data} />
+      <div className={styles["charts"]}>
+        <div className={styles["chart"]}>
+          <Card title="Monthly expenses">
+            <Pie data={data} />
+          </Card>
+        </div>
+        <div className={styles["chart"]}>
+          <Card>
+            <Pie data={data} />
+          </Card>
+        </div>
+        <div className={styles["chart"]}>
+          <Card>
+            <Pie data={data} />
+          </Card>
+        </div>
+      </div>
     </>
   );
 }

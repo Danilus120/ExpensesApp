@@ -1,0 +1,12 @@
+.charts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .chart {
+    width: 50%;
+
+    padding: 0px 10px;
+    margin: 10px 0px;
+  }
+}

@@ -1,0 +1,23 @@
+.card {
+  display: flex;
+
+  padding: 1.25rem;
+
+  flex-direction: column;
+
+  word-wrap: break-word;
+
+  background-color: #2b2e3b;
+  background-clip: border-box;
+
+  border: 0 solid #343747;
+  border-radius: 0.25rem;
+
+  &__title {
+    margin: 0 0 10px;
+    padding: 0;
+  }
+
+  &__content {
+  }
+}

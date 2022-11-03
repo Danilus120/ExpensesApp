@@ -1,3 +1,4 @@
+import { categories } from "@/constants/categories";
 import { isSameMonth } from "date-fns";
 import { getUsers } from "lib/firebaseMethods";
 import { ExpenseI, IncomeI } from "types/user.interface";
@@ -124,10 +125,32 @@ const getAllIncomeFromActualMonth = (incomes: IncomeI[]) => {
   return incomesFromMonth;
 };
 
+const getChartsDataFromExpenses = (expenses: ExpenseI[]) => {
+  const chartData = categories.reduce((accumulator, category) => {
+    // Filter expenses having that category
+    const filteredExpenses = expenses.filter(
+      (expense) => expense.category === category.value
+    );
+
+    // Accumulate expenses
+    const accumulateCategoryValue = filteredExpenses.reduce((acc, expense) => {
+      acc += Number(expense.price);
+      return acc;
+    }, 0);
+
+    accumulator.push({ name: category.label, value: accumulateCategoryValue });
+
+    return accumulator;
+  }, [] as { name: string; value: number }[]);
+
+  return chartData;
+};
+
 export {
   getDataHeaders,
   isUserInDB,
   formatDate,
   getValueOfExpensesInActualMonth,
   getValueOfIncomesInActualMonth,
+  getChartsDataFromExpenses,
 };

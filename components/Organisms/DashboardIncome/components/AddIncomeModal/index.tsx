@@ -38,13 +38,9 @@ function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
           options={{ haveButtons: true, haveClearButton: true }}
           schema={incomeSchema}
           handleToggle={handleToggle}
+          defaultValues={{ date: formatDate(new Date().getTime()) }}
         >
-          <Input
-            type="date"
-            label="Date"
-            name="date"
-            defaultValue={formatDate(new Date().getTime())}
-          />
+          <Input type="date" label="Date" name="date" />
 
           <Input label="Title" name="title" />
 
@@ -53,6 +49,7 @@ function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
           <Select
             label="Currency"
             name="currency"
+            // TODO: currencySelectOptions
             options={currency_list.map((currency) => {
               return {
                 label: `${currency.name} (${currency.code})`,

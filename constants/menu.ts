@@ -11,23 +11,27 @@ const expensesItems = [
     name: "Investments",
     link: "/dashboard/investments",
   },
+  // {
+  //   name: "Statistics",
+  //   link: "/dashboard/statistics",
+  // },
+];
+
+const statistics = [
   {
-    name: "Statistics",
-    link: "/dashboard/statistics",
+    name: "Weekly",
+    link: "/dashboard/statistics/weekly",
+  },
+  {
+    name: "Monthly",
+    link: "/dashboard/statistics/monthly",
+  },
+  {
+    name: "Yearly",
+    link: "/dashboard/statistics/yearly",
   },
 ];
 
-// const reminderItems = [
-//   {
-//     name: "Reminder",
-//     link: "/reminder",
-//   },
-//   {
-//     name: "Options",
-//     link: "/oprions",
-//   },
-// ];
-
 const accordionItems = [expensesItems];
 
-export { accordionItems, expensesItems };
+export { accordionItems, expensesItems, statistics };

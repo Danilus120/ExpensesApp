@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 
 import DashboardLayout from "@/Templates/DashboardTemplate";
-import DashboardStatistics from "@/Organisms/DashboardStatistics";
+import DashboardStatisticsMonthly from "@/Organisms/DashboardStatistics/weekly";
 
-const Statistics: NextPage = () => {
+const MonthlyStatistics: NextPage = () => {
   return (
     <DashboardLayout
       metaOptions={{
@@ -11,9 +11,9 @@ const Statistics: NextPage = () => {
         description: "Dashboard of statistics",
       }}
     >
-      <DashboardStatistics />
+      <DashboardStatisticsMonthly />
     </DashboardLayout>
   );
 };
 
-export default Statistics;
+export default MonthlyStatistics;

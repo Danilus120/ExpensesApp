@@ -133,14 +133,15 @@ const getChartsDataFromExpenses = (expenses: ExpenseI[]) => {
     );
 
     // Accumulate expenses
-    const accumulateCategoryValue = filteredExpenses.reduce((acc, expense) => {
-      acc += Number(expense.price);
-      return acc;
-    }, 0);
+    const accumulateCategoryValue = filteredExpenses.reduce(
+      (acc, expense) => acc + Number(expense.price),
+      0
+    );
 
-    accumulator.push({ name: category.label, value: accumulateCategoryValue });
-
-    return accumulator;
+    return [
+      ...accumulator,
+      { name: category.label, value: accumulateCategoryValue },
+    ];
   }, [] as { name: string; value: number }[]);
 
   return chartData;

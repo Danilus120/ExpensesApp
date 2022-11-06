@@ -6,13 +6,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import Card from "@/Atoms/Card";
 
-import styles from "./styles.module.scss";
-import { isSameMonth } from "date-fns/esm";
+import styles from "../styles.module.scss";
+import { isSameMonth } from "date-fns";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.defaults.color = "#fff";
 
-function DashboardStatistics() {
+function DashboardStatisticsWeekly() {
   const { userData } = useData();
 
   const expensesFromCurrMonth = userData.expenses.filter((expense) =>
@@ -23,6 +23,7 @@ function DashboardStatistics() {
     monthlyExpenses: getChartsDataFromExpenses(expensesFromCurrMonth),
   };
 
+  // getChartData(chartsData.monthlyExpenses)
   const data = {
     labels: chartsData.monthlyExpenses.map((data) => data.name),
     datasets: [
@@ -74,4 +75,4 @@ function DashboardStatistics() {
   );
 }
 
-export default DashboardStatistics;
+export default DashboardStatisticsWeekly;

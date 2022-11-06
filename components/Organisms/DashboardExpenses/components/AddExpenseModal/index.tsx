@@ -36,7 +36,11 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
             actions.addExpense(data);
             handleToggle();
           }}
-          options={{ haveButtons: true, haveClearButton: true }}
+          options={{
+            haveButtons: true,
+            haveClearButton: true,
+            resetAfterSubmit: true,
+          }}
           schema={expenseSchema}
           handleToggle={handleToggle}
         >

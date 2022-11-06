@@ -1,7 +1,7 @@
 import Accordion from "@/Molecules/Accordion";
 import LogoLink from "@/Atoms/LogoLink";
 
-import { accordionItems, expensesItems } from "@/constants/menu";
+import { accordionItems, expensesItems, statistics } from "@/constants/menu";
 
 import styles from "./styles.module.scss";
 import StyledLink from "@/Atoms/StyledLink";
@@ -39,6 +39,7 @@ export default function DashboardSidePanel({
                 </StyledLink>
               </li>
             ))}
+            <Accordion title="Statistics" options={statistics} />
           </ul>
         </nav>
       </div>

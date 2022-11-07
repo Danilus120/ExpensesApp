@@ -72,21 +72,6 @@ function formatDate(date: string | number) {
   return [year, month, day].join("-");
 }
 
-// const getUser = async (uid: string) => {
-//   const userData = await getUsers();
-
-//   const res = await Promise.all(userData);
-
-//   const user = res.find((el) => {
-//     console.log(el, uid);
-//     return el.id === uid;
-//   });
-
-//   console.log(user, uid);
-
-//   return user as UserFirebaseI;
-// };
-
 const getValueOfExpensesInActualMonth = (expenses: ExpenseI[]) => {
   const expensesFromMonth = getAllExpensesFromActualMonth(expenses);
 
@@ -125,33 +110,12 @@ const getAllIncomeFromActualMonth = (incomes: IncomeI[]) => {
   return incomesFromMonth;
 };
 
-const getChartsDataFromExpenses = (expenses: ExpenseI[]) => {
-  const chartData = categories.reduce((accumulator, category) => {
-    // Filter expenses having that category
-    const filteredExpenses = expenses.filter(
-      (expense) => expense.category === category.value
-    );
-
-    // Accumulate expenses
-    const accumulateCategoryValue = filteredExpenses.reduce(
-      (acc, expense) => acc + Number(expense.price),
-      0
-    );
-
-    return [
-      ...accumulator,
-      { name: category.label, value: accumulateCategoryValue },
-    ];
-  }, [] as { name: string; value: number }[]);
-
-  return chartData;
-};
-
 export {
   getDataHeaders,
   isUserInDB,
   formatDate,
   getValueOfExpensesInActualMonth,
   getValueOfIncomesInActualMonth,
-  getChartsDataFromExpenses,
+  getAllIncomeFromActualMonth,
+  getAllExpensesFromActualMonth,
 };

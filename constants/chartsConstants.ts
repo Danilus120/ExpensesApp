@@ -1,3 +1,13 @@
+const daysLabels = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
 const monthsLabels = [
   "January",
   "February",
@@ -26,4 +36,4 @@ const barOptions = {
   },
 };
 
-export { monthsLabels, barOptions };
+export { daysLabels, monthsLabels, barOptions };

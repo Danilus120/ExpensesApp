@@ -6,29 +6,13 @@ import {
   getYearComparisonData,
 } from "utils/chartsUtils";
 
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-} from "chart.js";
+import Chart from "chart.js/auto";
 import { Pie, Bar } from "react-chartjs-2";
 import Card from "@/Atoms/Card";
 
 import styles from "../styles.module.scss";
 
-ChartJS.register(
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement
-);
-ChartJS.defaults.color = "#fff";
+Chart;
 
 function DashboardStatisticsYearly() {
   const { userData } = useData();
@@ -39,31 +23,54 @@ function DashboardStatisticsYearly() {
     comparison: getYearComparisonData(userData.expenses, userData.income),
   };
 
-  const options = {
+  const optionsBar = {
     maintainAspectRatio: false,
+    color: "#8f8f8f",
+    scales: {
+      x: {
+        grid: {
+          color: "#555555",
+        },
+        ticks: {
+          color: "#8f8f8f",
+        },
+      },
+      y: {
+        grid: {
+          color: "#555555",
+        },
+        ticks: {
+          color: "#8f8f8f",
+        },
+      },
+    },
+  };
+
+  const optionsPie = {
+    color: "#8f8f8f",
   };
 
   return (
     <>
       <div className={styles["charts"]}>
+        <div className={`${styles["chart"]} ${styles["fullWidth"]}`}>
+          <Card title="Comparison Expenses / Income">
+            <Bar data={chartsData.comparison} options={optionsBar} />
+          </Card>
+        </div>
         <div className={styles["chart"]}>
           <Card title="Yearly expenses">
-            <Pie data={chartsData.yearlyExpenses} />
+            <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
           </Card>
         </div>
         <div className={styles["chart"]}>
           <Card title="Yearly Income">
-            <Pie data={chartsData.yearlyIncome} />
+            <Pie data={chartsData.yearlyIncome} options={optionsPie} />
           </Card>
         </div>
         <div className={styles["chart"]}>
           <Card title="Yearly Investments">
-            <Pie data={chartsData.yearlyExpenses} />
-          </Card>
-        </div>
-        <div className={`${styles["chart"]} ${styles["fullWidth"]}`}>
-          <Card title="Comparison Expenses / Income">
-            <Bar data={chartsData.comparison} options={options} />
+            <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
           </Card>
         </div>
       </div>

@@ -16,6 +16,8 @@ export default function Modal({
   isOpened,
   size = "medium",
 }: ModalI) {
+  // TODO: How to handle modal Portal?
+
   // const modalContent = isOpened ? (
   //   <div className={`${styles["modal"]} ${isOpened && styles["show"]}`}>
   //     <div
@@ -46,6 +48,11 @@ export default function Modal({
 
   return ReactDOM.createPortal(
     modalContent,
-    document.getElementById("modal-root")!
+    document.getElementById("portal-root")!
   );
+
+  // return ReactDOM.createPortal(
+  //   modalContent,
+  //   document.getElementById("modal-root")!
+  // );
 }

@@ -1,9 +1,88 @@
 import { categories } from "@/constants/categories";
+import { monthsLabels } from "@/constants/chartsConstants";
 import { chartColors } from "@/constants/colors";
 import { isSameMonth, isSameWeek, isSameYear } from "date-fns";
 import { ExpenseI, IncomeI } from "types/user.interface";
 
 type TimeRangeProps = "week" | "month" | "year";
+
+const getYearComparisonData = (expenses: ExpenseI[], incomes: IncomeI[]) => {
+  const timeDependenceExpenses = getDataFromTimeRange(expenses, "year");
+  const timeDependenceIncomes = getDataFromTimeRange(incomes, "year");
+
+  // Generate array of numbers (12) from expenses / incomes (ex. [120, 145, 487, 484, 452, 266, 254, 877, 933, 874, 120, 320])
+
+  const arrayOfExpensesValuesSortedBymonths = sortExpensesDataByMonths(
+    timeDependenceExpenses
+  );
+  const arrayOfIncomeValuesSortedBymonths = sortIncomeDataByMonths(
+    timeDependenceIncomes
+  );
+
+  const data = generateBarData(
+    arrayOfExpensesValuesSortedBymonths,
+    arrayOfIncomeValuesSortedBymonths
+  );
+
+  return data;
+};
+
+// TODO: standarive values forms (price / income to VALUE)
+const sortExpensesDataByMonths = <T extends { date: number; price: number }>(
+  data: T[]
+) => {
+  const sortedData = monthsLabels.map((el, i) => {
+    const monthData = data.filter((el) => new Date(el.date).getMonth() === i);
+
+    const sumOfValue = monthData.reduce((acc, element) => {
+      acc += element.price;
+
+      return acc;
+    }, 0);
+
+    return sumOfValue;
+  });
+
+  return sortedData;
+};
+
+const sortIncomeDataByMonths = <T extends { date: number; income: number }>(
+  data: T[]
+) => {
+  const sortedData = monthsLabels.map((el, i) => {
+    const monthData = data.filter((el) => new Date(el.date).getMonth() === i);
+
+    const sumOfValue = monthData.reduce((acc, element) => {
+      acc += element.income;
+
+      return acc;
+    }, 0);
+
+    return sumOfValue;
+  });
+
+  return sortedData;
+};
+
+const generateBarData = (expensesData: number[], incomesData: number[]) => {
+  const data = {
+    labels: monthsLabels,
+    datasets: [
+      {
+        label: "Expenses",
+        data: expensesData,
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+      {
+        label: "Incomes",
+        data: incomesData,
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+    ],
+  };
+
+  return data;
+};
 
 const getExpensesChartData = (
   expenses: ExpenseI[],
@@ -15,7 +94,7 @@ const getExpensesChartData = (
     timeDependenceExpenses
   );
 
-  const chartData = generateChartData(chartDataFromExpenses);
+  const chartData = generatePieData(chartDataFromExpenses);
 
   return chartData;
 };
@@ -28,12 +107,12 @@ const getIncomeChartData = (
 
   const chartDataFromIncomes = getChartsDataFromIncomes(timeDependenceIncomes);
 
-  const chartData = generateChartData(chartDataFromIncomes);
+  const chartData = generatePieData(chartDataFromIncomes);
 
   return chartData;
 };
 
-const generateChartData = (
+const generatePieData = (
   data: { name: string; value: number }[],
   label: string = "Title"
 ) => {
@@ -144,6 +223,7 @@ const getUniqueTitlesOfIncomes = (incomes: IncomeI[]) => {
 };
 
 export {
+  getYearComparisonData,
   getChartsDataFromExpenses,
   getChartsDataFromIncomes,
   getExpensesChartData,

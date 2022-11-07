@@ -19,5 +19,12 @@
   }
 
   &__content {
+    height: 30vh;
+    position: relative;
+
+    @media (min-width: 768px) {
+      height: unset;
+      position: unset;
+    }
   }
 }

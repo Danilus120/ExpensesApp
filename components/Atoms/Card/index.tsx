@@ -8,7 +8,6 @@ interface CardProps {
 }
 
 function Card({ children, title }: CardProps) {
-  console.log(title);
   return (
     <div className={styles["card"]}>
       {title && <h4 className={styles["card__title"]}>{title}</h4>}

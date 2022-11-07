@@ -1,14 +1,33 @@
 import { useData } from "@/context/UserDataContext";
 
-import { getExpensesChartData, getIncomeChartData } from "utils/chartsUtils";
+import {
+  getExpensesChartData,
+  getIncomeChartData,
+  getYearComparisonData,
+} from "utils/chartsUtils";
 
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+} from "chart.js";
+import { Pie, Bar } from "react-chartjs-2";
 import Card from "@/Atoms/Card";
 
 import styles from "../styles.module.scss";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement
+);
 ChartJS.defaults.color = "#fff";
 
 function DashboardStatisticsYearly() {
@@ -17,6 +36,11 @@ function DashboardStatisticsYearly() {
   const chartsData = {
     yearlyExpenses: getExpensesChartData(userData.expenses, "year"),
     yearlyIncome: getIncomeChartData(userData.income, "year"),
+    comparison: getYearComparisonData(userData.expenses, userData.income),
+  };
+
+  const options = {
+    maintainAspectRatio: false,
   };
 
   return (
@@ -35,6 +59,11 @@ function DashboardStatisticsYearly() {
         <div className={styles["chart"]}>
           <Card title="Yearly Investments">
             <Pie data={chartsData.yearlyExpenses} />
+          </Card>
+        </div>
+        <div className={`${styles["chart"]} ${styles["fullWidth"]}`}>
+          <Card title="Comparison Expenses / Income">
+            <Bar data={chartsData.comparison} options={options} />
           </Card>
         </div>
       </div>

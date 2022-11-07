@@ -1,4 +1,10 @@
+// TODO: ADD ICONS TO MENU
+
 const expensesItems = [
+  {
+    name: "Dashboard",
+    link: "/dashboard",
+  },
   {
     name: "Expenses",
     link: "/dashboard/expenses",
@@ -11,10 +17,6 @@ const expensesItems = [
     name: "Investments",
     link: "/dashboard/investments",
   },
-  // {
-  //   name: "Statistics",
-  //   link: "/dashboard/statistics",
-  // },
 ];
 
 const statistics = [

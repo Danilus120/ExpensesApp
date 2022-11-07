@@ -2,7 +2,7 @@ import Button from "@/Atoms/Button";
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
 import { categories } from "@/constants/categories";
-import { currency_list } from "@/constants/currencyList";
+import { currencySelectOptions, currency_list } from "@/constants/currencyList";
 import { expenseSchema } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";
@@ -73,12 +73,7 @@ function EditExpenseModal({
           <Select
             label="Currency"
             name="currency"
-            options={currency_list.map((currency) => {
-              return {
-                label: `${currency.name} (${currency.code})`,
-                value: currency.code,
-              };
-            })}
+            options={currencySelectOptions}
             defaultValue={data.currency}
           />
 

@@ -6,7 +6,7 @@ import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
 
 import { categories } from "@/constants/categories";
-import { currency_list } from "@/constants/currencyList";
+import { currencySelectOptions, currency_list } from "@/constants/currencyList";
 import { expenseSchema } from "@/constants/validationSchema";
 
 import { useData } from "@/context/UserDataContext";
@@ -45,12 +45,7 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
           handleToggle={handleToggle}
           defaultValues={{ date: formatDate(new Date().getTime()) }}
         >
-          <Input
-            type="date"
-            label="Date"
-            name="date"
-            defaultValue={formatDate(new Date().getTime())}
-          />
+          <Input type="date" label="Date" name="date" />
 
           <Select
             label="Category"
@@ -66,12 +61,7 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
           <Select
             label="Currency"
             name="currency"
-            options={currency_list.map((currency) => {
-              return {
-                label: `${currency.name} (${currency.code})`,
-                value: currency.code,
-              };
-            })}
+            options={currencySelectOptions}
             defaultValue={userData.default_Currency}
           />
 

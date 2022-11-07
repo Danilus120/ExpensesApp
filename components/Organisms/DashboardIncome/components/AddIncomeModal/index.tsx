@@ -5,7 +5,7 @@ import Modal from "@/Molecules/Modal";
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
 
-import { currency_list } from "@/constants/currencyList";
+import { currencySelectOptions, currency_list } from "@/constants/currencyList";
 import { incomeSchema } from "@/constants/validationSchema";
 
 import { useData } from "@/context/UserDataContext";
@@ -35,7 +35,11 @@ function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
             actions.addIncome(data);
             handleToggle();
           }}
-          options={{ haveButtons: true, haveClearButton: true }}
+          options={{
+            haveButtons: true,
+            haveClearButton: true,
+            resetAfterSubmit: true,
+          }}
           schema={incomeSchema}
           handleToggle={handleToggle}
           defaultValues={{ date: formatDate(new Date().getTime()) }}
@@ -49,13 +53,7 @@ function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
           <Select
             label="Currency"
             name="currency"
-            // TODO: currencySelectOptions
-            options={currency_list.map((currency) => {
-              return {
-                label: `${currency.name} (${currency.code})`,
-                value: currency.code,
-              };
-            })}
+            options={currencySelectOptions}
             defaultValue={userData.default_Currency}
           />
 

@@ -89,7 +89,6 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.addExpense,
       payload: {
         ...expense,
-        // TODO: To reducer below
         id: uuid(),
         date: expense.date.getTime(),
       },

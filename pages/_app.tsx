@@ -4,9 +4,12 @@ import { AuthContextProvider } from "../context/auth/AuthContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AuthContextProvider>
-      <Component {...pageProps} />
-    </AuthContextProvider>
+    <>
+      <AuthContextProvider>
+        <Component {...pageProps} />
+      </AuthContextProvider>
+      <div id="portal-root"></div>
+    </>
   );
 }
 

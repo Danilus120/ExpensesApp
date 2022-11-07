@@ -32,10 +32,16 @@ export default function DashboardLayout({
       </Head>
       <UserDataContextProvider>
         <div className={styles.main}>
-          <DashboardSidePanel
-            isOpen={isSidepanelOpen}
-            toggleSidepanel={toggleSidepanel}
-          />
+          <div
+            className={`${styles["sidepanel__container"]} ${
+              isSidepanelOpen && styles["sidepanel__container--active"]
+            }`}
+          >
+            <DashboardSidePanel
+              isOpen={isSidepanelOpen}
+              toggleSidepanel={toggleSidepanel}
+            />
+          </div>
           <div className={styles.container}>
             <DashboardNavigation toggleSidepanel={toggleSidepanel} />
             <main className={styles.content}>{children}</main>

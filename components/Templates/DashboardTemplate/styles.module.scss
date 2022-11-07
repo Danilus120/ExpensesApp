@@ -1,6 +1,16 @@
 .main {
   display: flex;
 
+  .sidepanel__container {
+    width: 0;
+
+    transition: all 0.2s ease-in-out;
+
+    &--active {
+      width: 250px;
+    }
+  }
+
   .container {
     display: flex;
     flex-direction: column;

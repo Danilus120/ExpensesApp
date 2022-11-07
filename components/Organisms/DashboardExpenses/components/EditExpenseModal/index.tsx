@@ -68,7 +68,7 @@ function EditExpenseModal({
 
           <Input label="Shop Name" name="shopName" />
 
-          <Input type="text" label="Price" name="price" />
+          <Input type="number" step="0.01" label="Price" name="price" />
 
           <Select
             label="Currency"

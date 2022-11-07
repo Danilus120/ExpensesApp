@@ -29,7 +29,7 @@ const expenseSchema = yup
   .object({
     date: yup.date().required(),
     category: yup.string().required(),
-    price: yup.string().required(),
+    price: yup.number().required(),
     currency: yup.string().required(),
     descrtiption: yup.string(),
     shopName: yup.string().required(),
@@ -40,7 +40,7 @@ const incomeSchema = yup
   .object({
     date: yup.date().required(),
     title: yup.string().required(),
-    income: yup.string().required(),
+    income: yup.number().required(),
     currency: yup.string().required(),
     descrtiption: yup.string(),
   })

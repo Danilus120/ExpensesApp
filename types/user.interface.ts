@@ -12,7 +12,7 @@ interface ExpenseI {
   date: number;
   category: string;
   shopName: string;
-  price: string;
+  price: number;
   currency: string;
   description: string;
 }
@@ -21,7 +21,7 @@ interface ExpenseFormDataI {
   date: Date;
   category: string;
   shopName: string;
-  price: string;
+  price: number;
   currency: string;
   description: string;
 }
@@ -30,7 +30,7 @@ interface IncomeI {
   id: string;
   date: number;
   title: string;
-  income: string;
+  income: number;
   currency: string;
   description: string;
 }
@@ -38,7 +38,7 @@ interface IncomeI {
 interface IncomeFormDataI {
   date: Date;
   title: string;
-  income: string;
+  income: number;
   currency: string;
   description: string;
 }

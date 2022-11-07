@@ -44,7 +44,7 @@ function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
 
           <Input label="Title" name="title" />
 
-          <Input type="text" label="Income Value" name="income" />
+          <Input type="number" step="0.01" label="Income Value" name="income" />
 
           <Select
             label="Currency"

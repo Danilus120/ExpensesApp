@@ -43,6 +43,7 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
           }}
           schema={expenseSchema}
           handleToggle={handleToggle}
+          defaultValues={{ date: formatDate(new Date().getTime()) }}
         >
           <Input
             type="date"
@@ -60,7 +61,7 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
 
           <Input label="Shop Name" name="shopName" />
 
-          <Input type="text" label="Price" name="price" />
+          <Input type="number" step="0.01" label="Price" name="price" />
 
           <Select
             label="Currency"

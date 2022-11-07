@@ -3,7 +3,6 @@ import { FieldValues } from "react-hook-form";
 import ErrorMessage from "@/Atoms/ErrorMessage";
 
 import styles from "./styles.module.scss";
-import { ChangeEvent, useEffect, useState } from "react";
 
 interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
   label: string;
@@ -11,6 +10,7 @@ interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
   type?: "text" | "password" | "email" | "number" | "date";
   defaultValue?: string | number;
   setValue?: any;
+  step?: string;
 }
 
 const Input = ({
@@ -21,6 +21,7 @@ const Input = ({
   defaultValue = "",
   register,
   setValue,
+  step = "1",
   ...rest
 }: InputI) => {
   return (
@@ -34,6 +35,7 @@ const Input = ({
         className={styles["input-container__input"]}
         {...register(name, { required: true })}
         {...rest}
+        step={step}
       />
       {errors[name] && <ErrorMessage text={errors[name].message} />}
     </div>

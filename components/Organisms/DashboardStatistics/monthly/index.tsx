@@ -7,6 +7,7 @@ import { Pie } from "react-chartjs-2";
 import Card from "@/Atoms/Card";
 
 import styles from "../styles.module.scss";
+import { optionsPie } from "@/constants/chartsOptions";
 
 Chart;
 
@@ -16,33 +17,6 @@ function DashboardStatisticsMonthly() {
   const chartsData = {
     monthlyExpenses: getExpensesChartData(userData.expenses, "month"),
     monthlyIncome: getIncomeChartData(userData.income, "month"),
-  };
-
-  const optionsBar = {
-    maintainAspectRatio: false,
-    color: "#8f8f8f",
-    scales: {
-      x: {
-        grid: {
-          color: "#555555",
-        },
-        ticks: {
-          color: "#8f8f8f",
-        },
-      },
-      y: {
-        grid: {
-          color: "#555555",
-        },
-        ticks: {
-          color: "#8f8f8f",
-        },
-      },
-    },
-  };
-
-  const optionsPie = {
-    color: "#8f8f8f",
   };
 
   return (

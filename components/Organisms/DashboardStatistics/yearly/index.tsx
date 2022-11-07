@@ -11,6 +11,7 @@ import { Pie, Bar } from "react-chartjs-2";
 import Card from "@/Atoms/Card";
 
 import styles from "../styles.module.scss";
+import { optionsBar, optionsPie } from "@/constants/chartsOptions";
 
 Chart;
 
@@ -23,38 +24,11 @@ function DashboardStatisticsYearly() {
     comparison: getYearComparisonData(userData.expenses, userData.income),
   };
 
-  const optionsBar = {
-    maintainAspectRatio: false,
-    color: "#8f8f8f",
-    scales: {
-      x: {
-        grid: {
-          color: "#555555",
-        },
-        ticks: {
-          color: "#8f8f8f",
-        },
-      },
-      y: {
-        grid: {
-          color: "#555555",
-        },
-        ticks: {
-          color: "#8f8f8f",
-        },
-      },
-    },
-  };
-
-  const optionsPie = {
-    color: "#8f8f8f",
-  };
-
   return (
     <>
       <div className={styles["charts"]}>
         <div className={`${styles["chart"]} ${styles["fullWidth"]}`}>
-          <Card title="Comparison Expenses / Income">
+          <Card title="Comparison Expenses / Income" isBar={true}>
             <Bar data={chartsData.comparison} options={optionsBar} />
           </Card>
         </div>

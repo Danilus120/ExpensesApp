@@ -11,6 +11,7 @@ import { Bar, Pie } from "react-chartjs-2";
 import Card from "@/Atoms/Card";
 
 import styles from "../styles.module.scss";
+import { optionsBar, optionsPie } from "@/constants/chartsOptions";
 
 Chart;
 
@@ -21,33 +22,6 @@ function DashboardStatisticsWeekly() {
     weeklyExpenses: getExpensesChartData(userData.expenses, "week"),
     weeklyIncome: getIncomeChartData(userData.income, "week"),
     comparison: getWeekComparisonData(userData.expenses, userData.income),
-  };
-
-  const optionsBar = {
-    maintainAspectRatio: false,
-    color: "#8f8f8f",
-    scales: {
-      x: {
-        grid: {
-          color: "#555555",
-        },
-        ticks: {
-          color: "#8f8f8f",
-        },
-      },
-      y: {
-        grid: {
-          color: "#555555",
-        },
-        ticks: {
-          color: "#8f8f8f",
-        },
-      },
-    },
-  };
-
-  const optionsPie = {
-    color: "#8f8f8f",
   };
 
   return (

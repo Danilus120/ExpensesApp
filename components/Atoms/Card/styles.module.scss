@@ -23,4 +23,10 @@
     font-size: 14px;
     font-weight: 500;
   }
+
+  .bar__content {
+    canvas {
+      min-height: 40vh;
+    }
+  }
 }

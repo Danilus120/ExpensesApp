@@ -162,7 +162,6 @@ function TableBody({
           <tr key={rowKey} {...restRowProps} className={styles["tr"]}>
             {row.cells.map((cell) => {
               const { key: cellKey, ...restCellProps } = cell.getCellProps();
-              console.log(defaultCurrency);
 
               return (
                 <td key={cellKey} {...restCellProps} className={styles["td"]}>

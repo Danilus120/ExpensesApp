@@ -43,6 +43,7 @@ function DashboardIncome() {
       </Button>
       <Table
         data={formatedData}
+        defaultCurrency={userData.default_Currency}
         columns={incomeTableColumns}
         deleteRecordFn={actions.deleteIncome}
         editRecordFn={setRecordID}

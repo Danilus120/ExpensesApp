@@ -35,7 +35,7 @@ const incomeTableColumns = [
     accessor: "title",
   },
   {
-    Header: "Income Value",
+    Header: "Value",
     accessor: "value",
   },
   // {

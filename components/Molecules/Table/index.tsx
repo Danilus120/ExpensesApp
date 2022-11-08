@@ -30,6 +30,7 @@ interface TableI {
   options?: {
     rowsPerPageArray: Array<number>;
   };
+  defaultCurrency: string;
   deleteRecordFn: (id: string) => void;
   editRecordFn: (id: string) => void;
 }
@@ -42,6 +43,7 @@ function Table({
   options,
   deleteRecordFn,
   editRecordFn,
+  defaultCurrency,
 }: TableI) {
   const memoColumns = useMemo(() => columns, []);
 
@@ -79,6 +81,7 @@ function Table({
           <TableBody
             getTableBodyProps={getTableBodyProps}
             page={page}
+            defaultCurrency={defaultCurrency}
             prepareRow={prepareRow}
             editRecordFn={editRecordFn}
             deleteRecordFn={deleteRecordFn}
@@ -133,6 +136,7 @@ interface TableBodyI {
     propGetter?: TableBodyPropGetter<object> | undefined
   ) => TableBodyProps;
   page: Row<object>[];
+  defaultCurrency: any;
   prepareRow: (row: Row<object>) => void;
   deleteRecordFn: (id: string) => void;
   editRecordFn: (id: string) => void;
@@ -141,6 +145,7 @@ interface TableBodyI {
 function TableBody({
   getTableBodyProps,
   page,
+  defaultCurrency,
   prepareRow,
   deleteRecordFn,
   editRecordFn,
@@ -157,10 +162,12 @@ function TableBody({
           <tr key={rowKey} {...restRowProps} className={styles["tr"]}>
             {row.cells.map((cell) => {
               const { key: cellKey, ...restCellProps } = cell.getCellProps();
+              console.log(defaultCurrency);
 
               return (
                 <td key={cellKey} {...restCellProps} className={styles["td"]}>
-                  {cell.render("Cell")}
+                  {cell.render("Cell")}{" "}
+                  {cell.column.Header === "Value" ? defaultCurrency : null}
                 </td>
               );
             })}

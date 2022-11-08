@@ -43,6 +43,7 @@ function DashboardExpenses() {
       </Button>
       <Table
         data={formatedData}
+        defaultCurrency={userData.default_Currency}
         columns={expensesTableColumns}
         deleteRecordFn={actions.deleteExpense}
         editRecordFn={setRecordID}

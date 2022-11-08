@@ -1,8 +1,10 @@
 import { useData } from "@/context/UserDataContext";
 
 import {
+  getDataFromTimeRange,
   getExpensesChartData,
   getIncomeChartData,
+  getSumOfValuesFromTimeRange,
   getWeekComparisonData,
 } from "utils/chartsUtils";
 
@@ -24,23 +26,32 @@ function DashboardStatisticsWeekly() {
     comparison: getWeekComparisonData(userData.expenses, userData.income),
   };
 
+  const cardsData = {
+    weeklyExpensesValue: getSumOfValuesFromTimeRange(userData.expenses, "week"),
+    weeklyIncomeValue: getSumOfValuesFromTimeRange(userData.income, "week"),
+  };
+
   return (
     <>
       <div className={styles["charts"]}>
         <div className={styles["blocks"]}>
           <div className={styles["block"]}>
-            <Card title="All of Expenses value">
-              <h3>asd</h3>
+            <Card title="Weekly Expenses value">
+              <h3>
+                {cardsData.weeklyExpensesValue} {userData.default_Currency}
+              </h3>
             </Card>
           </div>
           <div className={styles["block"]}>
             <Card title="All of Income value">
-              <h3>qwe</h3>
+              <h3>
+                {cardsData.weeklyIncomeValue} {userData.default_Currency}
+              </h3>
             </Card>
           </div>
           <div className={styles["block"]}>
             <Card title="All of Investments value">
-              <h3>jlk</h3>
+              <h3>0 {userData.default_Currency}</h3>
             </Card>
           </div>
         </div>
@@ -62,6 +73,11 @@ function DashboardStatisticsWeekly() {
           </div>
           <div className={styles["chart"]}>
             <Card title="Weekly Investments">
+              <Pie data={chartsData.weeklyExpenses} options={optionsPie} />
+            </Card>
+          </div>
+          <div className={styles["chart"]}>
+            <Card title="Summary">
               <Pie data={chartsData.weeklyExpenses} options={optionsPie} />
             </Card>
           </div>

@@ -1,41 +1,29 @@
 import { categories } from "@/constants/categories";
 import { daysLabels, monthsLabels } from "@/constants/chartsConstants";
 import { chartColors } from "@/constants/colors";
-import { getDay, isSameMonth, isSameWeek, isSameYear } from "date-fns";
+import {
+  getDate,
+  getDay,
+  getDaysInMonth,
+  getMonth,
+  isSameMonth,
+  isSameWeek,
+  isSameYear,
+} from "date-fns";
 import { ExpenseI, IncomeI } from "types/user.interface";
 
 type TimeRangeProps = "week" | "month" | "year";
 
-const getYearComparisonData = (expenses: ExpenseI[], incomes: IncomeI[]) => {
-  const timeDependenceExpenses = getDataFromTimeRange(expenses, "year");
-  const timeDependenceIncomes = getDataFromTimeRange(incomes, "year");
-
-  // Generate array of numbers (12) from expenses / incomes (ex. [120, 145, 487, 484, 452, 266, 254, 877, 933, 874, 120, 320])
-
-  const arrayOfExpensesValuesSortedByMonths = sortExpensesDataByMonths(
-    timeDependenceExpenses
-  );
-  const arrayOfIncomeValuesSortedByMonths = sortIncomeDataByMonths(
-    timeDependenceIncomes
-  );
-
-  const data = generateBarData(
-    arrayOfExpensesValuesSortedByMonths,
-    arrayOfIncomeValuesSortedByMonths,
-    "year"
-  );
-
-  return data;
-};
+// Week
 
 const getWeekComparisonData = (expenses: ExpenseI[], incomes: IncomeI[]) => {
   const timeDependenceExpenses = getDataFromTimeRange(expenses, "week");
   const timeDependenceIncomes = getDataFromTimeRange(incomes, "week");
 
-  const arrayOfExpensesValuesSortedByDays = sortExpensesDataByDays(
+  const arrayOfExpensesValuesSortedByDays = sortDataByWeekDays(
     timeDependenceExpenses
   );
-  const arrayOfIncomeValuesSortedByDays = sortIncomeDataByDays(
+  const arrayOfIncomeValuesSortedByDays = sortDataByWeekDays(
     timeDependenceIncomes
   );
 
@@ -48,16 +36,16 @@ const getWeekComparisonData = (expenses: ExpenseI[], incomes: IncomeI[]) => {
   return data;
 };
 
-const sortExpensesDataByDays = <T extends { date: number; price: number }>(
+const sortDataByWeekDays = <T extends { date: number; value: number }>(
   data: T[]
 ) => {
   const sortedData = daysLabels.map((el, i) => {
-    const dayData = data.filter((el) => {
+    const weekdayData = data.filter((el) => {
       return getDay(el.date) - 1 === i && isSameWeek(el.date, new Date());
     });
 
-    const sumOfValue = dayData.reduce((acc, element) => {
-      acc += element.price;
+    const sumOfValue = weekdayData.reduce((acc, element) => {
+      acc += element.value;
 
       return acc;
     }, 0);
@@ -68,37 +56,80 @@ const sortExpensesDataByDays = <T extends { date: number; price: number }>(
   return sortedData;
 };
 
-const sortIncomeDataByDays = <T extends { date: number; income: number }>(
+// Month
+
+const getMonthComparisonData = (expenses: ExpenseI[], incomes: IncomeI[]) => {
+  const timeDependenceExpenses = getDataFromTimeRange(expenses, "month");
+  const timeDependenceIncomes = getDataFromTimeRange(incomes, "month");
+
+  const arrayOfExpensesValuesSortedByMonths = sortDataByDays(
+    timeDependenceExpenses
+  );
+  const arrayOfIncomeValuesSortedByMonths = sortDataByDays(
+    timeDependenceIncomes
+  );
+
+  const data = generateBarData(
+    arrayOfExpensesValuesSortedByMonths,
+    arrayOfIncomeValuesSortedByMonths,
+    "month"
+  );
+
+  return data;
+};
+
+const sortDataByDays = <T extends { date: number; value: number }>(
   data: T[]
 ) => {
-  const sortedData = daysLabels.map((el, i) => {
-    const dayData = data.filter((el) => {
-      return getDay(el.date) - 1 === i && isSameWeek(el.date, new Date());
+  const daysInMonth = getDaysInMonth(new Date());
+
+  const sortedData = Array(daysInMonth)
+    .fill(0)
+    .map((el, i) => {
+      const dayData: T[] = data.filter((el) => getDate(el.date) === i);
+
+      const sumOfValue = dayData.reduce((acc, element) => {
+        acc += element.value;
+
+        return acc;
+      }, 0);
+
+      return sumOfValue;
     });
 
-    const sumOfValue = dayData.reduce((acc, element) => {
-      acc += element.income;
-
-      return acc;
-    }, 0);
-
-    return sumOfValue;
-  });
-
   return sortedData;
 };
 
-// TODO: standarive values forms (price / income to VALUE)
-const sortExpensesDataByMonths = <T extends { date: number; price: number }>(
+// Year
+
+const getYearComparisonData = (expenses: ExpenseI[], incomes: IncomeI[]) => {
+  const timeDependenceExpenses = getDataFromTimeRange(expenses, "year");
+  const timeDependenceIncomes = getDataFromTimeRange(incomes, "year");
+
+  const arrayOfExpensesValuesSortedByMonths = sortDataByMonths(
+    timeDependenceExpenses
+  );
+  const arrayOfIncomeValuesSortedByMonths = sortDataByMonths(
+    timeDependenceIncomes
+  );
+
+  const data = generateBarData(
+    arrayOfExpensesValuesSortedByMonths,
+    arrayOfIncomeValuesSortedByMonths,
+    "year"
+  );
+
+  return data;
+};
+
+const sortDataByMonths = <T extends { date: number; value: number }>(
   data: T[]
 ) => {
   const sortedData = monthsLabels.map((el, i) => {
-    const monthData: T[] = data.filter(
-      (el) => new Date(el.date).getMonth() === i
-    );
+    const monthData: T[] = data.filter((el) => getMonth(el.date) === i);
 
     const sumOfValue = monthData.reduce((acc, element) => {
-      acc += element.price;
+      acc += element.value;
 
       return acc;
     }, 0);
@@ -109,23 +140,7 @@ const sortExpensesDataByMonths = <T extends { date: number; price: number }>(
   return sortedData;
 };
 
-const sortIncomeDataByMonths = <T extends { date: number; income: number }>(
-  data: T[]
-) => {
-  const sortedData = monthsLabels.map((el, i) => {
-    const monthData = data.filter((el) => new Date(el.date).getMonth() === i);
-
-    const sumOfValue = monthData.reduce((acc, element) => {
-      acc += element.income;
-
-      return acc;
-    }, 0);
-
-    return sumOfValue;
-  });
-
-  return sortedData;
-};
+// Bar
 
 const generateBarData = (
   expensesData: number[],
@@ -139,7 +154,9 @@ const generateBarData = (
       labels = daysLabels;
       break;
     case "month":
-      labels = ["0", "0", "0"];
+      labels = Array(getDaysInMonth(new Date()))
+        .fill(0)
+        .map((el, i) => String(i));
       break;
     case "year":
       labels = monthsLabels;
@@ -165,6 +182,31 @@ const generateBarData = (
   };
 
   return data;
+};
+
+// Pie
+
+const generatePieData = (
+  data: { name: string; value: number }[],
+  label: string = "Title"
+) => {
+  const colors = data.map((el, i) => chartColors[i]);
+
+  const chartData = {
+    labels: data.map((el) => el.name),
+    datasets: [
+      {
+        label: label,
+        data: data.map((el) => el.value),
+        color: "#fff",
+        backgroundColor: colors,
+        borderColor: colors,
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return chartData;
 };
 
 const getExpensesChartData = (
@@ -195,27 +237,15 @@ const getIncomeChartData = (
   return chartData;
 };
 
-const generatePieData = (
-  data: { name: string; value: number }[],
-  label: string = "Title"
+const getSumOfValuesFromTimeRange = <T extends { date: number; value: number }>(
+  data: T[],
+  timeRange: TimeRangeProps
 ) => {
-  const colors = data.map((el, i) => chartColors[i]);
+  const sum = getDataFromTimeRange(data, timeRange).reduce((acc, el) => {
+    return acc + el.value;
+  }, 0);
 
-  const chartData = {
-    labels: data.map((el) => el.name),
-    datasets: [
-      {
-        label: label,
-        data: data.map((el) => el.value),
-        color: "#fff",
-        backgroundColor: colors,
-        borderColor: colors,
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  return chartData;
+  return sum;
 };
 
 const getDataFromTimeRange = <T extends { date: number }>(
@@ -256,7 +286,7 @@ const getChartsDataFromIncomes = (incomes: IncomeI[]) => {
 
     // Accumulate expenses
     const accumulateCategoryValue = filteredExpenses.reduce(
-      (acc, income) => acc + Number(income.income),
+      (acc, income) => acc + income.value,
       0
     );
 
@@ -278,7 +308,7 @@ const getChartsDataFromExpenses = (expenses: ExpenseI[]) => {
 
     // Accumulate expenses
     const accumulateCategoryValue = filteredExpenses.reduce(
-      (acc, expense) => acc + Number(expense.price),
+      (acc, expense) => acc + expense.value,
       0
     );
 
@@ -307,9 +337,12 @@ const getUniqueTitlesOfIncomes = (incomes: IncomeI[]) => {
 
 export {
   getYearComparisonData,
+  getMonthComparisonData,
   getWeekComparisonData,
   getChartsDataFromExpenses,
   getChartsDataFromIncomes,
   getExpensesChartData,
   getIncomeChartData,
+  getSumOfValuesFromTimeRange,
+  getDataFromTimeRange,
 };

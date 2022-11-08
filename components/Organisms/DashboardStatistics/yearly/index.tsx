@@ -3,6 +3,7 @@ import { useData } from "@/context/UserDataContext";
 import {
   getExpensesChartData,
   getIncomeChartData,
+  getSumOfValuesFromTimeRange,
   getYearComparisonData,
 } from "utils/chartsUtils";
 
@@ -24,23 +25,32 @@ function DashboardStatisticsYearly() {
     comparison: getYearComparisonData(userData.expenses, userData.income),
   };
 
+  const cardsData = {
+    yearlyExpensesValue: getSumOfValuesFromTimeRange(userData.expenses, "year"),
+    yearlyIncomeValue: getSumOfValuesFromTimeRange(userData.income, "year"),
+  };
+
   return (
     <>
       <div className={styles["charts"]}>
         <div className={styles["blocks"]}>
           <div className={styles["block"]}>
-            <Card title="All of Expenses value">
-              <h3>asd</h3>
+            <Card title="Yearly Expenses value">
+              <h3>
+                {cardsData.yearlyExpensesValue} {userData.default_Currency}
+              </h3>
             </Card>
           </div>
           <div className={styles["block"]}>
-            <Card title="All of Income value">
-              <h3>qwe</h3>
+            <Card title="Yearly Income value">
+              <h3>
+                {cardsData.yearlyIncomeValue} {userData.default_Currency}
+              </h3>
             </Card>
           </div>
           <div className={styles["block"]}>
-            <Card title="All of Investments value">
-              <h3>jlk</h3>
+            <Card title="Yearly Investments value">
+              <h3>0 {userData.default_Currency}</h3>
             </Card>
           </div>
         </div>
@@ -66,7 +76,7 @@ function DashboardStatisticsYearly() {
             </Card>
           </div>
           <div className={styles["chart"]}>
-            <Card title="Yearly Investments">
+            <Card title="Summary">
               <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
             </Card>
           </div>

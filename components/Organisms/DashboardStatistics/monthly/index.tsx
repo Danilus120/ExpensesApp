@@ -40,14 +40,16 @@ function DashboardStatisticsMonthly() {
           <div className={styles["block"]}>
             <Card title="Monthly Expenses value">
               <h3>
-                {cardsData.monthlyExpensesValue} {userData.default_Currency}
+                {cardsData.monthlyExpensesValue || "0"}{" "}
+                {userData.default_Currency}
               </h3>
             </Card>
           </div>
           <div className={styles["block"]}>
             <Card title="Monthly Income value">
               <h3>
-                {cardsData.monthlyIncomeValue} {userData.default_Currency}
+                {cardsData.monthlyIncomeValue || "0"}{" "}
+                {userData.default_Currency}
               </h3>
             </Card>
           </div>

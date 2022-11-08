@@ -38,14 +38,15 @@ function DashboardStatisticsWeekly() {
           <div className={styles["block"]}>
             <Card title="Weekly Expenses value">
               <h3>
-                {cardsData.weeklyExpensesValue} {userData.default_Currency}
+                {cardsData.weeklyExpensesValue || "0"}{" "}
+                {userData.default_Currency}
               </h3>
             </Card>
           </div>
           <div className={styles["block"]}>
             <Card title="All of Income value">
               <h3>
-                {cardsData.weeklyIncomeValue} {userData.default_Currency}
+                {cardsData.weeklyIncomeValue || "0"} {userData.default_Currency}
               </h3>
             </Card>
           </div>

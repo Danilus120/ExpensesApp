@@ -37,14 +37,15 @@ function DashboardStatisticsYearly() {
           <div className={styles["block"]}>
             <Card title="Yearly Expenses value">
               <h3>
-                {cardsData.yearlyExpensesValue} {userData.default_Currency}
+                {cardsData.yearlyExpensesValue || "0"}{" "}
+                {userData.default_Currency}
               </h3>
             </Card>
           </div>
           <div className={styles["block"]}>
             <Card title="Yearly Income value">
               <h3>
-                {cardsData.yearlyIncomeValue} {userData.default_Currency}
+                {cardsData.yearlyIncomeValue || "0"} {userData.default_Currency}
               </h3>
             </Card>
           </div>

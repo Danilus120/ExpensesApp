@@ -27,25 +27,44 @@ function DashboardStatisticsWeekly() {
   return (
     <>
       <div className={styles["charts"]}>
+        <div className={styles["blocks"]}>
+          <div className={styles["block"]}>
+            <Card title="All of Expenses value">
+              <h3>asd</h3>
+            </Card>
+          </div>
+          <div className={styles["block"]}>
+            <Card title="All of Income value">
+              <h3>qwe</h3>
+            </Card>
+          </div>
+          <div className={styles["block"]}>
+            <Card title="All of Investments value">
+              <h3>jlk</h3>
+            </Card>
+          </div>
+        </div>
         <div className={`${styles["chart"]} ${styles["fullWidth"]}`}>
           <Card title="Comparison Expenses / Income">
             <Bar data={chartsData.comparison} options={optionsBar} />
           </Card>
         </div>
-        <div className={styles["chart"]}>
-          <Card title="Weekly expenses">
-            <Pie data={chartsData.weeklyExpenses} options={optionsPie} />
-          </Card>
-        </div>
-        <div className={styles["chart"]}>
-          <Card title="Weekly Income">
-            <Pie data={chartsData.weeklyIncome} options={optionsPie} />
-          </Card>
-        </div>
-        <div className={styles["chart"]}>
-          <Card title="Weekly Investments">
-            <Pie data={chartsData.weeklyExpenses} options={optionsPie} />
-          </Card>
+        <div className={styles["cluster"]}>
+          <div className={styles["chart"]}>
+            <Card title="Weekly expenses">
+              <Pie data={chartsData.weeklyExpenses} options={optionsPie} />
+            </Card>
+          </div>
+          <div className={styles["chart"]}>
+            <Card title="Weekly Income">
+              <Pie data={chartsData.weeklyIncome} options={optionsPie} />
+            </Card>
+          </div>
+          <div className={styles["chart"]}>
+            <Card title="Weekly Investments">
+              <Pie data={chartsData.weeklyExpenses} options={optionsPie} />
+            </Card>
+          </div>
         </div>
       </div>
     </>

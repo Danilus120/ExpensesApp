@@ -23,10 +23,11 @@ const optionsBar = {
 
 const optionsPie = {
   color: "#8f8f8f",
-  // TODO: plugins: {legend:{}} for legend on left
-  legend: {
-    position: "right",
-    align: "center",
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      display: false,
+    },
   },
 };
 

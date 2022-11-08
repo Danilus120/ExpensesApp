@@ -27,25 +27,49 @@ function DashboardStatisticsYearly() {
   return (
     <>
       <div className={styles["charts"]}>
+        <div className={styles["blocks"]}>
+          <div className={styles["block"]}>
+            <Card title="All of Expenses value">
+              <h3>asd</h3>
+            </Card>
+          </div>
+          <div className={styles["block"]}>
+            <Card title="All of Income value">
+              <h3>qwe</h3>
+            </Card>
+          </div>
+          <div className={styles["block"]}>
+            <Card title="All of Investments value">
+              <h3>jlk</h3>
+            </Card>
+          </div>
+        </div>
         <div className={`${styles["chart"]} ${styles["fullWidth"]}`}>
-          <Card title="Comparison Expenses / Income" isBar={true}>
+          <Card title="Comparison Expenses / Income">
             <Bar data={chartsData.comparison} options={optionsBar} />
           </Card>
         </div>
-        <div className={styles["chart"]}>
-          <Card title="Yearly expenses">
-            <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
-          </Card>
-        </div>
-        <div className={styles["chart"]}>
-          <Card title="Yearly Income">
-            <Pie data={chartsData.yearlyIncome} options={optionsPie} />
-          </Card>
-        </div>
-        <div className={styles["chart"]}>
-          <Card title="Yearly Investments">
-            <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
-          </Card>
+        <div className={styles["cluster"]}>
+          <div className={styles["chart"]}>
+            <Card title="Yearly expenses">
+              <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
+            </Card>
+          </div>
+          <div className={styles["chart"]}>
+            <Card title="Yearly Income">
+              <Pie data={chartsData.yearlyIncome} options={optionsPie} />
+            </Card>
+          </div>
+          <div className={styles["chart"]}>
+            <Card title="Yearly Investments">
+              <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
+            </Card>
+          </div>
+          <div className={styles["chart"]}>
+            <Card title="Yearly Investments">
+              <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
+            </Card>
+          </div>
         </div>
       </div>
     </>

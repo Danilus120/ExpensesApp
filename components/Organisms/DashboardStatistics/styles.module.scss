@@ -3,38 +3,84 @@
   justify-content: center;
   flex-wrap: wrap;
 
-  gap: 20px;
-
   padding-bottom: 10px;
 
-  @media (min-width: 768px) {
-    gap: 24px;
-  }
+  .blocks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
 
-  @media (min-width: 1200px) {
-    gap: 30px;
-  }
-
-  .chart {
-    position: relative;
+    gap: 16px;
+    padding-bottom: 16px;
 
     width: 100%;
 
-    padding: 0px 0px;
-
     @media (min-width: 768px) {
-      width: 50%;
+      flex-direction: row;
 
-      flex-grow: 1;
+      gap: 24px;
+      padding-bottom: 24px;
     }
 
-    @media (min-width: 1350px) {
-      width: 33%;
+    @media (min-width: 1200px) {
+      gap: 30px;
+      padding-bottom: 30px;
+    }
+
+    .block {
+      flex-grow: 1;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .cluster {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+
+    gap: 16px;
+
+    @media (min-width: 768px) {
+      gap: 24px;
+    }
+
+    @media (min-width: 1200px) {
+      gap: 30px;
+    }
+
+    .chart {
+      position: relative;
+
+      width: 100%;
+
+      flex-grow: 1;
+
+      @media (min-width: 768px) {
+        width: 45%;
+      }
+
+      @media (min-width: 992px) {
+        width: 20%;
+      }
     }
   }
 
   .fullWidth {
     width: 100%;
+
+    padding-bottom: 16px;
+
+    @media (min-width: 768px) {
+      padding-bottom: 24px;
+    }
+
+    @media (min-width: 1200px) {
+      padding-bottom: 30px;
+    }
 
     canvas {
       height: 100%;

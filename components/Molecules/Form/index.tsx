@@ -72,8 +72,8 @@ export default function Form({
         : children}
       {options?.haveButtons && (
         <div className={styles["button-wrapper"]}>
-          <Button variant="contained" color="success" type="submit">
-            Submit
+          <Button variant="contained" color="error" callbackFn={handleToggle}>
+            Close
           </Button>
 
           {options?.haveClearButton && (
@@ -86,8 +86,8 @@ export default function Form({
             </Button>
           )}
 
-          <Button variant="contained" color="error" callbackFn={handleToggle}>
-            Close
+          <Button variant="contained" color="success" type="submit">
+            Submit
           </Button>
         </div>
       )}

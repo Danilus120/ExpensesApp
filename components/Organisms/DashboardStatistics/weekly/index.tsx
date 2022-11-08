@@ -35,6 +35,7 @@ function DashboardStatisticsWeekly() {
     <>
       <div className={styles["charts"]}>
         <div className={styles["blocks"]}>
+          {/* TODO: MoneyCards timeRange="week" */}
           <div className={`${styles["block"]} ${styles["block--expenses"]}`}>
             <Card title="Weekly Expenses value">
               <h3>
@@ -61,6 +62,7 @@ function DashboardStatisticsWeekly() {
             <Bar data={chartsData.comparison} options={optionsBar} />
           </Card>
         </div>
+        {/* TODO: Other component - generic */}
         <div className={styles["cluster"]}>
           <div className={styles["chart"]}>
             <Card title="Weekly expenses">

@@ -7,7 +7,7 @@ const WeeklyStatistics: NextPage = () => {
   return (
     <DashboardLayout
       metaOptions={{
-        title: "Statistics",
+        title: "Statistics - weekly",
         description: "Dashboard of statistics",
       }}
     >

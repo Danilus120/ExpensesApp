@@ -57,14 +57,7 @@ function EditIncomeModal({
 
           <Input label="Title" name="title" />
 
-          <Input type="number" step="0.01" label="Income Value" name="income" />
-
-          <Select
-            label="Currency"
-            name="currency"
-            options={currencySelectOptions}
-            defaultValue={data.currency}
-          />
+          <Input type="number" step="0.01" label="Income Value" name="value" />
 
           <Input label="Description" name="description" />
         </Form>

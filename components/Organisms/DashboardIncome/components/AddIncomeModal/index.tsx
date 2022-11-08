@@ -48,14 +48,7 @@ function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
 
           <Input label="Title" name="title" />
 
-          <Input type="number" step="0.01" label="Income Value" name="income" />
-
-          <Select
-            label="Currency"
-            name="currency"
-            options={currencySelectOptions}
-            defaultValue={userData.default_Currency}
-          />
+          <Input type="number" step="0.01" label="Income Value" name="value" />
 
           <Input label="Description" name="description" />
         </Form>

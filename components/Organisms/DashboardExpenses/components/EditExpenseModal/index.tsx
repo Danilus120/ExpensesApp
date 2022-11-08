@@ -68,14 +68,7 @@ function EditExpenseModal({
 
           <Input label="Shop Name" name="shopName" />
 
-          <Input type="number" step="0.01" label="Price" name="price" />
-
-          <Select
-            label="Currency"
-            name="currency"
-            options={currencySelectOptions}
-            defaultValue={data.currency}
-          />
+          <Input type="number" step="0.01" label="Price" name="value" />
 
           <Input label="Description" name="description" />
         </Form>

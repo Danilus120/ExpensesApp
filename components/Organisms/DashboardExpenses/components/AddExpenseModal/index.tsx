@@ -56,14 +56,7 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
 
           <Input label="Shop Name" name="shopName" />
 
-          <Input type="number" step="0.01" label="Price" name="price" />
-
-          <Select
-            label="Currency"
-            name="currency"
-            options={currencySelectOptions}
-            defaultValue={userData.default_Currency}
-          />
+          <Input type="number" step="0.01" label="Price" name="value" />
 
           <Input label="Description" name="description" />
         </Form>

@@ -1,6 +1,5 @@
 import {
   ExpenseFormDataI,
-  ExpenseI,
   IncomeFormDataI,
   InvestmentFormDataI,
   UserFirebaseI,

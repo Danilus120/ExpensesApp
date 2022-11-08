@@ -12,13 +12,13 @@ const expensesTableColumns = [
     accessor: "shopName",
   },
   {
-    Header: "Price",
-    accessor: "price",
+    Header: "Value",
+    accessor: "value",
   },
-  {
-    Header: "Currency",
-    accessor: "currency",
-  },
+  // {
+  //   Header: "Currency",
+  //   accessor: "currency",
+  // },
   {
     Header: "Description",
     accessor: "description",
@@ -36,12 +36,12 @@ const incomeTableColumns = [
   },
   {
     Header: "Income Value",
-    accessor: "income",
+    accessor: "value",
   },
-  {
-    Header: "Currency",
-    accessor: "currency",
-  },
+  // {
+  //   Header: "Currency",
+  //   accessor: "currency",
+  // },
   {
     Header: "Description",
     accessor: "description",

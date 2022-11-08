@@ -24,6 +24,29 @@
       flex-grow: 1;
       width: 100%;
       text-align: center;
+
+      h3 {
+        margin: 5px 0px;
+        font-size: 26px;
+      }
+
+      &--expenses {
+        h3 {
+          color: #e87a7a;
+        }
+      }
+
+      &--income {
+        h3 {
+          color: #5cd97a;
+        }
+      }
+
+      &--investments {
+        h3 {
+          color: #6ba5de;
+        }
+      }
     }
   }
 

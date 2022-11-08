@@ -34,7 +34,7 @@ function DashboardStatisticsYearly() {
     <>
       <div className={styles["charts"]}>
         <div className={styles["blocks"]}>
-          <div className={styles["block"]}>
+          <div className={`${styles["block"]} ${styles["block--expenses"]}`}>
             <Card title="Yearly Expenses value">
               <h3>
                 {cardsData.yearlyExpensesValue || "0"}{" "}
@@ -42,14 +42,14 @@ function DashboardStatisticsYearly() {
               </h3>
             </Card>
           </div>
-          <div className={styles["block"]}>
+          <div className={`${styles["block"]} ${styles["block--income"]}`}>
             <Card title="Yearly Income value">
               <h3>
                 {cardsData.yearlyIncomeValue || "0"} {userData.default_Currency}
               </h3>
             </Card>
           </div>
-          <div className={styles["block"]}>
+          <div className={`${styles["block"]} ${styles["block--investments"]}`}>
             <Card title="Yearly Investments value">
               <h3>0 {userData.default_Currency}</h3>
             </Card>

@@ -37,7 +37,7 @@ function DashboardStatisticsMonthly() {
     <>
       <div className={styles["charts"]}>
         <div className={styles["blocks"]}>
-          <div className={styles["block"]}>
+          <div className={`${styles["block"]} ${styles["block--expenses"]}`}>
             <Card title="Monthly Expenses value">
               <h3>
                 {cardsData.monthlyExpensesValue || "0"}{" "}
@@ -45,7 +45,7 @@ function DashboardStatisticsMonthly() {
               </h3>
             </Card>
           </div>
-          <div className={styles["block"]}>
+          <div className={`${styles["block"]} ${styles["block--income"]}`}>
             <Card title="Monthly Income value">
               <h3>
                 {cardsData.monthlyIncomeValue || "0"}{" "}
@@ -53,7 +53,7 @@ function DashboardStatisticsMonthly() {
               </h3>
             </Card>
           </div>
-          <div className={styles["block"]}>
+          <div className={`${styles["block"]} ${styles["block--investments"]}`}>
             <Card title="Monthly Investments value">
               <h3>0 {userData.default_Currency}</h3>
             </Card>

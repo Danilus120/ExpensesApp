@@ -22,6 +22,7 @@ export default function ResetPassword() {
         forgotPassword(data);
       }}
       schema={forgotPasswordSchema}
+      options={{ haveButtons: false }}
     >
       <Input label="Email Address" name="email" type="email" />
 

@@ -59,6 +59,7 @@ export default function RegisterWithEmail() {
         register(data);
       }}
       schema={registerFormSchema}
+      options={{ haveButtons: false }}
     >
       <Input label="Display name" name="displayName" type="text" />
 

@@ -34,6 +34,7 @@ export default function LoginWithEmail() {
         login(data);
       }}
       schema={loginFormSchema}
+      options={{ haveButtons: false }}
     >
       <Input label="Email Address" name="email" type="email" />
 

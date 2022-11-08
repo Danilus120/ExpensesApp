@@ -76,7 +76,7 @@ const getValueOfExpensesInActualMonth = (expenses: ExpenseI[]) => {
   const expensesFromMonth = getAllExpensesFromActualMonth(expenses);
 
   const value = expensesFromMonth.reduce((acc, expense) => {
-    acc += Number(expense.price);
+    acc += Number(expense.value);
     return acc;
   }, 0);
 
@@ -95,7 +95,7 @@ const getValueOfIncomesInActualMonth = (incomes: IncomeI[]) => {
   const incomesFromMonth = getAllIncomeFromActualMonth(incomes);
 
   const value = incomesFromMonth.reduce((acc, income) => {
-    acc += Number(income.income);
+    acc += Number(income.value);
     return acc;
   }, 0);
 

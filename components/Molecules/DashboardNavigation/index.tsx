@@ -3,7 +3,7 @@ import router from "next/router";
 
 import { FiSettings, FiMenu } from "react-icons/fi";
 
-import ProfileModal from "@/Molecules/ProfileModal";
+import ProfileModal from "@/Molecules/DashboardNavigation/components/ProfileModal";
 import Button from "@/Atoms/Button";
 import SettingsModalForm from "./components/SettingsModalForm";
 

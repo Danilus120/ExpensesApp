@@ -1,42 +1,30 @@
-import { generatePieData, getDataFromTimeRange } from "./utils";
+import { generatePieData, getSumOfValuesFromTimeRange } from "./utils";
 
 import { TimeRangeProps } from "types/chart.interface";
 import { ExpenseI, IncomeI } from "types/user.interface";
 
 const getSummaryChartData = (
   expenses: ExpenseI[],
-  incomes: IncomeI[],
+  income: IncomeI[],
   timeRange: TimeRangeProps
 ) => {
-  const timeDependenceExpenses = getDataFromTimeRange(expenses, timeRange);
-  const timeDependenceIncomes = getDataFromTimeRange(incomes, timeRange);
-
-  const chartDataFromIncomes = getChartsDataByExpensesAndIncome(
-    timeDependenceExpenses,
-    timeDependenceIncomes
+  const sumOfExpensesFromTimeRange = getSumOfValuesFromTimeRange(
+    expenses,
+    timeRange
+  );
+  const sumOfIncomesFromTimeRange = getSumOfValuesFromTimeRange(
+    income,
+    timeRange
   );
 
-  const chartData = generatePieData(chartDataFromIncomes);
+  const chartDataFromSumOfSummary = [
+    { name: "Expenses", value: sumOfExpensesFromTimeRange },
+    { name: "Income", value: sumOfIncomesFromTimeRange },
+  ];
+
+  const chartData = generatePieData(chartDataFromSumOfSummary);
 
   return chartData;
-};
-
-const getChartsDataByExpensesAndIncome = (
-  expenses: ExpenseI[],
-  income: IncomeI[]
-) => {
-  const sumOfExpensesValues = expenses.reduce((acc, curr) => {
-    return acc + curr.value;
-  }, 0);
-
-  const sumOfIncomeValues = income.reduce((acc, curr) => {
-    return acc + curr.value;
-  }, 0);
-
-  return [
-    { name: "Expenses", value: sumOfExpensesValues },
-    { name: "Income", value: sumOfIncomeValues },
-  ];
 };
 
 export { getSummaryChartData };

@@ -86,7 +86,7 @@ const sortDataByDays = <T extends { date: number; value: number }>(
   const sortedData = Array(daysInMonth)
     .fill(0)
     .map((el, i) => {
-      const dayData: T[] = data.filter((el) => getDate(el.date) === i);
+      const dayData: T[] = data.filter((el) => getDate(el.date) === i + 1);
 
       const sumOfValue = dayData.reduce((acc, element) => {
         acc += element.value;
@@ -156,7 +156,7 @@ const generateBarData = (
     case "month":
       labels = Array(getDaysInMonth(new Date()))
         .fill(0)
-        .map((el, i) => String(i));
+        .map((el, i) => String(i + 1));
       break;
     case "year":
       labels = monthsLabels;

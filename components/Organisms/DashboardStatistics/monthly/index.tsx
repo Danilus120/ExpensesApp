@@ -4,6 +4,7 @@ import {
   getExpensesChartData,
   getIncomeChartData,
   getMonthComparisonData,
+  getSummaryChartData,
   getSumOfValuesFromTimeRange,
 } from "utils/chartsUtils";
 
@@ -13,6 +14,7 @@ import styles from "../styles.module.scss";
 import BarChart from "@/Atoms/Charts/BarChart";
 import MoneyCards from "@/Molecules/MoneyCards";
 import ChartPieCluster from "@/Molecules/ChartPieCluster";
+
 Chart;
 
 function DashboardStatisticsMonthly() {
@@ -22,6 +24,7 @@ function DashboardStatisticsMonthly() {
     expenses: getExpensesChartData(userData.expenses, "month"),
     income: getIncomeChartData(userData.income, "month"),
     comparison: getMonthComparisonData(userData.expenses, userData.income),
+    summary: getSummaryChartData(userData.expenses, userData.income, "month"),
   };
 
   const cardsData = {

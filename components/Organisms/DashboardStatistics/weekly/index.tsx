@@ -3,6 +3,7 @@ import { useData } from "@/context/UserDataContext";
 import {
   getExpensesChartData,
   getIncomeChartData,
+  getSummaryChartData,
   getSumOfValuesFromTimeRange,
   getWeekComparisonData,
 } from "utils/chartsUtils";
@@ -23,6 +24,7 @@ function DashboardStatisticsWeekly() {
     expenses: getExpensesChartData(userData.expenses, "week"),
     income: getIncomeChartData(userData.income, "week"),
     comparison: getWeekComparisonData(userData.expenses, userData.income),
+    summary: getSummaryChartData(userData.expenses, userData.income, "week"),
   };
 
   const cardsData = {

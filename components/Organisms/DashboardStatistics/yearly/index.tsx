@@ -3,6 +3,7 @@ import { useData } from "@/context/UserDataContext";
 import {
   getExpensesChartData,
   getIncomeChartData,
+  getSummaryChartData,
   getSumOfValuesFromTimeRange,
   getYearComparisonData,
 } from "utils/chartsUtils";
@@ -13,7 +14,6 @@ import styles from "../styles.module.scss";
 import BarChart from "@/Atoms/Charts/BarChart";
 import MoneyCards from "@/Molecules/MoneyCards";
 import ChartPieCluster from "@/Molecules/ChartPieCluster";
-import { generatePieChartLegendData } from "utils/chartLegendUtil";
 
 Chart;
 
@@ -24,6 +24,7 @@ function DashboardStatisticsYearly() {
     expenses: getExpensesChartData(userData.expenses, "year"),
     income: getIncomeChartData(userData.income, "year"),
     comparison: getYearComparisonData(userData.expenses, userData.income),
+    summary: getSummaryChartData(userData.expenses, userData.income, "year"),
   };
 
   const cardsData = {

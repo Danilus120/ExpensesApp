@@ -224,6 +224,28 @@ const getExpensesChartData = (
   return chartData;
 };
 
+const getChartsDataFromExpenses = (expenses: ExpenseI[]) => {
+  const chartData = categories.reduce((accumulator, category) => {
+    // Filter expenses having that category
+    const filteredExpenses = expenses.filter(
+      (expense) => expense.category === category.value
+    );
+
+    // Accumulate expenses
+    const accumulateCategoryValue = filteredExpenses.reduce(
+      (acc, expense) => acc + expense.value,
+      0
+    );
+
+    return [
+      ...accumulator,
+      { name: category.label, value: accumulateCategoryValue },
+    ];
+  }, [] as { name: string; value: number }[]);
+
+  return chartData;
+};
+
 const getIncomeChartData = (
   incomes: IncomeI[],
   timeRange: TimeRangeProps = "month"
@@ -235,6 +257,67 @@ const getIncomeChartData = (
   const chartData = generatePieData(chartDataFromIncomes);
 
   return chartData;
+};
+
+const getChartsDataFromIncomes = (incomes: IncomeI[]) => {
+  // Get unique title of incomes
+  const incomeTitles = getUniqueTitlesOfIncomes(incomes);
+
+  const chartData = incomeTitles.reduce((accumulator, category) => {
+    // Filter expenses having that category
+    const filteredExpenses = incomes.filter(
+      (income) => income.title === category.label
+    );
+
+    // Accumulate expenses
+    const accumulateCategoryValue = filteredExpenses.reduce(
+      (acc, income) => acc + income.value,
+      0
+    );
+
+    return [
+      ...accumulator,
+      { name: category.label, value: accumulateCategoryValue },
+    ];
+  }, [] as { name: string; value: number }[]);
+
+  return chartData;
+};
+
+const getSummaryChartData = (
+  expenses: ExpenseI[],
+  incomes: IncomeI[],
+  timeRange: TimeRangeProps = "month"
+) => {
+  const timeDependenceExpenses = getDataFromTimeRange(expenses, timeRange);
+  const timeDependenceIncomes = getDataFromTimeRange(incomes, timeRange);
+
+  const chartDataFromIncomes = getChartsDataByExpensesAndIncome(
+    timeDependenceExpenses,
+    timeDependenceIncomes
+  );
+
+  const chartData = generatePieData(chartDataFromIncomes);
+
+  return chartData;
+};
+
+const getChartsDataByExpensesAndIncome = (
+  expenses: ExpenseI[],
+  income: IncomeI[]
+) => {
+  const sumOfExpensesValues = expenses.reduce((acc, curr) => {
+    return acc + curr.value;
+  }, 0);
+
+  const sumOfIncomeValues = income.reduce((acc, curr) => {
+    return acc + curr.value;
+  }, 0);
+
+  return [
+    { name: "Expenses", value: sumOfExpensesValues },
+    { name: "Income", value: sumOfIncomeValues },
+  ];
 };
 
 const getSumOfValuesFromTimeRange = <T extends { date: number; value: number }>(
@@ -274,53 +357,6 @@ const getDataFromTimeRange = <T extends { date: number }>(
   return timeDependenceData;
 };
 
-const getChartsDataFromIncomes = (incomes: IncomeI[]) => {
-  // Get unique title of incomes
-  const incomeTitles = getUniqueTitlesOfIncomes(incomes);
-
-  const chartData = incomeTitles.reduce((accumulator, category) => {
-    // Filter expenses having that category
-    const filteredExpenses = incomes.filter(
-      (income) => income.title === category.label
-    );
-
-    // Accumulate expenses
-    const accumulateCategoryValue = filteredExpenses.reduce(
-      (acc, income) => acc + income.value,
-      0
-    );
-
-    return [
-      ...accumulator,
-      { name: category.label, value: accumulateCategoryValue },
-    ];
-  }, [] as { name: string; value: number }[]);
-
-  return chartData;
-};
-
-const getChartsDataFromExpenses = (expenses: ExpenseI[]) => {
-  const chartData = categories.reduce((accumulator, category) => {
-    // Filter expenses having that category
-    const filteredExpenses = expenses.filter(
-      (expense) => expense.category === category.value
-    );
-
-    // Accumulate expenses
-    const accumulateCategoryValue = filteredExpenses.reduce(
-      (acc, expense) => acc + expense.value,
-      0
-    );
-
-    return [
-      ...accumulator,
-      { name: category.label, value: accumulateCategoryValue },
-    ];
-  }, [] as { name: string; value: number }[]);
-
-  return chartData;
-};
-
 const getUniqueTitlesOfIncomes = (incomes: IncomeI[]) => {
   const uniqueIncomeTitles = Array.from(
     new Set(incomes.map((incomes) => incomes.title))
@@ -339,6 +375,7 @@ export {
   getYearComparisonData,
   getMonthComparisonData,
   getWeekComparisonData,
+  getSummaryChartData,
   getChartsDataFromExpenses,
   getChartsDataFromIncomes,
   getExpensesChartData,

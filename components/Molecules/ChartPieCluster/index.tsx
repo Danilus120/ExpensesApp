@@ -11,6 +11,7 @@ interface ChartPieClusterProps {
     expenses: any;
     income: any;
     comparison: any;
+    summary: any;
   };
   timeRange: "week" | "month" | "year";
 }
@@ -29,7 +30,10 @@ function ChartPieCluster({ chartsData, timeRange }: ChartPieClusterProps) {
         title={`${timeSpec}ly Investments`}
         chartData={chartsData.expenses}
       />
-      <PieChart title={`${timeSpec}ary`} chartData={chartsData.expenses} />
+      <PieChart
+        title={`${timeSpec}ly Summary`}
+        chartData={chartsData.summary}
+      />
     </div>
   );
 }

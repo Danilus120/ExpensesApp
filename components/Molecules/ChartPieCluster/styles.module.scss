@@ -1,0 +1,25 @@
+.cluster {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+
+  gap: 16px;
+
+  .chart {
+    position: relative;
+
+    width: 100%;
+
+    flex-grow: 1;
+
+    @media (min-width: 768px) {
+      width: 45%;
+    }
+
+    @media (min-width: 992px) {
+      width: 20%;
+    }
+  }
+}

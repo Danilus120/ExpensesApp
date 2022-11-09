@@ -8,10 +8,8 @@ import {
 } from "utils/chartsUtils";
 
 import Chart from "chart.js/auto";
-import Card from "@/Atoms/Card";
 
 import styles from "../styles.module.scss";
-import PieChart from "@/Atoms/Charts/PieChart";
 import BarChart from "@/Atoms/Charts/BarChart";
 import MoneyCards from "@/Molecules/MoneyCards";
 import ChartPieCluster from "@/Molecules/ChartPieCluster";

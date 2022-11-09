@@ -8,19 +8,11 @@ import {
 } from "utils/chartsUtils";
 
 import Chart from "chart.js/auto";
-import Card from "@/Atoms/Card";
 
 import styles from "../styles.module.scss";
 import BarChart from "@/Atoms/Charts/BarChart";
-import PieChart from "@/Atoms/Charts/PieChart";
 import MoneyCards from "@/Molecules/MoneyCards";
 import ChartPieCluster from "@/Molecules/ChartPieCluster";
-{
-  /* TODO: MoneyCards timeRange="week" */
-}
-{
-  /* TODO: Other component - generic */
-}
 Chart;
 
 function DashboardStatisticsMonthly() {

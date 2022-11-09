@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^2.9.8",
     "@types/firebase": "^3.2.1",
     "chart.js": "^3.9.1",
+    "chartjs-plugin-datalabels": "^2.1.0",
     "date-fns": "^2.29.3",
     "firebase": "^9.10.0",
     "lodash": "^4.17.21",

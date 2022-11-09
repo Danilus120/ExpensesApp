@@ -8,11 +8,11 @@ import {
 } from "utils/chartsUtils";
 
 import Chart from "chart.js/auto";
-import { Pie, Bar } from "react-chartjs-2";
 import Card from "@/Atoms/Card";
 
 import styles from "../styles.module.scss";
-import { optionsBar, optionsPie } from "@/constants/chartsOptions";
+import PieChart from "@/Atoms/Charts/PieChart";
+import BarChart from "@/Atoms/Charts/BarChart";
 
 Chart;
 
@@ -56,30 +56,32 @@ function DashboardStatisticsYearly() {
           </div>
         </div>
         <div className={`${styles["chart"]} ${styles["fullWidth"]}`}>
-          <Card title="Comparison Expenses / Income">
-            <Bar data={chartsData.comparison} options={optionsBar} />
-          </Card>
+          <BarChart
+            title="Comparison Expenses / Income"
+            chartData={chartsData.comparison}
+          />
         </div>
         <div className={styles["cluster"]}>
           <div className={styles["chart"]}>
-            <Card title="Yearly expenses">
-              <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
-            </Card>
+            <PieChart
+              title="Yearly Expenses"
+              chartData={chartsData.yearlyExpenses}
+            />
           </div>
           <div className={styles["chart"]}>
-            <Card title="Yearly Income">
-              <Pie data={chartsData.yearlyIncome} options={optionsPie} />
-            </Card>
+            <PieChart
+              title="Yearly Income"
+              chartData={chartsData.yearlyIncome}
+            />
           </div>
           <div className={styles["chart"]}>
-            <Card title="Yearly Investments">
-              <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
-            </Card>
+            <PieChart
+              title="Yearly Investments"
+              chartData={chartsData.yearlyExpenses}
+            />
           </div>
           <div className={styles["chart"]}>
-            <Card title="Summary">
-              <Pie data={chartsData.yearlyExpenses} options={optionsPie} />
-            </Card>
+            <PieChart title="Summary" chartData={chartsData.yearlyExpenses} />
           </div>
         </div>
       </div>

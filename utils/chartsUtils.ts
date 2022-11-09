@@ -169,13 +169,13 @@ const generateBarData = (
       {
         label: "Expenses",
         data: expensesData,
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "#e87a7a",
         backdropColor: "#fff",
       },
       {
         label: "Incomes",
         data: incomesData,
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        backgroundColor: "#5cd97a",
         backdropColor: "#fff",
       },
     ],

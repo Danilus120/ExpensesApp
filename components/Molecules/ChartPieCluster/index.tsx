@@ -1,7 +1,7 @@
 import Card from "@/Atoms/Card";
 import PieChart from "@/Atoms/Charts/PieChart";
 import { useData } from "@/context/UserDataContext";
-import { generatePieChartLegendData } from "utils/chartLegendUtil";
+import { generatePieChartLegendData } from "utils/charts/legend";
 import { capitalizeFirstLetter } from "utils/utils";
 
 import styles from "./styles.module.scss";

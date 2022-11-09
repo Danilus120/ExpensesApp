@@ -1,4 +1,5 @@
 import { chartColors } from "@/constants/colors";
+
 const generatePieChartLegendData = <
   T extends { datasets: { data: Array<number> }[]; labels: Array<string> }
 >(

@@ -1,12 +1,10 @@
 import { useData } from "@/context/UserDataContext";
 
-import {
-  getExpensesChartData,
-  getIncomeChartData,
-  getSummaryChartData,
-  getSumOfValuesFromTimeRange,
-  getYearComparisonData,
-} from "utils/chartsUtils";
+import { getExpensesChartData } from "utils/charts/expenses";
+import { getIncomeChartData } from "utils/charts/income";
+import { getYearComparisonData } from "utils/charts/comparison";
+import { getSummaryChartData } from "utils/charts/summary";
+import { getSumOfValuesFromTimeRange } from "utils/charts/utils";
 
 import Chart from "chart.js/auto";
 

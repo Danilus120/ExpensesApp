@@ -24,6 +24,13 @@
     font-weight: 500;
   }
 
+  &__content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
   .bar__content {
     canvas {
       min-height: 40vh;

@@ -13,6 +13,7 @@ import styles from "../styles.module.scss";
 import BarChart from "@/Atoms/Charts/BarChart";
 import MoneyCards from "@/Molecules/MoneyCards";
 import ChartPieCluster from "@/Molecules/ChartPieCluster";
+import { generatePieChartLegendData } from "utils/chartLegendUtil";
 
 Chart;
 

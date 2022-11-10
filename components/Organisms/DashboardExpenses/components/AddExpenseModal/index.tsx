@@ -5,13 +5,12 @@ import Modal from "@/Molecules/Modal";
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
 
-import { categories } from "@/constants/categories";
 import { currencySelectOptions, currency_list } from "@/constants/currencyList";
 import { expenseSchema } from "@/constants/validationSchema";
 
 import { useData } from "@/context/UserDataContext";
 
-import { formatDate } from "utils/utils";
+import { formatDate, getFilteredExpensesCategories } from "utils/utils";
 
 import { uuidv4 } from "@firebase/util";
 
@@ -22,6 +21,8 @@ interface AddExpenseModalProps {
 
 function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
   const { userData, actions } = useData();
+
+  const filteredExpensesCategories = getFilteredExpensesCategories();
 
   return (
     <>
@@ -50,8 +51,8 @@ function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
           <Select
             label="Category"
             name="category"
-            options={categories}
-            defaultValue={categories[0].value}
+            options={filteredExpensesCategories}
+            defaultValue={filteredExpensesCategories[0].value}
           />
 
           <Input label="Shop Name" name="shopName" />

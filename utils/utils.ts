@@ -1,4 +1,4 @@
-import { categories } from "@/constants/categories";
+import { expensesCategories, incomeCategories } from "@/constants/categories";
 import { isSameMonth } from "date-fns";
 import { getUsers } from "lib/firebaseMethods";
 import { ExpenseI, IncomeI } from "types/user.interface";
@@ -110,9 +110,25 @@ const getAllIncomeFromActualMonth = (incomes: IncomeI[]) => {
   return incomesFromMonth;
 };
 
-function capitalizeFirstLetter(string: string) {
+const capitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
+
+const getFilteredExpensesCategories = () => {
+  const filteredCategories = expensesCategories.filter(
+    (category) => category.allowedInSelect
+  );
+
+  return filteredCategories;
+};
+
+const getFilteredIncomesCategories = () => {
+  const filteredCategories = incomeCategories.filter(
+    (category) => category.allowedInSelect
+  );
+
+  return filteredCategories;
+};
 
 export {
   getDataHeaders,
@@ -123,4 +139,6 @@ export {
   getAllIncomeFromActualMonth,
   getAllExpensesFromActualMonth,
   capitalizeFirstLetter,
+  getFilteredExpensesCategories,
+  getFilteredIncomesCategories,
 };

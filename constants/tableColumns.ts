@@ -31,6 +31,10 @@ const incomeTableColumns = [
     accessor: "date",
   },
   {
+    Header: "Category",
+    accessor: "category",
+  },
+  {
     Header: "Title",
     accessor: "title",
   },

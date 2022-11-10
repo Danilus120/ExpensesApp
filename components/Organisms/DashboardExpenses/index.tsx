@@ -12,6 +12,7 @@ import { useData } from "@/context/UserDataContext";
 import { useModal } from "@/hooks/useModal";
 
 import { expensesTableColumns } from "@/constants/tableColumns";
+import { expensesCategories } from "@/constants/categories";
 
 function DashboardExpenses() {
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState(false);
@@ -29,9 +30,13 @@ function DashboardExpenses() {
 
   const formatedData = userData.expenses
     .sort((a, b) => b.date - a.date)
-    .map((el: any) => {
+    .map((el) => {
+      const categoryObj = expensesCategories.find(
+        (category) => category.value === el.category
+      );
       return {
         ...el,
+        category: categoryObj?.label,
         date: new Date(el.date).toLocaleDateString("pl"),
       };
     });

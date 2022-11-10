@@ -12,6 +12,7 @@ import { useData } from "@/context/UserDataContext";
 import { useModal } from "@/hooks/useModal";
 
 import { incomeTableColumns } from "@/constants/tableColumns";
+import { incomeCategories } from "@/constants/categories";
 
 function DashboardIncome() {
   const [isAddIncomeModalOpen, setIsAddIncomeModalOpen] = useState(false);
@@ -29,9 +30,14 @@ function DashboardIncome() {
 
   const formatedData = userData.income
     .sort((a, b) => b.date - a.date)
-    .map((el: any) => {
+    .map((el) => {
+      const categoryObj = incomeCategories.find(
+        (category) => category.value === el.category
+      );
+
       return {
         ...el,
+        category: categoryObj?.label,
         date: new Date(el.date).toLocaleDateString("pl"),
       };
     });

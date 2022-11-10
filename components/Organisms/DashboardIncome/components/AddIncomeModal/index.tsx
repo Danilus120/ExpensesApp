@@ -10,7 +10,7 @@ import { incomeSchema } from "@/constants/validationSchema";
 
 import { useData } from "@/context/UserDataContext";
 
-import { formatDate } from "utils/utils";
+import { formatDate, getFilteredIncomesCategories } from "utils/utils";
 
 import { uuidv4 } from "@firebase/util";
 
@@ -21,6 +21,8 @@ interface AddIncomeModalProps {
 
 function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
   const { userData, actions } = useData();
+
+  const filteredIncomesCategories = getFilteredIncomesCategories();
 
   return (
     <>
@@ -45,6 +47,13 @@ function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
           defaultValues={{ date: formatDate(new Date().getTime()) }}
         >
           <Input type="date" label="Date" name="date" />
+
+          <Select
+            label="Category"
+            name="category"
+            options={filteredIncomesCategories}
+            defaultValue={filteredIncomesCategories[0].value}
+          />
 
           <Input label="Title" name="title" />
 

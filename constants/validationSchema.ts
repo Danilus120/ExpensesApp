@@ -39,6 +39,7 @@ const expenseSchema = yup
 const incomeSchema = yup
   .object({
     date: yup.date().required(),
+    category: yup.string().required(),
     title: yup.string().required(),
     value: yup.number().required(),
     // currency: yup.string().required(),

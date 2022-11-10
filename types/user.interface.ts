@@ -27,6 +27,7 @@ interface ExpenseFormDataI {
 interface IncomeI {
   id: string;
   date: number;
+  category: string;
   title: string;
   value: number;
   description: string;
@@ -34,6 +35,7 @@ interface IncomeI {
 
 interface IncomeFormDataI {
   date: Date;
+  category: string;
   title: string;
   value: number;
   description: string;

@@ -1,5 +1,6 @@
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
+import { incomeCategories } from "@/constants/categories";
 import { currencySelectOptions, currency_list } from "@/constants/currencyList";
 import { incomeSchema } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
@@ -54,6 +55,13 @@ function EditIncomeModal({
           defaultValues={data}
         >
           <Input type="date" label="Date" name="date" />
+
+          <Select
+            label="Category"
+            name="category"
+            options={incomeCategories}
+            defaultValue={data.category}
+          />
 
           <Input label="Title" name="title" />
 

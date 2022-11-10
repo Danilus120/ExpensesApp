@@ -25,28 +25,4 @@ const getIncomeChartData = (
   return chartData;
 };
 
-// const getChartsDataFromIncomes = (incomes: IncomeI[]) => {
-//   // Get unique title of incomes
-
-//   const chartData = incomeCategories.reduce((accumulator, category) => {
-//     // Filter expenses having that category
-//     const filteredExpenses = incomes.filter(
-//       (income) => income.category === category.value
-//     );
-
-//     // Accumulate expenses
-//     const accumulateCategoryValue = filteredExpenses.reduce(
-//       (acc, income) => acc + income.value,
-//       0
-//     );
-
-//     return [
-//       ...accumulator,
-//       { name: category.label, value: accumulateCategoryValue },
-//     ];
-//   }, [] as { name: string; value: number }[]);
-
-//   return chartData;
-// };
-
 export { getIncomeChartData };

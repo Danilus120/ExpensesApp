@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import {
   HeaderGroup,
   Row,
@@ -6,20 +6,18 @@ import {
   TableBodyProps,
   usePagination,
   useTable,
+  useGlobalFilter,
+  TableInstance,
 } from "react-table";
 
-import { FiEdit } from "react-icons/fi";
+import { FiEdit, FiPlus } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
 
 import Button from "@/Atoms/Button";
 
-import { getDataHeaders } from "utils/utils";
-
 import styles from "./styles.module.scss";
 import Pagination from "../Pagination";
-import { el } from "date-fns/locale";
-import Modal from "../Modal";
-import { useData } from "@/context/UserDataContext";
+import GlobalFilter from "../GlobalFilter";
 
 interface TableI {
   data: any;
@@ -33,9 +31,9 @@ interface TableI {
   defaultCurrency: string;
   deleteRecordFn: (id: string) => void;
   editRecordFn: (id: string) => void;
+  addFn?: () => void;
+  title?: string;
 }
-
-// TODO: Add button with position fixed in right bottom corner to add new expense
 
 function Table({
   data,
@@ -44,6 +42,8 @@ function Table({
   deleteRecordFn,
   editRecordFn,
   defaultCurrency,
+  addFn,
+  title,
 }: TableI) {
   const memoColumns = useMemo(() => columns, []);
 
@@ -56,6 +56,7 @@ function Table({
         pageSize: 10,
       },
     },
+    useGlobalFilter,
     usePagination
   );
   if (!options) {
@@ -64,17 +65,12 @@ function Table({
     };
   }
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    prepareRow,
-
-    page,
-  } = tableInstance;
+  const { getTableProps, getTableBodyProps, headerGroups, prepareRow, page } =
+    tableInstance;
 
   return (
     <div className={styles["container"]}>
+      <TableHeader addFn={addFn} title={title} tableInstance={tableInstance} />
       <div className={styles["table__wrapper"]}>
         <table {...getTableProps()} className={styles["table"]}>
           <TableHead headerGroups={headerGroups} />
@@ -89,6 +85,35 @@ function Table({
         </table>
       </div>
       <Pagination tableInstance={tableInstance} options={options} />
+    </div>
+  );
+}
+
+interface TableHeaderProps {
+  title: string | undefined;
+  addFn: (() => void) | undefined;
+  tableInstance: TableInstance<object>;
+}
+
+function TableHeader({ title, addFn, tableInstance }: TableHeaderProps) {
+  return (
+    <div className={styles["header"]}>
+      <div className={styles["left"]}>{title ? <h3>{title}</h3> : null}</div>
+      <div className={styles["right"]}>
+        <GlobalFilter tableInstance={tableInstance} />
+        {addFn ? (
+          <div className={styles["button__container"]}>
+            <Button
+              variant="contained"
+              color="success"
+              callbackFn={addFn}
+              size="medium"
+            >
+              <FiPlus /> Add Expense
+            </Button>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

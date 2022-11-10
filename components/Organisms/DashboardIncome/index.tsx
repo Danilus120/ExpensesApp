@@ -44,15 +44,14 @@ function DashboardIncome() {
 
   return (
     <>
-      <Button variant="ghost" iconOnly callbackFn={toggleAddIncomeModal}>
-        <FiPlus />
-      </Button>
       <Table
         data={formatedData}
         defaultCurrency={userData.default_Currency}
         columns={incomeTableColumns}
         deleteRecordFn={actions.deleteIncome}
         editRecordFn={setRecordID}
+        addFn={toggleAddIncomeModal}
+        title="Income Table"
       />
 
       <AddIncomeModal

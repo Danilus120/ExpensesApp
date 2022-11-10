@@ -20,7 +20,7 @@ interface AddExpenseModalProps {
 }
 
 function AddExpenseModal({ isOpen, handleToggle }: AddExpenseModalProps) {
-  const { userData, actions } = useData();
+  const { actions } = useData();
 
   const filteredExpensesCategories = getFilteredExpensesCategories();
 

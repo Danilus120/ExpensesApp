@@ -20,7 +20,7 @@ interface AddIncomeModalProps {
 }
 
 function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
-  const { userData, actions } = useData();
+  const { actions } = useData();
 
   const filteredIncomesCategories = getFilteredIncomesCategories();
 

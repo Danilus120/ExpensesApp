@@ -14,6 +14,8 @@ import { useModal } from "@/hooks/useModal";
 import { expensesTableColumns } from "@/constants/tableColumns";
 import { expensesCategories } from "@/constants/categories";
 
+import styles from "./styles.module.scss";
+
 function DashboardExpenses() {
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState(false);
   const { userData, actions } = useData();
@@ -45,15 +47,14 @@ function DashboardExpenses() {
 
   return (
     <>
-      <Button variant="ghost" iconOnly callbackFn={toggleAddExpenseModal}>
-        <FiPlus />
-      </Button>
       <Table
         data={formatedData}
         defaultCurrency={userData.default_Currency}
         columns={expensesTableColumns}
         deleteRecordFn={actions.deleteExpense}
         editRecordFn={setRecordID}
+        addFn={toggleAddExpenseModal}
+        title="Expenses Table"
       />
 
       <AddExpenseModal

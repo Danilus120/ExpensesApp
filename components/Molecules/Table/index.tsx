@@ -201,6 +201,7 @@ function TableBody({
                   variant="ghost"
                   iconOnly
                   callbackFn={() => editRecordFn(id)}
+                  size="small"
                 >
                   <FiEdit />
                 </Button>
@@ -208,6 +209,7 @@ function TableBody({
                   variant="ghost"
                   iconOnly
                   callbackFn={() => deleteRecordFn(id)}
+                  size="small"
                 >
                   <AiFillDelete />
                 </Button>

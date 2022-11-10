@@ -1,6 +1,7 @@
 import { expensesCategories, incomeCategories } from "@/constants/categories";
 import { isSameMonth } from "date-fns";
 import { getUsers } from "lib/firebaseMethods";
+import { ChartsDataI } from "types/chart.interface";
 import { ExpenseI, IncomeI } from "types/user.interface";
 
 interface ExpensesI {
@@ -130,6 +131,10 @@ const getFilteredIncomesCategories = () => {
   return filteredCategories;
 };
 
+const checkIfChartDataIsNotEmpty = (chartData: any) => {
+  return chartData.datasets[0].data.some((number: number) => number != 0);
+};
+
 export {
   getDataHeaders,
   isUserInDB,
@@ -141,4 +146,5 @@ export {
   capitalizeFirstLetter,
   getFilteredExpensesCategories,
   getFilteredIncomesCategories,
+  checkIfChartDataIsNotEmpty,
 };

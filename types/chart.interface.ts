@@ -1,3 +1,10 @@
 type TimeRangeProps = "week" | "month" | "year";
 
-export type { TimeRangeProps };
+interface ChartsDataI {
+  expenses: any;
+  income: any;
+  comparison: any;
+  summary: any;
+}
+
+export type { TimeRangeProps, ChartsDataI };

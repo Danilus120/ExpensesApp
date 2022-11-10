@@ -29,17 +29,19 @@ function DashboardExpenses() {
   };
 
   const formatedData = userData.expenses
-    .sort((a, b) => b.date - a.date)
-    .map((el) => {
-      const categoryObj = expensesCategories.find(
-        (category) => category.value === el.category
-      );
-      return {
-        ...el,
-        category: categoryObj?.label,
-        date: new Date(el.date).toLocaleDateString("pl"),
-      };
-    });
+    ? userData.expenses
+        .sort((a, b) => b.date - a.date)
+        .map((el) => {
+          const categoryObj = expensesCategories.find(
+            (category) => category.value === el.category
+          );
+          return {
+            ...el,
+            category: categoryObj?.label,
+            date: new Date(el.date).toLocaleDateString("pl"),
+          };
+        })
+    : [];
 
   return (
     <>

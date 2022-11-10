@@ -40,6 +40,7 @@ function PieChart({ chartData, title }: PieChartProps) {
           <div className={styles["chart__open"]} onClick={handleToggle}>
             <IoIosArrowDown />
           </div>
+          {/* TODO: Sort legend desc */}
           {isLegendOpen ? (
             <div className={styles["chart__legend"]}>
               {pieChartExpensesLegendData.map((data) => (

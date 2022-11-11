@@ -1,18 +1,20 @@
 import Card from "@/Atoms/Card";
 import { useData } from "@/context/UserDataContext";
+import { getSumOfValuesFromTimeRange } from "utils/charts/utils";
 import { capitalizeFirstLetter } from "utils/utils";
 import styles from "./styles.module.scss";
 
 interface MoneyCardsProps {
-  cardsData: {
-    expensesValue: number;
-    incomeValue: number;
-  };
   timeRange: "week" | "month" | "year";
 }
 
-function MoneyCards({ cardsData, timeRange }: MoneyCardsProps) {
+function MoneyCards({ timeRange }: MoneyCardsProps) {
   const { userData } = useData();
+
+  const cardsData = {
+    expensesValue: getSumOfValuesFromTimeRange(userData.expenses, timeRange),
+    incomeValue: getSumOfValuesFromTimeRange(userData.income, timeRange),
+  };
 
   const timeSpec = capitalizeFirstLetter(timeRange);
 

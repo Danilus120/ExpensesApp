@@ -17,7 +17,7 @@ import Button from "@/Atoms/Button";
 
 import styles from "./styles.module.scss";
 import Pagination from "../Pagination";
-import GlobalFilter from "../GlobalFilter";
+import GlobalFilter from "./components/GlobalFilter";
 
 interface TableI {
   data: any;

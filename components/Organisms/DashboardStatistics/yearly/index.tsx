@@ -6,8 +6,8 @@ import Chart from "chart.js/auto";
 
 import styles from "../styles.module.scss";
 import BarChart from "@/Atoms/Charts/BarChart";
-import MoneyCards from "@/Molecules/MoneyCards";
-import ChartPieCluster from "@/Molecules/ChartPieCluster";
+import MoneyCards from "@/Organisms/DashboardStatistics/components/MoneyCards";
+import ChartPieCluster from "@/Organisms/DashboardStatistics/components/ChartPieCluster";
 
 Chart;
 

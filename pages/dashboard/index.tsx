@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 import DashboardLayout from "@/Templates/DashboardTemplate";
-import DashboardExpenses from "@/Organisms/DashboardExpenses";
+import DashboardCharts from "@/Organisms/DashboardCharts";
 
 const Dashboard: NextPage = () => {
   return (
@@ -11,8 +11,7 @@ const Dashboard: NextPage = () => {
         description: "Dashboard of expenses app",
       }}
     >
-      {/* TODO: Component must load without reloading page with only route history */}
-      <DashboardExpenses />
+      <DashboardCharts />
     </DashboardLayout>
   );
 };

@@ -1,7 +1,10 @@
 import { Context } from "chartjs-plugin-datalabels";
 
-const generateOptionsBar = (defaultCurrency: string) => {
-  const optionsBar = {
+const generateOptionsBar = (
+  defaultCurrency: string,
+  isHorizontal: boolean = false
+) => {
+  let optionsBar = {
     maintainAspectRatio: false,
     // responsive: true,
     color: "#8f8f8f",
@@ -36,6 +39,13 @@ const generateOptionsBar = (defaultCurrency: string) => {
       },
     },
   };
+
+  if (isHorizontal) {
+    return {
+      ...optionsBar,
+      indexAxis: "y" as const,
+    };
+  }
 
   return optionsBar;
 };

@@ -4,6 +4,8 @@
   align-items: stretch;
   flex-direction: column;
 
+  // flex-wrap: wrap;
+
   gap: 16px;
   padding-bottom: 16px;
 
@@ -20,12 +22,26 @@
 }
 
 .chart {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+
   &__legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+
     &__container {
       display: flex;
+      justify-content: center;
       align-items: center;
 
       margin: 5px 0px;
+
+      min-width: 200px;
     }
 
     &__color {
@@ -46,4 +62,13 @@
       }
     }
   }
+}
+
+.topCategory {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
 }

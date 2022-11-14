@@ -1,13 +1,23 @@
 import { ExpenseI, IncomeI } from "types/user.interface";
-import { sortDataByDays } from "./comparison";
-import { generateLineData, getDataFromTimeRange } from "./utils";
+import { getDataFromTimePeriod } from "utils/timeFunctions";
+import { sortDataByDays } from "../Bar/comparison";
+import { generateLineData } from "../generateChartsData";
 
 const getLineMonthComparisonData = (
   expenses: ExpenseI[],
-  incomes: IncomeI[]
+  incomes: IncomeI[],
+  chosenDate: Date | number = new Date()
 ) => {
-  const timeDependenceExpenses = getDataFromTimeRange(expenses, "month");
-  const timeDependenceIncomes = getDataFromTimeRange(incomes, "month");
+  const timeDependenceExpenses = getDataFromTimePeriod(
+    expenses,
+    "month",
+    chosenDate
+  );
+  const timeDependenceIncomes = getDataFromTimePeriod(
+    incomes,
+    "month",
+    chosenDate
+  );
 
   const arrayOfExpensesValuesSortedByMonths = sortDataByDays(
     timeDependenceExpenses

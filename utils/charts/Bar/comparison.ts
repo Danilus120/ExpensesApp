@@ -6,17 +6,28 @@ import {
   isSameWeek,
 } from "date-fns";
 
-import { generateBarData, getDataFromTimeRange } from "./utils";
-
 import { ExpenseI, IncomeI } from "types/user.interface";
 
 import { daysLabels, monthsLabels } from "@/constants/chartsConstants";
+import { getDataFromTimePeriod } from "utils/timeFunctions";
+import { generateBarData } from "../generateChartsData";
 
 // Week
-
-const getWeekComparisonData = (expenses: ExpenseI[], incomes: IncomeI[]) => {
-  const timeDependenceExpenses = getDataFromTimeRange(expenses, "week");
-  const timeDependenceIncomes = getDataFromTimeRange(incomes, "week");
+const getWeekComparisonData = (
+  expenses: ExpenseI[],
+  incomes: IncomeI[],
+  chosenDate: Date | number = new Date()
+) => {
+  const timeDependenceExpenses = getDataFromTimePeriod(
+    expenses,
+    "week",
+    chosenDate
+  );
+  const timeDependenceIncomes = getDataFromTimePeriod(
+    incomes,
+    "week",
+    chosenDate
+  );
 
   const arrayOfExpensesValuesSortedByDays = sortDataByWeekDays(
     timeDependenceExpenses
@@ -38,7 +49,7 @@ const sortDataByWeekDays = <T extends { date: number; value: number }>(
   data: T[]
 ) => {
   const sortedData = daysLabels.map((el, i) => {
-    const weekdayData = data.filter((el) => {
+    const weekdayData: T[] = data.filter((el) => {
       return getDay(el.date) - 1 === i && isSameWeek(el.date, new Date());
     });
 
@@ -55,10 +66,21 @@ const sortDataByWeekDays = <T extends { date: number; value: number }>(
 };
 
 // Month
-
-const getMonthComparisonData = (expenses: ExpenseI[], incomes: IncomeI[]) => {
-  const timeDependenceExpenses = getDataFromTimeRange(expenses, "month");
-  const timeDependenceIncomes = getDataFromTimeRange(incomes, "month");
+const getMonthComparisonData = (
+  expenses: ExpenseI[],
+  incomes: IncomeI[],
+  chosenDate: Date | number = new Date()
+) => {
+  const timeDependenceExpenses = getDataFromTimePeriod(
+    expenses,
+    "month",
+    chosenDate
+  );
+  const timeDependenceIncomes = getDataFromTimePeriod(
+    incomes,
+    "month",
+    chosenDate
+  );
 
   const arrayOfExpensesValuesSortedByMonths = sortDataByDays(
     timeDependenceExpenses
@@ -99,10 +121,21 @@ const sortDataByDays = <T extends { date: number; value: number }>(
 };
 
 // Year
-
-const getYearComparisonData = (expenses: ExpenseI[], incomes: IncomeI[]) => {
-  const timeDependenceExpenses = getDataFromTimeRange(expenses, "year");
-  const timeDependenceIncomes = getDataFromTimeRange(incomes, "year");
+const getYearComparisonData = (
+  expenses: ExpenseI[],
+  incomes: IncomeI[],
+  chosenDate: Date | number = new Date()
+) => {
+  const timeDependenceExpenses = getDataFromTimePeriod(
+    expenses,
+    "year",
+    chosenDate
+  );
+  const timeDependenceIncomes = getDataFromTimePeriod(
+    incomes,
+    "year",
+    chosenDate
+  );
 
   const arrayOfExpensesValuesSortedByMonths = sortDataByMonths(
     timeDependenceExpenses

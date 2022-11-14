@@ -1,9 +1,7 @@
-import { addMonths, isSameMonth } from "date-fns";
+import { addMonths } from "date-fns";
 import { UserFirebaseI } from "types/user.interface";
-import {
-  getDataFromTimeRange,
-  getSumOfValuesFromTimeRange,
-} from "utils/charts/utils";
+import { getValueOfDataFromTimePeriod } from "utils/timeFunctions";
+
 const calculateComparisonPercent = (
   firstValue: number,
   secondValue: number
@@ -12,19 +10,28 @@ const calculateComparisonPercent = (
   return Number(comparisonPercent) > 0 ? comparisonPercent : -comparisonPercent;
 };
 
-const getDashboardComparisonData = (data: UserFirebaseI) => {
+const getDashboardComparisonData = (
+  data: UserFirebaseI,
+  chosenDate: Date | number = new Date()
+) => {
   const { expenses, income, investments } = data;
 
+  const pastMonthDate = addMonths(chosenDate, -1);
+
   const pastMonthValues = {
-    expenses: getDataFromPastMonth(expenses),
-    income: getDataFromPastMonth(income),
-    investments: getDataFromPastMonth(investments),
+    expenses: getValueOfDataFromTimePeriod(expenses, "month", pastMonthDate),
+    income: getValueOfDataFromTimePeriod(income, "month", pastMonthDate),
+    investments: getValueOfDataFromTimePeriod(
+      investments,
+      "month",
+      pastMonthDate
+    ),
   };
 
   const todayValues = {
-    expenses: getSumOfValuesFromTimeRange(expenses, "month"),
-    income: getSumOfValuesFromTimeRange(income, "month"),
-    investments: getSumOfValuesFromTimeRange(investments, "month"),
+    expenses: getValueOfDataFromTimePeriod(expenses, "month", chosenDate),
+    income: getValueOfDataFromTimePeriod(income, "month", chosenDate),
+    investments: getValueOfDataFromTimePeriod(investments, "month", chosenDate),
   };
 
   const pastMonthSavings = pastMonthValues.income - pastMonthValues.expenses;
@@ -48,23 +55,6 @@ const getDashboardComparisonData = (data: UserFirebaseI) => {
       today: todaySavings,
     },
   };
-};
-
-const getDataFromPastMonth = <T extends { value: number; date: number }>(
-  data: T[]
-) => {
-  const pastMonthDate = addMonths(new Date(), -1);
-
-  const pastMonthData = data.filter((el) =>
-    isSameMonth(el.date, pastMonthDate)
-  );
-
-  const pastMonthValue = pastMonthData.reduce(
-    (acc, currEl) => acc + currEl.value,
-    0
-  );
-
-  return pastMonthValue;
 };
 
 export { calculateComparisonPercent, getDashboardComparisonData };

@@ -1,20 +1,23 @@
-import { generatePieData, getSumOfValuesFromTimeRange } from "./utils";
-
 import { TimeRangeProps } from "types/chart.interface";
 import { ExpenseI, IncomeI } from "types/user.interface";
+import { getValueOfDataFromTimePeriod } from "utils/timeFunctions";
+import { generatePieData } from "../generateChartsData";
 
 const getSummaryChartData = (
   expenses: ExpenseI[],
   income: IncomeI[],
-  timeRange: TimeRangeProps
+  timeRange: TimeRangeProps,
+  chosenDate: Date | number = new Date()
 ) => {
-  const sumOfExpensesFromTimeRange = getSumOfValuesFromTimeRange(
+  const sumOfExpensesFromTimeRange = getValueOfDataFromTimePeriod(
     expenses,
-    timeRange
+    timeRange,
+    chosenDate
   );
-  const sumOfIncomesFromTimeRange = getSumOfValuesFromTimeRange(
+  const sumOfIncomesFromTimeRange = getValueOfDataFromTimePeriod(
     income,
-    timeRange
+    timeRange,
+    chosenDate
   );
 
   const chartDataFromSumOfSummary = [

@@ -6,12 +6,9 @@ import { auth } from "config/firebase.config";
 import { signOut } from "firebase/auth";
 
 import styles from "./styles.module.scss";
-import {
-  getValueOfExpensesInActualMonth,
-  getValueOfIncomesInActualMonth,
-} from "utils/utils";
 import { useData } from "@/context/UserDataContext";
 import { useEffect, useState } from "react";
+import { getValueOfDataFromTimePeriod } from "utils/timeFunctions";
 
 interface ProfileModalI {
   handleToggle: () => void;
@@ -28,11 +25,13 @@ export default function ProfileModal({
   const [summary, setSummary] = useState(0);
 
   useEffect(() => {
-    setMonthlyExpenses(getValueOfExpensesInActualMonth(userData.expenses));
+    setMonthlyExpenses(
+      getValueOfDataFromTimePeriod(userData.expenses, "month")
+    );
   }, [userData.expenses]);
 
   useEffect(() => {
-    setMonthlyIncomes(getValueOfIncomesInActualMonth(userData.income));
+    setMonthlyIncomes(getValueOfDataFromTimePeriod(userData.income, "month"));
   }, [userData.income]);
 
   useEffect(() => {
@@ -44,7 +43,6 @@ export default function ProfileModal({
     router.push("/");
   };
 
-  // TODO: bypass other currencies
   return (
     <div className={`${styles["modal"]} ${isOpened && styles["show"]}`}>
       <div className={styles["modal__card"]}>

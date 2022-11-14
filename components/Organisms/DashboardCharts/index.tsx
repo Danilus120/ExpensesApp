@@ -3,7 +3,7 @@ import React from "react";
 import DashboardMoneyCards from "./components/DashboardMoneyCards";
 import LineChart from "@/Atoms/Charts/LineChart";
 import { useData } from "@/context/UserDataContext";
-import { getLineMonthComparisonData } from "utils/charts/line";
+import { getLineMonthComparisonData } from "utils/charts/Line/line";
 import TopCategories from "./components/TopCategories";
 
 function DashboardCharts() {

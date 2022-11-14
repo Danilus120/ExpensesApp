@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Pie } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { generateOptionsPie } from "@/constants/chartsOptions";
-import { generatePieChartLegendData } from "utils/charts/legend";
+import { generatePieChartLegendData } from "utils/charts/Pie/legend";
 import { IoIosArrowDown } from "react-icons/io";
 
 import styles from "./styles.module.scss";

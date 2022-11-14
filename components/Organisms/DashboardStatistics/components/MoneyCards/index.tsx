@@ -1,7 +1,7 @@
 import Card from "@/Atoms/Card";
 import { useData } from "@/context/UserDataContext";
-import { getSumOfValuesFromTimeRange } from "utils/charts/utils";
-import { capitalizeFirstLetter } from "utils/utils";
+import { getValueOfDataFromTimePeriod } from "utils/timeFunctions";
+import { toCapital } from "utils/utils";
 import styles from "./styles.module.scss";
 
 interface MoneyCardsProps {
@@ -12,11 +12,11 @@ function MoneyCards({ timeRange }: MoneyCardsProps) {
   const { userData } = useData();
 
   const cardsData = {
-    expensesValue: getSumOfValuesFromTimeRange(userData.expenses, timeRange),
-    incomeValue: getSumOfValuesFromTimeRange(userData.income, timeRange),
+    expensesValue: getValueOfDataFromTimePeriod(userData.expenses, timeRange),
+    incomeValue: getValueOfDataFromTimePeriod(userData.income, timeRange),
   };
 
-  const timeSpec = capitalizeFirstLetter(timeRange);
+  const timeSpec = toCapital(timeRange);
 
   return (
     <div className={styles["blocks"]}>

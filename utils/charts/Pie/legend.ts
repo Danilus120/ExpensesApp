@@ -1,15 +1,17 @@
 import { chartColors } from "@/constants/colors";
 import { TimeRangeProps } from "types/chart.interface";
-import { getChartsDataFromCategories, getDataFromTimeRange } from "./utils";
+import { getDataFromTimePeriod } from "utils/timeFunctions";
+import { getChartsDataFromCategories } from "../utils";
 
 const generateLegendListFromTimeRange = (
   data: any,
   categories: { label: string; value: string; allowedInSelect: boolean }[],
   timeRange: TimeRangeProps,
-  sorted: boolean
+  sorted: boolean,
+  chosenDate: Date | number = new Date()
 ) => {
   const dataFromTimeRange: { date: number; value: number; category: string }[] =
-    getDataFromTimeRange(data, timeRange);
+    getDataFromTimePeriod(data, timeRange, chosenDate);
 
   let sortedDataByCategories = getChartsDataFromCategories(
     dataFromTimeRange,

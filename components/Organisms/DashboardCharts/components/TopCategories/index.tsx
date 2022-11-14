@@ -2,10 +2,10 @@ import Card from "@/Atoms/Card";
 import { useData } from "@/context/UserDataContext";
 import React from "react";
 import { TimeRangeProps } from "types/chart.interface";
-import { getExpensesChartData } from "utils/charts/expenses";
-import { getIncomeChartData } from "utils/charts/income";
-import { generatePieChartLegendData } from "utils/charts/legend";
-import { capitalizeFirstLetter } from "utils/utils";
+import { getExpensesChartData } from "utils/charts/Pie/expenses";
+import { getIncomeChartData } from "utils/charts/Pie/income";
+import { generatePieChartLegendData } from "utils/charts/Pie/legend";
+import { toCapital } from "utils/utils";
 
 import styles from "./styles.module.scss";
 
@@ -29,11 +29,7 @@ function TopCategories({ timeRange }: TopCategoriesProps) {
   return (
     <div className={styles["blocks"]}>
       <div className={styles["block"]}>
-        <Card
-          title={`${capitalizeFirstLetter(
-            timeRange
-          )}ly TOP expenses categories`}
-        >
+        <Card title={`${toCapital(timeRange)}ly TOP expenses categories`}>
           <div className={styles["chart__legend"]}>
             {legends.expenses.map((data) => (
               <div
@@ -54,9 +50,7 @@ function TopCategories({ timeRange }: TopCategoriesProps) {
         </Card>
       </div>
       <div className={styles["block"]}>
-        <Card
-          title={`${capitalizeFirstLetter(timeRange)}ly TOP income categories`}
-        >
+        <Card title={`${toCapital(timeRange)}ly TOP income categories`}>
           <div className={styles["chart__legend"]}>
             {legends.income.map((data) => (
               <div

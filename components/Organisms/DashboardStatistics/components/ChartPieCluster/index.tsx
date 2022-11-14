@@ -1,10 +1,10 @@
 import PieChart from "@/Atoms/Charts/PieChart";
 import { useData } from "@/context/UserDataContext";
-import { getMonthComparisonData } from "utils/charts/comparison";
-import { getExpensesChartData } from "utils/charts/expenses";
-import { getIncomeChartData } from "utils/charts/income";
-import { getSummaryChartData } from "utils/charts/summary";
-import { capitalizeFirstLetter, checkIfChartDataIsNotEmpty } from "utils/utils";
+import { getMonthComparisonData } from "utils/charts/Bar/comparison";
+import { getExpensesChartData } from "utils/charts/Pie/expenses";
+import { getIncomeChartData } from "utils/charts/Pie/income";
+import { getSummaryChartData } from "utils/charts/Pie/summary";
+import { checkIfChartDataIsNotEmpty, toCapital } from "utils/utils";
 
 import styles from "./styles.module.scss";
 
@@ -14,7 +14,7 @@ interface ChartPieClusterProps {
 
 function ChartPieCluster({ timeRange }: ChartPieClusterProps) {
   const { userData } = useData();
-  const timeSpec = capitalizeFirstLetter(timeRange);
+  const timeSpec = toCapital(timeRange);
 
   const chartsData = {
     expenses: getExpensesChartData(userData.expenses, timeRange),

@@ -1,6 +1,6 @@
 import { useData } from "@/context/UserDataContext";
 
-import { getYearComparisonData } from "utils/charts/comparison";
+import { getYearComparisonData } from "utils/charts/Bar/comparison";
 
 import Chart from "chart.js/auto";
 

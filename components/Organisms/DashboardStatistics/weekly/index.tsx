@@ -1,6 +1,6 @@
 import { useData } from "@/context/UserDataContext";
 
-import { getWeekComparisonData } from "utils/charts/comparison";
+import { getWeekComparisonData } from "utils/charts/Bar/comparison";
 
 import Chart from "chart.js/auto";
 

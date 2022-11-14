@@ -1,26 +1,27 @@
 import { getChartsDataFromCategories } from "../utils";
 
 import { TimeRangeProps } from "types/chart.interface";
-import { ExpenseI } from "types/user.interface";
 
-import { expensesCategories } from "@/constants/categories";
 import { generatePieData } from "../generateChartsData";
 import { getDataFromTimePeriod } from "utils/timeFunctions";
 
-const getExpensesChartData = (
-  expenses: ExpenseI[],
+const getPieChartData = <
+  T extends { date: number; value: number; category: string }
+>(
+  data: T[],
   timeRange: TimeRangeProps = "month",
+  categories: { label: string; value: string; allowedInSelect: boolean }[],
   chosenDate: Date | number = new Date()
 ) => {
   const timeDependenceExpenses = getDataFromTimePeriod(
-    expenses,
+    data,
     timeRange,
     chosenDate
   );
 
   const chartDataFromExpenses = getChartsDataFromCategories(
     timeDependenceExpenses,
-    expensesCategories
+    categories
   );
 
   const chartData = generatePieData(chartDataFromExpenses);
@@ -28,4 +29,4 @@ const getExpensesChartData = (
   return chartData;
 };
 
-export { getExpensesChartData };
+export { getPieChartData };

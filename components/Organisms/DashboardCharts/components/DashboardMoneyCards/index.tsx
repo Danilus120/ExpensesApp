@@ -1,7 +1,6 @@
 import Card from "@/Atoms/Card";
 import { useData } from "@/context/UserDataContext";
 import React from "react";
-import { getSumOfValuesFromTimeRange } from "utils/charts/utils";
 import { getDashboardComparisonData } from "utils/statistics/comparison";
 import PercentBlock from "../PercentBlock";
 

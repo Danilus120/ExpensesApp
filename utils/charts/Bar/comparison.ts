@@ -10,7 +10,7 @@ import { ExpenseI, IncomeI } from "types/user.interface";
 
 import { daysLabels, monthsLabels } from "@/constants/chartsConstants";
 import { getDataFromTimePeriod } from "utils/timeFunctions";
-import { generateBarData } from "../generateChartsData";
+import { generateComparisonBarData } from "../generateChartsData";
 
 // Week
 const getWeekComparisonData = (
@@ -36,7 +36,7 @@ const getWeekComparisonData = (
     timeDependenceIncomes
   );
 
-  const data = generateBarData(
+  const data = generateComparisonBarData(
     arrayOfExpensesValuesSortedByDays,
     arrayOfIncomeValuesSortedByDays,
     "week"
@@ -89,7 +89,7 @@ const getMonthComparisonData = (
     timeDependenceIncomes
   );
 
-  const data = generateBarData(
+  const data = generateComparisonBarData(
     arrayOfExpensesValuesSortedByMonths,
     arrayOfIncomeValuesSortedByMonths,
     "month"
@@ -144,7 +144,7 @@ const getYearComparisonData = (
     timeDependenceIncomes
   );
 
-  const data = generateBarData(
+  const data = generateComparisonBarData(
     arrayOfExpensesValuesSortedByMonths,
     arrayOfIncomeValuesSortedByMonths,
     "year"

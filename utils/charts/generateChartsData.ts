@@ -6,7 +6,28 @@ import { daysLabels, monthsLabels } from "@/constants/chartsConstants";
 import { chartColors } from "@/constants/colors";
 
 // Bar
-const generateBarData = (
+const generateBarDataByCategories = (
+  chartDataByCategories: {
+    name: string;
+    value: number;
+  }[]
+) => {
+  const data = {
+    labels: chartDataByCategories.map((data) => data.name),
+    datasets: [
+      {
+        label: "Value",
+        data: chartDataByCategories.map((el) => el.value),
+        backgroundColor: chartColors,
+        backdropColor: "#fff",
+      },
+    ],
+  };
+
+  return data;
+};
+
+const generateComparisonBarData = (
   expensesData: number[],
   incomesData: number[],
   timeRange: TimeRangeProps
@@ -107,4 +128,9 @@ const generateLabels = (timeRange: TimeRangeProps) => {
   return labels;
 };
 
-export { generateBarData, generateLineData, generatePieData };
+export {
+  generateBarDataByCategories,
+  generateComparisonBarData,
+  generateLineData,
+  generatePieData,
+};

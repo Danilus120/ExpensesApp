@@ -1,8 +1,8 @@
 import PieChart from "@/Atoms/Charts/PieChart";
+import { expensesCategories, incomeCategories } from "@/constants/categories";
 import { useData } from "@/context/UserDataContext";
 import { getMonthComparisonData } from "utils/charts/Bar/comparison";
-import { getExpensesChartData } from "utils/charts/Pie/expenses";
-import { getIncomeChartData } from "utils/charts/Pie/income";
+import { getPieChartData } from "utils/charts/Pie/getPieChartData";
 import { getSummaryChartData } from "utils/charts/Pie/summary";
 import { checkIfChartDataIsNotEmpty, toCapital } from "utils/utils";
 
@@ -17,8 +17,8 @@ function ChartPieCluster({ timeRange }: ChartPieClusterProps) {
   const timeSpec = toCapital(timeRange);
 
   const chartsData = {
-    expenses: getExpensesChartData(userData.expenses, timeRange),
-    income: getIncomeChartData(userData.income, timeRange),
+    expenses: getPieChartData(userData.expenses, timeRange, expensesCategories),
+    income: getPieChartData(userData.income, timeRange, incomeCategories),
     comparison: getMonthComparisonData(userData.expenses, userData.income),
     summary: getSummaryChartData(userData.expenses, userData.income, timeRange),
   };

@@ -38,7 +38,10 @@ function TopCategories({ timeRange }: TopCategoriesProps) {
             <div className={styles["chart"]}>
               <Bar
                 data={chartsData.expenses}
-                options={generateOptionsBar(userData.default_Currency, true)}
+                options={generateOptionsBar(userData.default_Currency, {
+                  indexAxis: "y",
+                  haveLegend: false,
+                })}
                 height={250}
               />
             </div>
@@ -68,7 +71,10 @@ function TopCategories({ timeRange }: TopCategoriesProps) {
             <div className={styles["chart"]}>
               <Bar
                 data={chartsData.income}
-                options={generateOptionsBar(userData.default_Currency, true)}
+                options={generateOptionsBar(userData.default_Currency, {
+                  indexAxis: "y",
+                  haveLegend: false,
+                })}
                 height={250}
               />
             </div>

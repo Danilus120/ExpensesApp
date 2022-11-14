@@ -2,12 +2,15 @@ import { Context } from "chartjs-plugin-datalabels";
 
 const generateOptionsBar = (
   defaultCurrency: string,
-  isHorizontal: boolean = false
+  options: {
+    indexAxis: "x" | "y";
+    haveLegend: boolean;
+  } = { indexAxis: "x", haveLegend: false }
 ) => {
   let optionsBar = {
     maintainAspectRatio: false,
-    // responsive: true,
     color: "#8f8f8f",
+    indexAxis: options.indexAxis,
     scales: {
       x: {
         grid: {
@@ -37,15 +40,11 @@ const generateOptionsBar = (
           },
         },
       },
+      legend: {
+        display: options.haveLegend,
+      },
     },
   };
-
-  if (isHorizontal) {
-    return {
-      ...optionsBar,
-      indexAxis: "y" as const,
-    };
-  }
 
   return optionsBar;
 };

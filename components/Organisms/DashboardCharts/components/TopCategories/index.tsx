@@ -25,8 +25,8 @@ function TopCategories({ timeRange }: TopCategoriesProps) {
   };
 
   const legends = {
-    expenses: generatePieChartLegendData(chartsData.expenses, true),
-    income: generatePieChartLegendData(chartsData.income, true),
+    expenses: generatePieChartLegendData(chartsData.expenses, { sort: "dsc" }),
+    income: generatePieChartLegendData(chartsData.income, { sort: "dsc" }),
   };
 
   return (

@@ -22,10 +22,9 @@ function PieChart({ chartData, title }: PieChartProps) {
     setIsLegendOpen((prev) => !prev);
   };
 
-  const pieChartExpensesLegendData = generatePieChartLegendData(
-    chartData,
-    true
-  );
+  const pieChartExpensesLegendData = generatePieChartLegendData(chartData, {
+    sort: "dsc",
+  });
 
   return (
     <div className={`${styles["chart"]} ${isLegendOpen && styles["active"]}`}>
@@ -43,7 +42,6 @@ function PieChart({ chartData, title }: PieChartProps) {
           <div className={styles["chart__open"]} onClick={handleToggle}>
             <IoIosArrowDown />
           </div>
-          {/* TODO: Sort legend desc */}
           {isLegendOpen ? (
             <div className={styles["chart__legend"]}>
               {pieChartExpensesLegendData.map((data) => (

@@ -31,7 +31,7 @@ const generatePieChartLegendData = <
   T extends { datasets: { data: Array<number> }[]; labels: Array<string> }
 >(
   chartData: T,
-  sort: boolean = false
+  options: { sort: "asc" | "dsc" | false } = { sort: false }
 ) => {
   const { labels, datasets } = chartData;
   const { data } = datasets[0];
@@ -51,8 +51,11 @@ const generatePieChartLegendData = <
     })
     .filter((data) => data.value != 0);
 
-  if (sort) {
-    pieChartLegendData = pieChartLegendData.sort((a, b) => b.value - a.value);
+  if (options.sort) {
+    pieChartLegendData =
+      options.sort === "dsc"
+        ? pieChartLegendData.sort((a, b) => b.value - a.value)
+        : pieChartLegendData.sort((a, b) => a.value - b.value);
   }
 
   return pieChartLegendData;

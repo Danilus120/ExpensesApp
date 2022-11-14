@@ -1,9 +1,35 @@
 import { chartColors } from "@/constants/colors";
+import { TimeRangeProps } from "types/chart.interface";
+import { getChartsDataFromCategories, getDataFromTimeRange } from "./utils";
+
+const generateLegendListFromTimeRange = (
+  data: any,
+  categories: { label: string; value: string; allowedInSelect: boolean }[],
+  timeRange: TimeRangeProps,
+  sorted: boolean
+) => {
+  const dataFromTimeRange: { date: number; value: number; category: string }[] =
+    getDataFromTimeRange(data, timeRange);
+
+  let sortedDataByCategories = getChartsDataFromCategories(
+    dataFromTimeRange,
+    categories
+  );
+
+  if (sorted) {
+    sortedDataByCategories = sortedDataByCategories.sort(
+      (a, b) => b.value - a.value
+    );
+  }
+
+  return sortedDataByCategories;
+};
 
 const generatePieChartLegendData = <
   T extends { datasets: { data: Array<number> }[]; labels: Array<string> }
 >(
-  chartData: T
+  chartData: T,
+  sort: boolean = false
 ) => {
   const { labels, datasets } = chartData;
   const { data } = datasets[0];
@@ -12,7 +38,7 @@ const generatePieChartLegendData = <
     return acc + curr;
   }, 0);
 
-  const pieChartLegendData = labels
+  let pieChartLegendData = labels
     .map((label, i) => {
       return {
         label: label,
@@ -23,7 +49,11 @@ const generatePieChartLegendData = <
     })
     .filter((data) => data.value != 0);
 
+  if (sort) {
+    pieChartLegendData = pieChartLegendData.sort((a, b) => b.value - a.value);
+  }
+
   return pieChartLegendData;
 };
 
-export { generatePieChartLegendData };
+export { generatePieChartLegendData, generateLegendListFromTimeRange };

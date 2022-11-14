@@ -1,14 +1,27 @@
-import Card from "@/Atoms/Card";
-import PercentBlock from "@/Organisms/DashboardCharts/components/PercentBlock";
-import { useData } from "@/context/UserDataContext";
 import React from "react";
-import { getSumOfValuesFromTimeRange } from "utils/charts/utils";
 
-import styles from "./styles.module.scss";
 import DashboardMoneyCards from "./components/DashboardMoneyCards";
+import LineChart from "@/Atoms/Charts/LineChart";
+import { useData } from "@/context/UserDataContext";
+import { getLineMonthComparisonData } from "utils/charts/line";
+import TopCategories from "./components/TopCategories";
 
 function DashboardCharts() {
-  return <DashboardMoneyCards />;
+  const { userData } = useData();
+
+  return (
+    <>
+      <DashboardMoneyCards />
+      <LineChart
+        title="Monthly Expenses / Income Comparison"
+        chartData={getLineMonthComparisonData(
+          userData.expenses,
+          userData.income
+        )}
+      />
+      <TopCategories timeRange="month" />
+    </>
+  );
 }
 
 export default DashboardCharts;

@@ -16,7 +16,7 @@ function BarChart({ chartData, title }: BarChartProps) {
     <Card title={title}>
       <Bar
         data={chartData}
-        options={generateOptionsBar(chartData, userData.default_Currency)}
+        options={generateOptionsBar(userData.default_Currency)}
         height={200}
       />
     </Card>

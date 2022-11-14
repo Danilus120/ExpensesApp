@@ -1,5 +1,7 @@
 .main {
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   .sidepanel__container {
     width: 0;
@@ -8,6 +10,7 @@
 
     &--active {
       width: 0px;
+      // width: 250px;
 
       @media (min-width: 1200px) {
         width: 250px;

@@ -6,6 +6,50 @@ import { IncomeI } from "types/user.interface";
 import { daysLabels, monthsLabels } from "@/constants/chartsConstants";
 import { chartColors } from "@/constants/colors";
 
+// Line
+
+const generateLineData = (
+  expensesData: number[],
+  incomesData: number[],
+  timeRange: TimeRangeProps
+) => {
+  let labels = monthsLabels;
+
+  switch (timeRange) {
+    case "week":
+      labels = daysLabels;
+      break;
+    case "month":
+      labels = Array(getDaysInMonth(new Date()))
+        .fill(0)
+        .map((el, i) => String(i + 1));
+      break;
+    case "year":
+      labels = monthsLabels;
+      break;
+  }
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Expenses",
+        data: expensesData,
+        borderColor: "rgb(232, 120, 120)",
+        backgroundColor: "rgba(232, 120, 120, 0.5)",
+      },
+      {
+        label: "Income",
+        data: incomesData,
+        borderColor: "rgb(92, 217, 122)",
+        backgroundColor: "rgba(92, 217, 122, 0.5)",
+      },
+    ],
+  };
+
+  return data;
+};
+
 // Bar
 
 const generateBarData = (
@@ -86,7 +130,7 @@ const getSumOfValuesFromTimeRange = <T extends { date: number; value: number }>(
   return sum;
 };
 
-const getDataFromTimeRange = <T extends { date: number }>(
+const getDataFromTimeRange = <T extends { date: number; value: number }>(
   data: T[],
   timeRange: TimeRangeProps
 ): T[] => {
@@ -154,6 +198,7 @@ const getChartsDataFromCategories = <
 };
 
 export {
+  generateLineData,
   generateBarData,
   generatePieData,
   getSumOfValuesFromTimeRange,

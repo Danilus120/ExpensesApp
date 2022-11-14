@@ -22,7 +22,10 @@ function PieChart({ chartData, title }: PieChartProps) {
     setIsLegendOpen((prev) => !prev);
   };
 
-  const pieChartExpensesLegendData = generatePieChartLegendData(chartData);
+  const pieChartExpensesLegendData = generatePieChartLegendData(
+    chartData,
+    true
+  );
 
   return (
     <div className={`${styles["chart"]} ${isLegendOpen && styles["active"]}`}>

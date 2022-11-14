@@ -1,0 +1,49 @@
+.blocks {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-direction: column;
+
+  gap: 16px;
+  padding-bottom: 16px;
+
+  width: 100%;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  .block {
+    flex-grow: 1;
+    width: 100%;
+  }
+}
+
+.chart {
+  &__legend {
+    &__container {
+      display: flex;
+      align-items: center;
+
+      margin: 5px 0px;
+    }
+
+    &__color {
+      width: 20px;
+      height: 15px;
+      border: 1px solid black;
+
+      margin-right: 5px;
+    }
+
+    p {
+      font-size: 12px;
+      font-weight: 400;
+      margin: 0;
+
+      span {
+        color: #c9c6c6;
+      }
+    }
+  }
+}

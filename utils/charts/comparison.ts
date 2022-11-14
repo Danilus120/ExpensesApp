@@ -138,4 +138,9 @@ const sortDataByMonths = <T extends { date: number; value: number }>(
   return sortedData;
 };
 
-export { getWeekComparisonData, getMonthComparisonData, getYearComparisonData };
+export {
+  getWeekComparisonData,
+  getMonthComparisonData,
+  getYearComparisonData,
+  sortDataByDays,
+};

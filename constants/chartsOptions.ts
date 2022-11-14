@@ -1,6 +1,6 @@
 import { Context } from "chartjs-plugin-datalabels";
 
-const generateOptionsBar = (data: any, defaultCurrency: string) => {
+const generateOptionsBar = (defaultCurrency: string) => {
   const optionsBar = {
     maintainAspectRatio: false,
     // responsive: true,

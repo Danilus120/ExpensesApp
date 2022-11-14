@@ -6,10 +6,10 @@ import PercentBlock from "../PercentBlock";
 
 import styles from "./styles.module.scss";
 
-function DashboardMoneyCards() {
+function DashboardMoneyCards({ chosenDate }: { chosenDate: Date }) {
   const { userData } = useData();
 
-  const cardsData = getDashboardComparisonData(userData);
+  const cardsData = getDashboardComparisonData(userData, chosenDate);
 
   return (
     <div className={styles["blocks"]}>
@@ -22,7 +22,7 @@ function DashboardMoneyCards() {
             <PercentBlock
               firstValue={cardsData.expenses.today}
               secondValue={cardsData.expenses.pastMonth}
-              timeRange="week"
+              timeRange="month"
               reversly={true}
             />
           </div>
@@ -37,7 +37,7 @@ function DashboardMoneyCards() {
             <PercentBlock
               firstValue={cardsData.income.today}
               secondValue={cardsData.income.pastMonth}
-              timeRange="week"
+              timeRange="month"
             />
           </div>
         </Card>
@@ -51,7 +51,7 @@ function DashboardMoneyCards() {
             <PercentBlock
               firstValue={cardsData.investments.today}
               secondValue={cardsData.investments.pastMonth}
-              timeRange="week"
+              timeRange="month"
             />
           </div>
         </Card>
@@ -65,7 +65,7 @@ function DashboardMoneyCards() {
             <PercentBlock
               firstValue={cardsData.savings.today}
               secondValue={cardsData.savings.pastMonth}
-              timeRange="week"
+              timeRange="month"
             />
           </div>
         </Card>

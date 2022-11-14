@@ -13,14 +13,25 @@ import styles from "./styles.module.scss";
 
 interface TopCategoriesProps {
   timeRange: TimeRangeProps;
+  chosenDate: Date;
 }
 
-function TopCategories({ timeRange }: TopCategoriesProps) {
+function TopCategories({ timeRange, chosenDate }: TopCategoriesProps) {
   const { userData } = useData();
 
   const chartsData = {
-    expenses: getBarChartData(userData.expenses, timeRange, expensesCategories),
-    income: getBarChartData(userData.income, timeRange, incomeCategories),
+    expenses: getBarChartData(
+      userData.expenses,
+      timeRange,
+      expensesCategories,
+      chosenDate
+    ),
+    income: getBarChartData(
+      userData.income,
+      timeRange,
+      incomeCategories,
+      chosenDate
+    ),
   };
 
   const legends = {

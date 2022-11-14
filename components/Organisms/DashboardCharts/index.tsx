@@ -5,21 +5,27 @@ import LineChart from "@/Atoms/Charts/LineChart";
 import { useData } from "@/context/UserDataContext";
 import { getLineMonthComparisonData } from "utils/charts/Line/line";
 import TopCategories from "./components/TopCategories";
+import { useDate } from "@/hooks/useDate";
+
+import TimeNavigation from "./components/TimeNavigation";
 
 function DashboardCharts() {
   const { userData } = useData();
+  const { chosenDate, actions } = useDate();
 
   return (
     <>
-      <DashboardMoneyCards />
+      <TimeNavigation chosenDate={chosenDate} actions={actions} />
+      <DashboardMoneyCards chosenDate={chosenDate} />
       <LineChart
         title="Monthly Expenses / Income Comparison"
         chartData={getLineMonthComparisonData(
           userData.expenses,
-          userData.income
+          userData.income,
+          chosenDate
         )}
       />
-      <TopCategories timeRange="month" />
+      <TopCategories timeRange="month" chosenDate={chosenDate} />
     </>
   );
 }

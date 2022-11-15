@@ -1,9 +1,37 @@
 .timeNavigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
+  padding-bottom: 16px;
+
+  &__month {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 200px;
+  }
+
   h3 {
+    margin: 0 10px;
+
+    text-align: center;
+
     cursor: pointer;
+
+    button {
+      width: 2.25rem;
+      min-width: 2.25rem;
+      height: 2.25rem;
+      min-height: 2.25rem;
+      padding: 0.5rem;
+
+      margin-right: 10px;
+
+      svg {
+        fill: white;
+      }
+    }
   }
 }

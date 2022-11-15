@@ -11,6 +11,7 @@ import TimeNavigation from "./components/TimeNavigation";
 
 function DashboardCharts() {
   const { userData } = useData();
+  // TODO: Change useDate() -> useTimeNavigation()
   const { chosenDate, actions } = useDate();
 
   return (

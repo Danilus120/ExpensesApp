@@ -1,15 +1,14 @@
 import { changeNamesToCapitalWithSpaces } from "utils/utils";
 
-interface ExpensesI {
-  date: number;
+interface ExpenseFormDataI {
+  date: Date;
   category: string;
-  price: number;
-  currency: string;
-  description: string;
   shopName: string;
+  value: number;
+  description: string;
 }
 
-const getDataHeaders = (data: Array<ExpensesI>) => {
+const getDataHeaders = (data: Array<ExpenseFormDataI>) => {
   const headers = getUniqueHeaders(data);
 
   return headers.map((header) => {
@@ -20,7 +19,7 @@ const getDataHeaders = (data: Array<ExpensesI>) => {
   });
 };
 
-const getUniqueHeaders = (data: Array<ExpensesI>) => {
+const getUniqueHeaders = (data: Array<ExpenseFormDataI>) => {
   const allHeaders = data.reduce((acc: string[], currItem) => {
     Object.keys(currItem).forEach((item) => {
       acc.push(item);

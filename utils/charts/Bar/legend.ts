@@ -25,10 +25,9 @@ const generateBarChartLegendData = <
     .filter((data) => data.value != 0);
 
   if (options.sort) {
-    barChartLegendData =
-      options.sort === "dsc"
-        ? barChartLegendData.sort((a, b) => b.value - a.value)
-        : barChartLegendData.sort((a, b) => a.value - b.value);
+    barChartLegendData = barChartLegendData.sort((a, b) =>
+      options.sort === "dsc" ? b.value - a.value : a.value - b.value
+    );
   }
 
   return barChartLegendData;

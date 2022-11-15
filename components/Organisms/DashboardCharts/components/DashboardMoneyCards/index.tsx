@@ -25,6 +25,7 @@ function DashboardMoneyCards({ chosenDate }: { chosenDate: Date }) {
               timeRange="month"
               reversly={true}
             />
+            {/* TODO: "expenses" cardsData["expenses"] */}
           </div>
         </Card>
       </div>

@@ -44,16 +44,18 @@ interface IncomeFormDataI {
 interface InvestmentI {
   id: string;
   date: number;
-  title: string;
+  name: string;
   value: number;
-  description: string;
+  exchangeRate: number;
+  quantity: number;
 }
 
 interface InvestmentFormDataI {
   date: Date;
-  title: string;
+  name: string;
   value: number;
-  description: string;
+  exchangeRate: number;
+  quantity: number;
 }
 
 export type {

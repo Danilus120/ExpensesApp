@@ -8,7 +8,7 @@ const expensesTableColumns = [
     accessor: "category",
   },
   {
-    Header: "Shop Name",
+    Header: "Name",
     accessor: "shopName",
   },
   {

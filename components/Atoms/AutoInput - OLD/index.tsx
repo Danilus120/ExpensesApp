@@ -10,7 +10,7 @@ interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
   type?: "text" | "password" | "email" | "number" | "date";
 }
 
-const Input = ({
+const InputOLD = ({
   type = "text",
   label,
   name,
@@ -35,4 +35,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default InputOLD;

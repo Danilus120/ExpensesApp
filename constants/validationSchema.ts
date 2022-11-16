@@ -47,6 +47,11 @@ const incomeSchema = yup
   })
   .required();
 
+const investmentSchema = yup.object({
+  cryptocurrency: yup.string().required(),
+  value: yup.number().required(),
+});
+
 const loginFormSchema = yup
   .object({
     email: validationObject.email,
@@ -72,6 +77,7 @@ export {
   settingsSchema,
   expenseSchema,
   incomeSchema,
+  investmentSchema,
   loginFormSchema,
   registerFormSchema,
   forgotPasswordSchema,

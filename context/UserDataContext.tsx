@@ -153,6 +153,19 @@ export const UserDataContextProvider = ({
   };
 
   const addInvestment = (investment: InvestmentFormDataI) => {
+    console.log(investment);
+    dispatch({
+      type: DataActionTypes.addExpense,
+      payload: {
+        id: uuid(),
+        date: investment.date.getTime(),
+        category: "investment",
+        shopName: investment.name,
+        value: investment.value,
+        description: "",
+      },
+    });
+
     dispatch({
       type: DataActionTypes.addInvestment,
       payload: {

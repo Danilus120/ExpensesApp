@@ -48,6 +48,11 @@ interface InvestmentI {
   value: number;
   exchangeRate: number;
   quantity: number;
+  payoutValue: number | null;
+  payoutDate: number | null;
+  payoutExchangeRate: number | null;
+  summary: number | null;
+  withdrawn: boolean;
 }
 
 interface InvestmentFormDataI {

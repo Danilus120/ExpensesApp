@@ -6,8 +6,7 @@ const calculateComparisonPercent = (
   firstValue: number,
   secondValue: number
 ) => {
-  const comparisonPercent = ((secondValue / firstValue) * 100 - 100).toFixed(2);
-  return Number(comparisonPercent) > 0 ? comparisonPercent : -comparisonPercent;
+  return (((firstValue - secondValue) / secondValue) * 100).toFixed(2);
 };
 
 const getDashboardComparisonData = (

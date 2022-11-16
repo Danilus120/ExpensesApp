@@ -153,25 +153,17 @@ export const UserDataContextProvider = ({
   };
 
   const addInvestment = (investment: InvestmentFormDataI) => {
-    console.log(investment);
-    dispatch({
-      type: DataActionTypes.addExpense,
-      payload: {
-        id: uuid(),
-        date: investment.date.getTime(),
-        category: "investment",
-        shopName: investment.name,
-        value: investment.value,
-        description: "",
-      },
-    });
-
     dispatch({
       type: DataActionTypes.addInvestment,
       payload: {
         ...investment,
         id: uuid(),
         date: investment.date.getTime(),
+        payoutValue: null,
+        payoutDate: null,
+        payoutExchangeRate: null,
+        summary: null,
+        withdrawn: false,
       },
     });
   };
@@ -183,7 +175,16 @@ export const UserDataContextProvider = ({
     });
   };
 
-  const updateInvestment = (id: string, investment: InvestmentFormDataI) => {
+  const updateInvestment = (
+    id: string,
+    data: {
+      payoutValue: number;
+      payoutDate: number;
+      payoutExchangeRate: number;
+      summary: number;
+      withdrawn: boolean;
+    }
+  ) => {
     const investmentFromState = userData.investments.find(
       (investmentFromState) => investmentFromState.id === id
     );
@@ -194,7 +195,7 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.updateInvestment,
       payload: {
         id,
-        investment,
+        data,
       },
     });
   };

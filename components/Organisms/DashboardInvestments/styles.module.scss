@@ -1,0 +1,44 @@
+.blocks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  margin: 16px 0;
+
+  gap: 16px;
+
+  .block {
+    width: 24%;
+
+    flex-grow: 1;
+
+    &__content {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      gap: 16px;
+
+      width: 100%;
+
+      h3,
+      p {
+        margin: 0 auto;
+      }
+
+      &__name {
+      }
+
+      &__quantity {
+      }
+
+      &__value {
+      }
+
+      button {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}

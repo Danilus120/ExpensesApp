@@ -111,16 +111,12 @@ export const dataReducer = (
         investments: newInvestmentsDeleteProduct,
       };
     case DataActionTypes.updateInvestment:
-      const newInvestment = {
-        ...payload.investment,
-        date: payload.investment.date.getTime(),
-      };
       return {
         ...state,
-        investment: state.investments.reduce((acc, currEl) => {
+        investments: state.investments.reduce((acc, currEl) => {
           currEl.id !== payload.id
             ? acc.push(currEl)
-            : acc.push({ id: currEl.id, ...newInvestment });
+            : acc.push({ ...currEl, ...payload.data });
           return acc;
         }, [] as InvestmentI[]),
       };

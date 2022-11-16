@@ -1,3 +1,24 @@
+import { InvestmentI } from "types/user.interface";
+
+const generateInvestmentPayoutData = (
+  investment: InvestmentI,
+  currenciesExchange: Record<string, number>
+) => {
+  const payoutExchangeRate = currenciesExchange[investment.name.toLowerCase()];
+  const payoutValue = investment.quantity / payoutExchangeRate;
+  const summary = investment.value - payoutValue;
+
+  const data = {
+    payoutValue,
+    payoutDate: new Date().getTime(),
+    payoutExchangeRate,
+    summary,
+    withdrawn: true,
+  };
+
+  return data;
+};
+
 const generateInvestmentData = (
   data: { cryptocurrency: string; value: number },
   currenciesExchange: Record<string, number>
@@ -25,4 +46,8 @@ const calculateExchangeRate = (
   return value * cryptoExchangeRate;
 };
 
-export { generateInvestmentData, calculateExchangeRate };
+export {
+  generateInvestmentPayoutData,
+  generateInvestmentData,
+  calculateExchangeRate,
+};

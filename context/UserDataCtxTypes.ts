@@ -23,7 +23,16 @@ interface UserDataContextI {
     updateIncome: (id: string, newIncome: IncomeFormDataI) => void;
     addInvestment: (investment: InvestmentFormDataI) => void;
     deleteInvestment: (id: string) => void;
-    updateInvestment: (id: string, newInvestment: InvestmentFormDataI) => void;
+    updateInvestment: (
+      id: string,
+      data: {
+        payoutValue: number;
+        payoutDate: number;
+        payoutExchangeRate: number;
+        summary: number;
+        withdrawn: boolean;
+      }
+    ) => void;
   };
 }
 

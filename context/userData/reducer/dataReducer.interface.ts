@@ -79,6 +79,11 @@ export type DataActionType =
       type: DataActionTypes.updateInvestment;
       payload: {
         id: string;
-        investment: InvestmentFormDataI;
+        data: {
+          payoutValue: number;
+          payoutDate: number;
+          payoutExchangeRate: number;
+          summary: number;
+        };
       };
     };

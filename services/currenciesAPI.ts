@@ -1,9 +1,4 @@
-const getCurrenciesExchange = async (
-  default_Currency: string,
-  setCurrenciesExchange: React.Dispatch<
-    React.SetStateAction<Record<string, number>>
-  >
-) => {
+const getCurrenciesExchange = async (default_Currency: string) => {
   try {
     const res = await fetch(
       `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${default_Currency.toLowerCase()}.json`
@@ -13,7 +8,7 @@ const getCurrenciesExchange = async (
 
     const exchangeRate = data[default_Currency.toLowerCase()];
 
-    setCurrenciesExchange(exchangeRate);
+    return exchangeRate;
   } catch (err: any) {
     return err.message;
   }

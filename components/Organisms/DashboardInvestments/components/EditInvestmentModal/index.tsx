@@ -68,7 +68,7 @@ function EditInvestmentModal({
         >
           <Input
             type="number"
-            step="0.01"
+            step="1"
             label="Payout Value"
             name="payoutValue"
           />

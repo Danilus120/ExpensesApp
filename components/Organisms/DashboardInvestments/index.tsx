@@ -19,7 +19,7 @@ function DashboardInvestments() {
     setRecordID: setEditRecordID,
   } = useModal();
 
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const [isAddInvestmentModalOpen, setIsAddInvestmentModalOpen] =
     useState(false);
@@ -29,22 +29,26 @@ function DashboardInvestments() {
   >({});
 
   useEffect(() => {
-    getCurrenciesExchange(userData.default_Currency, setCurrenciesExchange);
+    getCurrenciesExchange(userData.default_Currency).then((value) => {
+      setCurrenciesExchange(value);
+    });
   }, [userData.default_Currency]);
 
-  useEffect(() => {
-    if (Object.keys(currenciesExchange).length > 0) {
-      setIsLoading(false);
-    }
-  }, [currenciesExchange]);
+  // TODO: Naprawa
+
+  // useEffect(() => {
+  //   if (Object.keys(currenciesExchange).length > 0) {
+  //     setIsLoading(false);
+  //   }
+  // }, [currenciesExchange]);
 
   const toggleAddInvestmentModal = () => {
     setIsAddInvestmentModalOpen((prev) => !prev);
   };
 
-  if (isLoading) {
-    return <LoadingComponent color="#4E739E" />;
-  }
+  // if (isLoading) {
+  //   return <LoadingComponent color="#4E739E" />;
+  // }
 
   return (
     <>

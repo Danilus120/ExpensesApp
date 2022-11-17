@@ -59,7 +59,7 @@ function AddInvestmentModal({
             defaultValue={cryptoSelects[0].value}
           />
 
-          <Input type="number" step="0.01" label="Value" name="value" />
+          <Input type="number" step="1" label="Value" name="value" />
         </Form>
       </Modal>
     </>

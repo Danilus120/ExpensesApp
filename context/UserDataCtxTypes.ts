@@ -33,6 +33,7 @@ interface UserDataContextI {
         withdrawn: boolean;
       }
     ) => void;
+    rollbackInvestment: (id: string) => void;
   };
 }
 

@@ -3,21 +3,17 @@
   align-items: center;
   flex-wrap: wrap;
 
-  // margin: 16px 0;
-
   gap: 16px;
 
   .block {
-    flex-grow: 1;
-
-    width: 100%;
+    width: calc(100%);
 
     @media (min-width: 768px) {
-      width: 45%;
+      width: calc(50% - 8px);
     }
 
     @media (min-width: 992px) {
-      width: 24%;
+      width: calc(25% - 12px);
     }
 
     &__content {
@@ -42,10 +38,24 @@
 
       &__value {
       }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+
+      gap: 16px;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+      }
 
       button {
         display: flex;
         justify-content: center;
+
+        flex-grow: 1;
+        width: 100%;
       }
     }
   }

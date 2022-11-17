@@ -48,7 +48,7 @@ const incomeSchema = yup
   .required();
 
 const investmentSchema = yup.object({
-  cryptocurrency: yup.string().required(),
+  name: yup.string().required(),
   value: yup.number().required(),
 });
 

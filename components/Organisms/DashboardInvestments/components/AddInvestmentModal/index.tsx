@@ -54,7 +54,7 @@ function AddInvestmentModal({
         >
           <Select
             label="Cryptocurrency"
-            name="cryptocurrency"
+            name="name"
             options={cryptoSelects}
             defaultValue={cryptoSelects[0].value}
           />

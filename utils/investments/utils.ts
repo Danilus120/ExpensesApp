@@ -20,14 +20,14 @@ const generateInvestmentPayoutData = (
 };
 
 const generateInvestmentData = (
-  data: { cryptocurrency: string; value: number },
+  data: { name: string; value: number },
   currenciesExchange: Record<string, number>
 ) => {
-  const cryptoName = data.cryptocurrency.toLowerCase();
+  const cryptoName = data.name.toLowerCase();
 
   const investmentData = {
     date: new Date(),
-    name: data.cryptocurrency,
+    name: data.name,
     value: data.value,
     exchangeRate: currenciesExchange[cryptoName],
     quantity: calculateExchangeRate(cryptoName, data.value, currenciesExchange),

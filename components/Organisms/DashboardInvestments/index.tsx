@@ -1,17 +1,25 @@
 import Button from "@/Atoms/Button";
-import Card from "@/Atoms/Card";
 import LoadingComponent from "@/Atoms/Loading";
-import { cryptoSelects } from "@/constants/cryptoSelects";
 import { useData } from "@/context/UserDataContext";
+import { useModal } from "@/hooks/useModal";
 import React, { useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
-import { generateInvestmentPayoutData } from "utils/investments/utils";
+import { getCurrenciesExchange } from "services/currenciesAPI";
+import ActiveInvestments from "./components/ActiveInvestments";
 import AddInvestmentModal from "./components/AddInvestmentModal";
-
-import styles from "./styles.module.scss";
+import EditInvestmentModal from "./components/EditInvestmentModal";
+import WithdrawnInvestments from "./components/WithdrawnInvestments";
 
 function DashboardInvestments() {
-  const { userData, actions } = useData();
+  const { userData } = useData();
+  const {
+    isModalOpened: isEditModalOpened,
+    toggleModal: toggleEditModal,
+    modalRecordID: modalEditRecordID,
+    setRecordID: setEditRecordID,
+  } = useModal();
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const [isAddInvestmentModalOpen, setIsAddInvestmentModalOpen] =
     useState(false);
@@ -20,30 +28,8 @@ function DashboardInvestments() {
     Record<string, number>
   >({});
 
-  const [isLoading, setIsLoading] = useState(true);
-
-  const toggleAddInvestmentModal = () => {
-    setIsAddInvestmentModalOpen((prev) => !prev);
-  };
-
   useEffect(() => {
-    const getCurrenciesExchange = async () => {
-      try {
-        const res = await fetch(
-          `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${userData.default_Currency.toLowerCase()}.json`
-        );
-
-        const data = await res.json();
-
-        const exchangeRate = data[userData.default_Currency.toLowerCase()];
-
-        setCurrenciesExchange(exchangeRate);
-      } catch (err: any) {
-        return err.message;
-      }
-    };
-
-    getCurrenciesExchange();
+    getCurrenciesExchange(userData.default_Currency, setCurrenciesExchange);
   }, [userData.default_Currency]);
 
   useEffect(() => {
@@ -51,6 +37,10 @@ function DashboardInvestments() {
       setIsLoading(false);
     }
   }, [currenciesExchange]);
+
+  const toggleAddInvestmentModal = () => {
+    setIsAddInvestmentModalOpen((prev) => !prev);
+  };
 
   if (isLoading) {
     return <LoadingComponent color="#4E739E" />;
@@ -66,55 +56,20 @@ function DashboardInvestments() {
         <FiPlus /> Add Investment
       </Button>
 
-      <div className={styles["blocks"]}>
-        {userData.investments.map((investment) => {
-          const cryptoName = cryptoSelects.find(
-            (el) => el.value === investment.name
-          )?.label;
+      <ActiveInvestments currenciesExchange={currenciesExchange} />
 
-          const data = generateInvestmentPayoutData(
-            investment,
-            currenciesExchange
-          );
-
-          return (
-            <div className={styles["block"]} key={investment.id}>
-              <Card>
-                <div className={styles["block__content"]}>
-                  <div className={`${styles["block__content__name"]}`}>
-                    <h3>{cryptoName}</h3>
-                  </div>
-                  <div className={`${styles["block__content__quantity"]}`}>
-                    <p>
-                      Quantity: {investment.quantity.toFixed(4)}{" "}
-                      {investment.name}
-                    </p>
-                  </div>
-                  <div className={`${styles["block__content__value"]}`}>
-                    <p>
-                      {investment.value} {userData.default_Currency}
-                    </p>
-                  </div>
-                  <Button
-                    callbackFn={() =>
-                      actions.updateInvestment(investment.id, data)
-                    }
-                  >
-                    Payout
-                  </Button>
-                </div>
-              </Card>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Kafelki, aby zobaczyć wszystkie investments */}
+      <WithdrawnInvestments setEditID={setEditRecordID} />
 
       <AddInvestmentModal
         handleToggle={toggleAddInvestmentModal}
         isOpen={isAddInvestmentModalOpen}
         currenciesExchange={currenciesExchange}
+      />
+
+      <EditInvestmentModal
+        handleToggle={toggleEditModal}
+        isOpen={isEditModalOpened}
+        modalEditRecordID={modalEditRecordID}
       />
     </>
   );

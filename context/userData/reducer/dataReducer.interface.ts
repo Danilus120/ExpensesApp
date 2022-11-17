@@ -19,6 +19,7 @@ export enum DataActionTypes {
   addInvestment = "ADD_INVESTMENT",
   deleteInvestment = "DELETE_INVESTMENT",
   updateInvestment = "UPDATE_INVESTMENT",
+  rollbackInvestment = "ROLLBACK_INVESTMENT",
 }
 
 export type DataActionType =
@@ -85,5 +86,11 @@ export type DataActionType =
           payoutExchangeRate: number;
           summary: number;
         };
+      };
+    }
+  | {
+      type: DataActionTypes.rollbackInvestment;
+      payload: {
+        id: string;
       };
     };

@@ -200,6 +200,15 @@ export const UserDataContextProvider = ({
     });
   };
 
+  const rollbackInvestment = (id: string) => {
+    dispatch({
+      type: DataActionTypes.rollbackInvestment,
+      payload: {
+        id,
+      },
+    });
+  };
+
   const actions = {
     updateSettings,
     addExpense,
@@ -211,6 +220,7 @@ export const UserDataContextProvider = ({
     addInvestment,
     deleteInvestment,
     updateInvestment,
+    rollbackInvestment,
   };
 
   const values = {

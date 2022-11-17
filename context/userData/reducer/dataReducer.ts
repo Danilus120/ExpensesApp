@@ -120,6 +120,16 @@ export const dataReducer = (
           return acc;
         }, [] as InvestmentI[]),
       };
+    case DataActionTypes.rollbackInvestment:
+      return {
+        ...state,
+        investments: state.investments.reduce((acc, currEl) => {
+          currEl.id !== payload.id
+            ? acc.push(currEl)
+            : acc.push({ ...currEl, withdrawn: false });
+          return acc;
+        }, [] as InvestmentI[]),
+      };
     default:
       return {
         ...state,

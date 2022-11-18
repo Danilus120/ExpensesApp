@@ -1,5 +1,4 @@
 import Button from "@/Atoms/Button";
-import LoadingComponent from "@/Atoms/Loading";
 import { useData } from "@/context/UserDataContext";
 import { useModal } from "@/hooks/useModal";
 import React, { useEffect, useState } from "react";
@@ -19,8 +18,6 @@ function DashboardInvestments() {
     setRecordID: setEditRecordID,
   } = useModal();
 
-  // const [isLoading, setIsLoading] = useState(false);
-
   const [isAddInvestmentModalOpen, setIsAddInvestmentModalOpen] =
     useState(false);
 
@@ -34,21 +31,9 @@ function DashboardInvestments() {
     });
   }, [userData.default_Currency]);
 
-  // TODO: Naprawa
-
-  // useEffect(() => {
-  //   if (Object.keys(currenciesExchange).length > 0) {
-  //     setIsLoading(false);
-  //   }
-  // }, [currenciesExchange]);
-
   const toggleAddInvestmentModal = () => {
     setIsAddInvestmentModalOpen((prev) => !prev);
   };
-
-  // if (isLoading) {
-  //   return <LoadingComponent color="#4E739E" />;
-  // }
 
   return (
     <>

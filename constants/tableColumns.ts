@@ -52,4 +52,23 @@ const incomeTableColumns = [
   },
 ];
 
-export { expensesTableColumns, incomeTableColumns };
+const investmentsTableColumns = [
+  {
+    Header: "Date",
+    accessor: "date",
+  },
+  {
+    Header: "Value",
+    accessor: "value",
+  },
+  {
+    Header: "Quantity",
+    accessor: "quantity",
+  },
+  {
+    Header: "Payout Value",
+    accessor: "payoutValue",
+  },
+];
+
+export { expensesTableColumns, incomeTableColumns, investmentsTableColumns };

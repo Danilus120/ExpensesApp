@@ -1,11 +1,13 @@
 import Button from "@/Atoms/Button";
 import Card from "@/Atoms/Card";
 import { cryptoSelects } from "@/constants/cryptoSelects";
+import { investmentsTableColumns } from "@/constants/tableColumns";
 import { useData } from "@/context/UserDataContext";
 import React from "react";
 import { InvestmentI } from "types/user.interface";
 import { generateInvestmentPayoutData } from "utils/investments/utils";
 import { formatDate } from "utils/utils";
+import InvestmentsTable from "./components/InvestmentsTable";
 
 import styles from "./styles.module.scss";
 
@@ -23,7 +25,14 @@ function WithdrawnInvestments({ setEditID }: WithdrawnInvestmentsProps) {
   return (
     <>
       <h3>Withdrawn</h3>
-      <div className={styles["blocks"]}>
+
+      <InvestmentsTable
+        data={activeInvestments}
+        columns={investmentsTableColumns}
+        rollbackRecordFn={actions.rollbackInvestment}
+        editRecordFn={setEditID}
+      />
+      {/* <div className={styles["blocks"]}>
         {activeInvestments.map((investment) => {
           const cryptoName = cryptoSelects.find(
             (el) => el.value === investment.name
@@ -73,7 +82,7 @@ function WithdrawnInvestments({ setEditID }: WithdrawnInvestmentsProps) {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </>
   );
 }

@@ -5,7 +5,7 @@ const generateInvestmentPayoutData = (
   currenciesExchange: Record<string, number>
 ) => {
   const payoutExchangeRate = currenciesExchange[investment.name.toLowerCase()];
-  const payoutValue = investment.quantity / payoutExchangeRate;
+  const payoutValue = strip(investment.quantity / payoutExchangeRate);
   const summary = investment.value - payoutValue;
 
   const data = {
@@ -28,9 +28,11 @@ const generateInvestmentData = (
   const investmentData = {
     date: new Date(),
     name: data.name,
-    value: data.value,
-    exchangeRate: currenciesExchange[cryptoName],
-    quantity: calculateExchangeRate(cryptoName, data.value, currenciesExchange),
+    value: Number(data.value.toFixed(0)),
+    exchangeRate: Number(currenciesExchange[cryptoName].toFixed(6)),
+    quantity: Number(
+      calculateExchangeRate(cryptoName, data.value, currenciesExchange)
+    ),
   };
 
   return investmentData;
@@ -43,11 +45,16 @@ const calculateExchangeRate = (
 ) => {
   const cryptoExchangeRate = currenciesExchange[cryptoName];
 
-  return value * cryptoExchangeRate;
+  return strip(value * Number(cryptoExchangeRate));
 };
+
+function strip(number: number) {
+  return Number(number.toPrecision(12));
+}
 
 export {
   generateInvestmentPayoutData,
   generateInvestmentData,
   calculateExchangeRate,
+  strip,
 };

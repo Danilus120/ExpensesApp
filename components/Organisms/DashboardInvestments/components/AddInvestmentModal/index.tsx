@@ -1,7 +1,7 @@
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
 import { cryptoSelects } from "@/constants/cryptoSelects";
-import { investmentSchema } from "@/constants/validationSchema";
+import { investmentAddSchema } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
@@ -49,7 +49,7 @@ function AddInvestmentModal({
             haveClearButton: true,
             resetAfterSubmit: true,
           }}
-          schema={investmentSchema}
+          schema={investmentAddSchema}
           handleToggle={handleToggle}
         >
           <Select

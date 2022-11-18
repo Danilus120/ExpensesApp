@@ -58,6 +58,10 @@ const investmentsTableColumns = [
     accessor: "date",
   },
   {
+    Header: "Name",
+    accessor: "name",
+  },
+  {
     Header: "Value",
     accessor: "value",
   },

@@ -47,9 +47,13 @@ const incomeSchema = yup
   })
   .required();
 
-const investmentSchema = yup.object({
+const investmentAddSchema = yup.object({
   name: yup.string().required(),
   value: yup.number().required(),
+});
+
+const investmentEditSchema = yup.object({
+  payoutValue: yup.number().required(),
 });
 
 const loginFormSchema = yup
@@ -77,7 +81,8 @@ export {
   settingsSchema,
   expenseSchema,
   incomeSchema,
-  investmentSchema,
+  investmentAddSchema,
+  investmentEditSchema,
   loginFormSchema,
   registerFormSchema,
   forgotPasswordSchema,

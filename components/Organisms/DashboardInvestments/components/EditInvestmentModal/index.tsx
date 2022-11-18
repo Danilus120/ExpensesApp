@@ -2,11 +2,15 @@ import Input from "@/Atoms/Input";
 import LoadingComponent from "@/Atoms/Loading";
 import Select from "@/Atoms/Select";
 import { cryptoSelects } from "@/constants/cryptoSelects";
-import { investmentSchema } from "@/constants/validationSchema";
+import { investmentEditSchema } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
 import React from "react";
+import { strip } from "utils/investments/utils";
+import { formatDate } from "utils/utils";
+
+import styles from "./styles.module.scss";
 
 interface EditInvestmentModalProps {
   isOpen: boolean;
@@ -37,8 +41,22 @@ function EditInvestmentModal({
         handleToggle={handleToggle}
         size="large"
       >
+        <div className={styles["info"]}>
+          <p>Date: {formatDate(investment.date)}</p>
+          <p>Payout Date: {formatDate(investment.payoutDate!)}</p>
+          <p>Name: {investment.name}</p>
+          <p>Value: {investment.value}</p>
+          <p>Quantity: {investment.quantity}</p>
+          <p>Payout Value: {investment.payoutValue}</p>
+          <p>Summary: {investment.summary}</p>
+        </div>
         <Form
           onSubmit={(data) => {
+            const payoutExchangeRate = strip(
+              investment.quantity / data.payoutValue
+            );
+            const summary = data.payoutValue - investment.value;
+
             const newInvestment: {
               payoutValue: number;
               payoutDate: number;
@@ -48,8 +66,8 @@ function EditInvestmentModal({
             } = {
               payoutValue: data.payoutValue,
               payoutDate: investment.payoutDate!,
-              payoutExchangeRate: data.payoutExchangeRate,
-              summary: data.summary,
+              payoutExchangeRate,
+              summary: summary,
               withdrawn: investment.withdrawn,
             };
 
@@ -62,9 +80,9 @@ function EditInvestmentModal({
             haveClearButton: true,
             resetAfterSubmit: true,
           }}
-          schema={investmentSchema}
+          schema={investmentEditSchema}
           handleToggle={handleToggle}
-          defaultValues={investment}
+          defaultValues={{ payoutValue: investment.payoutValue }}
         >
           <Input
             type="number"
@@ -72,13 +90,8 @@ function EditInvestmentModal({
             label="Payout Value"
             name="payoutValue"
           />
-          <Input
-            type="number"
-            step="0.00000000000001"
-            label="Payout Exchange Rate"
-            name="payoutExchangeRate"
-          />
-          <Input type="number" step="0.01" label="Summary" name="summary" />
+
+          <Input type="hidden" step="1" label="" name="a" />
         </Form>
       </Modal>
     </>

@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
   label: string;
   name: string;
-  type?: "text" | "password" | "email" | "number" | "date";
+  type?: "text" | "password" | "email" | "number" | "date" | "hidden";
   defaultValue?: string | number;
   setValue?: any;
   step?: string;

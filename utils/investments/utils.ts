@@ -5,7 +5,9 @@ const generateInvestmentPayoutData = (
   currenciesExchange: Record<string, number>
 ) => {
   const payoutExchangeRate = currenciesExchange[investment.name.toLowerCase()];
-  const payoutValue = strip(investment.quantity / payoutExchangeRate);
+  const payoutValue = Number(
+    (investment.quantity / payoutExchangeRate).toFixed(0)
+  );
   const summary = investment.value - payoutValue;
 
   const data = {

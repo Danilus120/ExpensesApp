@@ -2,8 +2,8 @@ import Button from "@/Atoms/Button";
 import Card from "@/Atoms/Card";
 import { cryptoSelects } from "@/constants/cryptoSelects";
 import { useData } from "@/context/UserDataContext";
+import PercentBlock from "@/Molecules/PercentBlock";
 import React from "react";
-import { InvestmentI } from "types/user.interface";
 import { generateInvestmentPayoutData } from "utils/investments/utils";
 import { formatDate } from "utils/utils";
 
@@ -23,7 +23,7 @@ function ActiveInvestments({ currenciesExchange }: ActiveInvestmentsProps) {
   return (
     <>
       <h3>Active</h3>
-      <div className={styles["blocks"]}>
+      <div className={styles["activeInvestments"]}>
         {activeInvestments.map((investment) => {
           const cryptoName = cryptoSelects.find(
             (el) => el.value === investment.name
@@ -35,26 +35,33 @@ function ActiveInvestments({ currenciesExchange }: ActiveInvestmentsProps) {
           );
 
           return (
-            <div className={styles["block"]} key={investment.id}>
+            <div className={styles["investment"]} key={investment.id}>
               <Card>
-                <div className={styles["block__content"]}>
-                  <div className={`${styles["block__content__name"]}`}>
+                <div className={styles["investment__content"]}>
+                  <div className={`${styles["investment__content__name"]}`}>
                     <h3>{cryptoName}</h3>
                   </div>
-                  <div className={`${styles["block__content__date"]}`}>
-                    {formatDate(investment.date)}
+                  <div className={`${styles["investment__content__date"]}`}>
+                    <p> Date: {formatDate(investment.date)}</p>
                   </div>
-                  <div className={`${styles["block__content__quantity"]}`}>
+                  <div className={`${styles["investment__content__quantity"]}`}>
                     <p>
                       Quantity: {investment.quantity.toFixed(4)}{" "}
                       {investment.name}
                     </p>
                   </div>
-                  <div className={`${styles["block__content__value"]}`}>
+                  <div className={`${styles["investment__content__value"]}`}>
                     <p>
-                      {investment.value} {userData.default_Currency}
+                      Value: {investment.value} {userData.default_Currency}
                     </p>
                   </div>
+
+                  <PercentBlock
+                    firstValue={data.payoutValue}
+                    secondValue={investment.value}
+                    timeRange="buyed"
+                  />
+
                   <div className={styles["buttons"]}>
                     <Button
                       color="error"
@@ -64,7 +71,7 @@ function ActiveInvestments({ currenciesExchange }: ActiveInvestmentsProps) {
                       Delete
                     </Button>
                     <Button
-                      color="warning"
+                      color="success"
                       size="small"
                       callbackFn={() =>
                         actions.updateInvestment(investment.id, data)

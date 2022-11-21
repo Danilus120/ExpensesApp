@@ -1,20 +1,20 @@
-.blocks {
+.activeInvestments {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 
   gap: 16px;
 
-  .block {
+  .investment {
     width: calc(100%);
 
     @media (min-width: 768px) {
       width: calc(50% - 8px);
     }
 
-    @media (min-width: 992px) {
-      width: calc(25% - 12px);
-    }
+    // @media (min-width: 992px) {
+    //   width: calc(25% - 12px);
+    // }
 
     &__content {
       display: flex;

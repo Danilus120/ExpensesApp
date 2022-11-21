@@ -9,6 +9,8 @@ import AddInvestmentModal from "./components/AddInvestmentModal";
 import EditInvestmentModal from "./components/EditInvestmentModal";
 import WithdrawnInvestments from "./components/WithdrawnInvestments";
 
+import styles from "./styles.module.scss";
+
 function DashboardInvestments() {
   const { userData } = useData();
   const {
@@ -45,9 +47,15 @@ function DashboardInvestments() {
         <FiPlus /> Add Investment
       </Button>
 
-      <ActiveInvestments currenciesExchange={currenciesExchange} />
+      <div className={styles["blocks"]}>
+        <div className={styles["block"]}>
+          <ActiveInvestments currenciesExchange={currenciesExchange} />
+        </div>
 
-      <WithdrawnInvestments setEditID={setEditRecordID} />
+        <div className={styles["block"]}>
+          <WithdrawnInvestments setEditID={setEditRecordID} />
+        </div>
+      </div>
 
       <AddInvestmentModal
         handleToggle={toggleAddInvestmentModal}

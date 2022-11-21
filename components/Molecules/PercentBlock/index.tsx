@@ -1,6 +1,7 @@
 import React from "react";
 import { calculateComparisonPercent } from "utils/statistics/comparison";
 import { ImArrowDown, ImArrowUp } from "react-icons/im";
+import { AiOutlineMinus } from "react-icons/ai";
 
 import styles from "./styles.module.scss";
 
@@ -21,15 +22,28 @@ function PercentBlock({
 
   const percent = calculateComparisonPercent(firstValue, secondValue);
 
-  let isPositive = firstValue > secondValue ? true : false;
+  let isPositive =
+    firstValue > secondValue
+      ? "bigger"
+      : firstValue === secondValue
+      ? "equal"
+      : "lower";
 
   let classes = `${styles["percent"]} ${
-    isPositive ? styles["percent--positive"] : styles["percent--negative"]
+    isPositive === "bigger"
+      ? styles["percent--positive"]
+      : isPositive === "equal"
+      ? styles["percent--equal"]
+      : styles["percent--negative"]
   }`;
 
   if (reversly) {
     classes = `${styles["percent"]} ${
-      !isPositive ? styles["percent--positive"] : styles["percent--negative"]
+      isPositive === "lower"
+        ? styles["percent--positive"]
+        : isPositive === "equal"
+        ? styles["percent--equal"]
+        : styles["percent--negative"]
     }`;
   }
 
@@ -37,11 +51,17 @@ function PercentBlock({
     <div className={classes}>
       <div className={styles["percent--value"]}>
         <div className={styles["percent--icon"]}>
-          {isPositive ? <ImArrowUp /> : <ImArrowDown />}
+          {isPositive === "bigger" ? (
+            <ImArrowUp />
+          ) : isPositive === "equal" ? (
+            <AiOutlineMinus />
+          ) : (
+            <ImArrowDown />
+          )}
         </div>
         <div className={styles["percent--number"]}>{percent}%</div>
       </div>
-      <div className={styles["percent--time"]}>since last {timeRange}</div>
+      <div className={styles["percent--time"]}>since {timeRange}</div>
     </div>
   );
 }

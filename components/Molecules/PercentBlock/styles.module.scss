@@ -36,6 +36,13 @@
     }
   }
 
+  &--equal {
+    .percent--number,
+    .percent--icon {
+      color: rgb(150, 153, 168);
+    }
+  }
+
   &--negative {
     .percent--number,
     .percent--icon {

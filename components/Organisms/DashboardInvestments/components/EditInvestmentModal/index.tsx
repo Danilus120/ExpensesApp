@@ -1,7 +1,4 @@
 import Input from "@/Atoms/Input";
-import LoadingComponent from "@/Atoms/Loading";
-import Select from "@/Atoms/Select";
-import { cryptoSelects } from "@/constants/cryptoSelects";
 import { investmentEditSchema } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";

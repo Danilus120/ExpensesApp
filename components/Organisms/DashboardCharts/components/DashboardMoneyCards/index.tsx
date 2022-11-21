@@ -2,7 +2,7 @@ import Card from "@/Atoms/Card";
 import { useData } from "@/context/UserDataContext";
 import React from "react";
 import { getDashboardComparisonData } from "utils/statistics/comparison";
-import PercentBlock from "../PercentBlock";
+import PercentBlock from "../../../../Molecules/PercentBlock";
 
 import styles from "./styles.module.scss";
 
@@ -22,7 +22,7 @@ function DashboardMoneyCards({ chosenDate }: { chosenDate: Date }) {
             <PercentBlock
               firstValue={cardsData.expenses.today}
               secondValue={cardsData.expenses.pastMonth}
-              timeRange="month"
+              timeRange="last month"
               reversly={true}
             />
             {/* TODO: "expenses" cardsData["expenses"] */}
@@ -38,7 +38,7 @@ function DashboardMoneyCards({ chosenDate }: { chosenDate: Date }) {
             <PercentBlock
               firstValue={cardsData.income.today}
               secondValue={cardsData.income.pastMonth}
-              timeRange="month"
+              timeRange="last month"
             />
           </div>
         </Card>
@@ -52,7 +52,7 @@ function DashboardMoneyCards({ chosenDate }: { chosenDate: Date }) {
             <PercentBlock
               firstValue={cardsData.investments.today}
               secondValue={cardsData.investments.pastMonth}
-              timeRange="month"
+              timeRange="last month"
             />
           </div>
         </Card>
@@ -66,7 +66,7 @@ function DashboardMoneyCards({ chosenDate }: { chosenDate: Date }) {
             <PercentBlock
               firstValue={cardsData.savings.today}
               secondValue={cardsData.savings.pastMonth}
-              timeRange="month"
+              timeRange="last month"
             />
           </div>
         </Card>

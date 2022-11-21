@@ -53,6 +53,7 @@ const incomeTableColumns = [
 ];
 
 const investmentsTableColumns = [
+  { Header: "Payout Date", accessor: "payoutDate" },
   {
     Header: "Date",
     accessor: "date",

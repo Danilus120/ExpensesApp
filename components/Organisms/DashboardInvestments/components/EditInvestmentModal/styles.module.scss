@@ -1,6 +1,6 @@
 .info {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
   padding-bottom: 20px;
 
@@ -8,5 +8,9 @@
 
   p {
     margin: 0;
+
+    padding: 5px;
+
+    border: 1px solid rgb(116, 116, 116);
   }
 }

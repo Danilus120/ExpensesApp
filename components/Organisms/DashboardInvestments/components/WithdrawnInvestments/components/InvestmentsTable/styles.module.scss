@@ -9,7 +9,7 @@
 
   background: #2b2e3b;
 
-  border-radius: 10px;
+  border-radius: 0.25rem;
 
   overflow-x: auto;
 }
@@ -132,10 +132,20 @@
 
 .bg {
   &--red {
-    background-color: rgb(232, 122, 122);
+    background-color: rgb(232, 122, 122, 0.4);
   }
 
   &--green {
-    background-color: rgba(92, 217, 122, 0.3);
+    background-color: rgba(92, 217, 122, 0.4);
+  }
+}
+
+.bg {
+  &--red:hover {
+    background-color: rgb(232, 122, 122, 0.6);
+  }
+
+  &--green:hover {
+    background-color: rgba(92, 217, 122, 0.6);
   }
 }

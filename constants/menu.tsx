@@ -1,21 +1,26 @@
-// TODO: ADD ICONS TO MENU
+import { AiFillDashboard } from "react-icons/ai";
+import { GiReceiveMoney, GiPayMoney, GiChart } from "react-icons/gi";
 
 const expensesItems = [
   {
     name: "Dashboard",
     link: "/dashboard",
+    icon: <AiFillDashboard />,
   },
   {
     name: "Expenses",
     link: "/dashboard/expenses",
+    icon: <GiPayMoney />,
   },
   {
     name: "Income",
     link: "/dashboard/income",
+    icon: <GiReceiveMoney />,
   },
   {
     name: "Investments",
     link: "/dashboard/investments",
+    icon: <GiChart />,
   },
 ];
 

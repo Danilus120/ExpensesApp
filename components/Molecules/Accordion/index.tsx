@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import StyledLink from "@/Atoms/StyledLink";
 import styles from "./styles.module.scss";
+import { GiPieChart } from "react-icons/gi";
 
 interface OptionI {
   name: string;

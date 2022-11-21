@@ -1,6 +1,9 @@
 import Card from "@/Atoms/Card";
 import { useData } from "@/context/UserDataContext";
-import { getValueOfDataFromTimePeriod } from "utils/timeFunctions";
+import {
+  getSummaryValueFromTimePeriod,
+  getValueOfDataFromTimePeriod,
+} from "utils/timeFunctions";
 import { toCapital } from "utils/utils";
 import styles from "./styles.module.scss";
 
@@ -14,6 +17,7 @@ function MoneyCards({ timeRange }: MoneyCardsProps) {
   const cardsData = {
     expensesValue: getValueOfDataFromTimePeriod(userData.expenses, timeRange),
     incomeValue: getValueOfDataFromTimePeriod(userData.income, timeRange),
+    investments: getSummaryValueFromTimePeriod(userData.investments, timeRange),
   };
 
   const timeSpec = toCapital(timeRange);
@@ -36,7 +40,9 @@ function MoneyCards({ timeRange }: MoneyCardsProps) {
       </div>
       <div className={`${styles["block"]} ${styles["block--investments"]}`}>
         <Card title={`${timeSpec}ly Investments value`}>
-          <h3>0 {userData.default_Currency}</h3>
+          <h3>
+            {cardsData.investments || "0"} {userData.default_Currency}
+          </h3>
         </Card>
       </div>
     </div>

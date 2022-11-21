@@ -1,8 +1,12 @@
 import PieChart from "@/Atoms/Charts/PieChart";
 import { expensesCategories, incomeCategories } from "@/constants/categories";
+import { cryptoSelects } from "@/constants/cryptoSelects";
 import { useData } from "@/context/UserDataContext";
 import { getMonthComparisonData } from "utils/charts/Bar/comparison";
-import { getPieChartData } from "utils/charts/Pie/getPieChartData";
+import {
+  getInvestmentsPieChartData,
+  getPieChartData,
+} from "utils/charts/Pie/getPieChartData";
 import { getSummaryChartData } from "utils/charts/Pie/summary";
 import { checkIfChartDataIsNotEmpty, toCapital } from "utils/utils";
 
@@ -19,6 +23,7 @@ function ChartPieCluster({ timeRange }: ChartPieClusterProps) {
   const chartsData = {
     expenses: getPieChartData(userData.expenses, timeRange, expensesCategories),
     income: getPieChartData(userData.income, timeRange, incomeCategories),
+    investments: getInvestmentsPieChartData(userData.investments, timeRange),
     comparison: getMonthComparisonData(userData.expenses, userData.income),
     summary: getSummaryChartData(userData.expenses, userData.income, timeRange),
   };
@@ -26,6 +31,7 @@ function ChartPieCluster({ timeRange }: ChartPieClusterProps) {
   const isEmpty = {
     expenses: checkIfChartDataIsNotEmpty(chartsData.expenses),
     income: checkIfChartDataIsNotEmpty(chartsData.income),
+    investments: checkIfChartDataIsNotEmpty(chartsData.investments),
     summary: checkIfChartDataIsNotEmpty(chartsData.summary),
   };
 
@@ -43,10 +49,10 @@ function ChartPieCluster({ timeRange }: ChartPieClusterProps) {
           chartData={chartsData.income}
         />
       ) : null}
-      {isEmpty.expenses ? (
+      {isEmpty.investments ? (
         <PieChart
           title={`${timeSpec}ly Investments`}
-          chartData={chartsData.expenses}
+          chartData={chartsData.investments}
         />
       ) : null}
       {isEmpty.summary ? (

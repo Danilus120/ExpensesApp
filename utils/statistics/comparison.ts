@@ -1,6 +1,9 @@
 import { addMonths } from "date-fns";
 import { UserFirebaseI } from "types/user.interface";
-import { getValueOfDataFromTimePeriod } from "utils/timeFunctions";
+import {
+  getSummaryValueFromTimePeriod,
+  getValueOfDataFromTimePeriod,
+} from "utils/timeFunctions";
 
 const calculateComparisonPercent = (
   firstValue: number,
@@ -20,7 +23,7 @@ const getDashboardComparisonData = (
   const pastMonthValues = {
     expenses: getValueOfDataFromTimePeriod(expenses, "month", pastMonthDate),
     income: getValueOfDataFromTimePeriod(income, "month", pastMonthDate),
-    investments: getValueOfDataFromTimePeriod(
+    investments: getSummaryValueFromTimePeriod(
       investments,
       "month",
       pastMonthDate
@@ -30,7 +33,11 @@ const getDashboardComparisonData = (
   const todayValues = {
     expenses: getValueOfDataFromTimePeriod(expenses, "month", chosenDate),
     income: getValueOfDataFromTimePeriod(income, "month", chosenDate),
-    investments: getValueOfDataFromTimePeriod(investments, "month", chosenDate),
+    investments: getSummaryValueFromTimePeriod(
+      investments,
+      "month",
+      chosenDate
+    ),
   };
 
   const pastMonthSavings = pastMonthValues.income - pastMonthValues.expenses;

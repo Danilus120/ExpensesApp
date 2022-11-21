@@ -8,7 +8,7 @@ const generateInvestmentPayoutData = (
   const payoutValue = Number(
     (investment.quantity / payoutExchangeRate).toFixed(0)
   );
-  const summary = investment.value - payoutValue;
+  const summary = payoutValue - investment.value;
 
   const data = {
     payoutValue,

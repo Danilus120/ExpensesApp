@@ -5,41 +5,31 @@ import { useData } from "@/context/UserDataContext";
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import { TimeRangeProps } from "types/chart.interface";
-import { getBarChartData } from "utils/charts/Bar/getBarChartData";
-import { generateBarChartLegendData } from "utils/charts/Bar/legend";
+import { getPieChartData } from "utils/charts/Pie/getPieChartData";
+import { generatePieChartLegendData } from "utils/charts/Pie/legend";
 import { toCapital } from "utils/utils";
 
 import styles from "./styles.module.scss";
 
 interface TopCategoriesProps {
   timeRange: TimeRangeProps;
-  chosenDate: Date;
 }
 
-function TopCategories({ timeRange, chosenDate }: TopCategoriesProps) {
+function TopCategories({ timeRange }: TopCategoriesProps) {
   const { userData } = useData();
 
   const chartsData = {
-    expenses: getBarChartData(
-      userData.expenses,
-      timeRange,
-      expensesCategories,
-      chosenDate
-    ),
-    income: getBarChartData(
-      userData.income,
-      timeRange,
-      incomeCategories,
-      chosenDate
-    ),
+    expenses: getPieChartData(userData.expenses, timeRange, expensesCategories),
+    income: getPieChartData(userData.income, timeRange, incomeCategories),
   };
 
   const legends = {
-    expenses: generateBarChartLegendData(chartsData.expenses, { sort: "dsc" }),
-    income: generateBarChartLegendData(chartsData.income, { sort: "dsc" }),
+    expenses: generatePieChartLegendData(chartsData.expenses, { sort: "dsc" }),
+    income: generatePieChartLegendData(chartsData.income, { sort: "dsc" }),
   };
 
   return (
+    // TODO: CREATE LOGIC FOR GETTING DATA FOR LINE CHARTS
     <div className={styles["blocks"]}>
       <div className={styles["block"]}>
         <Card title={`${toCapital(timeRange)}ly TOP expenses categories`}>

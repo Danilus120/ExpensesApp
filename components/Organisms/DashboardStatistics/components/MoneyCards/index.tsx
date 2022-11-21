@@ -17,7 +17,10 @@ function MoneyCards({ timeRange }: MoneyCardsProps) {
   const cardsData = {
     expensesValue: getValueOfDataFromTimePeriod(userData.expenses, timeRange),
     incomeValue: getValueOfDataFromTimePeriod(userData.income, timeRange),
-    investments: getSummaryValueFromTimePeriod(userData.investments, timeRange),
+    investments: getSummaryValueFromTimePeriod(
+      userData.investments.filter((investment) => investment.withdrawn),
+      timeRange
+    ),
   };
 
   const timeSpec = toCapital(timeRange);

@@ -18,7 +18,10 @@ function DashboardStatisticsMonthly() {
 
   const chartsData = {
     comparison: getMonthComparisonData(userData.expenses, userData.income),
-    investments: getInvestmentsBarChartData(userData.investments, "month"),
+    investments: getInvestmentsBarChartData(
+      userData.investments.filter((investment) => investment.withdrawn),
+      "month"
+    ),
   };
 
   const legends = {

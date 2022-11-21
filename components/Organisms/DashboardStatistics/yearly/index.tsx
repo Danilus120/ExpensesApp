@@ -18,7 +18,10 @@ function DashboardStatisticsYearly() {
 
   const chartsData = {
     comparison: getYearComparisonData(userData.expenses, userData.income),
-    investments: getInvestmentsBarChartData(userData.investments, "year"),
+    investments: getInvestmentsBarChartData(
+      userData.investments.filter((investment) => investment.withdrawn),
+      "year"
+    ),
   };
 
   const legends = {

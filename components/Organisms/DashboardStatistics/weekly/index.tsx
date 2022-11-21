@@ -18,7 +18,10 @@ function DashboardStatisticsWeekly() {
 
   const chartsData = {
     comparison: getWeekComparisonData(userData.expenses, userData.income),
-    investments: getInvestmentsBarChartData(userData.investments, "week"),
+    investments: getInvestmentsBarChartData(
+      userData.investments.filter((investment) => investment.withdrawn),
+      "week"
+    ),
   };
 
   const legends = {

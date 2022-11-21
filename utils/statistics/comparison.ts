@@ -24,7 +24,7 @@ const getDashboardComparisonData = (
     expenses: getValueOfDataFromTimePeriod(expenses, "month", pastMonthDate),
     income: getValueOfDataFromTimePeriod(income, "month", pastMonthDate),
     investments: getSummaryValueFromTimePeriod(
-      investments,
+      investments.filter((investment) => investment.withdrawn),
       "month",
       pastMonthDate
     ),
@@ -34,7 +34,7 @@ const getDashboardComparisonData = (
     expenses: getValueOfDataFromTimePeriod(expenses, "month", chosenDate),
     income: getValueOfDataFromTimePeriod(income, "month", chosenDate),
     investments: getSummaryValueFromTimePeriod(
-      investments,
+      investments.filter((investment) => investment.withdrawn),
       "month",
       chosenDate
     ),

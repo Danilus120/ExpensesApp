@@ -1,8 +1,7 @@
+import InvestmentsTable from "./components/InvestmentsTable";
 import { investmentsTableColumns } from "@/constants/tableColumns";
 import { useData } from "@/context/UserDataContext";
-import React from "react";
 import { formatDate } from "utils/utils";
-import InvestmentsTable from "./components/InvestmentsTable";
 
 interface WithdrawnInvestmentsProps {
   setEditID: (id: string) => void;

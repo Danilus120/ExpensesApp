@@ -1,8 +1,8 @@
-import ResetPasswordLayout from "@/Templates/auth/ResetPasswordTemplate";
+import ResetPasswordTemplate from "@/Templates/auth/ResetPasswordTemplate";
 
 export default function login() {
   return (
-    <ResetPasswordLayout
+    <ResetPasswordTemplate
       metaOptions={{ title: "Login", description: "Login Page" }}
     />
   );

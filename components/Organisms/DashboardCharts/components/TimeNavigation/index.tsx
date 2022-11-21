@@ -1,9 +1,7 @@
-import Button from "@/Atoms/Button";
 import { isSameMonth } from "date-fns";
-import React from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { BiRefresh } from "react-icons/bi";
-
+import Button from "@/Atoms/Button";
 import styles from "./styles.module.scss";
 
 interface TimeNavigationProps {

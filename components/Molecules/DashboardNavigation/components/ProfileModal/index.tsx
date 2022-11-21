@@ -1,16 +1,13 @@
+import { useEffect, useState } from "react";
 import router from "next/router";
-
 import Button from "@/Atoms/Button";
-
 import { auth } from "config/firebase.config";
 import { signOut } from "firebase/auth";
-
-import styles from "./styles.module.scss";
 import { useData } from "@/context/UserDataContext";
-import { useEffect, useState } from "react";
 import { getValueOfDataFromTimePeriod } from "utils/timeFunctions";
+import styles from "./styles.module.scss";
 
-interface ProfileModalI {
+interface ProfileModalProps {
   handleToggle: () => void;
   isOpened: boolean;
 }
@@ -18,7 +15,7 @@ interface ProfileModalI {
 export default function ProfileModal({
   handleToggle,
   isOpened,
-}: ProfileModalI) {
+}: ProfileModalProps) {
   const { userData } = useData();
   const [monthlyExpenses, setMonthlyExpenses] = useState(0);
   const [monthlyIncomes, setMonthlyIncomes] = useState(0);
@@ -44,12 +41,12 @@ export default function ProfileModal({
   };
 
   return (
-    <div className={`${styles["modal"]} ${isOpened && styles["show"]}`}>
-      <div className={styles["modal__card"]}>
-        <div className={styles["modal__card__header"]}>
+    <div className={`${styles["profile-modal"]} ${isOpened && styles["show"]}`}>
+      <div className={styles["profile-modal__card"]}>
+        <div className={styles["profile-modal__card__header"]}>
           <h2>User Profile</h2>
         </div>
-        <div className={styles["modal__card__content"]}>
+        <div className={styles["profile-modal__card__content"]}>
           <p>
             <b>Monthly income</b>: {monthlyIncomes} {userData.default_Currency}
           </p>
@@ -71,7 +68,10 @@ export default function ProfileModal({
           </Button>
         </div>
       </div>
-      <div className={styles["modal__background"]} onClick={handleToggle}></div>
+      <div
+        className={styles["profile-modal__background"]}
+        onClick={handleToggle}
+      ></div>
     </div>
   );
 }

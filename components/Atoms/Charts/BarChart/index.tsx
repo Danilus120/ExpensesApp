@@ -1,8 +1,7 @@
+import { Bar } from "react-chartjs-2";
 import Card from "@/Atoms/Card";
 import { generateOptionsBar } from "@/constants/chartsOptions";
 import { useData } from "@/context/UserDataContext";
-import React from "react";
-import { Bar } from "react-chartjs-2";
 
 interface BarChartProps {
   chartData: any;

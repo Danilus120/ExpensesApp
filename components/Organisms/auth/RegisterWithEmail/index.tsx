@@ -1,20 +1,17 @@
 import { useState } from "react";
 import router from "next/router";
-
 import Form from "@/Molecules/Form";
 import Input from "@/Atoms/Input";
 import Button from "@/Atoms/Button";
-
-import { useAuth } from "@/context/auth/AuthContext";
+import { registerFormSchema } from "@/constants/validationSchema";
 import { auth } from "config/firebase.config";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
-
-import { registerFormSchema } from "@/constants/validationSchema";
 import { createUserDoc } from "lib/firebaseMethods";
+import { useAuth } from "@/context/auth/AuthContext";
 
 export default function RegisterWithEmail() {
   const [error, setError] = useState();

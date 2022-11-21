@@ -1,14 +1,13 @@
-import Button from "@/Atoms/Button";
-import { useData } from "@/context/UserDataContext";
-import { useModal } from "@/hooks/useModal";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
-import { getCurrenciesExchange } from "services/currenciesAPI";
 import ActiveInvestments from "./components/ActiveInvestments";
 import AddInvestmentModal from "./components/AddInvestmentModal";
 import EditInvestmentModal from "./components/EditInvestmentModal";
 import WithdrawnInvestments from "./components/WithdrawnInvestments";
-
+import Button from "@/Atoms/Button";
+import { getCurrenciesExchange } from "services/currenciesAPI";
+import { useData } from "@/context/UserDataContext";
+import { useModal } from "@/hooks/useModal";
 import styles from "./styles.module.scss";
 
 function DashboardInvestments() {

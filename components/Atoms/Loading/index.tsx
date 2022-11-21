@@ -1,6 +1,4 @@
-import React from "react";
 import ReactLoading from "react-loading";
-
 import styles from "./styles.module.scss";
 
 interface LoadingComponentProps {

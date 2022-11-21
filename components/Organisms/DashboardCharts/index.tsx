@@ -1,18 +1,14 @@
-import React from "react";
-
-import DashboardMoneyCards from "./components/DashboardMoneyCards";
 import LineChart from "@/Atoms/Charts/LineChart";
-import { useData } from "@/context/UserDataContext";
-import { getLineMonthComparisonData } from "utils/charts/Line/line";
+import DashboardMoneyCards from "./components/DashboardMoneyCards";
 import TopCategories from "./components/TopCategories";
-import { useDate } from "@/hooks/useDate";
-
 import TimeNavigation from "./components/TimeNavigation";
+import { getLineMonthComparisonData } from "utils/charts/Line/line";
+import { useData } from "@/context/UserDataContext";
+import { useTimeNavigation } from "@/hooks/useTimeNavigation";
 
 function DashboardCharts() {
   const { userData } = useData();
-  // TODO: Change useDate() -> useTimeNavigation()
-  const { chosenDate, actions } = useDate();
+  const { chosenDate, actions } = useTimeNavigation();
 
   return (
     <>

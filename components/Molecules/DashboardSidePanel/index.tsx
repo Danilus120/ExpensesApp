@@ -1,12 +1,10 @@
 import Accordion from "@/Molecules/Accordion";
 import LogoLink from "@/Atoms/LogoLink";
-
-import { accordionItems, expensesItems, statistics } from "@/constants/menu";
-
-import styles from "./styles.module.scss";
 import StyledLink from "@/Atoms/StyledLink";
+import { expensesItems, statistics } from "@/constants/menu";
+import styles from "./styles.module.scss";
 
-interface SidePanelI {
+interface SidePanelProps {
   isOpen: boolean;
   toggleSidepanel: () => void;
 }
@@ -14,7 +12,7 @@ interface SidePanelI {
 export default function DashboardSidePanel({
   isOpen,
   toggleSidepanel,
-}: SidePanelI) {
+}: SidePanelProps) {
   return (
     <div
       className={`${styles.sidepanel} ${styles["sidepanel"]} ${

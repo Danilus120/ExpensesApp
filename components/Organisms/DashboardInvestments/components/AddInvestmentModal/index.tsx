@@ -1,16 +1,11 @@
+import Form from "@/Molecules/Form";
+import Modal from "@/Molecules/Modal";
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
 import { cryptoSelects } from "@/constants/cryptoSelects";
 import { investmentAddSchema } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
-import Form from "@/Molecules/Form";
-import Modal from "@/Molecules/Modal";
-import React from "react";
-import {
-  calculateExchangeRate,
-  generateInvestmentData,
-} from "utils/investments/utils";
-import { formatDate } from "utils/utils";
+import { generateInvestmentData } from "utils/investments/utils";
 
 interface AddInvestmentModalProps {
   isOpen: boolean;

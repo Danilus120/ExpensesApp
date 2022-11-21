@@ -1,18 +1,18 @@
 import type { NextPage } from "next";
 
-import DashboardLayout from "@/Templates/DashboardTemplate";
+import DashboardTemplate from "@/Templates/DashboardTemplate";
 import DashboardStatisticsYearly from "@/Organisms/DashboardStatistics/yearly";
 
 const YearlyStatistics: NextPage = () => {
   return (
-    <DashboardLayout
+    <DashboardTemplate
       metaOptions={{
         title: "Statistics",
         description: "Dashboard of statistics",
       }}
     >
       <DashboardStatisticsYearly />
-    </DashboardLayout>
+    </DashboardTemplate>
   );
 };
 

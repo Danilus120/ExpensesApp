@@ -1,15 +1,11 @@
 import Head from "next/head";
-
 import DashboardNavigation from "@/Molecules/DashboardNavigation";
 import DashboardSidePanel from "@/Molecules/DashboardSidePanel";
-
+import { UserDataContextProvider } from "@/context/UserDataContext";
 import useSidepanel from "@/hooks/useSidepanel";
-
 import styles from "./styles.module.scss";
 
-import { UserDataContextProvider } from "@/context/UserDataContext";
-
-interface DashboardLayoutI {
+interface DashboardTemplateProps {
   children: React.ReactNode;
   metaOptions: {
     title: string;
@@ -17,10 +13,10 @@ interface DashboardLayoutI {
   };
 }
 
-export default function DashboardLayout({
+export default function DashboardTemplate({
   children,
   metaOptions,
-}: DashboardLayoutI) {
+}: DashboardTemplateProps) {
   const { isSidepanelOpen, toggleSidepanel } = useSidepanel();
 
   return (

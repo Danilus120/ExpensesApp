@@ -1,18 +1,11 @@
 import { useState } from "react";
-import { FiPlus } from "react-icons/fi";
-
 import Table from "@/Molecules/Table";
-import Button from "@/Atoms/Button";
-
 import AddIncomeModal from "./components/AddIncomeModal";
 import EditIncomeModal from "./components/EditIncomeModal";
-
-import { useData } from "@/context/UserDataContext";
-
-import { useModal } from "@/hooks/useModal";
-
 import { incomeTableColumns } from "@/constants/tableColumns";
 import { incomeCategories } from "@/constants/categories";
+import { useData } from "@/context/UserDataContext";
+import { useModal } from "@/hooks/useModal";
 
 function DashboardIncome() {
   const [isAddIncomeModalOpen, setIsAddIncomeModalOpen] = useState(false);

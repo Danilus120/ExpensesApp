@@ -1,4 +1,4 @@
-.blocks {
+.money-cards {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -11,40 +11,5 @@
 
   @media (min-width: 768px) {
     flex-direction: row;
-  }
-
-  .block {
-    flex-grow: 1;
-    width: 100%;
-    text-align: center;
-
-    h3 {
-      margin: 5px 0px;
-      font-size: 26px;
-    }
-
-    &--expenses {
-      h3 {
-        color: #e87a7a;
-      }
-    }
-
-    &--income {
-      h3 {
-        color: #5cd97a;
-      }
-    }
-
-    &--investments {
-      h3 {
-        color: #6ba5de;
-      }
-    }
-
-    &--summary {
-      h3 {
-        color: #e4cc43;
-      }
-    }
   }
 }

@@ -1,18 +1,10 @@
-import React from "react";
-
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
-
-import { currencySelectOptions, currency_list } from "@/constants/currencyList";
 import { expenseSchema } from "@/constants/validationSchema";
-
 import { useData } from "@/context/UserDataContext";
-
 import { formatDate, getFilteredExpensesCategories } from "utils/utils";
-
-import { uuidv4 } from "@firebase/util";
 
 interface AddExpenseModalProps {
   isOpen: boolean;

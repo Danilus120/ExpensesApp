@@ -1,12 +1,7 @@
-import React from "react";
-
 import { TableInstance } from "react-table";
-
 import { BiFirstPage, BiLastPage } from "react-icons/bi";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
-
 import Button from "@/Atoms/Button";
-
 import styles from "./styles.module.scss";
 
 interface TableI {

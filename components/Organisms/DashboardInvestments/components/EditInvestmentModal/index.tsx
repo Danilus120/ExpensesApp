@@ -1,12 +1,10 @@
+import Form from "@/Molecules/Form";
+import Modal from "@/Molecules/Modal";
 import Input from "@/Atoms/Input";
 import { investmentEditSchema } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
-import Form from "@/Molecules/Form";
-import Modal from "@/Molecules/Modal";
-import React from "react";
 import { strip } from "utils/investments/utils";
 import { formatDate } from "utils/utils";
-
 import styles from "./styles.module.scss";
 
 interface EditInvestmentModalProps {

@@ -1,21 +1,19 @@
 import { useState } from "react";
 import router from "next/router";
-
 import { FiSettings, FiMenu } from "react-icons/fi";
-
 import ProfileModal from "@/Molecules/DashboardNavigation/components/ProfileModal";
 import Button from "@/Atoms/Button";
 import SettingsModalForm from "./components/SettingsModalForm";
-
 import { useAuth } from "@/context/auth/AuthContext";
-
 import styles from "./styles.module.scss";
 
-interface NavigationI {
+interface NavigationProps {
   toggleSidepanel: () => void;
 }
 
-export default function DashboardNavigation({ toggleSidepanel }: NavigationI) {
+export default function DashboardNavigation({
+  toggleSidepanel,
+}: NavigationProps) {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const { user } = useAuth();

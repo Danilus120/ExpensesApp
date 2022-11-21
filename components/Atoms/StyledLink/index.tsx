@@ -1,8 +1,7 @@
 import Link from "next/link";
-
 import { createButtonClass } from "./util";
 
-export interface ButtonI {
+export interface StyledLinkProps {
   children: React.ReactNode;
   variant?: "text" | "contained" | "outlined" | "ghost";
   size?: "small" | "medium" | "large";
@@ -30,7 +29,7 @@ export default function StyledLink({
   href,
   disabled = false,
   type = "button",
-}: ButtonI) {
+}: StyledLinkProps) {
   const props = {
     children,
     variant,

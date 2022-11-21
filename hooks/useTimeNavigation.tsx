@@ -1,7 +1,7 @@
 import { addMonths } from "date-fns";
 import { useState } from "react";
 
-export const useDate = () => {
+export const useTimeNavigation = () => {
   const [chosenDate, setChosenDate] = useState(new Date());
 
   const nextMonth = () => {

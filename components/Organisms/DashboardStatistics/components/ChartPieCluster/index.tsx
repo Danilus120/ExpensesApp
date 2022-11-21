@@ -1,6 +1,5 @@
 import PieChart from "@/Atoms/Charts/PieChart";
 import { expensesCategories, incomeCategories } from "@/constants/categories";
-import { cryptoSelects } from "@/constants/cryptoSelects";
 import { useData } from "@/context/UserDataContext";
 import { getMonthComparisonData } from "utils/charts/Bar/comparison";
 import {
@@ -9,7 +8,6 @@ import {
 } from "utils/charts/Pie/getPieChartData";
 import { getSummaryChartData } from "utils/charts/Pie/summary";
 import { checkIfChartDataIsNotEmpty, toCapital } from "utils/utils";
-
 import styles from "./styles.module.scss";
 
 interface ChartPieClusterProps {

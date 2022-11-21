@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import styles from "./styles.module.scss";
 
-interface ModalI {
+interface ModalProps {
   children: React.ReactNode;
   title: string;
   handleToggle: () => void;
@@ -15,7 +15,7 @@ export default function Modal({
   handleToggle,
   isOpened,
   size = "medium",
-}: ModalI) {
+}: ModalProps) {
   // TODO: How to handle modal Portal?
 
   // const modalContent = isOpened ? (

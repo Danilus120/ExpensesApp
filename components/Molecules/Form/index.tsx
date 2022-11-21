@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
-
+import React from "react";
 import { useForm } from "react-hook-form";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "@/Atoms/Button";
-
 import styles from "./styles.module.scss";
 
-interface FormI {
+interface FormProps {
   defaultValues?: Record<string, any>;
   children: React.ReactNode;
   onSubmit: (data: any) => void;
@@ -31,7 +28,7 @@ export default function Form({
     haveClearButton: false,
     resetAfterSubmit: true,
   },
-}: FormI) {
+}: FormProps) {
   const {
     handleSubmit,
     register,

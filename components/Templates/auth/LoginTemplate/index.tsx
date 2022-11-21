@@ -1,15 +1,13 @@
 import Head from "next/head";
 import Link from "next/link";
-
 import LoginWithEmail from "@/Organisms/auth/LoginWithEmail";
 import SignInSocials from "@/Organisms/auth/SignInSocials";
 import LogoLink from "@/Atoms/LogoLink";
 import Separator from "@/Atoms/Separator";
 import StyledLink from "@/Atoms/StyledLink";
-
 import styles from "../styles.module.scss";
 
-interface LoginTemplateI {
+interface LoginTemplateProps {
   metaOptions: {
     title: string;
     description: string;
@@ -18,7 +16,7 @@ interface LoginTemplateI {
 
 export default function LoginTemplate({
   metaOptions: { title, description },
-}: LoginTemplateI) {
+}: LoginTemplateProps) {
   return (
     <main className={styles["container"]}>
       <Head>

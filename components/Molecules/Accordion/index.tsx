@@ -1,9 +1,6 @@
 import { useState } from "react";
-
-import StyledLink from "@/Atoms/StyledLink";
-
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
-
+import StyledLink from "@/Atoms/StyledLink";
 import styles from "./styles.module.scss";
 
 interface OptionI {
@@ -11,7 +8,7 @@ interface OptionI {
   link: string;
 }
 
-interface AccordionI {
+interface AccordionProps {
   title: string;
   options: OptionI[];
 }
@@ -29,7 +26,7 @@ interface AccordionI {
 // https://github.com/jamesknelson/react-cx
 // cx([styles["accordion-title], isActive && styles["content-active"]])
 
-export default function Accordion({ title, options }: AccordionI) {
+export default function Accordion({ title, options }: AccordionProps) {
   const [isActive, setIsActive] = useState(false);
 
   const toggleActive = () => {
@@ -45,7 +42,7 @@ export default function Accordion({ title, options }: AccordionI) {
   }
 
   return (
-    <div className={styles["accordion-item"]}>
+    <div className={styles["accordion"]}>
       <div className={titleClasses} onClick={toggleActive}>
         <div className={styles.title}>{title}</div>
         <div className={styles.icon}>

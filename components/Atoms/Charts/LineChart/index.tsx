@@ -1,8 +1,6 @@
-import Card from "@/Atoms/Card";
-import React from "react";
 import { Line } from "react-chartjs-2";
 import ChartJS from "chart.js/auto";
-
+import Card from "@/Atoms/Card";
 import styles from "./styles.module.scss";
 
 ChartJS;

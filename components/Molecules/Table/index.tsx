@@ -9,17 +9,14 @@ import {
   useGlobalFilter,
   TableInstance,
 } from "react-table";
-
 import { FiEdit, FiPlus } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
-
+import Pagination from "@/Molecules/Pagination";
 import Button from "@/Atoms/Button";
-
-import styles from "./styles.module.scss";
-import Pagination from "../Pagination";
 import GlobalFilter from "./components/GlobalFilter";
+import styles from "./styles.module.scss";
 
-interface TableI {
+interface TableProps {
   data: any;
   columns: {
     Header: string;
@@ -44,7 +41,7 @@ function Table({
   defaultCurrency,
   addFn,
   title,
-}: TableI) {
+}: TableProps) {
   const memoColumns = useMemo(() => columns, []);
 
   const tableInstance = useTable(
@@ -118,11 +115,11 @@ function TableHeader({ title, addFn, tableInstance }: TableHeaderProps) {
   );
 }
 
-interface TableHeadI {
+interface TableHeadProps {
   headerGroups: HeaderGroup<object>[];
 }
 
-function TableHead({ headerGroups }: TableHeadI) {
+function TableHead({ headerGroups }: TableHeadProps) {
   return (
     <thead className={styles["thead"]}>
       {headerGroups.map((headerGroup) => {
@@ -156,7 +153,7 @@ function TableHead({ headerGroups }: TableHeadI) {
   );
 }
 
-interface TableBodyI {
+interface TableBodyPropsI {
   getTableBodyProps: (
     propGetter?: TableBodyPropGetter<object> | undefined
   ) => TableBodyProps;
@@ -174,7 +171,7 @@ function TableBody({
   prepareRow,
   deleteRecordFn,
   editRecordFn,
-}: TableBodyI) {
+}: TableBodyPropsI) {
   return (
     <tbody {...getTableBodyProps()} className={styles["tbody"]}>
       {page.map((row, i) => {

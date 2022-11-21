@@ -1,13 +1,11 @@
+import { useEffect } from "react";
 import AutoSelect from "react-select";
 import { Controller, FieldValues } from "react-hook-form";
-
 import ErrorMessage from "@/Atoms/ErrorMessage";
-
 import { customStyles } from "./customStyles";
 import styles from "./styles.module.scss";
-import { useEffect } from "react";
 
-interface InputI
+interface SelectProps
   extends Partial<Pick<FieldValues, "register" | "errors" | "control">> {
   label: string;
   name: string;
@@ -27,7 +25,7 @@ export default function Select({
   control,
   name,
   setValue,
-}: InputI) {
+}: SelectProps) {
   useEffect(() => {
     setValue(name, defaultValue);
   }, [defaultValue]);

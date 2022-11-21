@@ -1,12 +1,10 @@
+import PercentBlock from "@/Molecules/PercentBlock";
 import Button from "@/Atoms/Button";
 import Card from "@/Atoms/Card";
 import { cryptoSelects } from "@/constants/cryptoSelects";
 import { useData } from "@/context/UserDataContext";
-import PercentBlock from "@/Molecules/PercentBlock";
-import React from "react";
 import { generateInvestmentPayoutData } from "utils/investments/utils";
 import { formatDate } from "utils/utils";
-
 import styles from "./styles.module.scss";
 
 interface ActiveInvestmentsProps {

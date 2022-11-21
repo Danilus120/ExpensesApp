@@ -1,10 +1,8 @@
 import { FieldValues } from "react-hook-form";
-
 import ErrorMessage from "@/Atoms/ErrorMessage";
-
 import styles from "./styles.module.scss";
 
-interface InputI extends Partial<Pick<FieldValues, "register" | "errors">> {
+interface InputProps extends Partial<Pick<FieldValues, "register" | "errors">> {
   label: string;
   name: string;
   type?: "text" | "password" | "email" | "number" | "date" | "hidden";
@@ -23,7 +21,7 @@ const Input = ({
   setValue,
   step = "1",
   ...rest
-}: InputI) => {
+}: InputProps) => {
   return (
     <div className={styles["input-container"]}>
       <label htmlFor={name} className={styles["input-container__label"]}>

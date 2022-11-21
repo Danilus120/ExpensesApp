@@ -1,20 +1,11 @@
 import { useState } from "react";
-import { FiPlus } from "react-icons/fi";
-
 import Table from "@/Molecules/Table";
-import Button from "@/Atoms/Button";
-
 import AddExpenseModal from "./components/AddExpenseModal";
 import EditExpenseModal from "./components/EditExpenseModal";
-
-import { useData } from "@/context/UserDataContext";
-
-import { useModal } from "@/hooks/useModal";
-
 import { expensesTableColumns } from "@/constants/tableColumns";
 import { expensesCategories } from "@/constants/categories";
-
-import styles from "./styles.module.scss";
+import { useData } from "@/context/UserDataContext";
+import { useModal } from "@/hooks/useModal";
 
 function DashboardExpenses() {
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState(false);

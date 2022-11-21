@@ -1,8 +1,6 @@
-import React from "react";
-import { calculateComparisonPercent } from "utils/statistics/comparison";
 import { ImArrowDown, ImArrowUp } from "react-icons/im";
 import { AiOutlineMinus } from "react-icons/ai";
-
+import { calculateComparisonPercent } from "utils/statistics/comparison";
 import styles from "./styles.module.scss";
 
 interface PercentBlockProps {

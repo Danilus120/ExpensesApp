@@ -7,15 +7,12 @@ import {
   usePagination,
   useTable,
 } from "react-table";
-
-import { FiEdit, FiPlus } from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
 import { TbArrowBackUp } from "react-icons/tb";
-
-import Button from "@/Atoms/Button";
-
-import styles from "./styles.module.scss";
 import Pagination from "@/Molecules/Pagination";
+import Button from "@/Atoms/Button";
 import { useData } from "@/context/UserDataContext";
+import styles from "./styles.module.scss";
 
 interface TableI {
   data: any;

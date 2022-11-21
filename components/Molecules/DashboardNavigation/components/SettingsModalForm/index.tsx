@@ -1,11 +1,10 @@
+import Form from "@/Molecules/Form";
+import Modal from "@/Molecules/Modal";
 import Select from "@/Atoms/Select";
 import { currency_list } from "@/constants/currencyList";
 import { tzInts } from "@/constants/timezoneList";
 import { settingsSchema } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
-import Form from "@/Molecules/Form";
-import Modal from "@/Molecules/Modal";
-import React from "react";
 
 interface SettingsModalFormProps {
   toggleSettingsModal: () => void;

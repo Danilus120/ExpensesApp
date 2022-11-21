@@ -1,16 +1,12 @@
 import { useState } from "react";
-
 import router from "next/router";
-
 import Form from "@/Molecules/Form";
 import Input from "@/Atoms/Input";
 import Button from "@/Atoms/Button";
-
-import { useAuth } from "@/context/auth/AuthContext";
+import { loginFormSchema } from "@/constants/validationSchema";
 import { auth } from "config/firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
-
-import { loginFormSchema } from "@/constants/validationSchema";
+import { useAuth } from "@/context/auth/AuthContext";
 
 export default function LoginWithEmail() {
   const [error, setError] = useState();

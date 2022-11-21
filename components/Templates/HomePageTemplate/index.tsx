@@ -1,10 +1,8 @@
 import Head from "next/head";
-
 import Navigation from "@/Molecules/Navigation";
-
 import styles from "./styles.module.scss";
 
-interface HomePageTemplateI {
+interface HomePageTemplateProps {
   children: React.ReactNode;
   metaOptions: {
     title: string;
@@ -15,7 +13,7 @@ interface HomePageTemplateI {
 export default function HomePageTemplate({
   children,
   metaOptions,
-}: HomePageTemplateI) {
+}: HomePageTemplateProps) {
   return (
     <div>
       <Head>

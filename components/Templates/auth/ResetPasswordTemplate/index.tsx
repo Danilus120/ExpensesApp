@@ -1,21 +1,19 @@
 import Head from "next/head";
-
 import ResetPassword from "@/Organisms/auth/ResetPassword";
 import StyledLink from "@/Atoms/StyledLink";
 import LogoLink from "@/Atoms/LogoLink";
-
 import styles from "../styles.module.scss";
 
-interface ResetPasswordLayoutI {
+interface ResetPasswordTemplateProps {
   metaOptions: {
     title: string;
     description: string;
   };
 }
 
-export default function ResetPasswordLayout({
+export default function ResetPasswordTemplate({
   metaOptions: { title, description },
-}: ResetPasswordLayoutI) {
+}: ResetPasswordTemplateProps) {
   return (
     <main className={styles["container"]}>
       <Head>

@@ -1,19 +1,13 @@
 import { useState } from "react";
-
 import Image from "next/image";
 import router from "next/router";
-
 import { MdOutlineDescription, MdDashboard } from "react-icons/md";
 import { FiMenu, FiHome, FiStar, FiLogIn, FiLogOut } from "react-icons/fi";
-
 import Button from "@/Atoms/Button";
 import StyledLink from "@/Atoms/StyledLink";
-
 import { useAuth } from "@/context/auth/AuthContext";
-
 import { signOut } from "firebase/auth";
 import { auth } from "config/firebase.config";
-
 import styles from "./styles.module.scss";
 
 const menuLinks = [

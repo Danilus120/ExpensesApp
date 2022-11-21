@@ -1,6 +1,6 @@
 import { createButtonClass } from "./util";
 
-export interface ButtonI {
+export interface ButtonProps {
   children: React.ReactNode;
   variant?: "text" | "contained" | "outlined" | "ghost";
   size?: "small" | "medium" | "large";
@@ -28,7 +28,7 @@ export default function Button({
   callbackFn,
   disabled = false,
   type = "button",
-}: ButtonI) {
+}: ButtonProps) {
   const props = {
     children,
     variant,

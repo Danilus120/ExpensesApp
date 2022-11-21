@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import router from "next/router";
-
 import { BsGithub, BsGoogle } from "react-icons/bs";
-
 import Button from "@/Atoms/Button";
-
-import { useAuth } from "@/context/auth/AuthContext";
+import { auth } from "config/firebase.config";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { auth } from "config/firebase.config";
-
-import styles from "./styles.module.scss";
 import { createUserDoc } from "lib/firebaseMethods";
+import { useAuth } from "@/context/auth/AuthContext";
+import styles from "./styles.module.scss";
 
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();

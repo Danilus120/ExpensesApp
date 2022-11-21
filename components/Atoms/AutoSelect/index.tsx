@@ -1,14 +1,13 @@
 import Select from "react-select";
-
 import styles from "./styles.module.scss";
 
-interface AutoSelectI {
+interface AutoSelectProps {
   options: { value: string | number; label: string }[];
 }
 
-function AutoSelect(props: AutoSelectI) {
+function AutoSelect(props: AutoSelectProps) {
   return (
-    <div className={styles["inputContainer"]}>
+    <div className={styles["autoSelect"]}>
       <Select options={props.options} />
     </div>
   );

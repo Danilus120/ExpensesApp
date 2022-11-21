@@ -1,21 +1,15 @@
-import { useData } from "@/context/UserDataContext";
-
-import { getYearComparisonData } from "utils/charts/Bar/comparison";
-
+import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
-
-import styles from "../styles.module.scss";
-import BarChart from "@/Atoms/Charts/BarChart";
 import MoneyCards from "@/Organisms/DashboardStatistics/components/MoneyCards";
 import ChartPieCluster from "@/Organisms/DashboardStatistics/components/ChartPieCluster";
-import { Bar } from "react-chartjs-2";
-import { getInvestmentsBarChartData } from "utils/charts/Bar/getBarChartData";
-import { generateOptionsBar } from "@/constants/chartsOptions";
-import {
-  generateBarChartLegendData,
-  generateInvestmentsBarChartLegendData,
-} from "utils/charts/Bar/legend";
 import Card from "@/Atoms/Card";
+import BarChart from "@/Atoms/Charts/BarChart";
+import { generateOptionsBar } from "@/constants/chartsOptions";
+import { useData } from "@/context/UserDataContext";
+import { getYearComparisonData } from "utils/charts/Bar/comparison";
+import { getInvestmentsBarChartData } from "utils/charts/Bar/getBarChartData";
+import { generateInvestmentsBarChartLegendData } from "utils/charts/Bar/legend";
+import styles from "../styles.module.scss";
 
 Chart;
 

@@ -2,11 +2,10 @@ import Card from "@/Atoms/Card";
 import { useData } from "@/context/UserDataContext";
 import React, { useState } from "react";
 import { Pie } from "react-chartjs-2";
+import { IoIosArrowDown } from "react-icons/io";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { generateOptionsPie } from "@/constants/chartsOptions";
 import { generatePieChartLegendData } from "utils/charts/Pie/legend";
-import { IoIosArrowDown } from "react-icons/io";
-
 import styles from "./styles.module.scss";
 
 interface PieChartProps {

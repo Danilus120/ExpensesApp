@@ -13,6 +13,7 @@ import Pagination from "@/Molecules/Pagination";
 import Button from "@/Atoms/Button";
 import { useData } from "@/context/UserDataContext";
 import styles from "./styles.module.scss";
+import { InvestmentI } from "types/user.interface";
 
 interface TableI {
   data: any;
@@ -134,15 +135,17 @@ function TableBody({
 
   return (
     <tbody {...getTableBodyProps()} className={styles["tbody"]}>
-      {page.map((row, i) => {
-        const rowData = row.original as any;
+      {page.map((row) => {
+        const rowData = row.original as InvestmentI;
         const { id } = rowData;
 
         let trClassNames = `${styles["tr"]}`;
 
-        if (row.values.payoutValue - row.values.value > 0) {
+        const valueDifference = row.values.payoutValue - row.values.value;
+
+        if (valueDifference > 0) {
           trClassNames += ` ${styles["bg--green"]}`;
-        } else if (row.values.payoutValue - row.values.value < 0) {
+        } else if (valueDifference < 0) {
           trClassNames += ` ${styles["bg--red"]}`;
         }
 

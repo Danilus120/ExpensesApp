@@ -15,7 +15,7 @@ function ActiveInvestments({ currenciesExchange }: ActiveInvestmentsProps) {
   const { userData, actions } = useData();
 
   const activeInvestments = userData.investments
-    .filter((el) => el.withdrawn === false)
+    .filter((el) => !el.withdrawn)
     .sort((a, b) => b.date - a.date);
 
   return (

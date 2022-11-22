@@ -48,11 +48,11 @@ function DashboardInvestments() {
 
       <div className={styles["blocks"]}>
         <div className={styles["block"]}>
-          <ActiveInvestments currenciesExchange={currenciesExchange} />
+          <WithdrawnInvestments setEditID={setEditRecordID} />
         </div>
 
         <div className={styles["block"]}>
-          <WithdrawnInvestments setEditID={setEditRecordID} />
+          <ActiveInvestments currenciesExchange={currenciesExchange} />
         </div>
       </div>
 

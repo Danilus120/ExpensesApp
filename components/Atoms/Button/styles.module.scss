@@ -40,7 +40,7 @@
     background-color: transparent !important;
 
     &:hover {
-      background-color: rgba(224, 224, 224, 0.1) !important;
+      background-color: rgba(224, 224, 224, 0.6) !important;
     }
   }
 
@@ -49,7 +49,7 @@
     border: none !important;
 
     &:hover {
-      background-color: rgba(224, 224, 224, 0.1) !important;
+      background-color: rgba(224, 224, 224, 0.6) !important;
     }
   }
 
@@ -78,62 +78,62 @@
   }
 
   &--primary {
-    background-color: rgb(251, 150, 120);
-    border: 2px solid rgb(251, 150, 120);
+    background-color: rgba(251, 150, 120, 0.8);
+    border: 2px solid rgba(251, 150, 120, 0.8);
 
     &:hover {
-      background-color: rgb(241, 124, 88);
-      border: 2px solid rgb(241, 124, 88);
+      background-color: rgba(251, 150, 120, 0.6);
+      border: 2px solid rgba(251, 150, 120, 0.6);
     }
   }
 
   &--secondary {
-    background-color: rgb(36, 228, 164);
-    border: 2px solid rgb(36, 228, 164);
+    background-color: rgba(36, 228, 164, 0.8);
+    border: 2px solid rgba(36, 228, 164, 0.8);
 
     &:hover {
-      background-color: rgb(21, 194, 136);
-      border: 2px solid rgb(21, 194, 136);
+      background-color: rgba(36, 228, 164, 0.6);
+      border: 2px solid rgba(36, 228, 164, 0.6);
     }
   }
 
   &--success {
-    background-color: rgb(92, 217, 122, 0.9);
-    border: 2px solid rgb(92, 217, 122, 0.9);
+    background-color: rgb(92, 217, 122, 0.8);
+    border: 2px solid rgb(92, 217, 122, 0.8);
 
     &:hover {
-      background-color: rgb(68, 170, 92);
-      border: 2px solid rgb(68, 170, 92);
+      background-color: rgb(92, 217, 122, 0.6);
+      border: 2px solid rgb(92, 217, 122, 0.6);
     }
   }
 
   &--error {
-    background-color: rgb(232, 122, 122, 1);
-    border: 2px solid rgb(232, 122, 122, 1);
+    background-color: rgb(232, 122, 122, 0.8);
+    border: 2px solid rgb(232, 122, 122, 0.8);
 
     &:hover {
-      background-color: rgba(199, 102, 102, 0.9);
-      border: 2px solid rgba(199, 102, 102, 0.9);
+      background-color: rgb(232, 122, 122, 0.6);
+      border: 2px solid rgb(232, 122, 122, 0.6);
     }
   }
 
   &--info {
-    background-color: rgb(70, 136, 223);
-    border: 2px solid rgb(70, 136, 223);
+    background-color: rgba(70, 136, 223, 0.8);
+    border: 2px solid rgba(70, 136, 223, 0.8);
 
     &:hover {
-      background-color: rgb(62, 117, 189);
-      border: 2px solid rgb(62, 117, 189);
+      background-color: rgba(70, 136, 223, 0.6);
+      border: 2px solid rgba(70, 136, 223, 0.6);
     }
   }
 
   &--warning {
-    background-color: rgb(226, 161, 82);
-    border: 2px solid rgb(226, 161, 82);
+    background-color: rgba(252, 163, 54, 0.8);
+    border: 2px solid rgba(252, 163, 54, 0.8);
 
     &:hover {
-      background-color: rgb(211, 144, 61);
-      border: 2px solid rgb(211, 144, 61);
+      background-color: rgba(252, 163, 54, 0.6);
+      border: 2px solid rgba(252, 163, 54, 0.6);
     }
   }
 

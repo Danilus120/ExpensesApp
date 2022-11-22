@@ -42,10 +42,6 @@ const generateInvestmentsBarChartLegendData = <
   const { labels, datasets } = chartData;
   const { data } = datasets[0];
 
-  const summaryOfDataValues = data.reduce((acc, curr) => {
-    return acc + curr;
-  }, 0);
-
   let barChartLegendData = labels
     .map((label, i) => {
       return {

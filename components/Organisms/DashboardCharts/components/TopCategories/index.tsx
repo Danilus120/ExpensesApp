@@ -37,16 +37,20 @@ function TopCategories({ timeRange, chosenDate }: TopCategoriesProps) {
 
   return (
     <div className={styles["top-categories"]}>
-      <BarChartWithLegend
-        chartData={chartsData.expenses}
-        legend={legends.expenses}
-        timeRange={timeRange}
-      />
-      <BarChartWithLegend
-        chartData={chartsData.income}
-        legend={legends.income}
-        timeRange={timeRange}
-      />
+      <div className={styles["item"]}>
+        <BarChartWithLegend
+          chartData={chartsData.expenses}
+          legend={legends.expenses}
+          timeRange={timeRange}
+        />
+      </div>
+      <div className={styles["item"]}>
+        <BarChartWithLegend
+          chartData={chartsData.income}
+          legend={legends.income}
+          timeRange={timeRange}
+        />
+      </div>
     </div>
   );
 }

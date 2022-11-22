@@ -7,30 +7,17 @@ import { toCapital } from "utils/utils";
 import styles from "./styles.module.scss";
 
 interface BarChartWithLegendProps {
-  chartData: {
-    labels: string[];
-    datasets: {
-      label: string;
-      data: number[];
-      color: string;
-      backgroundColor: string[];
-      borderColor: string[];
-      borderWidth: number;
-    }[];
-  };
-  legend: {
-    label: string;
-    value: number;
-    percent: string;
-    color: string;
-  }[];
+  chartData: any;
+  legend: any[];
   timeRange: TimeRangeProps;
+  inPercents?: boolean;
 }
 
 function BarChartWithLegend({
   chartData,
   legend,
   timeRange,
+  inPercents = true,
 }: BarChartWithLegendProps) {
   const { userData } = useData();
 
@@ -60,7 +47,8 @@ function BarChartWithLegend({
                 ></div>
                 <p>
                   <span>{data.label}:</span> {data.value}{" "}
-                  {userData.default_Currency} ({data.percent})
+                  {userData.default_Currency}{" "}
+                  {inPercents && `(${data.percent})`}
                 </p>
               </div>
             ))}

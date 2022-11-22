@@ -12,4 +12,13 @@
   @media (min-width: 768px) {
     flex-direction: row;
   }
+
+  .item {
+    width: 100%;
+    align-self: stretch;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 8px);
+    }
+  }
 }

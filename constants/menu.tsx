@@ -1,5 +1,6 @@
 import { AiFillDashboard } from "react-icons/ai";
 import { GiReceiveMoney, GiPayMoney, GiChart } from "react-icons/gi";
+import { FaChartArea } from "react-icons/fa";
 
 const expensesItems = [
   {
@@ -24,20 +25,24 @@ const expensesItems = [
   },
 ];
 
-const statistics = [
-  {
-    name: "Weekly",
-    link: "/dashboard/statistics/weekly",
-  },
-  {
-    name: "Monthly",
-    link: "/dashboard/statistics/monthly",
-  },
-  {
-    name: "Yearly",
-    link: "/dashboard/statistics/yearly",
-  },
-];
+const statistics = {
+  name: "Statistics",
+  icon: <FaChartArea />,
+  items: [
+    {
+      name: "Weekly",
+      link: "/dashboard/statistics/weekly",
+    },
+    {
+      name: "Monthly",
+      link: "/dashboard/statistics/monthly",
+    },
+    {
+      name: "Yearly",
+      link: "/dashboard/statistics/yearly",
+    },
+  ],
+};
 
 const accordionItems = [expensesItems];
 

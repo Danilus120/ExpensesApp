@@ -11,6 +11,7 @@ interface OptionI {
 
 interface AccordionProps {
   title: string;
+  icon: JSX.Element;
   options: OptionI[];
 }
 
@@ -27,7 +28,7 @@ interface AccordionProps {
 // https://github.com/jamesknelson/react-cx
 // cx([styles["accordion-title], isActive && styles["content-active"]])
 
-export default function Accordion({ title, options }: AccordionProps) {
+export default function Accordion({ title, icon, options }: AccordionProps) {
   const [isActive, setIsActive] = useState(false);
 
   const toggleActive = () => {
@@ -45,7 +46,9 @@ export default function Accordion({ title, options }: AccordionProps) {
   return (
     <div className={styles["accordion"]}>
       <div className={titleClasses} onClick={toggleActive}>
-        <div className={styles.title}>{title}</div>
+        <div className={styles["accordion__text"]}>
+          {icon} {title}
+        </div>
         <div className={styles.icon}>
           <MdOutlineKeyboardArrowUp />
         </div>

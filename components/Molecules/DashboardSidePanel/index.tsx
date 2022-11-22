@@ -3,7 +3,6 @@ import LogoLink from "@/Atoms/LogoLink";
 import StyledLink from "@/Atoms/StyledLink";
 import { expensesItems, statistics } from "@/constants/menu";
 import styles from "./styles.module.scss";
-import { GiPieChart } from "react-icons/gi";
 
 interface SidePanelProps {
   isOpen: boolean;
@@ -14,6 +13,8 @@ export default function DashboardSidePanel({
   isOpen,
   toggleSidepanel,
 }: SidePanelProps) {
+  const { name, icon, items } = statistics;
+
   return (
     <div
       className={`${styles.sidepanel} ${styles["sidepanel"]} ${
@@ -26,11 +27,6 @@ export default function DashboardSidePanel({
         </div>
         <nav className={styles["sidepanel__nav"]}>
           <ul>
-            {/* {accordionItems.map((item) => (
-              <li key={item[0].name}>
-                <Accordion title={item[0].name} options={item} />
-              </li>
-            ))} */}
             {expensesItems.map((item) => (
               <li key={item.name}>
                 <StyledLink variant="ghost" href={item.link}>
@@ -39,7 +35,7 @@ export default function DashboardSidePanel({
               </li>
             ))}
             <li>
-              <Accordion title="Statistics" options={statistics} />
+              <Accordion title={name} icon={icon} options={items} />
             </li>
           </ul>
         </nav>

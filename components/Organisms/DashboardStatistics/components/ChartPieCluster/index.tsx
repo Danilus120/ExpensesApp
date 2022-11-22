@@ -47,12 +47,12 @@ function ChartPieCluster({ timeRange }: ChartPieClusterProps) {
           chartData={chartsData.income}
         />
       ) : null}
-      {isEmpty.investments ? (
+      {/* {isEmpty.investments ? (
         <PieChart
           title={`${timeSpec}ly Investments`}
           chartData={chartsData.investments}
         />
-      ) : null}
+      ) : null} */}
       {isEmpty.summary ? (
         <PieChart
           title={`${timeSpec}ly Summary`}

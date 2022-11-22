@@ -40,8 +40,12 @@ const getDashboardComparisonData = (
     ),
   };
 
-  const pastMonthSavings = pastMonthValues.income - pastMonthValues.expenses;
-  const todaySavings = todayValues.income - todayValues.expenses;
+  const pastMonthSavings =
+    pastMonthValues.income +
+    pastMonthValues.investments -
+    pastMonthValues.expenses;
+  const todaySavings =
+    todayValues.income + todayValues.investments - todayValues.expenses;
 
   return {
     expenses: {

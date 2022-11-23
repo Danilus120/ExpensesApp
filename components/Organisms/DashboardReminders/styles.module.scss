@@ -1,0 +1,85 @@
+.calendar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  border-radius: 10px;
+
+  background-color: #2b2e3b;
+
+  &__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px;
+
+    width: 100%;
+  }
+
+  &__date {
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      svg {
+        margin: 0;
+      }
+    }
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__days {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0 24px;
+
+    text-align: center;
+  }
+
+  &__day {
+    padding: 10px 20px;
+
+    width: calc((100% / 7));
+  }
+
+  &__rows {
+    display: flex;
+    flex-direction: column;
+
+    padding: 24px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__cell {
+    padding: 10px 20px;
+
+    width: calc((100% / 7));
+    min-height: 70px;
+
+    font-size: 14px;
+
+    color: rgb(184, 184, 184);
+
+    text-align: center;
+
+    border: 1px solid #eee;
+
+    &--active {
+      color: rgb(238, 238, 238);
+    }
+  }
+}

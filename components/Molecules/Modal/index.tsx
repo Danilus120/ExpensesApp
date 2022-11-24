@@ -50,9 +50,4 @@ export default function Modal({
     modalContent,
     document.getElementById("portal-root")!
   );
-
-  // return ReactDOM.createPortal(
-  //   modalContent,
-  //   document.getElementById("modal-root")!
-  // );
 }

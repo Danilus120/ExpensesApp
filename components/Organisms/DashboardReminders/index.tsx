@@ -1,18 +1,35 @@
 import Button from "@/Atoms/Button";
 import { dayLabels } from "@/constants/calendarConstants";
+import { useData } from "@/context/UserDataContext";
 import { useCalendar } from "@/hooks/useCalendar";
-import { isSameMonth } from "date-fns";
+import { useModal } from "@/hooks/useModal";
+import { isSameDay, isSameMonth } from "date-fns";
+import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { toCapital } from "utils/utils";
+import AddReminderModal from "./components/AddReminderModal";
+import EditReminderModal from "./components/EditReminderModal";
 import styles from "./styles.module.scss";
 
 function DashboardReminders() {
+  const { userData } = useData();
   const { days, chosenDate, actions } = useCalendar();
+  const {
+    isModalOpened: isEditModalOpened,
+    modalRecordID: editRecordID,
+    toggleModal: toggleEditModal,
+    setRecordID: setEditRecordID,
+  } = useModal();
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const calendarTitle = toCapital(
     chosenDate.toLocaleDateString("pl", { month: "long", year: "numeric" })
   );
+
+  const handleAddModalToggle = () => {
+    setIsAddModalOpen((prev) => !prev);
+  };
 
   return (
     <>
@@ -23,7 +40,7 @@ function DashboardReminders() {
               variant="contained"
               color="success"
               size="medium"
-              callbackFn={() => {}}
+              callbackFn={handleAddModalToggle}
             >
               <FiPlus /> Add Reminder
             </Button>
@@ -64,12 +81,19 @@ function DashboardReminders() {
                   return (
                     <div key={cell.timestamp} className={classes}>
                       <p>{cell.number}</p>
-                      <div className={styles["calendar__event"]}>
-                        <p>Event #1 asdasdasdasdasdasd</p>
-                      </div>
-                      <div className={styles["calendar__event"]}>
-                        <p>Event #1 asdasdasdasdasdasd</p>
-                      </div>
+                      {userData.reminders.map((reminder) => {
+                        if (!isSameDay(reminder.date, cell.timestamp)) return;
+
+                        return (
+                          <div
+                            key={reminder.id}
+                            className={styles["calendar__event"]}
+                            onClick={() => setEditRecordID(reminder.id)}
+                          >
+                            <p>{reminder.title}</p>
+                          </div>
+                        );
+                      })}
                     </div>
                   );
                 })}
@@ -78,6 +102,17 @@ function DashboardReminders() {
           </div>
         </div>
       </div>
+
+      <AddReminderModal
+        isOpen={isAddModalOpen}
+        handleToggle={handleAddModalToggle}
+      />
+
+      <EditReminderModal
+        isOpen={isEditModalOpened}
+        handleToggle={toggleEditModal}
+        id={editRecordID}
+      />
     </>
   );
 }

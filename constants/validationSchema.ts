@@ -56,6 +56,19 @@ const investmentEditSchema = yup.object({
   payoutValue: yup.number().required(),
 });
 
+const reminderAddSchema = yup.object({
+  date: yup.date().required(),
+  title: yup.string().required(),
+  value: yup.number().required(),
+  descrtiption: yup.string(),
+});
+
+const reminderEditSchema = yup.object({
+  title: yup.string().required(),
+  value: yup.number().required(),
+  descrtiption: yup.string(),
+});
+
 const loginFormSchema = yup
   .object({
     email: validationObject.email,
@@ -83,6 +96,8 @@ export {
   incomeSchema,
   investmentAddSchema,
   investmentEditSchema,
+  reminderAddSchema,
+  reminderEditSchema,
   loginFormSchema,
   registerFormSchema,
   forgotPasswordSchema,

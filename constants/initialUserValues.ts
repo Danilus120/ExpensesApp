@@ -5,6 +5,7 @@ const initialUserValues = {
   expenses: [],
   income: [],
   investments: [],
+  reminders: [],
 };
 
 export { initialUserValues };

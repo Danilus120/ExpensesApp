@@ -8,6 +8,7 @@ import {
   ExpenseI,
   IncomeI,
   InvestmentI,
+  ReminderI,
   UserFirebaseI,
 } from "types/user.interface";
 
@@ -26,6 +27,7 @@ export const dataReducer = (
         expenses: payload.expenses,
         income: payload.income,
         investments: payload.investments,
+        reminders: payload.reminders,
       };
     case DataActionTypes.updateSettings:
       return {
@@ -129,6 +131,37 @@ export const dataReducer = (
             : acc.push({ ...currEl, withdrawn: false });
           return acc;
         }, [] as InvestmentI[]),
+      };
+    case DataActionTypes.addReminder:
+      const newReminders = [...state.reminders, payload];
+
+      return {
+        ...state,
+        reminders: newReminders,
+      };
+    case DataActionTypes.updateReminder:
+      const newReminder = {
+        ...payload.reminder,
+        date: new Date(payload.reminder.date).getTime(),
+      };
+
+      return {
+        ...state,
+        reminders: state.reminders.reduce((acc, currEl) => {
+          currEl.id !== payload.id
+            ? acc.push(currEl)
+            : acc.push({ ...newReminder });
+          return acc;
+        }, [] as ReminderI[]),
+      };
+    case DataActionTypes.deleteReminder:
+      const newRemindersDelete = state.reminders.filter(
+        (reminder) => reminder.id !== payload
+      );
+
+      return {
+        ...state,
+        reminders: newRemindersDelete,
       };
     default:
       return {

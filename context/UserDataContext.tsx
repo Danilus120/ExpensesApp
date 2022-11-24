@@ -16,6 +16,8 @@ import {
   IncomeFormDataI,
   IncomeI,
   InvestmentFormDataI,
+  ReminderFormDataI,
+  ReminderI,
   UserFirebaseI,
 } from "types/user.interface";
 import { uuid } from "uuidv4";
@@ -159,10 +161,10 @@ export const UserDataContextProvider = ({
         ...investment,
         id: uuid(),
         date: investment.date.getTime(),
-        payoutValue: null,
-        payoutDate: null,
-        payoutExchangeRate: null,
-        summary: null,
+        payoutValue: 0,
+        payoutDate: 0,
+        payoutExchangeRate: 0,
+        summary: 0,
         withdrawn: false,
       },
     });
@@ -209,6 +211,45 @@ export const UserDataContextProvider = ({
     });
   };
 
+  const addReminder = (reminderFormData: ReminderFormDataI) => {
+    const reminder = {
+      ...reminderFormData,
+      date: reminderFormData.date.getTime(),
+      id: uuid(),
+      category: "home-and-bills",
+      shopName: "Bills - reminder",
+      notified: false,
+    };
+
+    dispatch({
+      type: DataActionTypes.addReminder,
+      payload: reminder,
+    });
+  };
+
+  const updateReminder = (id: string, reminder: ReminderI) => {
+    const reminderFromState = userData.reminders.find(
+      (reminder) => reminder.id === id
+    );
+
+    if (!reminderFromState) return;
+
+    dispatch({
+      type: DataActionTypes.updateReminder,
+      payload: {
+        id,
+        reminder,
+      },
+    });
+  };
+
+  const deleteReminder = (id: string) => {
+    dispatch({
+      type: DataActionTypes.deleteReminder,
+      payload: id,
+    });
+  };
+
   const actions = {
     updateSettings,
     addExpense,
@@ -221,6 +262,9 @@ export const UserDataContextProvider = ({
     deleteInvestment,
     updateInvestment,
     rollbackInvestment,
+    addReminder,
+    updateReminder,
+    deleteReminder,
   };
 
   const values = {

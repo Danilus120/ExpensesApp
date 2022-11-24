@@ -2,6 +2,8 @@ import {
   ExpenseFormDataI,
   IncomeFormDataI,
   InvestmentFormDataI,
+  ReminderFormDataI,
+  ReminderI,
   UserFirebaseI,
 } from "types/user.interface";
 
@@ -34,6 +36,9 @@ interface UserDataContextI {
       }
     ) => void;
     rollbackInvestment: (id: string) => void;
+    addReminder: (reminderFormData: ReminderFormDataI) => void;
+    updateReminder: (id: string, reminder: ReminderI) => void;
+    deleteReminder: (id: string) => void;
   };
 }
 

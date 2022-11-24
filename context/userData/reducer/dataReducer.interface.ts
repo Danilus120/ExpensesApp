@@ -1,10 +1,11 @@
+import { UserFirebaseI } from "types/user.interface";
 import {
   ExpenseFormDataI,
   ExpenseI,
   IncomeFormDataI,
   IncomeI,
-  InvestmentFormDataI,
   InvestmentI,
+  ReminderI,
 } from "../../../types/user.interface";
 
 export enum DataActionTypes {
@@ -20,19 +21,15 @@ export enum DataActionTypes {
   deleteInvestment = "DELETE_INVESTMENT",
   updateInvestment = "UPDATE_INVESTMENT",
   rollbackInvestment = "ROLLBACK_INVESTMENT",
+  addReminder = "ADD_REMINDER",
+  updateReminder = "UPDATE_REMINDER",
+  deleteReminder = "DELETE_REMINDER",
 }
 
 export type DataActionType =
   | {
       type: DataActionTypes.updateUser;
-      payload: {
-        id: string;
-        default_Currency: string;
-        default_Timezone: string;
-        expenses: ExpenseI[];
-        income: IncomeI[];
-        investments: InvestmentI[];
-      };
+      payload: UserFirebaseI;
     }
   | {
       type: DataActionTypes.updateSettings;
@@ -93,4 +90,19 @@ export type DataActionType =
       payload: {
         id: string;
       };
+    }
+  | {
+      type: DataActionTypes.addReminder;
+      payload: ReminderI;
+    }
+  | {
+      type: DataActionTypes.updateReminder;
+      payload: {
+        id: string;
+        reminder: ReminderI;
+      };
+    }
+  | {
+      type: DataActionTypes.deleteReminder;
+      payload: string;
     };

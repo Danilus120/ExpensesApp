@@ -5,6 +5,7 @@ interface UserFirebaseI {
   expenses: ExpenseI[];
   income: IncomeI[];
   investments: InvestmentI[];
+  reminders: ReminderI[];
 }
 
 interface ExpenseI {
@@ -63,12 +64,32 @@ interface InvestmentFormDataI {
   quantity: number;
 }
 
+interface ReminderI {
+  id: string;
+  date: number;
+  title: string;
+  value: number;
+  category: string;
+  shopName: string;
+  description: string;
+  notified: boolean;
+}
+
+interface ReminderFormDataI {
+  date: Date;
+  title: string;
+  value: number;
+  description: string;
+}
+
 export type {
   UserFirebaseI,
   ExpenseI,
   IncomeI,
   InvestmentI,
+  ReminderI,
   ExpenseFormDataI,
   IncomeFormDataI,
   InvestmentFormDataI,
+  ReminderFormDataI,
 };

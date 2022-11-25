@@ -1,9 +1,8 @@
 import Head from "next/head";
-import DashboardNavigation from "@/Molecules/DashboardNavigation";
-import DashboardSidePanel from "@/Molecules/DashboardSidePanel";
+
+import ContentTemplate from "./components/ContentTemplate";
+
 import { UserDataContextProvider } from "@/context/UserDataContext";
-import useSidepanel from "@/hooks/useSidepanel";
-import styles from "./styles.module.scss";
 
 interface DashboardTemplateProps {
   children: React.ReactNode;
@@ -17,8 +16,6 @@ export default function DashboardTemplate({
   children,
   metaOptions,
 }: DashboardTemplateProps) {
-  const { isSidepanelOpen, toggleSidepanel } = useSidepanel();
-
   return (
     <>
       <Head>
@@ -27,22 +24,7 @@ export default function DashboardTemplate({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <UserDataContextProvider>
-        <div className={styles.main}>
-          <div
-            className={`${styles["sidepanel__container"]} ${
-              isSidepanelOpen && styles["sidepanel__container--active"]
-            }`}
-          >
-            <DashboardSidePanel
-              isOpen={isSidepanelOpen}
-              toggleSidepanel={toggleSidepanel}
-            />
-          </div>
-          <div className={styles.container}>
-            <DashboardNavigation toggleSidepanel={toggleSidepanel} />
-            <main className={styles.content}>{children}</main>
-          </div>
-        </div>
+        <ContentTemplate>{children}</ContentTemplate>
       </UserDataContextProvider>
     </>
   );

@@ -60,6 +60,7 @@ const reminderAddSchema = yup.object({
   date: yup.date().required(),
   title: yup.string().required(),
   value: yup.number().required(),
+  color: yup.string().required(),
   descrtiption: yup.string(),
 });
 

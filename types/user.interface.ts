@@ -69,6 +69,7 @@ interface ReminderI {
   date: number;
   title: string;
   value: number;
+  color: string;
   category: string;
   shopName: string;
   description: string;
@@ -79,6 +80,7 @@ interface ReminderFormDataI {
   date: Date;
   title: string;
   value: number;
+  color: string;
   description: string;
 }
 

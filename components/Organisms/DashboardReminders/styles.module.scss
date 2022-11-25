@@ -120,7 +120,7 @@
   &__event {
     padding: 2px 5px;
 
-    background-color: rgb(75, 149, 179);
+    // background-color: rgb(75, 149, 179);
     border-radius: 10px;
 
     transition: all 0.2s ease-in-out;
@@ -130,6 +130,50 @@
 
     &:hover {
       opacity: 1;
+    }
+
+    &--tomato {
+      background-color: rgb(213, 0, 0);
+    }
+
+    &--flamingo {
+      background-color: rgb(230, 124, 115);
+    }
+
+    &--tangerine {
+      background-color: rgb(244, 81, 30);
+    }
+
+    &--banana {
+      background-color: rgb(246, 191, 38);
+    }
+
+    &--sage {
+      background-color: rgb(51, 182, 121);
+    }
+
+    &--basil {
+      background-color: rgb(11, 128, 67);
+    }
+
+    &--peacock {
+      background-color: rgb(3, 155, 229);
+    }
+
+    &--blueberry {
+      background-color: rgb(63, 81, 181);
+    }
+
+    &--lavender {
+      background-color: rgb(121, 134, 203);
+    }
+
+    &--grape {
+      background-color: rgb(142, 36, 170);
+    }
+
+    &--graphite {
+      background-color: rgb(97, 97, 97);
     }
 
     p {

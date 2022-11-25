@@ -84,10 +84,14 @@ function DashboardReminders() {
                       {userData.reminders.map((reminder) => {
                         if (!isSameDay(reminder.date, cell.timestamp)) return;
 
+                        const classes = `${styles["calendar__event"]} ${
+                          styles[`calendar__event--${reminder.color}`]
+                        }`;
+
                         return (
                           <div
                             key={reminder.id}
-                            className={styles["calendar__event"]}
+                            className={classes}
                             onClick={() => setEditRecordID(reminder.id)}
                           >
                             <p>{reminder.title}</p>

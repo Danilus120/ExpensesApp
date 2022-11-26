@@ -1,7 +1,10 @@
 import Input from "@/Atoms/Input";
 import Select from "@/Atoms/Select";
 import { reminderAddSchema } from "@/constants/validationSchema";
-import { calendarEventColors } from "@/constants/calendarConstants";
+import {
+  calendarEventColors,
+  recursiveEvents,
+} from "@/constants/calendarConstants";
 import { useData } from "@/context/UserDataContext";
 import Form from "@/Molecules/Form";
 import Modal from "@/Molecules/Modal";
@@ -46,6 +49,13 @@ function AddReminderModal({ isOpen, handleToggle }: AddReminderModalProps) {
             name="color"
             options={calendarEventColors}
             defaultValue={calendarEventColors[0].value}
+          />
+
+          <Select
+            label="Recursive events"
+            name="recursive"
+            options={recursiveEvents}
+            defaultValue={recursiveEvents[0].value}
           />
 
           <Input label="Description" name="description" />

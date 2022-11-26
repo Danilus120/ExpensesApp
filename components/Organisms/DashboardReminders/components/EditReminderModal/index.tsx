@@ -10,6 +10,7 @@ import {
 } from "@/constants/validationSchema";
 import { useData } from "@/context/UserDataContext";
 import { formatDate } from "utils/utils";
+import Button from "@/Atoms/Button";
 
 interface EditReminderModal {
   isOpen: boolean;
@@ -45,10 +46,15 @@ function EditReminderModal({
             actions.updateReminder(data.id, data);
             handleToggle();
           }}
+          onDelete={(id: string) => {
+            actions.deleteReminder(id);
+            handleToggle();
+          }}
           options={{
             haveButtons: true,
             haveClearButton: true,
             resetAfterSubmit: true,
+            deleteRecordButton: true,
           }}
           schema={reminderEditSchema}
           handleToggle={handleToggle}

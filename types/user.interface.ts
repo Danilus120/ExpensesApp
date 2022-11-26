@@ -70,6 +70,7 @@ interface ReminderI {
   title: string;
   value: number;
   color: string;
+  recursive: string;
   category: string;
   shopName: string;
   description: string;
@@ -81,6 +82,7 @@ interface ReminderFormDataI {
   title: string;
   value: number;
   color: string;
+  recursive: string;
   description: string;
 }
 

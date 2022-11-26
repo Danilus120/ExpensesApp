@@ -4,7 +4,14 @@ export interface ButtonProps {
   children: React.ReactNode;
   variant?: "text" | "contained" | "outlined" | "ghost";
   size?: "small" | "medium" | "large";
-  color?: "primary" | "secondary" | "success" | "error" | "info" | "warning";
+  color?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning"
+    | "danger";
   margin?: "left" | "right" | "none" | boolean;
   align?: "left" | "center" | "right";
   circular?: boolean;

@@ -8,12 +8,14 @@ interface FormProps {
   defaultValues?: Record<string, any>;
   children: React.ReactNode;
   onSubmit: (data: any) => void;
+  onDelete?: (id: string) => void | undefined;
   schema: any;
   handleToggle?: () => void;
   options?: {
     haveClearButton?: boolean;
     haveButtons?: boolean;
     resetAfterSubmit?: boolean;
+    deleteRecordButton?: boolean;
   };
 }
 
@@ -21,12 +23,14 @@ export default function Form({
   defaultValues = {},
   children,
   onSubmit,
+  onDelete,
   schema,
   handleToggle,
   options = {
     haveButtons: true,
     haveClearButton: false,
     resetAfterSubmit: true,
+    deleteRecordButton: false,
   },
 }: FormProps) {
   const {
@@ -41,7 +45,7 @@ export default function Form({
     resolver: yupResolver(schema),
   });
 
-  const handleFn = (data: any) => {
+  const handleSubmitFn = (data: any) => {
     onSubmit(data);
 
     if (options.resetAfterSubmit) {
@@ -49,8 +53,14 @@ export default function Form({
     }
   };
 
+  const handleDeleteFn = () => {
+    if (onDelete) onDelete(defaultValues.id);
+
+    handleToggle;
+  };
+
   return (
-    <form onSubmit={handleSubmit(handleFn)}>
+    <form onSubmit={handleSubmit(handleSubmitFn)}>
       {Array.isArray(children)
         ? children.map((child) => {
             return child.props.name
@@ -72,6 +82,16 @@ export default function Form({
           <Button variant="contained" color="error" callbackFn={handleToggle}>
             Close
           </Button>
+
+          {options.deleteRecordButton && onDelete ? (
+            <Button
+              variant="contained"
+              color="danger"
+              callbackFn={handleDeleteFn}
+            >
+              Delete Record
+            </Button>
+          ) : null}
 
           {options?.haveClearButton && (
             <Button

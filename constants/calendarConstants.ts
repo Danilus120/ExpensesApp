@@ -22,4 +22,11 @@ const calendarEventColors = [
   { label: "Graphite", value: "graphite" },
 ];
 
-export { dayLabels, calendarEventColors };
+const recursiveEvents = [
+  { label: "Does not repeat", value: "none" },
+  { label: "Daily", value: "daily" },
+  { label: "Weekly", value: "weekly" },
+  { label: "Monthly", value: "monthly" },
+];
+
+export { dayLabels, calendarEventColors, recursiveEvents };

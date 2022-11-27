@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import ContentTemplate from "./components/ContentTemplate";
+import ContentTemplate from "./components/ContentTemplate/ContentTemplate";
 
 import { UserDataContextProvider } from "@/context/UserDataContext";
 

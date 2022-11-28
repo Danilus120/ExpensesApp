@@ -1,6 +1,6 @@
 import { doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 
-import { isUserInDB } from "utils/utils";
+import { isUserInDB } from "utils/user/userUtils";
 
 import { databaseUserRef, db } from "@/config/firebase.config";
 

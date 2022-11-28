@@ -26,7 +26,6 @@ const getSummaryValueFromTimePeriod = <
   chosenDate: Date | number = new Date()
 ) => {
   const filteredData = getDataFromTimePeriod(data, timeRange, chosenDate);
-  console.log(filteredData);
 
   const sumOfValuesFromTimePeriod = filteredData.reduce(
     (acc, curr) => acc + curr.summary,

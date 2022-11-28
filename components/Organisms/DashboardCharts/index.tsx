@@ -13,6 +13,7 @@ function DashboardCharts() {
   return (
     <>
       <TimeNavigation chosenDate={chosenDate} actions={actions} />
+
       <DashboardMoneyCards chosenDate={chosenDate} />
       <LineChart
         title="Monthly Expenses / Income Comparison"

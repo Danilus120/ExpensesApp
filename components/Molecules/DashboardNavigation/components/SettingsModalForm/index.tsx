@@ -24,7 +24,6 @@ function SettingsModalForm({
     >
       <Form
         onSubmit={(data) => {
-          console.log(data);
           actions.updateSettings(data);
         }}
         schema={settingsSchema}

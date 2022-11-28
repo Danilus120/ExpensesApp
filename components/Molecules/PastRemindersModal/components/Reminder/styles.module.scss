@@ -1,0 +1,67 @@
+.reminder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  gap: 10px;
+
+  padding: 10px 10px;
+
+  border-radius: 10px;
+
+  background-color: rgb(50, 55, 63);
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+  }
+
+  &__date,
+  &__title,
+  &__value,
+  &__buttons {
+    text-align: center;
+  }
+
+  &__date {
+    width: 100%;
+
+    @media (min-width: 1200px) {
+      width: 15%;
+    }
+  }
+
+  &__title {
+    width: 100%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (min-width: 1200px) {
+      width: 25%;
+    }
+  }
+
+  &__value {
+    width: 100%;
+
+    @media (min-width: 1200px) {
+      width: 20%;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+
+    gap: 10px;
+
+    @media (min-width: 1200px) {
+      width: 40%;
+    }
+  }
+}

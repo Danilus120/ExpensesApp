@@ -9,7 +9,6 @@ import styles from "./styles.module.scss";
 import { isPast } from "date-fns";
 import Modal from "@/Molecules/Modal";
 import { useState } from "react";
-import { formatDate } from "utils/utils";
 import Button from "@/Atoms/Button";
 
 interface ContentTemplateProps {
@@ -17,7 +16,7 @@ interface ContentTemplateProps {
 }
 
 function ContentTemplate({ children }: ContentTemplateProps) {
-  const { userData } = useData();
+  const { userData, actions } = useData();
   const { isSidepanelOpen, toggleSidepanel } = useSidepanel();
 
   const pastReminders = userData.reminders.filter(
@@ -71,8 +70,18 @@ function ContentTemplate({ children }: ContentTemplateProps) {
                     {reminder.value} {userData.default_Currency}
                   </div>
                   <div className={`${styles["reminder__buttons"]}`}>
-                    <Button color="success">Add expense</Button>
-                    <Button color="danger">Dismiss</Button>
+                    <Button
+                      color="success"
+                      callbackFn={() => actions.addReminderExpense(reminder)}
+                    >
+                      Add expense
+                    </Button>
+                    <Button
+                      color="danger"
+                      callbackFn={() => actions.dismissReminder(reminder.id)}
+                    >
+                      Dismiss
+                    </Button>
                   </div>
                 </div>
               );

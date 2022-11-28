@@ -39,6 +39,8 @@ interface UserDataContextI {
     addReminder: (reminderFormData: ReminderFormDataI) => void;
     updateReminder: (id: string, reminder: ReminderI) => void;
     deleteReminder: (id: string) => void;
+    addReminderExpense: (reminder: ReminderI) => void;
+    dismissReminder: (id: string) => void;
   };
 }
 

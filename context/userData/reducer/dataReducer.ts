@@ -4,7 +4,6 @@ import {
   DataActionTypes,
 } from "@/context/userData/reducer/dataReducer.interface";
 import {
-  ExpenseFormDataI,
   ExpenseI,
   IncomeI,
   InvestmentI,
@@ -162,6 +161,16 @@ export const dataReducer = (
       return {
         ...state,
         reminders: newRemindersDelete,
+      };
+    case DataActionTypes.dismissReminder:
+      return {
+        ...state,
+        reminders: state.reminders.reduce((acc, currEl) => {
+          currEl.id !== payload.id
+            ? acc.push(currEl)
+            : acc.push({ ...payload });
+          return acc;
+        }, [] as ReminderI[]),
       };
     default:
       return {

@@ -24,6 +24,7 @@ import { uuid } from "uuidv4";
 
 import { useAuth } from "@/context/auth/AuthContext";
 import { UserDataContextI } from "./UserDataCtxTypes";
+import { changeDateIfRecursive } from "utils/reminders/utils";
 
 const UserDataContext = createContext<UserDataContextI>({} as UserDataContextI);
 
@@ -250,6 +251,44 @@ export const UserDataContextProvider = ({
     });
   };
 
+  const addReminderExpense = (reminder: ReminderI) => {
+    const expense = {
+      category: reminder.category,
+      date: reminder.date,
+      description: reminder.description,
+      id: uuid(),
+      shopName: reminder.title,
+      value: reminder.value,
+    };
+
+    // Add to expense
+    dispatch({
+      type: DataActionTypes.addExpense,
+      payload: expense,
+    });
+
+    const newDismissReminder = changeDateIfRecursive(reminder);
+
+    // Change notified or change to new date if recursive
+    dispatch({
+      type: DataActionTypes.dismissReminder,
+      payload: newDismissReminder,
+    });
+  };
+
+  const dismissReminder = (id: string) => {
+    const reminder = userData.reminders.find((reminder) => reminder.id === id);
+
+    if (!reminder) return;
+
+    const newDismissReminder = changeDateIfRecursive(reminder);
+
+    dispatch({
+      type: DataActionTypes.dismissReminder,
+      payload: newDismissReminder,
+    });
+  };
+
   const actions = {
     updateSettings,
     addExpense,
@@ -265,6 +304,8 @@ export const UserDataContextProvider = ({
     addReminder,
     updateReminder,
     deleteReminder,
+    addReminderExpense,
+    dismissReminder,
   };
 
   const values = {

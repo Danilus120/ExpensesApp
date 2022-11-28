@@ -24,6 +24,8 @@ export enum DataActionTypes {
   addReminder = "ADD_REMINDER",
   updateReminder = "UPDATE_REMINDER",
   deleteReminder = "DELETE_REMINDER",
+  dismissReminder = "DISMISS_REMINDER",
+  dismissReminders = "DISMISS_REMINDERS",
 }
 
 export type DataActionType =
@@ -105,4 +107,12 @@ export type DataActionType =
   | {
       type: DataActionTypes.deleteReminder;
       payload: string;
+    }
+  | {
+      type: DataActionTypes.dismissReminder;
+      payload: ReminderI;
+    }
+  | {
+      type: DataActionTypes.dismissReminders;
+      payload: ReminderI[];
     };

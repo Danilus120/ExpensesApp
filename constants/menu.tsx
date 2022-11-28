@@ -1,5 +1,6 @@
 import { AiFillDashboard } from "react-icons/ai";
 import { GiReceiveMoney, GiPayMoney, GiChart } from "react-icons/gi";
+import { FiTarget } from "react-icons/fi";
 import { FaChartArea } from "react-icons/fa";
 import { BsCalendarPlus } from "react-icons/bs";
 
@@ -28,6 +29,11 @@ const expensesItems = [
     name: "Reminders",
     link: "/dashboard/reminders",
     icon: <BsCalendarPlus />,
+  },
+  {
+    name: "Goals",
+    link: "/dashboard/goals",
+    icon: <FiTarget />,
   },
 ];
 

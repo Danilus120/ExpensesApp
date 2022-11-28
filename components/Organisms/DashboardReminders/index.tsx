@@ -1,6 +1,7 @@
 import { useModal } from "@/hooks/useModal";
 import useWindowWidth from "@/hooks/useWindowWidth";
 import CalendarReminders from "@/Molecules/CalendarReminders";
+import MobileCalendarReminders from "@/Molecules/MobileCalendarReminders";
 import { useState } from "react";
 import AddReminderModal from "./components/AddReminderModal";
 import EditReminderModal from "./components/EditReminderModal";
@@ -24,7 +25,10 @@ function DashboardReminders() {
   return (
     <>
       {width < 768 ? (
-        <p>mobile view of calendar</p>
+        <MobileCalendarReminders
+          setEditRecordID={setEditRecordID}
+          handleAddModalToggle={handleAddModalToggle}
+        />
       ) : (
         <CalendarReminders
           setEditRecordID={setEditRecordID}

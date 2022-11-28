@@ -1,0 +1,82 @@
+.title {
+  margin: 10px 0px;
+}
+
+.reminders {
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 16px;
+
+  gap: 16px;
+  .reminder {
+    &__date {
+    }
+
+    &__content {
+      margin: 10px 0px 0px;
+      padding: 15px 20px;
+
+      border-radius: 10px;
+
+      transition: all 0.2s ease-in-out;
+      opacity: 0.9;
+
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &--tomato {
+        background-color: rgba(213, 0, 0, 0.8);
+      }
+
+      &--flamingo {
+        background-color: rgba(230, 124, 115, 0.8);
+      }
+
+      &--tangerine {
+        background-color: rgba(244, 81, 30, 0.8);
+      }
+
+      &--banana {
+        background-color: rgba(246, 191, 38, 0.8);
+      }
+
+      &--sage {
+        background-color: rgba(51, 182, 121, 0.8);
+      }
+
+      &--basil {
+        background-color: rgba(11, 128, 67, 0.8);
+      }
+
+      &--peacock {
+        background-color: rgba(3, 155, 229, 0.8);
+      }
+
+      &--blueberry {
+        background-color: rgba(63, 81, 181, 0.8);
+      }
+
+      &--lavender {
+        background-color: rgba(121, 134, 203, 0.8);
+      }
+
+      &--grape {
+        background-color: rgba(142, 36, 170, 0.8);
+      }
+
+      &--graphite {
+        background-color: rgba(97, 97, 97, 0.8);
+      }
+    }
+
+    &__title {
+    }
+
+    &__value {
+    }
+  }
+}

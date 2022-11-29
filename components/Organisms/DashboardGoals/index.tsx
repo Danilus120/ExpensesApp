@@ -6,7 +6,6 @@ import styles from "./styles.module.scss";
 
 function DashboardGoals() {
   const { userData } = useData();
-  const [avgSavings, setAvgSavings] = useState(0);
   const [goalState, setGoalState] = useState({
     valueToSave: 0,
     monthsTimeRange: 1,
@@ -23,15 +22,11 @@ function DashboardGoals() {
     });
   };
 
-  useEffect(() => {
-    setAvgSavings(
-      calculateAvgSavingsFromLastMonths(
-        goalState.valueToSave,
-        userData,
-        goalState.monthsTimeRange
-      )
-    );
-  }, [goalState, userData]);
+  const avgSavings = calculateAvgSavingsFromLastMonths(
+    goalState.valueToSave,
+    userData,
+    goalState.monthsTimeRange
+  );
 
   return (
     <div className={`${styles["goals"]}`}>

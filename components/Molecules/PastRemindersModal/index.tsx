@@ -25,27 +25,25 @@ function PastRemindersModal() {
     });
   };
 
+  if (pastReminders.length === 0) return null;
+
   return (
-    <>
-      {pastReminders.length > 0 ? (
-        <Modal
-          title="Are you payed for it already?"
-          isOpened={isOpen}
-          handleToggle={handleToggle}
-        >
-          <div className={styles["reminders"]}>
-            {pastReminders.map((reminder) => (
-              <Reminder key={reminder.id} reminder={reminder} />
-            ))}
-          </div>
-          <div className={styles["buttons"]}>
-            <Button color="error" callbackFn={handleToggle}>
-              Close
-            </Button>
-          </div>
-        </Modal>
-      ) : null}
-    </>
+    <Modal
+      title="Are you payed for it already?"
+      isOpened={isOpen}
+      handleToggle={handleToggle}
+    >
+      <div className={styles["reminders"]}>
+        {pastReminders.map((reminder) => (
+          <Reminder key={reminder.id} reminder={reminder} />
+        ))}
+      </div>
+      <div className={styles["buttons"]}>
+        <Button color="error" callbackFn={handleToggle}>
+          Close
+        </Button>
+      </div>
+    </Modal>
   );
 }
 

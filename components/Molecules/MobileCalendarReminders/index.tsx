@@ -18,7 +18,7 @@ function MobileCalendarReminders({
   const { userData } = useData();
 
   const actualReminders = userData.reminders
-    .filter((reminder) => reminder.notified != true && !isPast(reminder.date))
+    .filter((reminder) => !reminder.notified && !isPast(reminder.date))
     .sort((a, b) => a.date - b.date);
 
   return (

@@ -1,5 +1,4 @@
 import { addMonths } from "date-fns";
-import { UserFirebaseI } from "types/user.interface";
 import {
   getSummaryValueFromTimePeriod,
   getValueOfDataFromTimePeriod,

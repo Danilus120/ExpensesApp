@@ -27,16 +27,6 @@ function CalendarNavigation({
 
   return (
     <div className={styles["calendar__navigation"]}>
-      <div className={styles["calendar__add-event"]}>
-        <Button
-          variant="contained"
-          color="success"
-          size="medium"
-          callbackFn={handleAddModalToggle}
-        >
-          <FiPlus /> Add Reminder
-        </Button>
-      </div>
       <div className={styles["calendar__date"]}>
         <h3>{calendarTitle}</h3>
       </div>
@@ -49,6 +39,16 @@ function CalendarNavigation({
         </Button>
         <Button variant="ghost" callbackFn={actions.nextMonth}>
           <MdKeyboardArrowRight />
+        </Button>
+      </div>
+      <div className={styles["calendar__add-event"]}>
+        <Button
+          variant="contained"
+          color="success"
+          size="medium"
+          callbackFn={handleAddModalToggle}
+        >
+          <FiPlus /> Add Reminder
         </Button>
       </div>
     </div>

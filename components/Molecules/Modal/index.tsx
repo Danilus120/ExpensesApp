@@ -37,9 +37,11 @@ export default function Modal({
       <div
         className={`${styles["modal__card"]} ${styles[`modal__card--${size}`]}`}
       >
-        <div className={styles["modal__card__header"]}>
-          <h2>{title}</h2>
-        </div>
+        {title && (
+          <div className={styles["modal__card__header"]}>
+            <h2>{title}</h2>
+          </div>
+        )}
         <div className={styles["modal__card__content"]}>{children}</div>
       </div>
       <div className={styles["modal__background"]} onClick={handleToggle}></div>

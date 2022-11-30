@@ -16,6 +16,9 @@ import Button from "@/Atoms/Button";
 import GlobalFilter from "./components/GlobalFilter";
 import styles from "./styles.module.scss";
 
+import ConfirmationModalContextProvider from "@/context/modalConfirmationContext";
+import DeleteButton from "@/Atoms/DeleteButton";
+
 interface TableProps {
   data: any;
   columns: {
@@ -66,23 +69,29 @@ function Table({
     tableInstance;
 
   return (
-    <div className={styles["container"]}>
-      <TableHeader addFn={addFn} title={title} tableInstance={tableInstance} />
-      <div className={styles["table__wrapper"]}>
-        <table {...getTableProps()} className={styles["table"]}>
-          <TableHead headerGroups={headerGroups} />
-          <TableBody
-            getTableBodyProps={getTableBodyProps}
-            page={page}
-            defaultCurrency={defaultCurrency}
-            prepareRow={prepareRow}
-            editRecordFn={editRecordFn}
-            deleteRecordFn={deleteRecordFn}
-          />
-        </table>
+    <ConfirmationModalContextProvider>
+      <div className={styles["container"]}>
+        <TableHeader
+          addFn={addFn}
+          title={title}
+          tableInstance={tableInstance}
+        />
+        <div className={styles["table__wrapper"]}>
+          <table {...getTableProps()} className={styles["table"]}>
+            <TableHead headerGroups={headerGroups} />
+            <TableBody
+              getTableBodyProps={getTableBodyProps}
+              page={page}
+              defaultCurrency={defaultCurrency}
+              prepareRow={prepareRow}
+              editRecordFn={editRecordFn}
+              deleteRecordFn={deleteRecordFn}
+            />
+          </table>
+        </div>
+        <Pagination tableInstance={tableInstance} options={options} />
       </div>
-      <Pagination tableInstance={tableInstance} options={options} />
-    </div>
+    </ConfirmationModalContextProvider>
   );
 }
 
@@ -202,14 +211,14 @@ function TableBody({
                 >
                   <FiEdit />
                 </Button>
-                <Button
+                <DeleteButton
                   variant="ghost"
-                  iconOnly
-                  callbackFn={() => deleteRecordFn(id)}
                   size="small"
+                  iconOnly
+                  onClick={() => deleteRecordFn(id)}
                 >
                   <AiFillDelete />
-                </Button>
+                </DeleteButton>
               </div>
             </td>
           </tr>

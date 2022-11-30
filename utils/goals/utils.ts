@@ -4,6 +4,32 @@ import {
   getValueOfDataFromTimePeriod,
 } from "utils/timeFunctions";
 
+const generateMonthOptionsForSelect = (data: {
+  expenses: { date: number; value: number }[];
+  income: { date: number; value: number }[];
+  investments: { date: number; summary: number; withdrawn: boolean }[];
+}) => {
+  let actualDate = new Date();
+  const options: { label: string; value: number }[] = [];
+
+  for (let i = 0; i < 12; i++) {
+    const dataFromMonth = calculateSavingsFromOneMonth(data, actualDate);
+
+    if (dataFromMonth === 0) {
+      continue;
+    }
+
+    options.push({
+      label: `${i + 1} months`,
+      value: i + 1,
+    });
+
+    actualDate = addMonths(actualDate, -1);
+  }
+
+  return options;
+};
+
 const calculateAvgSavingsFromLastMonths = (
   valueToSave: number,
   data: {
@@ -13,14 +39,13 @@ const calculateAvgSavingsFromLastMonths = (
   },
   months: number
 ) => {
-  const date = new Date();
+  let actualDate = new Date();
   let sum = 0;
 
   for (let i = 0; i < months; i++) {
-    const dataFromMonth = calculateSavingsFromOneMonth(
-      data,
-      addMonths(date, -i)
-    );
+    const dataFromMonth = calculateSavingsFromOneMonth(data, actualDate);
+
+    actualDate = addMonths(actualDate, -1);
 
     sum += dataFromMonth;
   }
@@ -51,4 +76,8 @@ const calculateSavingsFromOneMonth = (
   return incomeValue + investmentsValue - expensesValue;
 };
 
-export { calculateAvgSavingsFromLastMonths, calculateSavingsFromOneMonth };
+export {
+  calculateAvgSavingsFromLastMonths,
+  calculateSavingsFromOneMonth,
+  generateMonthOptionsForSelect,
+};

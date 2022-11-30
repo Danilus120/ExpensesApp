@@ -1,6 +1,9 @@
 import { useData } from "@/context/UserDataContext";
-import React, { useEffect, useState } from "react";
-import { calculateAvgSavingsFromLastMonths } from "utils/goals/utils";
+import React, { useState } from "react";
+import {
+  calculateAvgSavingsFromLastMonths,
+  generateMonthOptionsForSelect,
+} from "utils/goals/utils";
 
 import styles from "./styles.module.scss";
 
@@ -22,6 +25,8 @@ function DashboardGoals() {
     });
   };
 
+  const options = generateMonthOptionsForSelect(userData);
+
   const avgSavings = calculateAvgSavingsFromLastMonths(
     goalState.valueToSave,
     userData,
@@ -33,7 +38,9 @@ function DashboardGoals() {
       <h3>Calculate time to achieve your goal</h3>
       <div className={`${styles["calculator"]}`}>
         <div className={`${styles["container"]}`}>
-          <label htmlFor="valueToSave">Value of your goal</label>
+          <label htmlFor="valueToSave">
+            The value of the target you want to achieve
+          </label>
           <input
             type="number"
             name="valueToSave"
@@ -43,17 +50,20 @@ function DashboardGoals() {
         </div>
         <div className={`${styles["container"]}`}>
           <label htmlFor="monthsTimeRange">
-            From how many months will be calculate avg.
+            Over what period of time do you want to calculate the average
+            savings?
           </label>
           <select
             name="monthsTimeRange"
             id="monthsTimeRange"
             onChange={(e) => handleChange(e)}
           >
-            <option value="1">1 month</option>
-            <option value="3">3 months</option>
-            <option value="6">6 months</option>
-            <option value="12">12 months</option>
+            {options &&
+              options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
           </select>
         </div>
       </div>

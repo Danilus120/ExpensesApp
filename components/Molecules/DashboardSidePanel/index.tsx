@@ -16,11 +16,7 @@ export default function DashboardSidePanel({
   const { name, icon, items } = statistics;
 
   return (
-    <div
-      className={`${styles.sidepanel} ${styles["sidepanel"]} ${
-        isOpen && styles["active"]
-      }`}
-    >
+    <div className={`${styles["sidepanel"]} ${isOpen && styles["active"]}`}>
       <div className={styles["sidepanel__content"]}>
         <div className={styles["sidepanel__logo"]}>
           <LogoLink />

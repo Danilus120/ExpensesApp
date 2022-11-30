@@ -20,11 +20,14 @@ import {
   ReminderI,
   UserFirebaseI,
 } from "types/user.interface";
+
+import { FcApproval } from "react-icons/fc";
 import { uuid } from "uuidv4";
 
 import { useAuth } from "@/context/auth/AuthContext";
 import { UserDataContextI } from "./UserDataCtxTypes";
 import { changeDateIfRecursive } from "utils/reminders/utils";
+import { notifySuccess } from "utils/notify";
 
 const UserDataContext = createContext<UserDataContextI>({} as UserDataContextI);
 
@@ -85,6 +88,8 @@ export const UserDataContextProvider = ({
         default_Timezone: options.timezone,
       },
     });
+
+    notifySuccess(`${(<FcApproval />)} Settings are updated`);
   };
 
   const addExpense = (expense: ExpenseFormDataI) => {
@@ -96,6 +101,8 @@ export const UserDataContextProvider = ({
         date: expense.date.getTime(),
       },
     });
+
+    notifySuccess("Expense added");
   };
 
   const deleteExpense = (id: string) => {
@@ -103,6 +110,8 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.deleteExpense,
       payload: id,
     });
+
+    notifySuccess("Expense deleted");
   };
 
   const updateExpense = (id: string, expense: ExpenseFormDataI) => {
@@ -119,6 +128,8 @@ export const UserDataContextProvider = ({
         expense,
       },
     });
+
+    notifySuccess("Expense updated");
   };
 
   const addIncome = (income: IncomeFormDataI) => {
@@ -130,6 +141,8 @@ export const UserDataContextProvider = ({
         date: income.date.getTime(),
       },
     });
+
+    notifySuccess("Income added");
   };
 
   const deleteIncome = (id: string) => {
@@ -137,6 +150,8 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.deleteIncome,
       payload: id,
     });
+
+    notifySuccess("Delete income");
   };
 
   const updateIncome = (id: string, income: IncomeFormDataI) => {
@@ -153,6 +168,8 @@ export const UserDataContextProvider = ({
         income,
       },
     });
+
+    notifySuccess("Income updated");
   };
 
   const addInvestment = (investment: InvestmentFormDataI) => {
@@ -169,6 +186,8 @@ export const UserDataContextProvider = ({
         withdrawn: false,
       },
     });
+
+    notifySuccess("Investment added");
   };
 
   const deleteInvestment = (id: string) => {
@@ -176,6 +195,8 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.deleteInvestment,
       payload: id,
     });
+
+    notifySuccess("Investment deleted");
   };
 
   const updateInvestment = (
@@ -201,6 +222,8 @@ export const UserDataContextProvider = ({
         data,
       },
     });
+
+    notifySuccess("Investment updated");
   };
 
   const rollbackInvestment = (id: string) => {
@@ -210,6 +233,8 @@ export const UserDataContextProvider = ({
         id,
       },
     });
+
+    notifySuccess("Investment rollbacked");
   };
 
   const addReminder = (reminderFormData: ReminderFormDataI) => {
@@ -226,6 +251,8 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.addReminder,
       payload: reminder,
     });
+
+    notifySuccess("Reminder added");
   };
 
   const updateReminder = (id: string, reminder: ReminderI) => {
@@ -242,6 +269,8 @@ export const UserDataContextProvider = ({
         reminder,
       },
     });
+
+    notifySuccess("Reminder updated");
   };
 
   const deleteReminder = (id: string) => {
@@ -249,6 +278,8 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.deleteReminder,
       payload: id,
     });
+
+    notifySuccess("Reminder deleted");
   };
 
   const addReminderExpense = (reminder: ReminderI) => {
@@ -274,6 +305,8 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.dismissReminder,
       payload: newDismissReminder,
     });
+
+    notifySuccess("Reminder added to expenses");
   };
 
   const dismissReminder = (id: string) => {
@@ -287,6 +320,8 @@ export const UserDataContextProvider = ({
       type: DataActionTypes.dismissReminder,
       payload: newDismissReminder,
     });
+
+    notifySuccess("Reminder dismissed");
   };
 
   const actions = {

@@ -1,6 +1,7 @@
 import DashboardNavigation from "@/Molecules/DashboardNavigation";
 import DashboardSidePanel from "@/Molecules/DashboardSidePanel";
 import PastRemindersModal from "@/Molecules/PastRemindersModal";
+import { Toaster } from "react-hot-toast";
 
 import useSidepanel from "@/hooks/useSidepanel";
 
@@ -31,6 +32,7 @@ function ContentTemplate({ children }: ContentTemplateProps) {
       </div>
 
       <PastRemindersModal />
+      <Toaster />
     </div>
   );
 }

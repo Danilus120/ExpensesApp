@@ -34,7 +34,7 @@
   .list {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
     margin: 0;
     padding: 0 10px;
@@ -67,7 +67,7 @@
 
       @media (min-width: 768px) {
         width: unset;
-        margin: 10px auto 0 0;
+        margin: 0px auto 0 0;
       }
     }
 

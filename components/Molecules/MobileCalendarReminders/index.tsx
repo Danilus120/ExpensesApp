@@ -3,6 +3,8 @@ import { useData } from "@/context/UserDataContext";
 import { isPast } from "date-fns";
 import React from "react";
 import { FiPlus } from "react-icons/fi";
+import { ReminderI } from "types/user.interface";
+import { getActualRemindersByUniqueDates } from "utils/calendar/utils";
 
 import styles from "./styles.module.scss";
 
@@ -17,9 +19,9 @@ function MobileCalendarReminders({
 }: MobileCalendarRemindersProps) {
   const { userData } = useData();
 
-  const actualReminders = userData.reminders
-    .filter((reminder) => !reminder.notified && !isPast(reminder.date))
-    .sort((a, b) => a.date - b.date);
+  const actualRemindersSortedByDates = getActualRemindersByUniqueDates(
+    userData.reminders
+  );
 
   return (
     <>
@@ -28,32 +30,35 @@ function MobileCalendarReminders({
         <FiPlus /> Add reminder
       </Button>
       <div className={`${styles["reminders"]}`}>
-        {actualReminders.map((reminder) => {
-          const classes = `${styles["reminder__content"]} ${
-            styles[`reminder__content--${reminder.color}`]
-          }`;
-
+        {actualRemindersSortedByDates.map((reminderWithDate) => {
+          const { date, reminders } = reminderWithDate;
           return (
-            <div className={`${styles["reminder"]}`} key={reminder.id}>
-              <div className={`${styles["reminder__date"]}`}>
-                {new Date(reminder.date).toLocaleDateString("pl", {
-                  day: "2-digit",
-                  month: "long",
-                  year: "numeric",
-                })}
+            <>
+              <div key={date} className={`${styles["reminder__date"]}`}>
+                {date}
               </div>
-              <div
-                className={classes}
-                onClick={() => setEditRecordID(reminder.id)}
-              >
-                <div className={`${styles["reminder__title"]}`}>
-                  {reminder.title}
-                </div>
-                <div className={`${styles["reminder__value"]}`}>
-                  {reminder.value} {userData.default_Currency}
-                </div>
-              </div>
-            </div>
+              {reminders.map((reminder) => {
+                const classes = `${styles["reminder__content"]} ${
+                  styles[`reminder__content--${reminder.color}`]
+                }`;
+
+                return (
+                  <div className={`${styles["reminder"]}`} key={reminder.id}>
+                    <div
+                      className={classes}
+                      onClick={() => setEditRecordID(reminder.id)}
+                    >
+                      <div className={`${styles["reminder__title"]}`}>
+                        {reminder.title}
+                      </div>
+                      <div className={`${styles["reminder__value"]}`}>
+                        {reminder.value} {userData.default_Currency}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </>
           );
         })}
       </div>

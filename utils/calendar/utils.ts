@@ -1,4 +1,11 @@
-import { addDays, getWeeksInMonth, startOfMonth, startOfWeek } from "date-fns";
+import {
+  addDays,
+  getWeeksInMonth,
+  isPast,
+  startOfMonth,
+  startOfWeek,
+} from "date-fns";
+import { ReminderI } from "types/user.interface";
 
 const DAY_IN_MILISECONDS = 24 * 60 * 60 * 1000;
 
@@ -50,4 +57,45 @@ const createWeekDays = (dateToGenerateWeek: Date) => {
   return weekDays;
 };
 
-export { createFormatedMonthDays };
+const getActualRemindersByUniqueDates = (reminders: ReminderI[]) => {
+  const uniqueDatesFromReminders =
+    getSortedUniqueDatesFromActualReminders(reminders);
+
+  const actualReminders = reminders.filter(
+    (reminder) => !reminder.notified && !isPast(reminder.date)
+  );
+
+  const actualRemindersSortedByDates = uniqueDatesFromReminders.reduce(
+    (acc, uniqueDate) => {
+      const remindersByDate: ReminderI[] = [];
+
+      actualReminders.forEach((reminder) => {
+        if (reminder.date === uniqueDate) remindersByDate.push(reminder);
+      });
+
+      acc.push({
+        date: new Date(uniqueDate).toLocaleDateString("pl", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        }),
+        reminders: remindersByDate,
+      });
+
+      return acc;
+    },
+    [] as { date: string; reminders: ReminderI[] }[]
+  );
+
+  return actualRemindersSortedByDates;
+};
+
+const getSortedUniqueDatesFromActualReminders = (reminders: ReminderI[]) => {
+  const dates = reminders.map((reminder) => reminder.date);
+
+  const uniqueDates = Array.from(new Set(dates));
+
+  return uniqueDates.sort((a, b) => a - b);
+};
+
+export { createFormatedMonthDays, getActualRemindersByUniqueDates };

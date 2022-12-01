@@ -89,7 +89,7 @@ export const UserDataContextProvider = ({
       },
     });
 
-    notifySuccess(`${(<FcApproval />)} Settings are updated`);
+    notifySuccess(`Settings are updated`);
   };
 
   const addExpense = (expense: ExpenseFormDataI) => {

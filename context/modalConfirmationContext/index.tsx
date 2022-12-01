@@ -26,8 +26,8 @@ const ConfirmationModalContextProvider: React.FC<
   const [content, setContent] = useState<{
     title: string;
     message: string | JSX.Element;
-  } | null>();
-  const resolver = useRef<Function>();
+  } | null>(null);
+  const resolver = useRef<(val: boolean) => void>();
 
   const handleShow = (
     title: string,

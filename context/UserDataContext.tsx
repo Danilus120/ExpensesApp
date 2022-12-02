@@ -80,11 +80,10 @@ export const UserDataContextProvider = ({
     }
   };
 
-  const updateSettings = (options: { currency: string; timezone: string }) => {
+  const updateSettings = (options: { timezone: string }) => {
     dispatch({
       type: DataActionTypes.updateSettings,
       payload: {
-        default_Currency: options.currency,
         default_Timezone: options.timezone,
       },
     });

@@ -20,7 +20,7 @@ const validationObject = {
 
 const settingsSchema = yup
   .object({
-    currency: yup.string().required(),
+    // currency: yup.string().required(),
     timezone: yup.string().required(),
   })
   .required();

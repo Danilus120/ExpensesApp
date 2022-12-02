@@ -31,7 +31,6 @@ export const dataReducer = (
     case DataActionTypes.updateSettings:
       return {
         ...state,
-        default_Currency: payload.default_Currency,
         default_Timezone: payload.default_Timezone,
       };
     case DataActionTypes.addExpense:

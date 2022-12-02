@@ -25,6 +25,7 @@ function SettingsModalForm({
       <Form
         onSubmit={(data) => {
           actions.updateSettings(data);
+          toggleSettingsModal();
         }}
         schema={settingsSchema}
         handleToggle={toggleSettingsModal}
@@ -33,7 +34,7 @@ function SettingsModalForm({
           resetAfterSubmit: false,
         }}
       >
-        <Select
+        {/* <Select
           label="Default currency"
           name="currency"
           options={currency_list.map((currency) => {
@@ -43,7 +44,7 @@ function SettingsModalForm({
             };
           })}
           defaultValue={userData.default_Currency}
-        />
+        /> */}
         <Select
           label="Default timezone"
           name="timezone"
@@ -55,6 +56,7 @@ function SettingsModalForm({
           })}
           defaultValue={userData.default_Timezone}
         />
+        <input type="hidden" />
       </Form>
     </Modal>
   );

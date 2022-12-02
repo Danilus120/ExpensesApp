@@ -35,7 +35,7 @@ export type DataActionType =
     }
   | {
       type: DataActionTypes.updateSettings;
-      payload: { default_Currency: string; default_Timezone: string };
+      payload: { default_Timezone: string };
     }
   | {
       type: DataActionTypes.addExpense;

@@ -15,14 +15,14 @@ const generateMonthOptionsForSelect = (data: {
   for (let i = 0; i < 12; i++) {
     const dataFromMonth = calculateSavingsFromOneMonth(data, actualDate);
 
-    if (dataFromMonth === 0) {
-      continue;
-    }
+    console.log(dataFromMonth);
 
-    options.push({
-      label: `${i + 1} months`,
-      value: i + 1,
-    });
+    if (dataFromMonth > 0) {
+      options.push({
+        label: `${i + 1} months`,
+        value: i + 1,
+      });
+    }
 
     actualDate = addMonths(actualDate, -1);
   }

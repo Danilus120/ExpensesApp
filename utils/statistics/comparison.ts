@@ -9,6 +9,9 @@ const calculateComparisonPercent = (
   firstValue: number,
   secondValue: number
 ) => {
+  if (firstValue < 0 || secondValue < 0) {
+    return (-((firstValue - secondValue) / secondValue) * 100).toFixed(2);
+  }
   return (((firstValue - secondValue) / secondValue) * 100).toFixed(2);
 };
 

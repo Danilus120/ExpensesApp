@@ -22,7 +22,7 @@ const signUpWithSocials = {
 
 export default function SignInSocials() {
   const [error, setError] = useState();
-  const { handleChangeLoading } = useAuth();
+  const { user, handleChangeLoading } = useAuth();
 
   const signInWithSocials = async (social: "google" | "github") => {
     handleChangeLoading(true);
@@ -34,7 +34,22 @@ export default function SignInSocials() {
     } catch (err: any) {
       setError(err.code);
     }
+
+    // try {
+    //   if (!user) {
+    //     const provider = signUpWithSocials[social];
+    //     await signInWithRedirect(auth, provider);
+    //   }
+    //   handleChangeLoading(false);
+    // } catch (err: any) {
+    //   setError(err.code);
+    // } finally {
+    // }
   };
+
+  // if (user) {
+  //   router.push("/dashboard");
+  // }
 
   return (
     <div className={styles["signInSocials"]}>

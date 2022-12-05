@@ -34,6 +34,7 @@ function AddReminderModal({ isOpen, handleToggle }: AddReminderModalProps) {
             haveButtons: true,
             haveClearButton: true,
             resetAfterSubmit: true,
+            haveCloseButton: true,
           }}
           schema={reminderAddSchema}
           handleToggle={handleToggle}

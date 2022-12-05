@@ -32,19 +32,9 @@ function SettingsModalForm({
         options={{
           haveButtons: true,
           resetAfterSubmit: false,
+          haveCloseButton: true,
         }}
       >
-        {/* <Select
-          label="Default currency"
-          name="currency"
-          options={currency_list.map((currency) => {
-            return {
-              label: `${currency.name} (${currency.code})`,
-              value: currency.code,
-            };
-          })}
-          defaultValue={userData.default_Currency}
-        /> */}
         <Select
           label="Default timezone"
           name="timezone"

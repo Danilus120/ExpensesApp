@@ -55,6 +55,7 @@ function EditReminderModal({
             haveClearButton: true,
             resetAfterSubmit: true,
             deleteRecordButton: true,
+            haveCloseButton: true,
           }}
           schema={reminderEditSchema}
           handleToggle={handleToggle}

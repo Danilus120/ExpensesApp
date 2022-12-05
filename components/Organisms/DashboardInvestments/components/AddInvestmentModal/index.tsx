@@ -43,6 +43,7 @@ function AddInvestmentModal({
             haveButtons: true,
             haveClearButton: true,
             resetAfterSubmit: true,
+            haveCloseButton: true,
           }}
           schema={investmentAddSchema}
           handleToggle={handleToggle}

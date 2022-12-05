@@ -45,6 +45,7 @@ function EditExpenseModal({
             haveButtons: true,
             haveClearButton: true,
             resetAfterSubmit: true,
+            haveCloseButton: true,
           }}
           schema={expenseSchema}
           handleToggle={handleToggle}

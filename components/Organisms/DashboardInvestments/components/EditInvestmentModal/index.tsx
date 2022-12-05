@@ -74,6 +74,7 @@ function EditInvestmentModal({
             haveButtons: true,
             haveClearButton: true,
             resetAfterSubmit: true,
+            haveCloseButton: true,
           }}
           schema={investmentEditSchema}
           handleToggle={handleToggle}

@@ -33,6 +33,7 @@ function AddIncomeModal({ isOpen, handleToggle }: AddIncomeModalProps) {
             haveButtons: true,
             haveClearButton: true,
             resetAfterSubmit: true,
+            haveCloseButton: true,
           }}
           schema={incomeSchema}
           handleToggle={handleToggle}

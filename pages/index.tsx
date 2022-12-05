@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 
 import HomePageTemplate from "@/Templates/HomePageTemplate";
+// import HomePageContent from "@/Templates/HomePageTemplate/old/content";
 import HomePageContent from "@/Templates/HomePageTemplate/content";
 
 const Home: NextPage = () => {

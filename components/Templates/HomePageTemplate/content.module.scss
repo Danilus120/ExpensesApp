@@ -1,142 +1,355 @@
-.heading,
-.description,
-.features {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+.description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-.heading {
-  padding: 10px;
+  max-width: 100%;
+  margin: 0 auto 0;
+  padding: 2rem 0;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    max-width: 80%;
+    margin: 0 auto 0;
+    padding: 7rem 0 5rem;
+    text-align: center;
+  }
 
   h1 {
-    text-align: center;
-  }
+    margin: 0;
 
-  p {
-    text-align: center;
-    color: #8b949e;
-  }
-
-  button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 10px 30px;
-    margin: 0 auto;
-
-    border: none;
-    border-radius: 5px;
-
-    color: black;
-
-    background-color: #f6f8f9;
-
-    font-size: 18px;
-    font-weight: 600;
-
-    transition: all 0.2s ease-in-out;
-
-    cursor: pointer;
-
-    &:hover {
-      background-color: #dfdfdf;
-    }
-
-    svg {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-
-      margin-left: 5px;
-    }
-  }
-}
-
-.description {
-  padding: 10px;
-
-  .imgBox {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-
-    max-width: 600px;
-    height: 46vw;
-    position: relative;
-    margin: 0 auto;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 20px #17ff36;
 
     @media (min-width: 768px) {
-      height: 300px;
-    }
-
-    span {
-      margin: 10px !important;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 40px #17ff36;
     }
   }
 
   p {
-    text-align: center;
+    margin-top: 1.25rem;
 
-    width: 75%;
+    color: rgb(177, 177, 177);
 
-    margin: 20px auto;
+    font-size: 0.9rem;
+    max-width: 42rem;
 
-    font-size: 24px;
-    font-weight: 600;
+    @media (min-width: 768px) {
+      font-size: 1.25rem;
+    }
   }
 }
 
-.features {
-  width: 100%;
-  padding: 10px;
+.includes {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2rem;
 
-  &__grid {
+  text-align: center;
+
+  h3 {
+    font-size: 1.3rem;
+    text-shadow: 2px 2px 10px #17ff36;
+
+    @media (min-width: 768px) {
+      font-size: 2rem;
+      text-shadow: 2px 2px 40px #17ff36;
+    }
+  }
+
+  p {
+    margin: 1.25rem auto 0;
+
+    color: rgb(211, 210, 216);
+
+    font-size: 0.9rem;
+    max-width: 42rem;
+
+    @media (min-width: 768px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
+
+  .options {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
 
-    max-width: 600px;
-    margin: 0 auto;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    column-gap: 2rem;
+    row-gap: 2rem;
 
-    gap: 10px;
+    padding: 0;
+    margin-top: 2rem;
+
+    list-style: none;
 
     @media (min-width: 768px) {
-      width: 80%;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 2rem;
+      row-gap: 3rem;
+
+      margin-top: 4rem;
     }
 
-    .item {
-      width: 100%;
-      height: 200px;
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 4rem;
+      row-gap: 6rem;
 
+      margin-top: 4rem;
+    }
+
+    .option {
       display: flex;
-      justify-content: center;
       align-items: center;
-      flex-direction: column;
+      //   justify-content: space-between;
 
-      padding: 20px;
+      text-align: left;
 
-      background-color: white;
+      margin: 0 auto;
 
-      color: black;
+      .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      font-size: 24px;
-      font-weight: 600;
+        flex-shrink: 0;
 
-      transition: all 0.2s ease-in-out;
+        width: 3rem;
+        height: 3rem;
 
-      text-transform: uppercase;
+        @media (min-width: 768px) {
+          width: 4rem;
+          height: 4rem;
+        }
 
-      border-radius: 1.25rem;
-      box-shadow: 0 10px 15px rgb(0, 0, 0, 0.05);
-
-      &:hover {
-        background-color: #70d1b9;
+        svg {
+          width: 80px;
+          height: 80px;
+        }
       }
 
-      svg {
-        height: 100px;
-        width: 100px;
+      .content {
+        margin-left: 1rem;
+
+        h5 {
+          margin: 0;
+          font-weight: 600;
+          line-height: 1.2rem;
+          font-size: 1rem;
+
+          @media (min-width: 768px) {
+            margin: 0;
+            font-weight: 600;
+            line-height: 1.5rem;
+            font-size: 1.25rem;
+          }
+        }
+
+        p {
+          font-size: 0.9rem;
+          margin: 0.5rem 0 0;
+
+          @media (min-width: 768px) {
+            font-size: 1rem;
+            margin: 0.5rem 0 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.how-it-work {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  text-align: center;
+
+  h3 {
+    font-size: 1.3rem;
+    text-shadow: 2px 2px 10px #17ff36;
+
+    @media (min-width: 768px) {
+      font-size: 2rem;
+      text-shadow: 2px 2px 40px #17ff36;
+    }
+  }
+
+  .functionality {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+
+    text-align: left;
+
+    margin-top: 2rem;
+
+    @media (min-width: 768px) {
+      gap: 2rem;
+      flex-direction: row;
+    }
+
+    &--reverse {
+      flex-direction: column;
+
+      @media (min-width: 768px) {
+        gap: 2rem;
+        flex-direction: row-reverse;
+      }
+    }
+
+    h4 {
+      margin: 0;
+      font-weight: 600;
+      line-height: 2rem;
+      font-size: 1.5rem;
+
+      @media (min-width: 768px) {
+        margin: 0;
+        font-weight: 700;
+        line-height: 1.6rem;
+        font-size: 1.4rem;
+      }
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin: 0.5rem 0 0;
+      color: rgb(205, 204, 209);
+
+      @media (min-width: 768px) {
+        font-size: 1rem;
+        margin: 0.5rem 0 0;
+      }
+    }
+
+    .block {
+      ul {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+
+        gap: 2rem;
+
+        padding: 0;
+
+        list-style-type: none;
+
+        .item {
+          display: flex;
+          align-content: center;
+
+          .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: rgba(63, 212, 83, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+
+            flex-shrink: 0;
+
+            width: 3rem;
+            height: 3rem;
+
+            @media (min-width: 768px) {
+              width: 3rem;
+              height: 3rem;
+            }
+
+            svg {
+              width: 80px;
+              height: 80px;
+            }
+          }
+
+          .content {
+            margin-left: 10px;
+
+            .title {
+              line-height: 1.5rem;
+              font-size: 1.125rem;
+              font-weight: 500;
+            }
+
+            .description {
+              padding: 0;
+              margin: 0.5rem 0 0;
+
+              font-size: 1rem;
+              color: rgb(194, 193, 201);
+
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+
+    .image {
+      width: 100%;
+      max-width: 400px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.faq {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+
+  h2 {
+    text-align: center;
+  }
+
+  .questions {
+    display: grid;
+
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    column-gap: 1rem;
+    row-gap: 1rem;
+
+    padding: 0;
+    margin-top: 2rem;
+
+    margin-top: 1.5rem;
+
+    border-top: 2px solid rgb(243, 244, 246);
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 1rem;
+      row-gap: 2rem;
+    }
+
+    .question {
+      h3 {
+      }
+
+      p {
+        padding: 0;
+        margin: 0.5rem 0 0;
+
+        font-size: 1rem;
+        color: rgb(194, 193, 201);
+
+        text-align: left;
       }
     }
   }

@@ -33,6 +33,11 @@ export const dataReducer = (
         ...state,
         default_Timezone: payload.default_Timezone,
       };
+    case DataActionTypes.updateCurrency:
+      return {
+        ...state,
+        default_Currency: payload.default_Currency,
+      };
     case DataActionTypes.addExpense:
       const newExpensesAddProduct = [...state.expenses, payload];
 

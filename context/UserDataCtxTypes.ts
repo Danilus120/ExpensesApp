@@ -16,7 +16,8 @@ export interface UserI {
 interface UserDataContextI {
   userData: UserFirebaseI;
   actions: {
-    updateSettings: (options: { currency: string; timezone: string }) => void;
+    updateSettings: (options: { timezone: string }) => void;
+    updateCurrency: (currency: string) => void;
     addExpense: (expense: ExpenseFormDataI) => void;
     deleteExpense: (id: string) => void;
     updateExpense: (id: string, newExpense: ExpenseFormDataI) => void;

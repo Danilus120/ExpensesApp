@@ -20,8 +20,13 @@ const validationObject = {
 
 const settingsSchema = yup
   .object({
-    // currency: yup.string().required(),
     timezone: yup.string().required(),
+  })
+  .required();
+
+const currencySchema = yup
+  .object({
+    currency: yup.string().required(),
   })
   .required();
 
@@ -94,6 +99,7 @@ const forgotPasswordSchema = yup
 
 export {
   settingsSchema,
+  currencySchema,
   expenseSchema,
   incomeSchema,
   investmentAddSchema,

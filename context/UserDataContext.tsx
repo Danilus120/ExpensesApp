@@ -12,16 +12,13 @@ import {
 import { DataActionTypes } from "@/context/userData/reducer/dataReducer.interface";
 import {
   ExpenseFormDataI,
-  ExpenseI,
   IncomeFormDataI,
-  IncomeI,
   InvestmentFormDataI,
   ReminderFormDataI,
   ReminderI,
   UserFirebaseI,
 } from "types/user.interface";
 
-import { FcApproval } from "react-icons/fc";
 import { uuid } from "uuidv4";
 
 import { useAuth } from "@/context/auth/AuthContext";
@@ -89,6 +86,17 @@ export const UserDataContextProvider = ({
     });
 
     notifySuccess(`Settings are updated`);
+  };
+
+  const updateCurrency = (currency: string) => {
+    dispatch({
+      type: DataActionTypes.updateCurrency,
+      payload: {
+        default_Currency: currency,
+      },
+    });
+
+    notifySuccess(`Currency is added`);
   };
 
   const addExpense = (expense: ExpenseFormDataI) => {
@@ -325,6 +333,7 @@ export const UserDataContextProvider = ({
 
   const actions = {
     updateSettings,
+    updateCurrency,
     addExpense,
     deleteExpense,
     updateExpense,

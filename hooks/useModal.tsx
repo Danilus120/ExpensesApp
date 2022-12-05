@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-export const useModal = () => {
-  const [isModalOpened, setIsModalOpened] = useState(false);
+export const useModal = (isOpened = false) => {
+  const [isModalOpened, setIsModalOpened] = useState(isOpened);
   const [modalRecordID, setModalRecordID] = useState<string>("");
 
   const toggleModal = () => {

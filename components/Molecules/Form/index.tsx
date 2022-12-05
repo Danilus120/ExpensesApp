@@ -16,6 +16,7 @@ interface FormProps {
     haveButtons?: boolean;
     resetAfterSubmit?: boolean;
     deleteRecordButton?: boolean;
+    haveCloseButton?: boolean;
   };
 }
 
@@ -31,6 +32,7 @@ export default function Form({
     haveClearButton: false,
     resetAfterSubmit: true,
     deleteRecordButton: false,
+    haveCloseButton: true,
   },
 }: FormProps) {
   const {
@@ -79,9 +81,11 @@ export default function Form({
         : children}
       {options?.haveButtons && (
         <div className={styles["button-wrapper"]}>
-          <Button variant="contained" color="error" callbackFn={handleToggle}>
-            Close
-          </Button>
+          {options?.haveCloseButton && (
+            <Button variant="contained" color="error" callbackFn={handleToggle}>
+              Close
+            </Button>
+          )}
 
           {options.deleteRecordButton && onDelete ? (
             <Button

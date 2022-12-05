@@ -11,6 +11,7 @@ import {
 export enum DataActionTypes {
   updateUser = "UPDATE_USER",
   updateSettings = "UPDATE_SETTINGS",
+  updateCurrency = "UPDATE_CURRENCY",
   addExpense = "ADD_EXPENSE",
   deleteExpense = "DELETE_EXPENSE",
   updateExpense = "UPDATE_EXPENSE",
@@ -36,6 +37,10 @@ export type DataActionType =
   | {
       type: DataActionTypes.updateSettings;
       payload: { default_Timezone: string };
+    }
+  | {
+      type: DataActionTypes.updateCurrency;
+      payload: { default_Currency: string };
     }
   | {
       type: DataActionTypes.addExpense;

@@ -31,7 +31,7 @@ export default function HomePageContent() {
           Get Started for Free
         </StyledLink>
       </section>
-      <section className={styles["includes"]}>
+      <section className={styles["includes"]} id="description">
         <h3>What{"'"}s included?</h3>
         <p>
           Everything you need to monitor your cash flow without writing any
@@ -118,7 +118,7 @@ export default function HomePageContent() {
           </li>
         </ul>
       </section>
-      <section className={styles["how-it-work"]}>
+      <section className={styles["how-it-work"]} id="features">
         <h3>How does it work?</h3>
         <div className={styles["functionality"]}>
           <div className={styles["block"]}>
@@ -177,9 +177,9 @@ export default function HomePageContent() {
           <div className={styles["image"]}>
             <Image
               layout="responsive"
-              width="100"
+              width="200"
               height="100"
-              src="/homepage-1.png"
+              src="/reminders_img.png"
               alt="x"
             />
           </div>
@@ -200,9 +200,7 @@ export default function HomePageContent() {
                     <AiOutlineFileAdd />
                   </div>
                   <div className={styles["content"]}>
-                    <div className={styles["title"]}>
-                      1. Add your investment
-                    </div>
+                    <div className={styles["title"]}>1. Add investment</div>
                     <div className={styles["description"]}>
                       Set new investment with configuration like value and
                       cryptocurrency.
@@ -243,15 +241,15 @@ export default function HomePageContent() {
           <div className={styles["image"]}>
             <Image
               layout="responsive"
-              width="100"
+              width="250"
               height="100"
-              src="/homepage-1.png"
+              src="/investments_img.png"
               alt="x"
             />
           </div>
         </div>
       </section>
-      <section className={styles["faq"]}>
+      <section className={styles["faq"]} id="faq">
         <h2>Frequently asked questions</h2>
         <div className={styles["questions"]}>
           <div className={styles["question"]}>
@@ -263,29 +261,11 @@ export default function HomePageContent() {
             </p>
           </div>
           <div className={styles["question"]}>
-            <h3>How does Cronhub scheduler work?</h3>
+            <h3>How does ExpenseApp work?</h3>
             <p>
-              With the scheduler, you specify the job schedule and target URL.
-              We make an HTTP request to your target URL according to your
-              schedule. The schedule can be any time interval or cron
-              expression. Of course, you can customize HTTP requests.
-            </p>
-          </div>
-          <div className={styles["question"]}>
-            <h3>How does Cronhub monitoring work?</h3>
-            <p>
-              For each job, you create a monitor and get a unique URL. You use
-              this URL to make an HTTP request from your cron job. When you make
-              a request, Cronhub knows when your job should run next based on
-              the monitor schedule. If your cron job doesn t run on time or runs
-              longer than expected, we alert you.
-            </p>
-          </div>
-          <div className={styles["question"]}>
-            <h3>How reliable is Cronhub?</h3>
-            <p>
-              Our monitoring servers are on Digitial Ocean, and schedulers are
-              serverless on AWS. I use Cronhub to schedule and monitor my jobs.
+              With Expense app, you can easily track your expenses, income,
+              investments by statistics. You can also add a reminder for bills
+              so you never forget to pay them.
             </p>
           </div>
         </div>

@@ -22,7 +22,7 @@ function CalendarNavigation({
   actions,
 }: CalendarNavigationProps) {
   const calendarTitle = toCapital(
-    chosenDate.toLocaleDateString("pl", { month: "long", year: "numeric" })
+    chosenDate.toLocaleDateString("en", { month: "long", year: "numeric" })
   );
 
   return (

@@ -9,11 +9,14 @@ import { useAuth } from "@/context/auth/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "config/firebase.config";
 import styles from "./styles.module.scss";
+import { FaQuestion } from "react-icons/fa";
 
 const menuLinks = [
   { name: "Home", link: "#home", icon: <FiHome /> },
   { name: "Description", link: "#description", icon: <MdOutlineDescription /> },
   { name: "Features", link: "#features", icon: <FiStar /> },
+  { name: "FAQ", link: "#faq", icon: <FaQuestion /> },
+  //
 ];
 
 export default function Navigation() {
@@ -50,7 +53,11 @@ export default function Navigation() {
             />
           </div>
           {menuLinks.map((item) => (
-            <li key={item.name} onClick={toggleMobileNav}>
+            <li
+              key={item.name}
+              onClick={toggleMobileNav}
+              className={styles["hide-at-mobile-tablet"]}
+            >
               <StyledLink href={item.link} variant="ghost">
                 {item.icon}
                 <p className={styles["list__item"]}>{item.name}</p>

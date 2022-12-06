@@ -30,9 +30,9 @@ export default function SignInSocials() {
       const res = await signInWithPopup(auth, signUpWithSocials[social]);
       await createUserDoc(res.user.uid);
       await router.push("/dashboard");
-      handleChangeLoading(false);
     } catch (err: any) {
       setError(err.code);
+      handleChangeLoading(false);
     }
 
     // try {

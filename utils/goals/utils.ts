@@ -15,8 +15,6 @@ const generateMonthOptionsForSelect = (data: {
   for (let i = 0; i < 12; i++) {
     const dataFromMonth = calculateSavingsFromOneMonth(data, actualDate);
 
-    console.log(dataFromMonth);
-
     if (dataFromMonth > 0) {
       options.push({
         label: `${i + 1} months`,

@@ -23,7 +23,6 @@ export default function DashboardTemplate({
   // If user is not logged in, change url to /login
   if (!user) {
     Router.push("/login");
-    return null;
   }
 
   return (

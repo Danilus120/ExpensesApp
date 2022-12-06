@@ -135,8 +135,10 @@
   }
 }
 
-.hide-at-mobile-tablet {
-  display: none;
+.hide-from-tablet {
+  @media (min-width: 768px) {
+    display: none;
+  }
 
   @media (min-width: 992px) {
     display: unset;

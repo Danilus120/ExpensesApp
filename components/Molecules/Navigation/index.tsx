@@ -56,7 +56,7 @@ export default function Navigation() {
             <li
               key={item.name}
               onClick={toggleMobileNav}
-              className={styles["hide-at-mobile-tablet"]}
+              className={styles["hide-from-tablet"]}
             >
               <StyledLink href={item.link} variant="ghost">
                 {item.icon}

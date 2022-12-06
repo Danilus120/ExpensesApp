@@ -25,6 +25,9 @@ const generateOptionsBar = (
           color: "#555555",
         },
         ticks: {
+          callback: function (val: any, index: any) {
+            return "${this.getLabelForValue(Number(val))}%";
+          },
           color: "#8f8f8f",
         },
       },

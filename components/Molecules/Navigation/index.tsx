@@ -48,8 +48,8 @@ export default function Navigation() {
             <Image
               src="/logo.svg"
               alt="Logo Expenses app"
-              width="100px"
-              height="50px"
+              width="100"
+              height="50"
             />
           </div>
           {menuLinks.map((item) => (
@@ -98,8 +98,8 @@ export default function Navigation() {
           <Image
             src="/logo.svg"
             alt="Logo Expenses app"
-            width="100px"
-            height="50px"
+            width="100"
+            height="50"
           />
         </div>
         <Button

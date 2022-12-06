@@ -1,8 +1,8 @@
-import { ButtonI } from "@/Atoms/Button";
+import { ButtonProps } from "@/Atoms/Button";
 
 import styles from "./styles.module.scss";
 
-const createButtonClass = (props: ButtonI) => {
+const createButtonClass = (props: ButtonProps) => {
   const { variant, size, color, margin, circular, iconOnly, fullWidth, align } =
     props;
 

@@ -4,7 +4,7 @@ import ContentTemplate from "./components/ContentTemplate/ContentTemplate";
 
 import { UserDataContextProvider } from "@/context/UserDataContext";
 import { useAuth } from "@/context/auth/AuthContext";
-import Router from "next/router";
+import router from "next/router";
 
 interface DashboardTemplateProps {
   children: React.ReactNode;
@@ -21,9 +21,16 @@ export default function DashboardTemplate({
   const { user } = useAuth();
 
   // If user is not logged in, change url to /login
-  if (!user) {
-    Router.push("/login");
-  }
+  // if (!user) {
+  //   router.push(
+  //     {
+  //       pathname: "/login",
+  //       query: { section: "section" },
+  //     },
+  //     undefined,
+  //     { shallow: true }
+  //   );
+  // }
 
   return (
     <>

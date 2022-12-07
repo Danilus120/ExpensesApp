@@ -12,7 +12,7 @@ import styles from "./styles.module.scss";
 import { FaQuestion } from "react-icons/fa";
 
 const menuLinks = [
-  { name: "Home", link: "#home", icon: <FiHome /> },
+  { name: "Home", link: "#", icon: <FiHome /> },
   { name: "Description", link: "#description", icon: <MdOutlineDescription /> },
   { name: "Features", link: "#features", icon: <FiStar /> },
   { name: "FAQ", link: "#faq", icon: <FaQuestion /> },

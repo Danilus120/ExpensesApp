@@ -1,6 +1,7 @@
 import {
   addDays,
   getWeeksInMonth,
+  isFuture,
   isPast,
   startOfMonth,
   startOfWeek,
@@ -91,7 +92,9 @@ const getActualRemindersByUniqueDates = (reminders: ReminderI[]) => {
 };
 
 const getSortedUniqueDatesFromActualReminders = (reminders: ReminderI[]) => {
-  const dates = reminders.map((reminder) => reminder.date);
+  const dates = reminders
+    .filter((reminder) => isFuture(reminder.date))
+    .map((reminder) => reminder.date);
 
   const uniqueDates = Array.from(new Set(dates));
 

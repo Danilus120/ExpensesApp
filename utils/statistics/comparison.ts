@@ -12,6 +12,9 @@ const calculateComparisonPercent = (
   if (firstValue < 0 || secondValue < 0) {
     return (-((firstValue - secondValue) / secondValue) * 100).toFixed(2);
   }
+  if (secondValue > firstValue) {
+    return (((secondValue - firstValue) / firstValue) * 100).toFixed(2);
+  }
   return (((firstValue - secondValue) / secondValue) * 100).toFixed(2);
 };
 

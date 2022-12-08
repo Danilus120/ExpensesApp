@@ -1,3 +1,4 @@
+import { describe } from "mocha";
 import authUser from "../fixtures/auth-user.json";
 
 describe("User", () => {

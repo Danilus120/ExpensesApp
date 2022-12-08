@@ -1,3 +1,5 @@
+import { describe } from "mocha";
+
 describe("HomePage", () => {
   it("should navigate to login page", () => {
     cy.visit("/").contains("Log in").click();

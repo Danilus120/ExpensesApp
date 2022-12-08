@@ -1,5 +1,3 @@
-import { describe } from "mocha";
-
 describe("Login page", () => {
   beforeEach(() => {
     cy.visit("/login");

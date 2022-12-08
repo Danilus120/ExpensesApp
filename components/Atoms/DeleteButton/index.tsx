@@ -61,7 +61,12 @@ const DeleteButton = ({
   };
 
   return (
-    <button className={classes} disabled={disabled} onClick={handleOnClick}>
+    <button
+      className={classes}
+      disabled={disabled}
+      onClick={handleOnClick}
+      data-cy="delete-record-btn"
+    >
       {children}
     </button>
   );

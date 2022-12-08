@@ -45,7 +45,7 @@ function DashboardExpenses() {
         deleteRecordFn={actions.deleteExpense}
         editRecordFn={setRecordID}
         addFn={toggleAddExpenseModal}
-        title="Expenses Table"
+        title="Expense"
       />
 
       <AddExpenseModal

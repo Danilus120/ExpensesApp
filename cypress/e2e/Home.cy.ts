@@ -1,11 +1,10 @@
-import { describe } from "mocha";
-
 describe("HomePage", () => {
   it("should navigate to login page", () => {
     cy.visit("/").contains("Log in").click();
 
-    cy.location().should((location) => {
-      expect(location.pathname).to.eq("/login");
-    });
+    cy.url().should("include", "/login");
   });
 });
+
+const asModule = {};
+export default asModule;

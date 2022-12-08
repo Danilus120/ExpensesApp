@@ -104,7 +104,9 @@ interface TableHeaderProps {
 function TableHeader({ title, addFn, tableInstance }: TableHeaderProps) {
   return (
     <div className={styles["header"]}>
-      <div className={styles["left"]}>{title ? <h3>{title}</h3> : null}</div>
+      <div className={styles["left"]}>
+        {title ? <h3>{title} table</h3> : null}
+      </div>
       <div className={styles["right"]}>
         <GlobalFilter tableInstance={tableInstance} />
         {addFn ? (
@@ -115,7 +117,7 @@ function TableHeader({ title, addFn, tableInstance }: TableHeaderProps) {
               callbackFn={addFn}
               size="medium"
             >
-              <FiPlus /> Add Expense
+              <FiPlus /> Add {title}
             </Button>
           </div>
         ) : null}
@@ -208,6 +210,7 @@ function TableBody({
                   iconOnly
                   callbackFn={() => editRecordFn(id)}
                   size="small"
+                  id="edit-record-btn"
                 >
                   <FiEdit />
                 </Button>

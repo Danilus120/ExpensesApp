@@ -20,6 +20,7 @@ export interface ButtonProps {
   fullWidth?: boolean;
   callbackFn?: () => void;
   type?: "button" | "submit";
+  id?: string;
 }
 
 export default function Button({
@@ -35,6 +36,7 @@ export default function Button({
   callbackFn,
   disabled = false,
   type = "button",
+  id = "first",
 }: ButtonProps) {
   const props = {
     children,
@@ -56,6 +58,7 @@ export default function Button({
       onClick={callbackFn}
       className={classes}
       disabled={disabled}
+      id={id}
     >
       {children}
     </button>

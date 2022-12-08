@@ -44,7 +44,7 @@ function DashboardIncome() {
         deleteRecordFn={actions.deleteIncome}
         editRecordFn={setRecordID}
         addFn={toggleAddIncomeModal}
-        title="Income Table"
+        title="Income"
       />
 
       <AddIncomeModal

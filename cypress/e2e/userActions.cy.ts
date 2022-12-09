@@ -1,8 +1,11 @@
+import { deleteUser } from "firebase/auth";
+import { deleteUserDB } from "lib/firebaseMethods";
 import authUser from "../fixtures/auth-user.json";
 import expense from "../fixtures/expense.json";
 import editExpense from "../fixtures/editExpense.json";
 import income from "../fixtures/income.json";
 import editIncome from "../fixtures/editIncome.json";
+import { auth } from "@/config/firebase.config";
 
 describe("User", () => {
   it("should register", () => {
@@ -15,9 +18,9 @@ describe("User", () => {
 
     cy.get("#password").type(password);
 
-    // cy.get('button[type="submit"]').click();
+    cy.get('button[type="submit"]').click();
 
-    // cy.url().should("include", "/dashboard");
+    cy.url().should("include", "/dashboard");
   });
 
   it("should pick his currency while he is first time on site", () => {
@@ -141,7 +144,7 @@ describe("User", () => {
 
     cy.get("#title").clear().type(editTitle);
 
-    cy.get("#value").clear().type(value);
+    cy.get("#value").clear().type(editValue);
 
     cy.get("#description").clear().type(editDescription);
 
@@ -188,6 +191,12 @@ describe("User", () => {
 
     cy.url().should("include", "/dashboard");
   });
+
+  const user = auth.currentUser;
+  deleteUser(user!);
+  deleteUserDB(user?.uid!);
+
+  cy.wait(500);
 });
 
 const asModule = {};

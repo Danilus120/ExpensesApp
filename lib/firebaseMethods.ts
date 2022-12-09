@@ -1,10 +1,17 @@
-import { doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
+import {
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 
 import { isUserInDB } from "utils/user/userUtils";
 
 import { databaseUserRef, db } from "@/config/firebase.config";
 
-import { ExpenseI, IncomeI, UserFirebaseI } from "../types/user.interface";
+import { UserFirebaseI } from "../types/user.interface";
 
 import { initialUserValues } from "@/constants/initialUserValues";
 
@@ -64,32 +71,14 @@ const updateUserDB = async (uid: string, userData: UserFirebaseI) => {
   await updateDoc(doc(db, "users", uid), { ...userData });
 };
 
-const updateSettings = async (
-  uid: string,
-  { currency, timezone }: { currency: string; timezone: string }
-) => {
-  await updateDoc(doc(db, "users", uid), {
-    default_Currency: currency,
-    default_Timezone: timezone,
-  });
+const deleteUserDB = async (uid: string) => {
+  await deleteDoc(doc(db, "users", uid));
 };
 
-const updateExpenses = async (uid: string, expenses: ExpenseI[]) => {
-  await updateDoc(doc(db, "users", uid), {
-    expenses,
-  });
+export {
+  createUserDoc,
+  getUsers,
+  getUserFromFirebase,
+  updateUserDB,
+  deleteUserDB,
 };
-
-const updateIncome = async (docID: string, income: IncomeI[]) => {
-  await updateDoc(doc(db, "users", docID), {
-    income,
-  });
-};
-
-const updateInvestments = async (docID: string, investments: any[]) => {
-  await updateDoc(doc(db, "users", docID), {
-    investments,
-  });
-};
-
-export { createUserDoc, getUsers, getUserFromFirebase, updateUserDB };

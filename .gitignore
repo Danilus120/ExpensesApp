@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+serviceAccount.json
+cypress.env.json
+
+cypress/support/fbConfig.ts

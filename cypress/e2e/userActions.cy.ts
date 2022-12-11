@@ -1,201 +1,101 @@
-import { deleteUser } from "firebase/auth";
-import { deleteUserDB } from "lib/firebaseMethods";
-import authUser from "../fixtures/auth-user.json";
-import expense from "../fixtures/expense.json";
-import editExpense from "../fixtures/editExpense.json";
-import income from "../fixtures/income.json";
-import editIncome from "../fixtures/editIncome.json";
-import { auth } from "@/config/firebase.config";
+import userConfig from "cypress.env.json";
+import { initialUserValues } from "@/constants/initialUserValues";
 
 describe("User", () => {
-  beforeEach(() => {
+  it("should login and have unique db folder", () => {
     cy.login();
+    cy.callFirestore("set", `users/${userConfig.TEST_UID}`, initialUserValues);
   });
 
-  it("should register", () => {
+  it("should pick his currency while he is first time on site", () => {
     cy.visit("/dashboard");
-    // const { displayName, email, password } = authUser;
-    // cy.visit("/register");
 
-    // cy.get("#displayName").type(displayName);
+    cy.wait(1000);
 
-    // cy.get("#email").type(email);
+    cy.updateCurrency();
 
-    // cy.get("#password").type(password);
+    cy.get('a[href*="/dashboard/expenses"]').click({ force: true });
 
-    // cy.get('button[type="submit"]').click();
-
-    // cy.url().should("include", "/dashboard");
+    cy.checkUrl("/dashboard/expenses");
   });
 
-  // it("should pick his currency while he is first time on site", () => {
-  //   cy.visit("/dashboard");
+  it("should go to expense page", () => {
+    cy.visit("/dashboard");
 
-  //   cy.wait(1000);
+    cy.get('a[href*="/dashboard/expenses"]').click();
 
-  //   cy.get("#currency")
-  //     .contains("British Pound Sterling (GBP)")
-  //     .get("#react-select-2-input")
-  //     .type("EUR{enter}{enter}");
+    cy.checkUrl("/dashboard/expenses");
+  });
 
-  //   cy.get('a[href*="/dashboard/expenses"]').click({ force: true });
+  it("should add expense, edit it and delete record", () => {
+    cy.visit("/dashboard/expenses");
 
-  //   cy.url().should("include", "/dashboard/expenses");
-  // });
+    cy.wait(500);
 
-  // it("should go to expense page", () => {
-  //   cy.visit("/dashboard");
+    cy.contains("Add Expense").click();
 
-  //   cy.get('a[href*="/dashboard/expenses"]').click();
+    cy.addExpense();
 
-  //   cy.url().should("include", "/dashboard/expenses");
-  // });
+    cy.wait(100);
 
-  // it("should add expense, edit it and delete record", () => {
-  //   const { date, category, shopName, price, description } = expense;
-  //   const {
-  //     date: editDate,
-  //     category: editCategory,
-  //     shopName: editShopName,
-  //     price: editPrice,
-  //     description: editDescription,
-  //   } = editExpense;
+    cy.get("#edit-record-btn").click();
 
-  //   cy.visit("/dashboard/expenses");
+    cy.editExpense();
 
-  //   cy.wait(500);
+    cy.deleteExpense();
 
-  //   cy.contains("Add Expense").click();
+    cy.wait(100);
+  });
 
-  //   cy.get("#date").type(date);
+  it("should go to income page", () => {
+    cy.visit("/dashboard");
 
-  //   cy.get("#category")
-  //     .contains("Car and transport")
-  //     .get("#react-select-2-input")
-  //     .type(category);
+    cy.get('a[href*="/dashboard/income"]').click();
 
-  //   cy.get("#shopName").type(shopName);
+    cy.checkUrl("/dashboard/income");
+  });
 
-  //   cy.get("#value").type(price), cy.get("#description").type(description);
+  it("should add income, edit it and delete record", () => {
+    cy.visit("/dashboard/income");
 
-  //   cy.contains("Submit").click();
+    cy.wait(500);
 
-  //   cy.wait(100);
+    cy.contains("Add Income").click();
 
-  //   cy.get("#edit-record-btn").click();
+    cy.addIncome();
 
-  //   cy.get("#date").type(editDate);
+    cy.wait(100);
 
-  //   cy.get("#category").get("#react-select-3-input").type(editCategory);
+    cy.editIncome();
 
-  //   cy.get("#shopName").clear().type(editShopName);
+    cy.get('[data-cy="delete-record-btn"]').click();
 
-  //   cy.get("#value").clear().type(price);
+    cy.get("button").contains("OK").click();
 
-  //   cy.get("#description").clear().type(editDescription);
+    cy.wait(100);
+  });
 
-  //   cy.contains("Submit").click();
+  it("should go to investments page", () => {
+    cy.visit("/dashboard");
 
-  //   cy.get('[data-cy="delete-record-btn"]').click();
+    cy.get('a[href*="/dashboard/investments"]').click();
 
-  //   cy.get("button").contains("OK").click();
+    cy.checkUrl("/dashboard/investments");
+  });
 
-  //   cy.wait(100);
-  // });
+  it("should add investment, payout, edit, rollback and delete it", () => {
+    cy.visit("/dashboard/investments");
 
-  // it("should go to income page", () => {
-  //   cy.visit("/dashboard");
+    cy.wait(500);
 
-  //   cy.get('a[href*="/dashboard/income"]').click();
+    cy.contains("Add Investment").click();
 
-  //   cy.url().should("include", "/dashboard/income");
-  // });
+    cy.addInvestment();
+  });
 
-  // it("should add income, edit it and delete record", () => {
-  //   const { date, category, title, value, description } = income;
-  //   const {
-  //     date: editDate,
-  //     category: editCategory,
-  //     title: editTitle,
-  //     value: editValue,
-  //     description: editDescription,
-  //   } = editIncome;
-
-  //   cy.visit("/dashboard/income");
-
-  //   cy.wait(500);
-
-  //   cy.contains("Add Income").click();
-
-  //   cy.get("#date").type(date);
-
-  //   cy.get("#category").get("#react-select-2-input").type(category);
-
-  //   cy.get("#title").type(title);
-
-  //   cy.get("#value").type(value);
-
-  //   cy.get("#description").type(description);
-
-  //   cy.contains("Submit").click();
-
-  //   cy.wait(100);
-
-  //   cy.get("#edit-record-btn").click();
-
-  //   cy.get("#date").type(editDate);
-
-  //   cy.get("#category").get("#react-select-3-input").type(editCategory);
-
-  //   cy.get("#title").clear().type(editTitle);
-
-  //   cy.get("#value").clear().type(editValue);
-
-  //   cy.get("#description").clear().type(editDescription);
-
-  //   cy.contains("Submit").click();
-
-  //   cy.get('[data-cy="delete-record-btn"]').click();
-
-  //   cy.get("button").contains("OK").click();
-
-  //   cy.wait(100);
-  // });
-
-  // it("should go to investments page", () => {
-  //   cy.visit("/dashboard");
-
-  //   cy.get('a[href*="/dashboard/investments"]').click();
-
-  //   cy.url().should("include", "/dashboard/investments");
-  // });
-
-  // it("should add investment, payout, edit, rollback and delete it", () => {
-  //   cy.visit("/dashboard/investments");
-
-  //   cy.wait(500);
-
-  //   cy.contains("Add Investment").click();
-
-  //   cy.get("#name").get("#react-select-2-input").type("eth{enter}");
-
-  //   cy.get("#value").type("1000");
-
-  //   cy.contains("Submit").click();
-  // });
-
-  // it("should login", () => {
-  //   const { email, password } = authUser;
-  //   cy.visit("/login");
-
-  //   cy.get("#email").type(email);
-
-  //   cy.get("#password").type(password);
-
-  //   cy.get('button[type="submit"]').click();
-
-  //   cy.url().should("include", "/dashboard");
-  // });
+  it("should delete user folder in db at the end", () => {
+    cy.callFirestore("delete", `users/${userConfig.TEST_UID}`);
+  });
 });
 
 const asModule = {};

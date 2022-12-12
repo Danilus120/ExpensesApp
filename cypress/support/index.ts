@@ -1,3 +1,4 @@
+import { formatDate } from "utils/utils";
 import expense from "../fixtures/expense.json";
 import editExpense from "../fixtures/editExpense.json";
 
@@ -11,6 +12,7 @@ declare global {
        * Custom command to select DOM element by data-cy attribute.
        * @example cy.dataCy('greeting')
        */
+      findAnchorWithClick(link: string, force: boolean): void;
       checkUrl(link: string): Chainable<string>;
       updateCurrency(): void;
       addExpense(): void;
@@ -22,6 +24,13 @@ declare global {
     }
   }
 }
+
+Cypress.Commands.add(
+  "findAnchorWithClick",
+  (link: string, force: boolean = false) => {
+    cy.get(`a[href*="${link}"]`).click({ force: force });
+  }
+);
 
 Cypress.Commands.add("checkUrl", (link: string) => {
   cy.url().should("include", link);
@@ -62,9 +71,9 @@ Cypress.Commands.add("editExpense", () => {
     description: editDescription,
   } = editExpense;
 
-  cy.get("#date").type(editDate);
+  cy.get("#date").type(formatDate(new Date().getTime()));
 
-  cy.get("#category").get("#react-select-3-input").type(editCategory);
+  cy.get("#category").get("#react-select-2-input").type(editCategory);
 
   cy.get("#shopName").clear().type(editShopName);
 

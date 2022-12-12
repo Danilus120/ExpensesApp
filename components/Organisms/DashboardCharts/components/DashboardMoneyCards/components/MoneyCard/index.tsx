@@ -22,7 +22,7 @@ function MoneyCard({ data, dataName, reversly = false }: MoneyCardProps) {
     >
       <Card title={`Monthly ${toCapital(dataName)}`}>
         <div>
-          <h3>
+          <h3 data-cy={`money-block--${dataName}`}>
             {data.today || "0"} {userData.default_Currency}
           </h3>
           <PercentBlock

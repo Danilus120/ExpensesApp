@@ -10,11 +10,11 @@ describe("User", () => {
   it("should pick his currency while he is first time on site", () => {
     cy.visit("/dashboard");
 
-    cy.wait(1000);
+    cy.wait(300);
 
     cy.updateCurrency();
 
-    cy.get('a[href*="/dashboard/expenses"]').click({ force: true });
+    cy.findAnchorWithClick("/dashboard/expenses", true);
 
     cy.checkUrl("/dashboard/expenses");
   });
@@ -22,35 +22,57 @@ describe("User", () => {
   it("should go to expense page", () => {
     cy.visit("/dashboard");
 
-    cy.get('a[href*="/dashboard/expenses"]').click();
+    cy.findAnchorWithClick("/dashboard/expenses", true);
 
     cy.checkUrl("/dashboard/expenses");
   });
 
-  it("should add expense, edit it and delete record", () => {
+  it("should add expense", () => {
     cy.visit("/dashboard/expenses");
 
-    cy.wait(500);
+    cy.wait(300);
 
     cy.contains("Add Expense").click();
 
     cy.addExpense();
 
-    cy.wait(100);
+    cy.wait(300);
+  });
+
+  it("should edit expense", () => {
+    cy.visit("/dashboard/expenses");
+
+    cy.wait(300);
 
     cy.get("#edit-record-btn").click();
 
     cy.editExpense();
 
+    cy.wait(500);
+  });
+
+  it("should check if there is properly result on dashboard", () => {
+    cy.visit("/dashboard");
+
+    cy.wait(300);
+
+    cy.get('[data-cy="money-block--expenses"]').should("include", "690");
+
+    cy.wait(300);
+  });
+
+  it("should delete Expense", () => {
+    cy.visit("/dashboard/expenses");
+
     cy.deleteExpense();
 
-    cy.wait(100);
+    cy.wait(300);
   });
 
   it("should go to income page", () => {
     cy.visit("/dashboard");
 
-    cy.get('a[href*="/dashboard/income"]').click();
+    cy.findAnchorWithClick("/dashboard/income", true);
 
     cy.checkUrl("/dashboard/income");
   });
@@ -58,7 +80,7 @@ describe("User", () => {
   it("should add income, edit it and delete record", () => {
     cy.visit("/dashboard/income");
 
-    cy.wait(500);
+    cy.wait(300);
 
     cy.contains("Add Income").click();
 
@@ -72,13 +94,13 @@ describe("User", () => {
 
     cy.get("button").contains("OK").click();
 
-    cy.wait(100);
+    cy.wait(300);
   });
 
   it("should go to investments page", () => {
     cy.visit("/dashboard");
 
-    cy.get('a[href*="/dashboard/investments"]').click();
+    cy.findAnchorWithClick("/dashboard/investments", true);
 
     cy.checkUrl("/dashboard/investments");
   });
@@ -86,7 +108,7 @@ describe("User", () => {
   it("should add investment, payout, edit, rollback and delete it", () => {
     cy.visit("/dashboard/investments");
 
-    cy.wait(500);
+    cy.wait(300);
 
     cy.contains("Add Investment").click();
 

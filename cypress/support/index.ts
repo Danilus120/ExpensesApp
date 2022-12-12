@@ -14,6 +14,10 @@ declare global {
        */
       findAnchorWithClick(link: string, force: boolean): void;
       checkUrl(link: string): Chainable<string>;
+      checkIfResultIsProperly(
+        app: "expenses" | "income" | "investments",
+        value: string
+      ): void;
       updateCurrency(): void;
       addExpense(): void;
       editExpense(): void;
@@ -21,6 +25,7 @@ declare global {
       addIncome(): void;
       editIncome(): void;
       addInvestment(): void;
+      editInvestment(): void;
     }
   }
 }
@@ -117,9 +122,9 @@ Cypress.Commands.add("editIncome", () => {
 
   cy.get("#edit-record-btn").click();
 
-  cy.get("#date").type(editDate);
+  cy.get("#date").type(formatDate(new Date().getTime()));
 
-  cy.get("#category").get("#react-select-3-input").type(editCategory);
+  cy.get("#category").get("#react-select-2-input").type(editCategory);
 
   cy.get("#title").clear().type(editTitle);
 
@@ -131,9 +136,17 @@ Cypress.Commands.add("editIncome", () => {
 });
 
 Cypress.Commands.add("addInvestment", () => {
-  cy.get("#name").get("#react-select-2-input").type("eth{enter}");
+  cy.get("#name").get("#react-select-2-input").type("btc{enter}");
 
   cy.get("#value").type("1000");
+
+  cy.contains("Submit").click();
+});
+
+Cypress.Commands.add("editInvestment", () => {
+  cy.get("#edit-record-btn").click({ force: true });
+
+  cy.get("#payoutValue").clear().type("2000");
 
   cy.contains("Submit").click();
 });

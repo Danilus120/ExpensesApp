@@ -173,6 +173,7 @@ function TableBody({
                   iconOnly
                   callbackFn={() => editRecordFn(id)}
                   size="small"
+                  id="edit-record-btn"
                 >
                   <FiEdit />
                 </Button>
@@ -181,6 +182,7 @@ function TableBody({
                   iconOnly
                   callbackFn={() => rollbackRecordFn(id)}
                   size="small"
+                  id="rollback-record-btn"
                 >
                   <TbArrowBackUp />
                 </Button>

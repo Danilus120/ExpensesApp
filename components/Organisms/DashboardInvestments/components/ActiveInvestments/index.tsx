@@ -86,6 +86,7 @@ function ActiveInvestments({ currenciesExchange }: ActiveInvestmentsProps) {
                         callbackFn={() =>
                           actions.updateInvestment(investment.id, data)
                         }
+                        id="payout-record-btn"
                       >
                         Payout
                       </Button>

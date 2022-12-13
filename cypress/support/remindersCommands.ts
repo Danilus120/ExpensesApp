@@ -40,7 +40,7 @@ Cypress.Commands.add("confirmReminderPopup", () => {
 });
 
 Cypress.Commands.add("editReminder", () => {
-  const { title: editTitle, value: editValue } = reminderData;
+  const { title: editTitle, value: editValue } = editReminderData;
 
   cy.contains("Bill#1").click();
 
@@ -52,7 +52,7 @@ Cypress.Commands.add("editReminder", () => {
 });
 
 Cypress.Commands.add("deleteReminder", () => {
-  const { title: editTitle } = reminderData;
+  const { title: editTitle } = editReminderData;
   cy.contains(editTitle).click();
 
   cy.contains("Delete Record").click();

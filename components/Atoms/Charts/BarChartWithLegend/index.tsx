@@ -23,7 +23,7 @@ function BarChartWithLegend({
 
   return (
     <div className={styles["block"]}>
-      <Card title={`${toCapital(timeRange)}ly TOP expenses categories`}>
+      <Card title={`${toCapital(timeRange)}ly profit on currencies`}>
         <div className={styles["top-category"]}>
           <div className={styles["top-category__chart"]}>
             <Bar

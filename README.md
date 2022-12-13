@@ -13,11 +13,11 @@
 
 ## ℹ️ General info
 
-Expenses app was created to help people control their finances. App is writed on next.js + added PWA.
+Expenses app was created to help people control their finances. App is writed on next.js + Typescript + Firebase + PWA.
 
 ## 🎉 Project Overview
 
-The project have a homepage, authentication and dashboard. After authentification, user can move around dashboard. Project has applied confirm modal and toasts notifications.
+The project I have created taken me about 2 months. I have created it after comming home from my actual job. It have a homepage, authentication and dashboard with applications. After authentification, user can move around dashboard. Project has applied confirm modal and toasts notifications.
 
 Functions at dashboard:
 
@@ -31,7 +31,7 @@ Functions at dashboard:
 
 ## 📖 What I learned during this project?
 
-During this project, I used Context API for state menagement of my application. Statistics are handled by charts.
+During this project, I used Context API for state menagement of my application. Statistics are handled by charts. I had many difficulties in this project, but it not discouraged me. The most difficult problem that i had, was create generic Form, that i can easily connect in templates without compound with react-hook-form controller. One of the others difficulties, was creating logic in ContextAPI for updating data in userDB. Next problem that I encontered was customize react-table, to create CRUD table with it.
 
 ## ⚙️ Technologies used in project:
 

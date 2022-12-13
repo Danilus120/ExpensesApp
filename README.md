@@ -13,25 +13,25 @@
 
 ## ℹ️ General info
 
-Expenses app was created to help people control their finances. App is writed on next.js + Typescript + Firebase + PWA.
+The expenses app was created to help people control their finances. The app is writed on next.js + Typescript + Firebase + PWA.
 
 ## 🎉 Project Overview
 
-The project I have created taken me about 2 months. I have created it after comming home from my actual job. It have a homepage, authentication and dashboard with applications. After authentification, user can move around dashboard. Project has applied confirm modal and toasts notifications.
+The project I created took me about 2 months. I created it after coming home from my actual job. It has a homepage, authentication, and dashboard with applications. After authentification, the user can move around the dashboard. The project have confirm modal and toast notifications.
 
-Functions at dashboard:
+Functions at the dashboard:
 
-- Dashboard -> You can see your statistics about actual month and move to other months by navigation at top of the page.
-- Expenses -> You can add your expenses with specified date, category, name of expense, value and description. Later you can edit or delete expense.
-- Income -> You can add income with specified data, category, title, income value and description. There are buttons for editing or deleting too.
-- Investments -> You can add crypto investment for 20 most popular cryptocurrencies. In active investments you will see what profit / loss can you payout (it will counts to statistics). After payout you can edit your investment with correct payout value (program will calculate payout exchange by your payout value) or you can rollback investment to still active if it wasn't done by purpose. While it's active, you can delete it.
-- Reminders -> You can add reminder of future bills to your accont. It will reminds you if date of event will be in past. Then will be modal, where you can add reminder to your expenses or dismiss it. If you picked recursive, reminders will go to next date. At reminders page you will have calendar, which presents you all events. If you click on event, edit modal will show, where you can edit or delete reminder.
-- Goals -> You can calculate time to achieve a savings goal by your average of savings from your statistics.
-- Statistics -> You can track your money flow by daily, monthly and yearly statistics. In that page you can see your charts with legends and percentage expenses for all used categories.
+- Dashboard -> You can see your statistics about the actual month and move to other months by navigating at top of the page.
+- Expenses -> You can add your expenses with a specified date, category, name of expense, value, and description. Later you can edit or delete expenses.
+- Income -> You can add income with specified data, category, title, income value, and description. There are buttons for editing or deleting too.
+- Investments -> You can add crypto investment for the 20 most popular cryptocurrencies. In active investments, you will see what profit/loss can you pay out (it will count toward statistics). After the payout, you can edit your investment with the correct payout value (the program will calculate payout exchange by your payout value) or you can roll back the investment to still active if it wasn't done by purpose. While it's active, you can delete it.
+- Reminders -> You can add a reminder of future bills to your account. It will remind you if the date of the event will be in past. Then will be modal, where you can add a reminder to your expenses or dismiss it. If you picked recursive, reminders will go to the next date. On the reminders page, you will have a calendar, which will show all the events. If you click on an event, the edit modal will show. That's space where you can edit or delete the reminder.
+- Goals -> You can calculate the time to achieve a savings goal by your average of savings from your statistics.
+- Statistics -> You can track your money flow by daily, monthly, and yearly statistics. On that page, you can see your charts with legends and percentage expenses for all user categories.
 
 ## 📖 What I learned during this project?
 
-During this project, I used Context API for state menagement of my application. Statistics are handled by charts. I had many difficulties in this project, but it not discouraged me. The most difficult problem that i had, was create generic Form, that i can easily connect in templates without compound with react-hook-form controller. One of the others difficulties, was creating logic in ContextAPI for updating data in userDB. Next problem that I encontered was customize react-table, to create CRUD table with it.
+During this project, I used Context API for the state management of my application. Statistics are handled by charts. I had many difficulties in this project, but it not discouraged me. The most difficult problem that I had, was creating a generic Form, which I can easily connect in templates without a compound with a react-hook-form controller. One of the others difficulties was creating logic in ContextAPI for updating data in user DB. The next problem that I encountered was customizing the react table, to create a CRUD table with it.
 
 ## ⚙️ Technologies used in project:
 

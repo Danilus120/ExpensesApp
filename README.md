@@ -13,7 +13,7 @@
 
 ## ℹ️ General info
 
-The expenses app was created to help people control their finances. The app is writed on next.js + Typescript + Firebase + PWA.
+The expenses app was created to help people control their finances. The app is writed on next.js + Typescript + Firebase Auth + Firestorage + PWA.
 
 ## 🎉 Project Overview
 
@@ -63,15 +63,27 @@ During this project, I used Context API for the state management of my applicati
 ## 📷 Screenshots
 
 <p align="center">
-    <img src="screenshots/1.png" alt="Screen Shot">
+    <img src="screenshots/dashboard-screen.png" alt="Dashboard view">
 </p>
 
 <p align="center">
-    <img src="screenshots/2.png" alt="Screen Shot">
+    <img src="screenshots/expenses-screen.png" alt="Expenses view">
 </p>
 
 <p align="center">
-    <img src="screenshots/3.png" alt="Screen Shot">
+    <img src="screenshots/add-expense-modal-screen.png" alt="Add expense modal view">
+</p>
+
+<p align="center">
+    <img src="screenshots/investments-screen.png" alt="Investments view">
+</p>
+
+<p align="center">
+    <img src="screenshots/reminders-screen.png" alt="Reminders view">
+</p>
+
+<p align="center">
+    <img src="screenshots/statistics-yearly-screen-with-legend.png" alt="Statistics yearly view">
 </p>
 
 ## 💾 Installation
@@ -87,12 +99,14 @@ npm install
 
 Then add firebase config to enviroment variables in .env.local file
 
+```
 NEXT_PUBLIC_FIREBASE_API_KEY=
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
 NEXT_PUBLIC_FIREBASE_APP_ID=
+```
 
 Now you can open dev with:
 

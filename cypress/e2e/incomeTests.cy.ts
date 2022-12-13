@@ -67,6 +67,3 @@ describe("User In Income", () => {
     cy.callFirestore("delete", `users/${userConfig.TEST_UID}`);
   });
 });
-
-const asModule = {};
-export default asModule;

@@ -114,48 +114,6 @@ Now you can open dev with:
 npm run dev
 ```
 
-For config cypress add 3 files:
-
-- serviceAccount.json (you can get this file in firebase -> project settings -> service accounts -> generate new private key ):
-
-```
-{
-  "type": "",
-  "project_id": "",
-  "private_key_id": "",
-  "private_key": "",
-  "client_email": "",
-  "client_id": "",
-  "auth_uri": "",
-  "token_uri": "",
-  "auth_provider_x509_cert_url": "",
-  "client_x509_cert_url": ""
-}
-```
-
-- cypress.env.json:
-
-```
-{
-  "TEST_UID": "YOUR_AUTHENTICATED_USER_ID_FOR_TESTING"
-}
-```
-
-- cypress/support/fbConfig.ts:
-
-```
-const firebaseConfig = {
- apiKey: "",
- authDomain: "",
- projectId: "",
- storageBucket: "",
- messagingSenderId: "",
- appId: "",
-};
-
-export default firebaseConfig;
-```
-
 ## 📜 Available scripts
 
 | Command           | Description            |

@@ -11,5 +11,8 @@ export default defineConfig({
       cypressFirebasePlugin(on, config, admin);
       // e2e testing node events setup code
     },
+    env: {
+      test_id: "hDvQdwiNoRbPjXrrCy9cH3Old6I3",
+    },
   },
 });

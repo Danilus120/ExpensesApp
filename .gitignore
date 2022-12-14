@@ -36,6 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 serviceAccount.json
+cypress.config.ts
 cypress.env.json
 
 cypress/support/fbConfig.ts

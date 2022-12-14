@@ -5,7 +5,7 @@ describe("User In Expenses", () => {
     cy.login();
     cy.callFirestore(
       "set",
-      `users/${process.env.NEXT_PUBLIC_TEST_ID}`,
+      `users/${Cypress.env("TEST_ID")}`,
       initialUserValues
     );
   });
@@ -65,6 +65,6 @@ describe("User In Expenses", () => {
   });
 
   it("should delete user folder in db at the end", () => {
-    cy.callFirestore("delete", `users/${process.env.NEXT_PUBLIC_TEST_ID}`);
+    cy.callFirestore("delete", `users/${Cypress.env("TEST_ID")}`);
   });
 });

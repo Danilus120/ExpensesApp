@@ -1,5 +1,6 @@
 {
   "name": "expenses-app",
+  "author": "Danilus120",
   "version": "1.0.0",
   "private": true,
   "scripts": {

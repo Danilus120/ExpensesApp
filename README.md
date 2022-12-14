@@ -15,7 +15,7 @@ The expenses app was created to help people control their finances. The app is w
 
 ## 🎉 Project Overview
 
-The project I created took me about 2 months. I created it after coming home from my actual job. It has a homepage, authentication, and dashboard with applications. After authentification, the user can move around the dashboard. The project have confirm modal and toast notifications.
+The project have a homepage, authentication, and dashboard with applications. It will help you with tracking your finances. After authentification, the user can move around the dashboard, where expenses / income / investments / reminders can be added. The project I created took me about 2 months. I created it in my free time after coming home from my actual job.
 
 ## 📖 What I learned during this project?
 

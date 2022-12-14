@@ -32,9 +32,17 @@ export default function LoginWithEmail() {
       schema={loginFormSchema}
       options={{ haveButtons: false }}
     >
-      <Input label="Email Address" name="email" type="email" />
+      <Input
+        label="Email Address (demo: demo@test.test)"
+        name="email"
+        type="email"
+      />
 
-      <Input label="Password" name="password" type="password" />
+      <Input
+        label="Password (demo: 12345678!Mm)"
+        name="password"
+        type="password"
+      />
 
       <Button
         type="submit"

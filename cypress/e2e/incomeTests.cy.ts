@@ -1,10 +1,13 @@
-import userConfig from "cypress.env.json";
 import { initialUserValues } from "@/constants/initialUserValues";
 
 describe("User In Income", () => {
   it("should login and have unique db folder", () => {
     cy.login();
-    cy.callFirestore("set", `users/${userConfig.TEST_UID}`, initialUserValues);
+    cy.callFirestore(
+      "set",
+      `users/${process.env.NEXT_PUBLIC_TEST_ID}`,
+      initialUserValues
+    );
   });
 
   it("should pick his currency while he is first time on site", () => {
@@ -64,6 +67,6 @@ describe("User In Income", () => {
   });
 
   it("should delete user folder in db at the end", () => {
-    cy.callFirestore("delete", `users/${userConfig.TEST_UID}`);
+    cy.callFirestore("delete", `users/${process.env.NEXT_PUBLIC_TEST_ID}`);
   });
 });

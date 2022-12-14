@@ -24,7 +24,7 @@ During this project, I used Context API for the state management of my applicati
 ## ⚙️ Technologies used in project:
 
 | Tech                                                    | Description                                                                                                                       |
-| ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --- |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | 
 | [Next.js](https://nextjs.org/)                          | Next.js is a flexible React framework that gives you building blocks to create fast web applications.                             |
 | [React](https://reactjs.org/)                           | A JavaScript library for building user interfaces                                                                                 |
 | [Typescript](https://www.typescriptlang.org/)           | Javascript superset language                                                                                                      |
